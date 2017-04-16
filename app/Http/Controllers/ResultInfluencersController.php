@@ -8,6 +8,6 @@ class ResultInfluencersController extends Controller
 {
     //
     public function index(){
-        return view('campaigns.result_of_influencers');
+        return view('campaigns.result_influencers');
     }
 }
