@@ -13,3 +13,6 @@
 
 //Login
 Route::name('login')->get('/', 'LoginController@index');
+
+//Register
+Route::name('register')->get('/register', 'RegisterController@index');
