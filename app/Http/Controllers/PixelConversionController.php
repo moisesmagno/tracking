@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Moisés
@@ -6,14 +7,16 @@
  * Time: 19:50
  */
 
-namespace app\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class RecoverPasswordController extends Controller
+class PixelConversionController extends Controller
 {
     //Displays the conversion pixel screen
     public function index(){
         return view('pixel_conversion.index');
     }
 }
+
+
