@@ -8,6 +8,6 @@ class ListInfluencersController extends Controller
 {
     //Calls up the list of influencers list
     public function index(){
-       return view('campanhas.list_influencers');
+       return view('campaigns.list_influencers');
     }
 }

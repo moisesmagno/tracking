@@ -21,7 +21,7 @@ Route::name('register')->get('/register', 'RegisterController@index');
 Route::name('recover-password')->get('/recover-password', 'RecoverPasswordController@index');
 
 //Home - Campanhas
-Route::name('home_campanha')->get('/campanha/home', 'CampanhaHomeController@index');
+Route::name('home_campaigns')->get('/campanha/home', 'CampaignsHomeController@index');
 
 //List influencers - Campanhas
-Route::name('list_influencers')->get('/campanha/list-influencers', 'ListInfluencersController@index');
+Route::name('list_influencers')->get('/campanha/lista-influenciadores', 'ListInfluencersController@index');
