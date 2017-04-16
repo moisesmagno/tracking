@@ -8,6 +8,6 @@ class RegisterController extends Controller
 {
     //Call the registration screem
     public function index(){
-        return view('register');
+        return view('register.index');
     }
 }
