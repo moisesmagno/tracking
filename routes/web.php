@@ -16,3 +16,6 @@ Route::name('login')->get('/', 'LoginController@index');
 
 //Register
 Route::name('register')->get('/register', 'RegisterController@index');
+
+//Recover password
+Route::name('recover-password')->get('/recover-password', 'RecoverPasswordController@index');
