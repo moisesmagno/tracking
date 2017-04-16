@@ -22,3 +22,6 @@ Route::name('recover-password')->get('/recover-password', 'RecoverPasswordContro
 
 //Home - Campanhas
 Route::name('home_campanha')->get('/campanha/home', 'CampanhaHomeController@index');
+
+//List influencers - Campanhas
+Route::name('list_influencers')->get('/campanha/list-influencers', 'ListInfluencersController@index');
