@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Login
+Route::name('login')->get('/', 'LoginController@index');
