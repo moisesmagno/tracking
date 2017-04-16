@@ -11,6 +11,9 @@
             </div>
             <div class="panel-body">
                 <form class="form-horizontal m-t-20" action="index.html">
+
+                    {{ csrf_field() }}
+
                     <div class="form-group ">
                         <div class="col-xs-12">
                             <input class="form-control" type="text" required="" placeholder="E-mail">
@@ -38,7 +41,7 @@
                     </div>
                     <div class="form-group m-t-30 m-b-0">
                         <div class="col-sm-12">
-                            <a href="page-recoverpw.html" class="text-dark"><i class="fa fa-lock m-r-5"></i> Perdeu a senha?</a>
+                            <a href="{{ route('recover-password') }}" class="text-dark"><i class="fa fa-lock m-r-5"></i> Perdeu a senha?</a>
                         </div>
                     </div>
                 </form>
@@ -46,7 +49,7 @@
         </div>
         <div class="row">
             <div class="col-sm-12 text-center">
-                <p>Não é cadastrado ainda? <a href="page-register.html" class="text-primary m-l-5"><b>Cadastre-se</b></a></p>
+                <p>Não é cadastrado ainda? <a href="{{ route('register') }}" class="text-primary m-l-5"><b>Cadastre-se</b></a></p>
             </div>
         </div>
     </div>

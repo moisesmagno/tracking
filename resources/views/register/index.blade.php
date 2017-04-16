@@ -11,6 +11,9 @@
             </div>
             <div class="panel-body">
                 <form class="form-horizontal m-t-20" action="index.html">
+
+                    {{ csrf_field() }}
+
                     <div class="form-group ">
                         <div class="col-xs-12">
                             <input class="form-control" type="email" required="" placeholder="E-mail">
@@ -58,7 +61,7 @@
         <div class="row">
             <div class="col-sm-12 text-center">
                 <p>
-                    Você já tem uma conta?<a href="page-login.html" class="text-primary m-l-5"><b>Entrar</b></a>
+                    Você já tem uma conta?<a href="{{ route('login') }}" class="text-primary m-l-5"><b>Entrar</b></a>
                 </p>
             </div>
         </div>
