@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Created by PhpStorm.
  * User: Moisés
@@ -7,15 +6,14 @@
  * Time: 19:50
  */
 
-namespace App\Http\Controllers;
+namespace app\Http\Controllers;
 
 use Illuminate\Http\Request;
 
 class RecoverPasswordController extends Controller
 {
-    //Displays the password recovery screen
+    //Displays the conversion pixel screen
     public function index(){
-        return view('recover_password.index');
+        return view('pixel_conversion.index');
     }
 }
-

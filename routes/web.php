@@ -28,3 +28,6 @@ Route::name('list_influencers')->get('/lista-influenciadores', 'ListInfluencersC
 
 //Result influencers
 Route::name('result_influencers')->get('/resultado-influenciadores', 'ResultInfluencersController@index');
+
+//Pixel conversion
+Route::name('pixel_conversion')->get('/pixel-conversao', 'PixelConversionController@index');
