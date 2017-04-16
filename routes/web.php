@@ -20,5 +20,5 @@ Route::name('register')->get('/register', 'RegisterController@index');
 //Recover password
 Route::name('recover-password')->get('/recover-password', 'RecoverPasswordController@index');
 
-//Home
-Route::name('home')->get('/home', 'HomeController@index');
+//Home - Campanhas
+Route::name('home_campanha')->get('/campanha/home', 'CampanhaHomeController@index');
