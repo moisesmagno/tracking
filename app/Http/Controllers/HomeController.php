@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class CampaignsHomeController extends Controller
+class HomeController extends Controller
 {
     //Calls a campaigns screen
     public function index(){

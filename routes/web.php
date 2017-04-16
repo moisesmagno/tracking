@@ -21,10 +21,10 @@ Route::name('register')->get('/register', 'RegisterController@index');
 Route::name('recover-password')->get('/recover-password', 'RecoverPasswordController@index');
 
 //Home - Campaigns
-Route::name('home_campaigns')->get('/campanha/home', 'CampaignsHomeController@index');
+Route::name('home')->get('/home', 'HomeController@index');
 
-//List influencers - Campaigns
-Route::name('list_influencers')->get('/campanha/lista-influenciadores', 'ListInfluencersController@index');
+//List influencers
+Route::name('list_influencers')->get('/lista-influenciadores', 'ListInfluencersController@index');
 
-//Result influencers - Campaigns
-Route::name('result_influencers')->get('/campanha/resultado-influenciadores', 'ResultInfluencersController@index');
+//Result influencers
+Route::name('result_influencers')->get('/resultado-influenciadores', 'ResultInfluencersController@index');
