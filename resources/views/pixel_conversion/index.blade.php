@@ -16,7 +16,6 @@
                         <li class="active">
                             Pixels
                         </li>
-
                     </ol>
                 </div>
             </div>
@@ -27,10 +26,8 @@
             <!-- corpo -->
 
             <div class="panel">
-
                 <div class="panel-body">
                     <div class="row">
-
                         <div class="col-sm-8">
                             <form role="form">
                                 <div class="form-group contact-search m-b-30">
@@ -39,60 +36,55 @@
                                 </div> <!-- form-group -->
                             </form>
                         </div>
-
                         <div class="col-sm-4">
                             <div class="m-b-30">
                                 <a href="#custom-modal" class="btn btn-primary btn-md waves-effect waves-light " data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a"><i class="md md-add"></i> Criar novo pixel de conversão</a>
                             </div>
                         </div>
-
                         <div class="">
                             <table id="demo-foo-row-toggler" class="table toggle-circle table-hover">
-
                                 <thead>
-                                <tr>
-                                    <th>Nome da conversão</th>
-                                    <th>Conversões</th>
-                                    <th>Valor</th>
-                                    <th>Criado em</th>
-                                    <th>Janela</th>
-                                    <th>Ações</th>
-                                </tr>
+                                    <tr>
+                                        <th>Nome da conversão</th>
+                                        <th>Conversões</th>
+                                        <th>Valor</th>
+                                        <th>Criado em</th>
+                                        <th>Janela</th>
+                                        <th>Ações</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                <tr class="gradeU">
-                                    <td><a href="links_campanha.html">Cadastro do Site Coca-Cola</a></td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>18/12/2016</td>
-                                    <td>15 dias</td>
-                                    <td class="actions">
-                                        <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                                        <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                                        <a href="#" class="on-default edit-row" data-toggle="modal" data-target="#myModal"><i class="typcn typcn-code"></i></a>
-                                        <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                        <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                    </td>
-                                </tr>
+                                    <tr class="gradeU">
+                                        <td><a href="links_campanha.html">Cadastro do Site Coca-Cola</a></td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>18/12/2016</td>
+                                        <td>15 dias</td>
+                                        <td class="actions">
+                                            <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
+                                            <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
+                                            <a href="#" class="on-default edit-row" data-toggle="modal" data-target="#myModal"><i class="typcn typcn-code"></i></a>
+                                            <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+                                            <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+                                        </td>
+                                    </tr>
                                 </tbody>
-
                                 <tbody>
-                                <tr class="gradeU">
-                                    <td><a href="links_campanha.html">Compra no site Avon</a></td>
-                                    <td>3.200</td>
-                                    <td>R$ 125.900,00</td>
-                                    <td>10/12/2016</td>
-                                    <td>15 dias</td>
-                                    <td class="actions">
-                                        <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                                        <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                                        <a href="#" class="on-default edit-row"><i class="typcn typcn-code"></i></a>
-                                        <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                        <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                    </td>
-                                </tr>
+                                    <tr class="gradeU">
+                                        <td><a href="links_campanha.html">Compra no site Avon</a></td>
+                                        <td>3.200</td>
+                                        <td>R$ 125.900,00</td>
+                                        <td>10/12/2016</td>
+                                        <td>15 dias</td>
+                                        <td class="actions">
+                                            <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
+                                            <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
+                                            <a href="#" class="on-default edit-row"><i class="typcn typcn-code"></i></a>
+                                            <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+                                            <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+                                        </td>
+                                    </tr>
                                 </tbody>
-
                             </table>
                         </div>
                     </div>
@@ -132,7 +124,6 @@
                     <label for="name">Nome do pixel:</label>
                     <input type="text" class="form-control" id="name" placeholder="Ex.: Cadastro no site do cliente">
                 </div>
-
                 <div class="form-group m-b-30">
                     <label for="name">Janela de conversão:</label>
                     <select class="form-control select2">
@@ -146,7 +137,6 @@
                         <option value="">60 dias</option>
                     </select>
                 </div>
-
                 <button type="submit" class="btn btn-default waves-effect waves-light">Salvar</button>
                 <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">Cancelar</button>
             </form>
@@ -167,13 +157,10 @@
                     <p>Copie e cole a url abaixo em todas as páginas ca campanha. Na página de conversão, onde o cliente compra ou se cadastra, adicione a variável da conversão como explicado abaixo.</p>
                     <hr>
                     <h4>Código:</h4>
-
                     <div class="col-md-10 m-b-30">
                         <input type="text" class="form-control" readonly="" value="código js aqui">
                     </div>
-
                     <p style="clear:both">Utilize o código comentado acima para adicionar um valor fixo ou uma variável do seu sistema que retorne o valor da conversão.</p>
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Fechar</button>
