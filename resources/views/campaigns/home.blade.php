@@ -109,7 +109,7 @@
                         Você já possui 3 links criados. Para criar novos links é necessário fazer upgrade da conta.
                     </p>
                     <p>
-                        <a href="planos.html" class="btn btn-default waves-effect waves-light"> <span>Fazer Upgrade</span> </a>
+                        <a href="{{ route('plans') }}" class="btn btn-default waves-effect waves-light"> <span>Fazer Upgrade</span> </a>
                     </p>
                 </div>
             </div>
