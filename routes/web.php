@@ -31,3 +31,6 @@ Route::name('result_influencers')->get('/resultado-influenciadores', 'ResultInfl
 
 //Pixel conversion
 Route::name('pixel_conversion')->get('/pixel-conversao', 'PixelConversionController@index');
+
+//Plans
+Route::name('plans')->get('/planos', 'PlanosController@index');
