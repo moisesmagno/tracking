@@ -20,17 +20,24 @@ Route::name('register')->get('/register', 'RegisterController@index');
 //Recover password
 Route::name('recover-password')->get('/recover-password', 'RecoverPasswordController@index');
 
-//Home - Campaigns
-Route::name('home')->get('/home', 'HomeController@index');
 
-//List influencers
-Route::name('list_influencers')->get('/lista-influenciadores', 'ListInfluencersController@index');
+/* -------------------------------------------------------------------------
+ROUTE GROUP - ADMINRoute Group - Admin
+------------------------------------------------------------------------- */
+Route::group(['prefix' => 'admin'], function(){
 
-//Result influencers
-Route::name('result_influencers')->get('/resultado-influenciadores', 'ResultInfluencersController@index');
+    //Home - Campaigns
+    Route::name('home')->get('/home', 'HomeController@index');
 
-//Pixel conversion
-Route::name('pixel_conversion')->get('/pixel-conversao', 'PixelConversionController@index');
+    //List influencers
+    Route::name('list_influencers')->get('/lista-influenciadores', 'ListInfluencersController@index');
 
-//Plans
-Route::name('plans')->get('/planos', 'PlanosController@index');
+    //Result influencers
+    Route::name('result_influencers')->get('/resultado-influenciadores', 'ResultInfluencersController@index');
+
+    //Pixel conversion
+    Route::name('pixel_conversion')->get('/pixel-conversao', 'PixelConversionController@index');
+
+    //Plans
+    Route::name('plans')->get('/planos', 'PlanosController@index');
+});
