@@ -16,27 +16,27 @@
 
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control" type="email" required="" placeholder="E-mail">
+                            <input class="form-control" type="email" name="" required="" placeholder="E-mail">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <input class="form-control" type="password" required="" placeholder="Password">
+                            <input class="form-control" type="password" name="" required="" placeholder="Password">
                         </div>
                     </div>
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control" type="text" required="" placeholder="Nome completo">
+                            <input class="form-control" type="text" name="name"  required="" placeholder="Nome completo">
                         </div>
                     </div>
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control" type="text" required="" placeholder="Nome da empresa">
+                            <input class="form-control" type="text" name="company_name" required="" placeholder="Nome da empresa">
                         </div>
                     </div>
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control" type="text" required="" placeholder="Telefone">
+                            <input class="form-control" type="text" name="telephone" required="" placeholder="Telefone">
                         </div>
                     </div>
                     <div class="form-group">
