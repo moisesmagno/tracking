@@ -22,7 +22,9 @@ $( document ).ready(function() {
             method: 'POST',
             data: data,
             success: function(result){
-                console.log(result);
+                if(result == 'register-ok'){
+                    alert('Cadastro com sucesso e redirecionado para o login"');
+                }
             }
         });
     });

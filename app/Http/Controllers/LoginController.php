@@ -1,12 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: Moisés
- * Date: 16/04/2017
- * Time: 19:50
- */
-
 namespace App\Http\Controllers;
 
 use App\User;
@@ -30,20 +23,24 @@ class LoginController extends Controller
     //Register user
     public function store(){
 
+        dd(Input::all());
+
         try{
-            DB::beginTransaction();
-            $this->userModel->name = Input::get('name');
-            $this->userModel->company_name = Input::get('company_name');
-            $this->userModel->email = Input::get('email');
-            $this->userModel->telephone = Input::get('telephone');
-            $this->userModel->password = Input::get('password');
-            $this->userModel->save();
-            DB::commit();
+
+            $user_table = [
+                'name' => Input::get('name'),
+                'company_name' => Input::get('company_name'),
+                'email' => Input::get('email'),
+                'telephone' => Input::get('telephone'),
+                'password' => Input::get('password')
+            ];
+          
+            $this->userModel->create($user_table);
 
             return 'register-ok';
 
         } catch (PDOException $e) {
-            DB::rollBack();
+          
             return 'register-error';
         }
     }
