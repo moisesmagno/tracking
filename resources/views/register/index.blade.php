@@ -10,18 +10,18 @@
                 <h3 class="text-center"> Cadastre-se no <strong class="text-custom">Tracking Celebryts</strong> </h3>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal m-t-20" action="index.html">
+                <form class="form-horizontal m-t-20" action="" id="form_register_user">
 
                     {{ csrf_field() }}
 
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control" type="email" name="" required="" placeholder="E-mail">
+                            <input class="form-control" type="email" name="email" required="" placeholder="E-mail">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <input class="form-control" type="password" name="" required="" placeholder="Password">
+                            <input class="form-control" type="password" name="password" required="" placeholder="Password">
                         </div>
                     </div>
                     <div class="form-group ">

@@ -24,7 +24,7 @@ Route::name('recover-password')->get('/recover-password', 'RecoverPasswordContro
 /* -------------------------------------------------------------------------
 ROUTE GROUP - ADMINRoute Group - Admin
 ------------------------------------------------------------------------- */
-Route::group(['prefix' => 'admin'], function(){
+Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function(){
 
     //Home - Campaigns
     Route::name('home')->get('/home', 'HomeController@index');

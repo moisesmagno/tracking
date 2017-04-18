@@ -134,8 +134,11 @@
                 <!-- Start content -->
                 <div class="content">
 
+
+                    <!-- Application content -->
                     @yield('content')
 
+                    <!-- Application footer -->
                     @yield('footer')
 
                 </div>
@@ -174,6 +177,9 @@
         <script src="{{ asset('plugins/tiny-editable/mindmup-editabletable.js') }}"></script>
         <script src="{{ asset('plugins/tiny-editable/numeric-input-example.js') }}"></script>
         <script src="{{ asset('pages/datatables.editable.init.js') }}"></script>
+
+        <!-- Application Ajax-->
+        <script src="{{ asset('js/ajax.js') }}"></script>
 
         <script>
             $('#mainTable').editableTableWidget().numericInputExample().find('td:first').focus();

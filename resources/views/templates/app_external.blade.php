@@ -29,6 +29,7 @@
     </head>
     <body>
 
+        <!-- Application content -->
         @yield('content')
 
         <script>
@@ -46,9 +47,11 @@
         <script src="{{ asset('js/wow.min.js') }}"></script>
         <script src="{{ asset('js/jquery.nicescroll.js') }}"></script>
         <script src="{{ asset('js/jquery.scrollTo.min.js') }}"></script>
-
         <script src="{{ asset('js/jquery.core.js') }}"></script>
         <script src="{{ asset('js/jquery.app.js') }}"></script>
+
+        <!-- Application Ajax-->
+        <script src="{{ asset('js/ajax.js') }}"></script>
 
     </body>
 </html>
