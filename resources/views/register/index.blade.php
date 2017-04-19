@@ -10,33 +10,54 @@
                 <h3 class="text-center"> Cadastre-se no <strong class="text-custom">Tracking Celebryts</strong> </h3>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal m-t-20" action="" id="form_register_user">
+
+                @if(session()->has('message-success'))
+                    <div class="alert alert-info alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                            ×
+                        </button>
+
+                        {!! session()->get('message') !!}
+                    </div>
+                @endif
+
+                @if(count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error  }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <form class="form-horizontal m-t-20" action="{{ route('register_new_user') }}" method="POST">
 
                     {{ csrf_field() }}
 
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control" type="email" name="email" required="" placeholder="E-mail">
+                            <input class="form-control" type="text" name="email" placeholder="E-mail" required="" value="{{ old('email') }}">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <input class="form-control" type="password" name="password" required="" placeholder="Password">
+                            <input class="form-control" type="password" name="password" placeholder="Password" required="" value="{{ old('password') }}">
                         </div>
                     </div>
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control" type="text" name="name"  required="" placeholder="Nome completo">
+                            <input class="form-control" type="text" name="name"placeholder="Nome completo" required="" value="{{ old('name') }}">
                         </div>
                     </div>
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control" type="text" name="company_name" required="" placeholder="Nome da empresa">
+                            <input class="form-control" type="text" name="company_name" placeholder="Nome da empresa" required="" value="{{ old('company_name') }}">
                         </div>
                     </div>
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control" type="text" name="telephone" required="" placeholder="Telefone">
+                            <input class="form-control" type="text" name="telephone" placeholder="Telefone" required="" value="{{ old('telephone') }}">
                         </div>
                     </div>
                     <div class="form-group">
