@@ -16,9 +16,11 @@ Route::name('login')->get('/', 'LoginController@index');
 
 //Register
 Route::name('register')->get('/register', 'RegisterController@index');
+Route::name('register_new_user')->post('/register-user', 'RegisterController@store');
 
 //Recover password
 Route::name('recover-password')->get('/recover-password', 'RecoverPasswordController@index');
+Route::name('update_password')->put('/update-password', 'RecoverPasswordController@update');
 
 
 /* -------------------------------------------------------------------------
