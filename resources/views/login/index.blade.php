@@ -10,7 +10,7 @@
                 <h3 class="text-center"> Login no <strong class="text-custom">Tracking Celebryts</strong> </h3>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal m-t-20" method="POST" action="">
+                <form class="form-horizontal m-t-20" method="POST"  action="">
 
                     {{ csrf_field() }}
 

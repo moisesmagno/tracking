@@ -17,7 +17,7 @@
                             ×
                         </button>
 
-                        {!! session()->get('message') !!}
+                        {!! session()->get('message-success') !!}
                     </div>
                 @endif
 
