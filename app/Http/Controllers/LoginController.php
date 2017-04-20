@@ -30,6 +30,7 @@ class LoginController extends Controller
             $data_users = $this->user->where('email', $request->email)->first();
 
             if($data_users){
+                session('id_user', $data_users->id);
                 session('name', $data_users->name);
                 session('company_name', $data_users->company_name);
                 session('email', $data_users->email);
