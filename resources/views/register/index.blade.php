@@ -22,7 +22,7 @@
                 @endif
 
                 @if(session()->has('message-success'))
-                    <div class="alert alert-info alert-dismissable">
+                    <div class="alert alert-info alert-dismyissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
                             ×
                         </button>

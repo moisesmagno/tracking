@@ -24,8 +24,19 @@ class LoginController extends Controller
 
     //Validate User
     public function validateLogin(ValidateUserRequest $request){
+
         if (\Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->intended('admin/home');
+
+            $data_users = $this->user->where('email', $request->email)->first();
+
+            if($data_users){
+                session('name', $data_users->name);
+                session('company_name', $data_users->company_name);
+                session('email', $data_users->email);
+                session('telephone', $data_users->telephone);
+
+                return redirect()->intended('admin/home');
+            }
         }
     }
 
