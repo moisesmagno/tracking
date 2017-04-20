@@ -13,6 +13,8 @@
 
 //Login
 Route::name('login')->get('/', 'LoginController@index');
+Route::name('login_user')->post('/login', 'LoginController@validateLogin');
+Route::name('logout_user')->get('/logout', 'LoginController@logout');
 
 //Register
 Route::name('register')->get('/register', 'RegisterController@index');

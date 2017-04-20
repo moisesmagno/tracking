@@ -10,18 +10,18 @@
                 <h3 class="text-center"> Login no <strong class="text-custom">Tracking Celebryts</strong> </h3>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal m-t-20" method="POST"  action="">
+                <form class="form-horizontal m-t-20" method="POST"  action="{{ route('login_user') }}">
 
                     {{ csrf_field() }}
 
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control" type="text" required="" placeholder="E-mail">
+                            <input class="form-control" type="text" name="email" required="" placeholder="E-mail">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <input class="form-control" type="password" required="" placeholder="Senha">
+                            <input class="form-control" type="password" name="password" required="" placeholder="Senha">
                         </div>
                     </div>
                     <div class="form-group ">

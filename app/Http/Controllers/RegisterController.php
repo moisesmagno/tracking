@@ -24,17 +24,31 @@ class RegisterController extends Controller
     public function store(UserRegistertRequest $request){
 
         try{
-            $this->userModel->create([
-                'email' => $request->get('email'),
-                'password' => Hash::make($request->get('password')),
-                'name' => $request->get('name'),
-                'company_name' => $request->get('company_name'),
-                'telephone' => $request->get('telephone')
-            ]);
 
-            session()->flash('message-success', '<b>Sucesso</b> Usuario cadastrado com sucesso!');
+            //Check existing email
+            $email = $this->userModel->where('email', $request->email)->first();
 
-            return redirect()->back();
+            if($email){
+
+                session()->flash('message-warning', '<b>Atenção</b> O e-mail informado já está cadastrado!');
+
+                return redirect()->back();
+
+            }else{
+
+                //Register new user
+                $this->userModel->create([
+                    'email' => $request->get('email'),
+                    'password' => Hash::make($request->get('password')),
+                    'name' => $request->get('name'),
+                    'company_name' => $request->get('company_name'),
+                    'telephone' => $request->get('telephone')
+                ]);
+
+                session()->flash('message-success', '<b>Sucesso</b> Usuario cadastrado com sucesso!');
+
+                return redirect()->back();
+            }
 
         } catch (PDOException $e) {
             return redirect()->back();

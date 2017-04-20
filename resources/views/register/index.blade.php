@@ -11,6 +11,16 @@
             </div>
             <div class="panel-body">
 
+                @if(session()->has('message-warning'))
+                    <div class="alert alert-warning alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                            ×
+                        </button>
+
+                        {!! session()->get('message-warning') !!}
+                    </div>
+                @endif
+
                 @if(session()->has('message-success'))
                     <div class="alert alert-info alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
