@@ -9,16 +9,8 @@
             </div>
             <div class="panel-body">
 
-                <?php if(session()->has('message-danger')): ?>
-                    <div class="alert alert-danger alert-dismissable">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                            ×
-                        </button>
-
-                        <?php echo session()->get('message-danger'); ?>
-
-                    </div>
-                <?php endif; ?>
+                <!-- Alert -->
+                <?php echo $__env->make('includes.alerts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
                 <form class="form-horizontal m-t-20" method="POST"  action="<?php echo e(route('login_user')); ?>">
 

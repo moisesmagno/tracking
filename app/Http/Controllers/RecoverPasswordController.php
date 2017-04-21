@@ -34,10 +34,10 @@ class RecoverPasswordController extends Controller
 
             Mail::to($dataUser->email)->send(new RecoverPassword($dataUser));
 
-            session()->flash('message-success', 'Enviamos para o seu <b>e-mail</b> as instruções para criar uma nova senha.');
+            session()->flash('alert-success', 'Enviamos para o seu <b>e-mail</b> as instruções para criar uma nova senha.');
 
         }else{
-            session()->flash('message-warning', '<b>Atenção! </b>O e-mail informado não está cadastrado!');
+            session()->flash('alert-warning', '<b>Atenção! </b>O e-mail informado não está cadastrado!');
         }
 
         return redirect()->back();

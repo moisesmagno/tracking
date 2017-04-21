@@ -30,7 +30,7 @@ class RegisterController extends Controller
 
             if($email){
 
-                session()->flash('message-warning', '<b>Atenção</b> O e-mail informado já está cadastrado!');
+                session()->flash('alert-warning', '<b>Atenção</b> O e-mail informado já está cadastrado!');
 
                 return redirect()->back();
 
@@ -45,7 +45,7 @@ class RegisterController extends Controller
                     'telephone' => $request->get('telephone')
                 ]);
 
-                session()->flash('message-success', '<b>Sucesso</b> Usuario cadastrado com sucesso!');
+                session()->flash('alert-success', '<b>Sucesso</b> Usuario cadastrado com sucesso!');
 
                 return redirect()->back();
             }

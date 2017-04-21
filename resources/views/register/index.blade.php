@@ -11,31 +11,15 @@
             </div>
             <div class="panel-body">
 
-                @if(session()->has('message-warning'))
-                    <div class="alert alert-warning alert-dismissable">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                            ×
-                        </button>
+                <!-- Alerts -->
+                @include('includes.alerts')
 
-                        {!! session()->get('message-warning') !!}
-                    </div>
-                @endif
-
-                @if(session()->has('message-success'))
-                    <div class="alert alert-info alert-dismyissable">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                            ×
-                        </button>
-
-                        {!! session()->get('message-success') !!}
-                    </div>
-                @endif
-
+                <!-- Alerts of errors and validations php -->
                 @if(count($errors) > 0)
                     <div class="alert alert-danger">
                         <ul>
                             @foreach($errors->all() as $error)
-                                <li>{{ $error  }}</li>
+                                <li>{{ $error }}</li>
                             @endforeach
                         </ul>
                     </div>
