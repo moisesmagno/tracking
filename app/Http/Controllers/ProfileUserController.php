@@ -29,7 +29,7 @@ class ProfileUserController extends Controller
 
                 $this->user->where('id', session('id'))->update(['password' => Hash::make($request->password)]);
 
-                session()->flash('alert-success', '<b>Sucesso! </b> As senhas foram alteradas.');
+                session()->flash('alert-success', '<b>Sucesso! </b> A sua senha foi alterada.');
                 return redirect()->back();
 
             } catch (Exception $e) {

@@ -39,8 +39,8 @@ class LoginController extends Controller
                 return redirect()->intended('admin/home');
             }
         }else{
-            session()->flash('alert-danger', '<b>Erro!</b> O E-mail ou senha estão incorretos!');
-            return redirect()->back();
+            session()->flash('alert-danger', '<b>Erro!</b> E-mail ou senha incorretos!');
+            return redirect('/')->with('email', $request->email);
         }
 
     }

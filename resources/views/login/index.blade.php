@@ -32,7 +32,7 @@
 
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control" type="text" name="email" required="" placeholder="E-mail">
+                            <input class="form-control" type="email" name="email" required="" placeholder="E-mail" value="{{ session('email') }}">
                         </div>
                     </div>
                     <div class="form-group">
