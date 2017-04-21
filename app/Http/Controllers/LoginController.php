@@ -30,19 +30,11 @@ class LoginController extends Controller
             $data_users = $this->user->where('email', $request->email)->first();
 
             if($data_users){
-<<<<<<< HEAD
                 session(['id' => Auth::user()->id]);
                 session(['name' => Auth::user()->name]);
                 session(['company_name' => Auth::user()->company_name]);
                 session(['email' => Auth::user()->email]);
                 session(['telephone' => Auth::user()->telephone]);
-=======
-                session('id_user', $data_users->id);
-                session('name', $data_users->name);
-                session('company_name', $data_users->company_name);
-                session('email', $data_users->email);
-                session('telephone', $data_users->telephone);
->>>>>>> c99ad90d264dbf2845f73af18ee58f155fc529e0
 
                 return redirect()->intended('admin/home');
             }
@@ -55,7 +47,7 @@ class LoginController extends Controller
 
     //Logout
     public function logout(){
-        \Auth::logout();
+        Auth::logout();
         return redirect()->to('/');
     }
 }
