@@ -6,20 +6,20 @@
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
 
-        <link rel="shortcut icon" href="{{ asset('images/favicon_1.ico') }}">
+        <link rel="shortcut icon" href="<?php echo e(asset('images/favicon_1.ico')); ?>">
 
         <title>Tracking - Celebryts</title>
 
         <!-- Plugin Css-->
-        <link rel="stylesheet" href="{{ asset('plugins/magnific-popup/css/magnific-popup.css') }}" />
-        <link rel="stylesheet" href="{{ asset('plugins/jquery-datatables-editable/datatables.css') }}" />
-        <link href="{{ asset('plugins/custombox/css/custombox.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset('css/core.css') }}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset('css/components.css') }}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset('css/icons.css') }}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset('css/pages.css') }}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset('css/responsive.css') }}" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="<?php echo e(asset('plugins/magnific-popup/css/magnific-popup.css')); ?>" />
+        <link rel="stylesheet" href="<?php echo e(asset('plugins/jquery-datatables-editable/datatables.css')); ?>" />
+        <link href="<?php echo e(asset('plugins/custombox/css/custombox.css')); ?>" rel="stylesheet">
+        <link href="<?php echo e(asset('css/bootstrap.min.css')); ?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo e(asset('css/core.css')); ?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo e(asset('css/components.css')); ?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo e(asset('css/icons.css')); ?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo e(asset('css/pages.css')); ?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo e(asset('css/responsive.css')); ?>" rel="stylesheet" type="text/css" />
 
         <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,7 +28,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
 
-        <script src="{{ asset('js/modernizr.min.js') }}"></script>
+        <script src="<?php echo e(asset('js/modernizr.min.js')); ?>"></script>
     </head>
 
     <body class="fixed-left">
@@ -42,7 +42,7 @@
                 <!-- LOGO -->
                 <div class="topbar-left">
                     <div class="text-center">
-                        <a href="{{ route('home') }}" class="logo"><i class="icon-magnet icon-c-logo"></i><span>Tracking</span></a>
+                        <a href="<?php echo e(route('home')); ?>" class="logo"><i class="icon-magnet icon-c-logo"></i><span>Tracking</span></a>
                         <!-- Image Logo here -->
                         <!--<a href="index.html" class="logo">-->
                         <!--<i class="icon-c-logo"> <img src="assets/images/logo_sm.png" height="42"/> </i>-->
@@ -74,11 +74,11 @@
                                 </li>
 
                                 <li class="dropdown top-menu-item-xs">
-                                    <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><img src="{{ asset('images/users/avatar-1.jpg') }}" alt="user-img" class="img-circle"> </a>
+                                    <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><img src="<?php echo e(asset('images/users/avatar-1.jpg')); ?>" alt="user-img" class="img-circle"> </a>
                                     <ul class="dropdown-menu">
                                         <li><a href="javascript:void(0)"><i class="ti-user m-r-10 text-custom"></i> Profile</a></li>
                                         <li class="divider"></li>
-                                        <li><a href="{{ route('logout_user') }}"><i class="ti-power-off m-r-10 text-danger"></i> Logout</a></li>
+                                        <li><a href="<?php echo e(route('logout_user')); ?>"><i class="ti-power-off m-r-10 text-danger"></i> Logout</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -136,14 +136,14 @@
 
 
                     <!-- Application content -->
-                    @yield('content')
+                    <?php echo $__env->yieldContent('content'); ?>
 
                     <!-- Application footer -->
-                    @yield('footer')
+                    <?php echo $__env->yieldContent('footer'); ?>
 
                 </div>
 
-                @yield('modals')
+                <?php echo $__env->yieldContent('modals'); ?>
 
         </div>
         <!-- END wrapper -->
@@ -153,33 +153,33 @@
         </script>
 
         <!-- jQuery  -->
-        <script src="{{ asset('js/jquery.min.js') }}"></script>
-        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('js/detect.js') }}"></script>
-        <script src="{{ asset('js/fastclick.js') }}"></script>
-        <script src="{{ asset('js/jquery.slimscroll.js') }}"></script>
-        <script src="{{ asset('js/jquery.blockUI.js') }}"></script>
-        <script src="{{ asset('js/waves.js') }}"></script>
-        <script src="{{ asset('js/wow.min.js') }}"></script>
-        <script src="{{ asset('js/jquery.nicescroll.js') }}"></script>
-        <script src="{{ asset('js/jquery.scrollTo.min.js') }}"></script>
-        <script src="{{ asset('js/jquery.core.js') }}"></script>
-        <script src="{{ asset('js/jquery.app.js') }}"></script>
+        <script src="<?php echo e(asset('js/jquery.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/bootstrap.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/detect.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/fastclick.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/jquery.slimscroll.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/jquery.blockUI.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/waves.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/wow.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/jquery.nicescroll.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/jquery.scrollTo.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/jquery.core.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/jquery.app.js')); ?>"></script>
 
         <!-- Modal-Effect -->
-        <script src="{{ asset('plugins/custombox/js/custombox.min.js') }}"></script>
-        <script src="{{ asset('plugins/custombox/js/legacy.min.js') }}"></script>
+        <script src="<?php echo e(asset('plugins/custombox/js/custombox.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('plugins/custombox/js/legacy.min.js')); ?>"></script>
 
         <!-- Examples -->
-        <script src="{{ asset('plugins/magnific-popup/js/jquery.magnific-popup.min.js') }}"></script>
-        <script src="{{ asset('plugins/jquery-datatables-editable/jquery.dataTables.js') }}"></script>
-        <script src="{{ asset('plugins/datatables/dataTables.bootstrap.js') }}"></script>
-        <script src="{{ asset('plugins/tiny-editable/mindmup-editabletable.js') }}"></script>
-        <script src="{{ asset('plugins/tiny-editable/numeric-input-example.js') }}"></script>
-        <script src="{{ asset('pages/datatables.editable.init.js') }}"></script>
+        <script src="<?php echo e(asset('plugins/magnific-popup/js/jquery.magnific-popup.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('plugins/jquery-datatables-editable/jquery.dataTables.js')); ?>"></script>
+        <script src="<?php echo e(asset('plugins/datatables/dataTables.bootstrap.js')); ?>"></script>
+        <script src="<?php echo e(asset('plugins/tiny-editable/mindmup-editabletable.js')); ?>"></script>
+        <script src="<?php echo e(asset('plugins/tiny-editable/numeric-input-example.js')); ?>"></script>
+        <script src="<?php echo e(asset('pages/datatables.editable.init.js')); ?>"></script>
 
         <!-- Application Ajax-->
-        <script src="{{ asset('js/ajax.js') }}"></script>
+        <script src="<?php echo e(asset('js/ajax.js')); ?>"></script>
 
         <script>
             $('#mainTable').editableTableWidget().numericInputExample().find('td:first').focus();
