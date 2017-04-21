@@ -12,7 +12,7 @@
                     <p>Crie suas campanhas para organizar os influenciadores</p>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="#">Home</a>
+                            <a href="{{ route('home') }}">Home</a>
                         </li>
                         <li class="active">
                             Campanhas

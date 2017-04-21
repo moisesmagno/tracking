@@ -100,21 +100,21 @@
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="ti-home"></i> <span> Dashboard </span> <span class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="index.html">Dashboard 1</a></li>
+                                    <li><a href="{{ route('home') }}">Dashboard 1</a></li>
                                 </ul>
                             </li>
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="ti-paint-bucket"></i> <span> Campanhas</span> <span class="menu-arrow"></span> </a>
                                 <ul class="list-unstyled">
-                                    <li><a href="ui-buttons.html">Lista de campanhas</a></li>
-                                    <li><a href="ui-buttons.html">Influenciadores</a></li>
+                                    <li><a href="{{ route('home') }}">Lista de campanhas</a></li>
+                                    <li><a href="{{ route('list_influencers') }}">Influenciadores</a></li>
                                 </ul>
                             </li>
 
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="ti-settings"></i> <span> Campanhas</span> <span class="menu-arrow"></span> </a>
                                 <ul class="list-unstyled">
-                                    <li><a href="ui-buttons.html">Pixels de conversão</a></li>
+                                    <li><a href="{{ route('pixel_conversion') }}">Pixels de conversão</a></li>
                                     <li><a href="ui-buttons.html">Dados da conta</a></li>
                                 </ul>
                             </li>

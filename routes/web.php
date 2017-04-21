@@ -35,7 +35,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function(){
 
     //Profile of user
     Route::name('profile_user')->get('/perfil', 'ProfileUserController@index');
-    Route::name('change_password')->put('/user/{id}/change-password', 'ProfileUserController@changePassword');
+    Route::name('change_password')->put('/user/change-password', 'ProfileUserController@changePassword');
 
     //List influencers
     Route::name('list_influencers')->get('/lista-influenciadores', 'ListInfluencersController@index');

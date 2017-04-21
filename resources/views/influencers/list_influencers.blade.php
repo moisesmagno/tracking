@@ -11,10 +11,10 @@
                     <p>Administre os influenciadores da campanha</p>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="#">Home</a>
+                            <a href="{{ route('home') }}">Home</a>
                         </li>
                         <li class="active">
-                            <a href="#">Campanhas</a>
+                            <a href="{{ route('home') }}">Campanhas</a>
                         </li>
                         <li class="active">
                             Influenciadores
@@ -90,7 +90,7 @@
                                 </thead>
                                 <tbody>
                                 <tr class="gradeU">
-                                    <td><a href="links_campanha_influenciador.html">Brogui</a></td>
+                                    <td><a href="{{ route('result_influencers') }}">Brogui</a></td>
                                     <td>-</td>
                                     <td>-</td>
                                     <td>-</td>
@@ -104,7 +104,7 @@
                                     </td>
                                 </tr>
                                 <tr class="gradeU">
-                                    <td><a href="links_campanha_influenciador.html">Primo Rico</a></td>
+                                    <td><a href="{{ route('result_influencers') }}">Primo Rico</a></td>
                                     <td>10</td>
                                     <td>2090</td>
                                     <td>100.000</td>
@@ -118,7 +118,7 @@
                                     </td>
                                 </tr>
                                 <tr class="gradeU">
-                                    <td><a href="links_campanha_influenciador.html">Manual do Mundo</a></td>
+                                    <td><a href="{{ route('result_influencers') }}">Manual do Mundo</a></td>
                                     <td>32</td>
                                     <td>30.020</td>
                                     <td>1.323M</td>

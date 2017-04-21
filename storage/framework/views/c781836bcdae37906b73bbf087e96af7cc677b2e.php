@@ -13,10 +13,10 @@
                             <a href="#">Home</a>
                         </li>
                         <li class="active">
-                            <a href="#">Campanhas</a>
+                            <a href="<?php echo e(route('home')); ?>">Campanhas</a>
                         </li>
                         <li class="active">
-                            <a href="#">Influenciadores</a>
+                            <a href="<?php echo e(route('list_influencers')); ?>">Influenciadores</a>
                         </li>
                         <li class="active">
                             Relatório

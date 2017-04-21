@@ -43,7 +43,7 @@
                                 </div>
                             @endif
 
-                            <form class="form-horizontal m-t-20" method="POST"  action="{{ route('change_password', ['id' => session('id')]) }}">
+                            <form class="form-horizontal m-t-20" method="POST"  action="{{ route('change_password') }}">
 
                                 <!-- Security token -->
                                 {{ csrf_field() }}

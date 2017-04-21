@@ -41,7 +41,7 @@
                                 </div>
                             <?php endif; ?>
 
-                            <form class="form-horizontal m-t-20" method="POST"  action="<?php echo e(route('change_password', ['id' => session('id')])); ?>">
+                            <form class="form-horizontal m-t-20" method="POST"  action="<?php echo e(route('change_password')); ?>">
 
                                 <!-- Security token -->
                                 <?php echo e(csrf_field()); ?>
