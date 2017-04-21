@@ -75,6 +75,7 @@
 
                                 <li class="dropdown top-menu-item-xs">
                                     <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><img src="<?php echo e(asset('images/users/avatar-1.jpg')); ?>" alt="user-img" class="img-circle"> </a>
+                                    <h1><?php echo e(session('name')); ?></h1>
                                     <ul class="dropdown-menu">
                                         <li><a href="javascript:void(0)"><i class="ti-user m-r-10 text-custom"></i> Profile</a></li>
                                         <li class="divider"></li>

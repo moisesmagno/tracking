@@ -1,6 +1,4 @@
-@extends('templates.app_external')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
     <div class="account-pages"></div>
     <div class="clearfix"></div>
@@ -11,19 +9,21 @@
             </div>
             <div class="panel-body">
 
-                @if(session()->has('message-danger'))
+                <?php if(session()->has('message-danger')): ?>
                     <div class="alert alert-danger alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
                             ×
                         </button>
 
-                        {!! session()->get('message-danger') !!}
+                        <?php echo session()->get('message-danger'); ?>
+
                     </div>
-                @endif
+                <?php endif; ?>
 
-                <form class="form-horizontal m-t-20" method="POST"  action="{{ route('login_user') }}">
+                <form class="form-horizontal m-t-20" method="POST"  action="<?php echo e(route('login_user')); ?>">
 
-                    {{ csrf_field() }}
+                    <?php echo e(csrf_field()); ?>
+
 
                     <div class="form-group ">
                         <div class="col-xs-12">
@@ -52,7 +52,7 @@
                     </div>
                     <div class="form-group m-t-30 m-b-0">
                         <div class="col-sm-12">
-                            <a href="{{ route('recover-password') }}" class="text-dark"><i class="fa fa-lock m-r-5"></i> Perdeu a senha?</a>
+                            <a href="<?php echo e(route('recover-password')); ?>" class="text-dark"><i class="fa fa-lock m-r-5"></i> Perdeu a senha?</a>
                         </div>
                     </div>
                 </form>
@@ -60,9 +60,10 @@
         </div>
         <div class="row">
             <div class="col-sm-12 text-center">
-                <p>Não é cadastrado ainda? <a href="{{ route('register') }}" class="text-primary m-l-5"><b>Cadastre-se</b></a></p>
+                <p>Não é cadastrado ainda? <a href="<?php echo e(route('register')); ?>" class="text-primary m-l-5"><b>Cadastre-se</b></a></p>
             </div>
         </div>
     </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.app_external', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
