@@ -27,10 +27,10 @@
 
                 <form method="post" action="{{ route('update_password') }}" role="form" class="text-center">
 
-                    <!-- Cria o token de segurança -->
+                    <!-- Security token -->
                     {{ csrf_field() }}
 
-                    <!-- Define que o método de envio é PUT -->
+                    <!-- Sets the sending method is PUT -->
                     {{ method_field('PUT') }}
 
                     <div class="form-group m-b-0">

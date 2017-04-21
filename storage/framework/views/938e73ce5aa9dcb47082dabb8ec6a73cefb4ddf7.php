@@ -9,28 +9,10 @@
             </div>
             <div class="panel-body">
 
-                <?php if(session()->has('alert-warning')): ?>
-                    <div class="alert alert-warning alert-dismissable">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                            ×
-                        </button>
+                <!-- Alerts -->
+                <?php echo $__env->make('includes.alerts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
-                        <?php echo session('alert-warning'); ?>
-
-                    </div>
-                <?php endif; ?>
-
-                <?php if(session()->has('alert-success')): ?>
-                    <div class="alert alert-info alert-dismyissable">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                            ×
-                        </button>
-
-                        <?php echo session('alert-success'); ?>
-
-                    </div>
-                <?php endif; ?>
-
+                <!-- Alerts of errors and validations php -->
                 <?php if(count($errors) > 0): ?>
                     <div class="alert alert-danger">
                         <ul>

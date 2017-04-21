@@ -9,11 +9,23 @@
             </div>
             <div class="panel-body">
 
-                <!-- Alert -->
+                <!-- Alerts -->
                 <?php echo $__env->make('includes.alerts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+                <!-- Alerts of errors and validations php -->
+                <?php if(count($errors) > 0): ?>
+                    <div class="alert alert-danger">
+                        <ul>
+                            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <li><?php echo e($error); ?></li>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </ul>
+                    </div>
+                <?php endif; ?>
 
                 <form class="form-horizontal m-t-20" method="POST"  action="<?php echo e(route('login_user')); ?>">
 
+                    <!-- Security token -->
                     <?php echo e(csrf_field()); ?>
 
 

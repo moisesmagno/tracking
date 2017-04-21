@@ -17,7 +17,7 @@ Route::name('login_user')->post('/login', 'LoginController@validateLogin');
 Route::name('logout_user')->get('/logout', 'LoginController@logout');
 
 //Register
-Route::name('register')->get('/register', 'RegisterController@index');
+Route::name('register')->get('/registro', 'RegisterController@index');
 Route::name('register_new_user')->post('/register-user', 'RegisterController@store');
 
 //Recover password
@@ -32,6 +32,10 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function(){
 
     //Home - Campaigns
     Route::name('home')->get('/home', 'HomeController@index');
+
+    //Profile of user
+    Route::name('profile_user')->get('/perfil', 'ProfileUserController@index');
+    Route::name('change_password')->put('/user/{id}/change-password', 'ProfileUserController@changePassword');
 
     //List influencers
     Route::name('list_influencers')->get('/lista-influenciadores', 'ListInfluencersController@index');

@@ -30,6 +30,7 @@ class LoginController extends Controller
             $data_users = $this->user->where('email', $request->email)->first();
 
             if($data_users){
+                session(['id' => Auth::user()->id]);
                 session(['name' => Auth::user()->name]);
                 session(['company_name' => Auth::user()->company_name]);
                 session(['email' => Auth::user()->email]);
@@ -38,7 +39,7 @@ class LoginController extends Controller
                 return redirect()->intended('admin/home');
             }
         }else{
-            session()->flash('alert-danger', '<b>Erro!</b> E-mail ou senha incorretos!');
+            session()->flash('alert-danger', '<b>Erro!</b> O E-mail ou senha estão incorretos!');
             return redirect()->back();
         }
 

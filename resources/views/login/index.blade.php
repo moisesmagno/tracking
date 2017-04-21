@@ -27,6 +27,7 @@
 
                 <form class="form-horizontal m-t-20" method="POST"  action="{{ route('login_user') }}">
 
+                    <!-- Security token -->
                     {{ csrf_field() }}
 
                     <div class="form-group ">
