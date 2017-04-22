@@ -63,39 +63,7 @@
                                     <td>R$ 23.200,00</td>
                                 </tr>
                             </tbody>
-                            <tbody>
-                                <tr class="gradeU">
-                                    <td><a href="#url_do_post_na_rede">Facebook</a></td>
-                                    <td>12.092</td>
-                                    <td>10.092</td>
-                                    <td>1.232</td>
-                                    <td>234</td>
-                                    <td>90</td>
-                                    <td>R$ 23.200,00</td>
-                                </tr>
-                            </tbody>
-                            <tbody>
-                                <tr class="gradeU">
-                                    <td><a href="#url_do_post_na_rede">Youtube</a></td>
-                                    <td>6</td>
-                                    <td>3</td>
-                                    <td>--</td>
-                                    <td>487</td>
-                                    <td>--</td>
-                                    <td>--</td>
-                                </tr>
-                            </tbody>
-                            <tbody>
-                                <tr class="gradeU">
-                                    <td><a href="#url_do_post_na_rede">Outras</a></td>
-                                    <td>12.092</td>
-                                    <td>10.092</td>
-                                    <td>1.232</td>
-                                    <td>234</td>
-                                    <td>90</td>
-                                    <td>R$ 23.200,00</td>
-                                </tr>
-                            </tbody>
+
                         </table>
                     </div>
                 </div>
@@ -103,53 +71,53 @@
 
             </div> <!-- end Panel -->
 
-            <h4 class="m-b-20 m-t-30">Detalhes</h4>
+            
 
-            <div class="panel">
-                <div class="panel-body">
-                    <div class="btn-group dropdown">
-                        <button type="button" class="btn btn-success waves-effect waves-light">Instagram</button>
-                        <button type="button" class="btn btn-success dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false"><i class="caret"></i></button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Facebook</a></li>
-                            <li><a href="#">Youtube</a></li>
-                            <li><a href="#">Outros</a></li>
-                        </ul>
-                    </div>
+            
+                
+                    
+                        
+                        
+                        
+                            
+                            
+                            
+                        
+                    
 
-                    <div class="m-t-10">
-                        <table class="table table-striped" id="datatable-editable">
-                            <thead>
-                            <tr>
-                                <th>Tipo</th>
-                                <th>Total</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr class="gradeU">
-                                <td>Like</td>
-                                <td>13.332</td>
-                            </tr>
-                            </tbody>
-                            <tbody>
-                            <tr class="gradeU">
-                                <td>Play</td>
-                                <td>13.332</td>
-                            </tr>
-                            </tbody>
-                            <tbody>
-                            <tr class="gradeU">
-                                <td>Comentário</td>
-                                <td>13.332</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                    
+                        
+                            
+                            
+                                
+                                
+                            
+                            
+                            
+                            
+                                
+                                
+                            
+                            
+                            
+                            
+                                
+                                
+                            
+                            
+                            
+                            
+                                
+                                
+                            
+                            
+                        
+                    
+                
 
-                <!-- end: page -->
+                
 
-            </div> <!-- end Panel -->
+            
 
             <br>
             <p>Exportar para:</p>
@@ -162,30 +130,30 @@
 
             <br><br>
 
-            <div style="clear:both" class="p-t-10">
-                <button type="button" class="btn btn-danger waves-effect waves-light">
-								 <span class="btn-label">
-									 <i class="fa fa-times"></i>
-								 </span>
-                    Remover influenciador</button>
-            </div>
+            
+                
+								 
+									 
+								 
+                    
+            
 
             <!-- corpo teste -->
         </div>
 
-        <div class="panel panel-border panel-danger">
-            <div class="panel-heading">
-                <h3 class="panel-title">Limite de links criados</h3>
-            </div>
-            <div class="panel-body">
-                <p>
-                    Você já possui 3 links criados. Para criar novos links é necessário fazer upgrade da conta.
-                </p>
-                <p>
-                    <a href="planos.html" class="btn btn-default waves-effect waves-light"> <span>Fazer Upgrade</span> </a>
-                </p>
-            </div>
-        </div>
+        
+            
+                
+            
+            
+                
+                    
+                
+                
+                    
+                
+            
+        
     </div> <!-- container -->
 
 <?php $__env->stopSection(); ?>

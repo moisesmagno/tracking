@@ -41,50 +41,16 @@
                             </div>
                         </div>
                         <div class="">
-                            <table class="table table-striped" id="datatable-editable">
+                            <table class="table table-striped" id="_datatable-editable">
                                 <thead>
                                 <tr>
                                     <th>Nome da campanha</th>
-                                    <th>Links</th>
-                                    <th>Engajamento</th>
-                                    <th>View</th>
-                                    <th>Conversão</th>
                                     <th>Ações</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr class="gradeU">
                                     <td><a href="links_campanha.html">Coca-Cola Verão</a></td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td class="actions">
-                                        <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                                        <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                                        <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                        <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                    </td>
-                                </tr>
-                                <tr class="gradeU">
-                                    <td><a href="links_campanha.html">Mate leão Saúde</a></td>
-                                    <td>10</td>
-                                    <td>2090</td>
-                                    <td>100.000</td>
-                                    <td>99</td>
-                                    <td class="actions">
-                                        <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                                        <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                                        <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                        <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                    </td>
-                                </tr>
-                                <tr class="gradeU">
-                                    <td><a href="links_campanha.html">Campo Verde Fitness</a></td>
-                                    <td>32</td>
-                                    <td>30.020</td>
-                                    <td>1.323M</td>
-                                    <td>350</td>
                                     <td class="actions">
                                         <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                                         <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
@@ -100,19 +66,19 @@
 
                 <!-- corpo teste -->
             </div>
-            <div class="panel panel-border panel-danger">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Limite de links criados</h3>
-                </div>
-                <div class="panel-body">
-                    <p>
-                        Você já possui 3 links criados. Para criar novos links é necessário fazer upgrade da conta.
-                    </p>
-                    <p>
-                        <a href="{{ route('plans') }}" class="btn btn-default waves-effect waves-light"> <span>Fazer Upgrade</span> </a>
-                    </p>
-                </div>
-            </div>
+            {{--<div class="panel panel-border panel-danger">--}}
+                {{--<div class="panel-heading">--}}
+                    {{--<h3 class="panel-title">Limite de links criados</h3>--}}
+                {{--</div>--}}
+                {{--<div class="panel-body">--}}
+                    {{--<p>--}}
+                        {{--Você já possui 3 links criados. Para criar novos links é necessário fazer upgrade da conta.--}}
+                    {{--</p>--}}
+                    {{--<p>--}}
+                        {{--<a href="{{ route('plans') }}" class="btn btn-default waves-effect waves-light"> <span>Fazer Upgrade</span> </a>--}}
+                    {{--</p>--}}
+                {{--</div>--}}
+            {{--</div>--}}
         </div> <!-- container -->
     </div> <!-- content -->
 

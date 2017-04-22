@@ -33,7 +33,7 @@
             <div class="portlet">
                 <div class="portlet-heading bg-custom">
                     <h3 class="portlet-title">
-                        URL para o influenciador Brogui
+                        URL
                     </h3>
                     <div class="portlet-widgets">
                         <a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>
@@ -73,18 +73,15 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="m-b-30">
-                                <a href="#custom-modal" class="btn btn-primary btn-md waves-effect waves-light " data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a"><i class="md md-add"></i> Adicionar influenciador</a>
+                                <a href="#custom-modal" class="btn btn-primary btn-md waves-effect waves-light " data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a"><i class="md md-add"></i> Adicionar URL</a>
                             </div>
                         </div>
                         <div class="">
-                            <table class="table table-striped" id="datatable-editable">
+                            <table class="table table-striped" id="_datatable-editable">
                                 <thead>
                                 <tr>
-                                    <th>Influenciador</th>
-                                    <th>Links</th>
-                                    <th>Engajamento</th>
-                                    <th>View</th>
-                                    <th>Conversão</th>
+                                    <th>URL</th>
+                                    <th>Destino</th>
                                     <th>Ações</th>
                                 </tr>
                                 </thead>
@@ -92,41 +89,7 @@
                                 <tr class="gradeU">
                                     <td><a href="{{ route('result_influencers') }}">Brogui</a></td>
                                     <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
                                     <td class="actions">
-                                        <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                                        <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                                        <a href="#" class="on-default edit-row"><i class="typcn typcn-code"></i></a>
-                                        <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                        <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                    </td>
-                                </tr>
-                                <tr class="gradeU">
-                                    <td><a href="{{ route('result_influencers') }}">Primo Rico</a></td>
-                                    <td>10</td>
-                                    <td>2090</td>
-                                    <td>100.000</td>
-                                    <td>99</td>
-                                    <td class="actions">
-                                        <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                                        <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                                        <a href="#" class="on-default edit-row"><i class="typcn typcn-code"></i></a>
-                                        <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                        <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                    </td>
-                                </tr>
-                                <tr class="gradeU">
-                                    <td><a href="{{ route('result_influencers') }}">Manual do Mundo</a></td>
-                                    <td>32</td>
-                                    <td>30.020</td>
-                                    <td>1.323M</td>
-                                    <td>350</td>
-                                    <td class="actions">
-                                        <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                                        <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                                        <a href="#" class="on-default edit-row"><i class="typcn typcn-code"></i></a>
                                         <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
                                         <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
                                     </td>
@@ -143,19 +106,19 @@
 
             </div>
 
-            <div class="panel panel-border panel-danger">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Limite de links criados</h3>
-                </div>
-                <div class="panel-body">
-                    <p>
-                        Você já possui 3 links criados. Para criar novos links é necessário fazer upgrade da conta.
-                    </p>
-                    <p>
-                        <a href="planos.html" class="btn btn-default waves-effect waves-light"> <span>Fazer Upgrade</span> </a>
-                    </p>
-                </div>
-            </div>
+            {{--<div class="panel panel-border panel-danger">--}}
+                {{--<div class="panel-heading">--}}
+                    {{--<h3 class="panel-title">Limite de links criados</h3>--}}
+                {{--</div>--}}
+                {{--<div class="panel-body">--}}
+                    {{--<p>--}}
+                        {{--Você já possui 3 links criados. Para criar novos links é necessário fazer upgrade da conta.--}}
+                    {{--</p>--}}
+                    {{--<p>--}}
+                        {{--<a href="planos.html" class="btn btn-default waves-effect waves-light"> <span>Fazer Upgrade</span> </a>--}}
+                    {{--</p>--}}
+                {{--</div>--}}
+            {{--</div>--}}
 
         </div> <!-- container -->
 
@@ -175,33 +138,33 @@
         <button type="button" class="close" onclick="Custombox.close();">
             <span>&times;</span><span class="sr-only">Fechar</span>
         </button>
-        <h4 class="custom-modal-title">Adicionar influenciador</h4>
+        <h4 class="custom-modal-title">Adicionar URL</h4>
         <div class="custom-modal-text text-left">
             <form role="form">
                 <div class="form-group">
-                    <label for="name">Nome do influenciador:</label>
-                    <input type="text" class="form-control" id="name" placeholder="Não é necessário ser exato">
+                    <label for="name">Descrição :</label>
+                    <input type="text" class="form-control" id="name" placeholder="Descrição da URL">
                 </div>
 
                 <div class="form-group">
-                    <label for="name">URL de destino da campanha:</label>
-                    <input type="text" class="form-control" id="name" placeholder="Ex.: http://meusite.com/campanha">
+                    <label for="name">URL de destino:</label>
+                    <input type="text" class="form-control" id="name" placeholder="Ex.: http://sitedestino.com.br">
                 </div>
 
-                <div class="form-group">
-                    <span for="name">Pixel de conversão: </span>
-                    <div class="btn-group dropdown">
-                        <button type="button" class="btn btn-link waves-effect waves-light">Selecione o pixel</button>
-                        <button type="button" class="btn btn-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false"><i class="caret"></i></button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Lead Coca</a></li>
-                            <li><a href="#">Compra no site</a></li>
-                            <li><a href="#">Cadastro no site</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Criar novo pixel</a></li>
-                        </ul>
-                    </div>
-                </div>
+                {{--<div class="form-group">--}}
+                    {{--<span for="name">Pixel de conversão: </span>--}}
+                    {{--<div class="btn-group dropdown">--}}
+                        {{--<button type="button" class="btn btn-link waves-effect waves-light">Selecione o pixel</button>--}}
+                        {{--<button type="button" class="btn btn-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false"><i class="caret"></i></button>--}}
+                        {{--<ul class="dropdown-menu" role="menu">--}}
+                            {{--<li><a href="#">Lead Coca</a></li>--}}
+                            {{--<li><a href="#">Compra no site</a></li>--}}
+                            {{--<li><a href="#">Cadastro no site</a></li>--}}
+                            {{--<li class="divider"></li>--}}
+                            {{--<li><a href="#">Criar novo pixel</a></li>--}}
+                        {{--</ul>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
                 <br>
                 <button type="submit" class="btn btn-default waves-effect waves-light">Salvar</button>
                 <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">Cancelar</button>
