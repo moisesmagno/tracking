@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableCampaigns extends Migration
+class CreateTableUrl extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateTableCampaigns extends Migration
      */
     public function up()
     {
-        Schema::create('campaigns', function (Blueprint $table) {
+        Schema::create('urls', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_user')->unsigned();
-            $table->foreign('id_user')->references('id')->on('users');
-            $table->string('name', 100);
+            $table->integer('id_campaign')->unsigned();
+            $table->foreign('id_campaign')->references('id')->on('campaigns');
+            $table->string('description', 150);
+            $table->string('destiny_url');
             $table->timestamps();
             $table->softDeletes();
         });
