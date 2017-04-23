@@ -13,7 +13,7 @@ class CreateTableUrlResults extends Migration
      */
     public function up()
     {
-        Schema::create('url_resuls', function(Blueprint $table){
+        Schema::create('url_results', function(Blueprint $table){
             $table->increments('id');
             $table->integer('id_url')->unsigned();
             $table->foreign('id_url')->references('id')->on('urls');
