@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class URL extends Model
 {
+
+    protected $table = 'urls';
+
     /**
      * The attributes that are mass assignable.
      *

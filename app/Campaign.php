@@ -6,13 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Campaign extends Model
 {
+
+    protected $table = 'campaigns';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'user_id', 'name'
+        'id_user', 'name'
     ];
 
     protected $softDelete = true;

@@ -40,7 +40,7 @@ class LoginController extends Controller
             }
         }else{
             session()->flash('alert-danger', '<b>Erro!</b> E-mail ou senha incorretos!');
-            return redirect('/')->with('email', $request->email);
+            return redirect('/')->with(['email' => $request->email]);
         }
 
     }

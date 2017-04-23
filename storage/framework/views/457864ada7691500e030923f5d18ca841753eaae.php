@@ -180,6 +180,7 @@
 
         <!-- Application Ajax-->
         <script src="<?php echo e(asset('js/ajax.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/validations.js')); ?>"></script>
 
         <script>
             $('#mainTable').editableTableWidget().numericInputExample().find('td:first').focus();

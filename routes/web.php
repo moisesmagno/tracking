@@ -45,6 +45,8 @@ Route::group(['middleware' => 'auth'], function(){
 
         //Home - Campaigns
         Route::name('home')->get('/home', 'CampaignController@index');
+        Route::name('register_campaign')->post('/register', 'CampaignController@store');
+        Route::name('delete_campaign')->delete('/{id}/delete', 'CampaignController@destroy');
 
         //URLs
         Route::name('urlS')->get('/urls', 'URLController@index');
