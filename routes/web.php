@@ -44,7 +44,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::group(['prefix' => 'campanha'], function(){
 
         //Home - Campaigns
-        Route::name('home')->get('/home', 'HomeController@index');
+        Route::name('home')->get('/home', 'CampaignController@index');
 
         //URLs
         Route::name('urlS')->get('/urls', 'URLController@index');
