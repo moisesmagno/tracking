@@ -1,6 +1,4 @@
-@extends('templates.app')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
     <div class="container">
         <!-- Page-Title -->
@@ -11,10 +9,10 @@
                     <p>Administre os influenciadores da campanha</p>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="{{ route('home') }}">Home</a>
+                            <a href="">Home</a>
                         </li>
                         <li class="active">
-                            <a href="{{ route('home') }}">Campanhas</a>
+                            <a href="">Campanhas</a>
                         </li>
                         <li class="active">
                             Influenciadores
@@ -87,7 +85,7 @@
                                 </thead>
                                 <tbody>
                                 <tr class="gradeU">
-                                    <td><a href="{{ route('result_influencers') }}">Brogui</a></td>
+                                    <td><a href="<?php echo e(route('url_results')); ?>">Brogui</a></td>
                                     <td>-</td>
                                     <td class="actions">
                                         <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
@@ -106,33 +104,33 @@
 
             </div>
 
-            {{--<div class="panel panel-border panel-danger">--}}
-                {{--<div class="panel-heading">--}}
-                    {{--<h3 class="panel-title">Limite de links criados</h3>--}}
-                {{--</div>--}}
-                {{--<div class="panel-body">--}}
-                    {{--<p>--}}
-                        {{--Você já possui 3 links criados. Para criar novos links é necessário fazer upgrade da conta.--}}
-                    {{--</p>--}}
-                    {{--<p>--}}
-                        {{--<a href="planos.html" class="btn btn-default waves-effect waves-light"> <span>Fazer Upgrade</span> </a>--}}
-                    {{--</p>--}}
-                {{--</div>--}}
-            {{--</div>--}}
+            
+                
+                    
+                
+                
+                    
+                        
+                    
+                    
+                        
+                    
+                
+            
 
         </div> <!-- container -->
 
     </div> <!-- content -->
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('footer')
+<?php $__env->startSection('footer'); ?>
     <footer class="footer text-right">
         © 2016. All rights reserved.
     </footer>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('modals')
+<?php $__env->startSection('modals'); ?>
     <!-- Modal -->
     <div id="custom-modal" class="modal-demo">
         <button type="button" class="close" onclick="Custombox.close();">
@@ -151,20 +149,20 @@
                     <input type="text" class="form-control" id="name" placeholder="Ex.: http://sitedestino.com.br">
                 </div>
 
-                {{--<div class="form-group">--}}
-                    {{--<span for="name">Pixel de conversão: </span>--}}
-                    {{--<div class="btn-group dropdown">--}}
-                        {{--<button type="button" class="btn btn-link waves-effect waves-light">Selecione o pixel</button>--}}
-                        {{--<button type="button" class="btn btn-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false"><i class="caret"></i></button>--}}
-                        {{--<ul class="dropdown-menu" role="menu">--}}
-                            {{--<li><a href="#">Lead Coca</a></li>--}}
-                            {{--<li><a href="#">Compra no site</a></li>--}}
-                            {{--<li><a href="#">Cadastro no site</a></li>--}}
-                            {{--<li class="divider"></li>--}}
-                            {{--<li><a href="#">Criar novo pixel</a></li>--}}
-                        {{--</ul>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
+                
+                    
+                    
+                        
+                        
+                        
+                            
+                            
+                            
+                            
+                            
+                        
+                    
+                
                 <br>
                 <button type="submit" class="btn btn-default waves-effect waves-light">Salvar</button>
                 <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">Cancelar</button>
@@ -172,4 +170,6 @@
         </div>
     </div>
     <!-- end modal -->
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('templates.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

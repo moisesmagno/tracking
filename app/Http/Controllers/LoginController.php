@@ -36,7 +36,7 @@ class LoginController extends Controller
                 session(['email' => Auth::user()->email]);
                 session(['telephone' => Auth::user()->telephone]);
 
-                return redirect()->intended('admin/home');
+                return redirect()->intended('campanha/home');
             }
         }else{
             session()->flash('alert-danger', '<b>Erro!</b> E-mail ou senha incorretos!');

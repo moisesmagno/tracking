@@ -106,8 +106,8 @@
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="ti-paint-bucket"></i> <span> Campanhas</span> <span class="menu-arrow"></span> </a>
                                 <ul class="list-unstyled">
-                                    <li><a href="<?php echo e(route('home')); ?>">Lista de campanhas</a></li>
-                                    <li><a href="<?php echo e(route('list_influencers')); ?>">Influenciadores</a></li>
+                                    <li><a href="<?php echo e(route('home')); ?>">Campanhas</a></li>
+                                    <li><a href="<?php echo e(route('urlS')); ?>">URLs</a></li>
                                 </ul>
                             </li>
 

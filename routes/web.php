@@ -47,10 +47,10 @@ Route::group(['middleware' => 'auth'], function(){
         Route::name('home')->get('/home', 'HomeController@index');
 
         //URLs
-        Route::name('list_influencers')->get('/lista-influenciadores', 'ListInfluencersController@index');
+        Route::name('urlS')->get('/urls', 'URLController@index');
 
         //URL Results
-        Route::name('result_influencers')->get('/resultado-influenciadores', 'ResultInfluencersController@index');
+        Route::name('url_results')->get('/resultado-url', 'URLResultsController@index');
 
     });
 

@@ -15,10 +15,10 @@
                             <a href="#">Home</a>
                         </li>
                         <li class="active">
-                            <a href="{{ route('home') }}">Campanhas</a>
+                            <a href="">Campanhas</a>
                         </li>
                         <li class="active">
-                            <a href="{{ route('list_influencers') }}">Influenciadores</a>
+                            <a href="">Influenciadores</a>
                         </li>
                         <li class="active">
                             Relatório
