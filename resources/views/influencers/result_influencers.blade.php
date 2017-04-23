@@ -56,6 +56,7 @@
                                     <td><a href="#url_do_post_na_rede">Instagram</a></td>
                                     <td>12.092</td>
                                     <td>10.092</td>
+                                    <td>10.092</td>
                                 </tr>
                             </tbody>
 

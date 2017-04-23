@@ -47,9 +47,6 @@
                                     <th>Cliques</th>
                                     <th>Cliques Únicos</th>
                                     <th>Engajamento</th>
-                                    <th>View</th>
-                                    <th>Conversão</th>
-                                    <th>Total convertido</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -57,10 +54,7 @@
                                     <td><a href="#url_do_post_na_rede">Instagram</a></td>
                                     <td>12.092</td>
                                     <td>10.092</td>
-                                    <td>1.232</td>
-                                    <td>234</td>
-                                    <td>90</td>
-                                    <td>R$ 23.200,00</td>
+                                    <td>10.092</td>
                                 </tr>
                             </tbody>
 
@@ -68,7 +62,6 @@
                     </div>
                 </div>
                 <!-- end: page -->
-
             </div> <!-- end Panel -->
 
             

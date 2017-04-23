@@ -28,24 +28,30 @@ Route::name('update_password')->put('/update-password', 'RecoverPasswordControll
 /* -------------------------------------------------------------------------
 ROUTE GROUP - ADMINRoute Group - Admin
 ------------------------------------------------------------------------- */
-Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function(){
-
-    //Home - Campaigns
-    Route::name('home')->get('/home', 'HomeController@index');
+Route::group(['middleware' => 'auth'], function(){
 
     //Profile of user
     Route::name('profile_user')->get('/perfil', 'ProfileUserController@index');
     Route::name('change_password')->put('/user/change-password', 'ProfileUserController@changePassword');
-
-    //List influencers
-    Route::name('list_influencers')->get('/lista-influenciadores', 'ListInfluencersController@index');
-
-    //Result influencers
-    Route::name('result_influencers')->get('/resultado-influenciadores', 'ResultInfluencersController@index');
 
     //Pixel conversion
     Route::name('pixel_conversion')->get('/pixel-conversao', 'PixelConversionController@index');
 
     //Plans
     Route::name('plans')->get('/planos', 'PlanosController@index');
+
+    /* ----- Group Capaigns ----- */
+    Route::group(['prefix' => 'campanha'], function(){
+
+        //Home - Campaigns
+        Route::name('home')->get('/home', 'HomeController@index');
+
+        //URLs
+        Route::name('list_influencers')->get('/lista-influenciadores', 'ListInfluencersController@index');
+
+        //URL Results
+        Route::name('result_influencers')->get('/resultado-influenciadores', 'ResultInfluencersController@index');
+
+    });
+
 });
