@@ -57,12 +57,12 @@
 
                                     @foreach($campaigns as $campaign)
                                         <tr class="gradeU" id="tr_{{ $campaign->id }}">
-                                            <td><a href="links_campanha.html" class="text-name-campaign">{{$campaign->name}}</a></td>
+                                            <td><a href="{{ route('urls', ['id' => $campaign->id])}}" class="text-name-campaign">{{$campaign->name}}</a></td>
                                             <td class="actions">
                                                 <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                                                 <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
                                                 <a href="#modal_edit_campaign" data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-id-edit="{{ $campaign->id }}" data-overlayColor="#36404a" class="edit_campaign"><i class="fa fa-pencil"></i></a>
-                                                <a onclick="return confirm('Deseja realmente excluir esta campanha?');" class="on-default remove-row delete_campaign" data-id-delete="{{ $campaign->id }}"><i class="fa fa-trash-o"></i></a>
+                                                <a href="" onclick="return confirm('Deseja realmente excluir esta campanha?');" class="on-default remove-row delete_campaign" data-id-delete="{{ $campaign->id }}"><i class="fa fa-trash-o"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -120,14 +120,14 @@
         <h4 class="custom-modal-title">Editar Campanha</h4>
         <div class="custom-modal-text text-left">
             <form role="form">
+                <input type="hidden" id="id_campaign" name="id_campaign" value="">
                 <div class="form-group">
-                    <input type="hidden" id="id_campaign" name="id_campaign" value="">
                     <label for="name">Nome da campanha:</label>
                     <input type="text" class="form-control" id="name_campaign" name="name" required="" placeholder="Ex.: Produto para cabelo">
                 </div>
 
                 <button type="button" id="form_update_campaign" class="btn btn-default waves-effect waves-light">Salvar</button>
-                <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
+                <button class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
             </form>
         </div>
     </div>

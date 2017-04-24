@@ -15,7 +15,7 @@ class URL extends Model
      * @var array
      */
     protected $fillable = [
-        'id_campaign', 'description', 'destiny_url'
+        'id_campaign', 'description', 'destiny_url', 'short_url'
     ];
 
     protected $softDelete = true;

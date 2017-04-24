@@ -19,6 +19,7 @@ class CreateTableUrl extends Migration
             $table->foreign('id_campaign')->references('id')->on('campaigns');
             $table->string('description', 150);
             $table->string('destiny_url');
+            $table->string('short_url');
             $table->timestamps();
             $table->softDeletes();
         });
