@@ -63,6 +63,7 @@ class CampaignController extends Controller
             try{
                 
                 $deleteURL = $this->url->where('id_campaign', $request->get('id'))->delete();
+                
                 $deleteCampaign = $this->campaign->find($request->get('id'))->delete();
 
                 if($deleteCampaign){
