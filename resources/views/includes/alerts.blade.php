@@ -1,6 +1,6 @@
 {{--SUCCESS--}}
 @if(session()->has('alert-success'))
-    <div class="alert alert-info alert-dismyissable">
+    <div class="alert alert-success alert-dismyissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
             ×
         </button>
@@ -28,5 +28,16 @@
         </button>
 
         {!! session('alert-danger') !!}
+    </div>
+@endif
+
+{{--INFO--}}
+@if(session()->has('alert-info'))
+    <div class="alert alert-info alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+            ×
+        </button>
+
+        {!! session('alert-info') !!}
     </div>
 @endif

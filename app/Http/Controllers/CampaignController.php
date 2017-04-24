@@ -42,29 +42,65 @@ class CampaignController extends Controller
                 return redirect()->back();
 
             }else{
-                session()->flash('alert-danger', '<b>Erro!</b> Ocorreu uma falha ao tentar cadastrar a campanha, por favor tente novamente ou entre em contato.!');
+                session()->flash('alert-danger', '<b>Erro!</b> Ocorreu uma falha ao tentar cadastrar a campanha, por favor tente novamente ou entre em contato.');
                 return redirect()->back();
             }
 
         } catch (PDOException $e) {
-            session()->flash('alert-danger', '<b>Erro!</b> Ocorreu uma falha crítica ao tentar cadastrar a campanha, por favor tente novamente ou entre em contato.!');
+            session()->flash('alert-danger', '<b>Erro!</b> Ocorreu uma falha crítica ao tentar cadastrar a campanha, por favor tente novamente ou entre em contato.');
             return redirect()->back();
         }
     }
 
     //Delete user
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $delete = $this->campaign->find($id)->delete();
+        if($request->ajax()){
 
-        if($delete){
-            session()->flash('alert-success', '<b>Sucesso!</b> A campanha foi excluida.');
-            return redirect()->back();
-        }else{
-            session()->flash('alert-danger', '<b>Erro!</b> Ocorreu uma falha ao tentar excluir a campanha, por favor tente novamente ou entre em contato.!');
-            return redirect()->back();
+            try{
+
+                $delete = $this->campaign->find($request->get('id'))->delete();
+
+                if($delete){
+                    return 'true';
+                }else{
+                    return 'false';
+                }
+
+            } catch (PDOException $e) {
+                return 'error-exception';
+            }
         }
+    }
 
+    //Edit campaign
+    public function edit(Request $request)
+    {
+        if($request->ajax()){
+            $campaign = $this->campaign->find($request->get('id'));
+            return json_encode($campaign);
+        }
+    }
 
+    //Update campaign
+    public function update(Request $request)
+    {
+        if($request->ajax()){
+
+            try{
+
+                $update = $this->campaign->find($request->get('id'));
+
+                if($update){
+                    $update->update(['name' => $request->get('name')]);
+                    return 'true';
+                }else{
+                    return 'false';
+                }
+
+            } catch (PDOException $e) {
+                return 'error-exception';
+            }
+        }
     }
 }

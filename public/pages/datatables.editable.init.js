@@ -2,7 +2,7 @@
 * Theme: Ubold Admin Template
 * Author: Coderthemes
 * Component: Editable
-* 
+*
 */
 
 (function( $ ) {

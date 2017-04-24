@@ -42,7 +42,7 @@
             <div class="panel">
                 <div class="panel-body">
                     <div class="">
-                        <table class="table table-striped" id="datatable-editable">
+                        <table class="table table-striped" id="_datatable-editable">
                             <thead>
                                 <tr>
                                     <th>Rede</th>
