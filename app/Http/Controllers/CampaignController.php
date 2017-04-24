@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Campaign;
+use App\URL;
 use Illuminate\Http\Request;
 use App\Http\Requests\CampaignRegisterRequest;
 
@@ -10,10 +11,12 @@ class CampaignController extends Controller
 {
 
     private $campaign;
+    private $url;
 
-    public function __construct(Campaign $campaign)
+    public function __construct(Campaign $campaign, URL $url)
     {
         $this->campaign = $campaign;
+        $this->url = $url;
     }
 
     //Displays campaign home screen
@@ -58,10 +61,11 @@ class CampaignController extends Controller
         if($request->ajax()){
 
             try{
+                
+                $deleteURL = $this->url->where('id_campaign', $request->get('id'))->delete();
+                $deleteCampaign = $this->campaign->find($request->get('id'))->delete();
 
-                $delete = $this->campaign->find($request->get('id'))->delete();
-
-                if($delete){
+                if($deleteCampaign){
                     return 'true';
                 }else{
                     return 'false';
