@@ -24,7 +24,7 @@ class URLController extends Controller
 
         $campaign = $this->campaign->find($id);
 
-        $urls = $this->url->where('id_campaign', $id)->get();
+        $urls = $this->url->where('id_campaign', $id)->orderBy('id', 'desc')->get();
 
         return view('urls.urls')->with(['campaign' => $campaign, 'urls' => $urls]);
     }
@@ -34,11 +34,26 @@ class URLController extends Controller
 
         try{
 
+            $validate = true;
+            while($validate == true){
+                //Generates the URL code
+                $code_url = chr(rand(65,90)) . rand(1, 99) . chr(rand(65,90)) . rand(1, 9) . chr(rand(65,90)) . rand(1, 9) . chr(rand(65,90));
+                $code = $this->url->where('short_url', $code_url)->first();
+
+                if($code){
+                    $validate = true;
+                }else{
+                    $short_url = PATH_SHORT_URL.$code_url;
+                    $validate = false;
+                }
+            }
+
+
             $url = $this->url->create([
                 'id_campaign' => $request->get('id_campaign'),
                 'description' => $request->get('description'),
                 'destiny_url' => $request->get('destiny_url'),
-                'short_url' => 'traking.com/su/a1b2c3',
+                'short_url' => $short_url,
             ]);
 
             if($url){

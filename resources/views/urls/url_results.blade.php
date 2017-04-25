@@ -18,7 +18,7 @@
                             <a href="">Campanhas</a>
                         </li>
                         <li class="active">
-                            <a href="">Influenciadores</a>
+                            <a href="">URLs</a>
                         </li>
                         <li class="active">
                             Relatório
@@ -32,7 +32,7 @@
 
             <!-- corpo -->
 
-            <h2>Brogui</h2>
+            <h2>{{ $url->description }}</h2>
             <p>
                 <strong>Primeiro link identificado:</strong> 12/11/2016
                 <br>
@@ -48,14 +48,12 @@
                                     <th>Rede</th>
                                     <th>Cliques</th>
                                     <th>Cliques Únicos</th>
-                                    <th>Engajamento</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="gradeU">
                                     <td><a href="#url_do_post_na_rede">Instagram</a></td>
                                     <td>12.092</td>
-                                    <td>10.092</td>
                                     <td>10.092</td>
                                 </tr>
                             </tbody>
