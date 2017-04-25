@@ -48,7 +48,6 @@ class URLController extends Controller
                 }
             }
 
-
             $url = $this->url->create([
                 'id_campaign' => $request->get('id_campaign'),
                 'description' => $request->get('description'),
