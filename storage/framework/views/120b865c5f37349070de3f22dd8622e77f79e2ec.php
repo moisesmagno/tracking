@@ -92,7 +92,7 @@
                                 <tbody>
                                     <?php $__currentLoopData = $urls; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $url): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr class="gradeU"  id="tr_<?php echo e($url->id); ?>">
-                                            <td><a href="" class="text-description-url"><?php echo e($url->description); ?></a></td>
+                                            <td><a href="<?php echo e(route('url_results', ['id' => $url->id])); ?>" class="text-description-url"><?php echo e($url->description); ?></a></td>
                                             <td><?php echo e($url->destiny_url); ?></td>
                                             <td><?php echo e($url->short_url); ?></td>
                                             <td class="actions">
@@ -163,7 +163,7 @@
                 </div>
                 <br>
                 <button type="submit" class="btn btn-default waves-effect waves-light">Salvar</button>
-                <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">Cancelar</button>
+                <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
             </form>
         </div>
     </div>

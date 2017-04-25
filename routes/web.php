@@ -40,6 +40,9 @@ Route::group(['middleware' => 'auth'], function(){
     //Plans
     Route::name('plans')->get('/planos', 'PlanosController@index');
 
+    //URL
+    Route::name('short_url')->get('/url/{code}', 'ShortURLController@show');
+
     /* ----- Group Capaigns ----- */
     Route::group(['prefix' => 'campanha'], function(){
 
@@ -58,7 +61,7 @@ Route::group(['middleware' => 'auth'], function(){
         Route::name('delete_url')->delete('/url/delete', 'URLController@destroy');
 
         //URL Results
-        Route::name('url_results')->get('/resultado-url', 'URLResultsController@index');
+        Route::name('url_results')->get('/url/{id}/relatorio', 'URLResultsController@index');
 
     });
 

@@ -94,7 +94,7 @@
                                 <tbody>
                                     @foreach($urls as $url)
                                         <tr class="gradeU"  id="tr_{{ $url->id }}">
-                                            <td><a href="" class="text-description-url">{{ $url->description }}</a></td>
+                                            <td><a href="{{ route('url_results', ['id' => $url->id]) }}" class="text-description-url">{{ $url->description }}</a></td>
                                             <td>{{ $url->destiny_url }}</td>
                                             <td>{{ $url->short_url }}</td>
                                             <td class="actions">
@@ -164,7 +164,7 @@
                 </div>
                 <br>
                 <button type="submit" class="btn btn-default waves-effect waves-light">Salvar</button>
-                <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">Cancelar</button>
+                <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
             </form>
         </div>
     </div>
