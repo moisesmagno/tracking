@@ -20,7 +20,12 @@ class ShortURLController extends Controller
 
         $dataUrl = $this->url->where('short_url', $short_url)->first();
 
-        header('Location: '.$dataUrl->destiny_url);
-        die;
+        if($dataUrl){
+            header('Location: '.$dataUrl->destiny_url);
+            die;
+        }else{
+            echo "<h1>Desculpe, URL não encontrado! :(</h1>";
+            die;
+        }
     }
 }
