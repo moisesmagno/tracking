@@ -24,6 +24,8 @@ Route::name('register_new_user')->post('/register-user', 'RegisterController@sto
 Route::name('recover-password')->get('/recover-password', 'RecoverPasswordController@index');
 Route::name('update_password')->put('/update-password', 'RecoverPasswordController@update');
 
+//URL
+Route::name('short_url')->get('/url/{code}', 'ShortURLController@show');
 
 /* -------------------------------------------------------------------------
 ROUTE GROUP - ADMINRoute Group - Admin
@@ -39,9 +41,6 @@ Route::group(['middleware' => 'auth'], function(){
 
     //Plans
     Route::name('plans')->get('/planos', 'PlanosController@index');
-
-    //URL
-    Route::name('short_url')->get('/url/{code}', 'ShortURLController@show');
 
     /* ----- Group Capaigns ----- */
     Route::group(['prefix' => 'campanha'], function(){
