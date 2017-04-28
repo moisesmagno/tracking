@@ -22,8 +22,11 @@ class URLResultsController extends Controller
     public function index($id){
 
         $url = $this->url->find($id);
-//        $url_results = $this->urlResult->where('id_url', $id)->get();
+        $url_results = $this->urlResult->where('id_url', $id)
+                                        ->selectRaw('count(id) as id, referer')
+                                        ->groupBy('referer')
+                                        ->get();
 
-        return view('urls.url_results')->with(['url' => $url]);
+        return view('urls.url_results')->with(['url' => $url, 'url_results' => $url_results]);
     }
 }

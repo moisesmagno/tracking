@@ -47,17 +47,16 @@
                                 <tr>
                                     <th>Rede</th>
                                     <th>Cliques</th>
-                                    <th>Cliques Únicos</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="gradeU">
-                                    <td><a href="#url_do_post_na_rede">Instagram</a></td>
-                                    <td>12.092</td>
-                                    <td>10.092</td>
-                                </tr>
+                                @foreach($url_results as $urlResult)
+                                    <tr class="gradeU">
+                                        <td><a href="">{{ ($urlResult->referer == 'Outro') ? $urlResult->referer.'s' : $urlResult->referer}}</a></td>
+                                        <td>{{ $urlResult->id }}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
-
                         </table>
                     </div>
                 </div>

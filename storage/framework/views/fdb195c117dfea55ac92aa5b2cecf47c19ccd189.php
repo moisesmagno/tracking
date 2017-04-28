@@ -92,10 +92,10 @@
                     <div class="portlet-body">
                         <div class="control-label m-b-10 m-t-10"><b>Token gerado:</b></div>
                         <div style="max-width: 520px">
-                            <input type="text" class="form-control" readonly="" value="$2y$10$a2PN9hPZVWq55Ldwm0vCFOjLSCIdyGKrELw2ImnbzmHjLG0jZJ/G6">
+                            <input type="text" class="form-control" id="token" readonly="" value="$2y$10$a2PN9hPZVWq55Ldwm0vCFOjLSCIdyGKrELw2ImnbzmHjLG0jZJ/G6">
                         </div>
                         <div class="control-label m-b-10 m-t-10">
-                            <button type="button" class="btn btn-success waves-effect waves-light">
+                            <button type="button" class="btn btn-success waves-effect waves-light" id="btn_copy_token">
                                 <span class="btn-label"><i class="fa fa-copy"></i></span>Copiar token</button>
                         </div>
                     </div>

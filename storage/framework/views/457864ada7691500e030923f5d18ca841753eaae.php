@@ -180,6 +180,11 @@
 
         <!-- Application Ajax-->
         <script src="<?php echo e(asset('js/ajax.js')); ?>"></script>
+
+        <!-- Main -->
+        <script src="<?php echo e(asset('js/main.js')); ?>"></script>
+
+        <!-- Validations -->
         <script src="<?php echo e(asset('js/validations.js')); ?>"></script>
 
         <script>

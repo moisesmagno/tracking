@@ -44,6 +44,17 @@ class ShortURLController extends Controller
         //REFERER
         if(isset($_SERVER['HTTP_REFERER'])){
             $referer = $_SERVER['HTTP_REFERER'];
+
+            if(strpos($referer,'facebook')){
+                $referer = 'Facebook';
+            }elseif(strpos($referer, 'linkedin')){
+                $referer = 'Linkedin';
+            }elseif(strpos($referer, 'outlook')){
+                $referer = 'Outlook';
+            }else{
+                $referer = 'Outro';
+            }
+
         }else{
             $referer = 'Outro';
         }

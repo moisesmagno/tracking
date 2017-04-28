@@ -180,6 +180,11 @@
 
         <!-- Application Ajax-->
         <script src="{{ asset('js/ajax.js') }}"></script>
+
+        <!-- Main -->
+        <script src="{{ asset('js/main.js') }}"></script>
+
+        <!-- Validations -->
         <script src="{{ asset('js/validations.js') }}"></script>
 
         <script>

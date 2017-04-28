@@ -45,17 +45,16 @@
                                 <tr>
                                     <th>Rede</th>
                                     <th>Cliques</th>
-                                    <th>Cliques Únicos</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="gradeU">
-                                    <td><a href="#url_do_post_na_rede">Instagram</a></td>
-                                    <td>12.092</td>
-                                    <td>10.092</td>
-                                </tr>
+                                <?php $__currentLoopData = $url_results; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $urlResult): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <tr class="gradeU">
+                                        <td><a href=""><?php echo e(($urlResult->referer == 'Outro') ? $urlResult->referer.'s' : $urlResult->referer); ?></a></td>
+                                        <td><?php echo e($urlResult->id); ?></td>
+                                    </tr>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </tbody>
-
                         </table>
                     </div>
                 </div>
