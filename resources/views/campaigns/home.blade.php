@@ -93,20 +93,24 @@
         <button type="button" class="close" onclick="Custombox.close();">
             <span>&times;</span><span class="sr-only">Fechar</span>
         </button>
+
         <h4 class="custom-modal-title">Criar Campanha</h4>
         <div class="custom-modal-text text-left">
+            
+            @include('includes.alerts_validations')
+
             <form role="form" method="POST" action="{{ route('register_campaign') }}">
+                <div class="validate-forms">
+                    {{ csrf_field() }}
 
-                <!-- Security token -->
-                {{ csrf_field() }}
+                    <div class="form-group">
+                        <label for="name">Nome da campanha:</label>
+                        <input type="text" class="required form-control" id="name" name="name" placeholder="Ex.: Produto para cabelo">
+                    </div>
 
-                <div class="form-group">
-                    <label for="name">Nome da campanha:</label>
-                    <input type="text" class="form-control" id="name" name="name" required="" placeholder="Ex.: Produto para cabelo">
+                    <button type="submit" class="btn btn-default waves-effect waves-light validate">Salvar</button>
+                    <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
                 </div>
-
-                <button type="submit" class="btn btn-default waves-effect waves-light">Salvar</button>
-                <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
             </form>
         </div>
     </div>
