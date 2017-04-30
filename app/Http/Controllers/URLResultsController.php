@@ -23,7 +23,12 @@ class URLResultsController extends Controller
 
         $url = $this->url->find($id);
         $url_results = $this->urlResult->where('id_url', $id)
-                                        ->selectRaw('count(id) as id, referer')
+                                        ->selectRaw("count(id) as total_clicks, referer, (
+                                                select count('remote_addr')from url_results as url_result
+                                                where url_result.referer = url_results.referer
+                                                group by referer, remote_addr
+                                                having count('remote_addr') > 1
+                                            ) as unique_clicks")
                                         ->groupBy('referer')
                                         ->get();
 
