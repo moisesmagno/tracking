@@ -4,7 +4,7 @@
         ×
     </button>
 
-    <span id="alert-success"></span>
+    <span></span>
 </div>
 
 {{--WARNING--}}
@@ -13,7 +13,7 @@
         ×
     </button>
 
-    <span id="alert-warning"></span>
+    <span></span>
 </div>
 
 {{--DANGER--}}
@@ -22,7 +22,7 @@
         ×
     </button>
 
-    <span id="alert-danger"></span>
+    <span></span>
 </div>
 
 {{--INFO--}}
@@ -31,5 +31,5 @@
         ×
     </button>
 
-    <span id="alert-info"></span>
+    <span></span>
 </div>

@@ -40,7 +40,7 @@
                                 <a href="#custom-modal" class="btn btn-primary btn-md waves-effect waves-light " data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a"><i class="md md-add"></i> Criar campanha</a>
                             </div>
                         </div>
-                        <div class="row col-sm-12">
+                        <div class="row col-sm-12" id="register">
                             <!-- Alerts -->
                             @include('includes.alerts_js')
                             @include('includes.alerts')
@@ -97,21 +97,24 @@
         <h4 class="custom-modal-title">Criar Campanha</h4>
         <div class="custom-modal-text text-left">
             
-            @include('includes.alerts_validations')
+            <div class="validate-forms">
+               
+                @include('includes.alerts_validations')
+               
+                <form role="form" method="POST" action="{{ route('register_campaign') }}">
+                    
+                        {{ csrf_field() }}
 
-            <form role="form" method="POST" action="{{ route('register_campaign') }}">
-                <div class="validate-forms">
-                    {{ csrf_field() }}
+                        <div class="form-group">
+                            <label for="name">Nome da campanha:</label>
+                            <input type="text" class="required form-control" id="name" name="name" placeholder="Ex.: Produto para cabelo">
+                        </div>
 
-                    <div class="form-group">
-                        <label for="name">Nome da campanha:</label>
-                        <input type="text" class="required form-control" id="name" name="name" placeholder="Ex.: Produto para cabelo">
-                    </div>
-
-                    <button type="submit" class="btn btn-default waves-effect waves-light validate">Salvar</button>
-                    <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
-                </div>
-            </form>
+                        <button type="submit" class="btn btn-default waves-effect waves-light validate">Salvar</button>
+                        <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
+                    
+                </form>
+            </div>
         </div>
     </div>
     <!-- end modal -->

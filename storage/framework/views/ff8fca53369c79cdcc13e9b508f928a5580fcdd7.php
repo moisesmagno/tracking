@@ -38,7 +38,7 @@
                                 <a href="#custom-modal" class="btn btn-primary btn-md waves-effect waves-light " data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a"><i class="md md-add"></i> Criar campanha</a>
                             </div>
                         </div>
-                        <div class="row col-sm-12">
+                        <div class="row col-sm-12" id="register">
                             <!-- Alerts -->
                             <?php echo $__env->make('includes.alerts_js', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                             <?php echo $__env->make('includes.alerts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
@@ -95,22 +95,25 @@
         <h4 class="custom-modal-title">Criar Campanha</h4>
         <div class="custom-modal-text text-left">
             
-            <?php echo $__env->make('includes.alerts_validations', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <div class="validate-forms">
+               
+                <?php echo $__env->make('includes.alerts_validations', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+               
+                <form role="form" method="POST" action="<?php echo e(route('register_campaign')); ?>">
+                    
+                        <?php echo e(csrf_field()); ?>
 
-            <form role="form" method="POST" action="<?php echo e(route('register_campaign')); ?>">
-                <div class="validate-forms">
-                    <?php echo e(csrf_field()); ?>
 
+                        <div class="form-group">
+                            <label for="name">Nome da campanha:</label>
+                            <input type="text" class="required form-control" id="name" name="name" placeholder="Ex.: Produto para cabelo">
+                        </div>
 
-                    <div class="form-group">
-                        <label for="name">Nome da campanha:</label>
-                        <input type="text" class="required form-control" id="name" name="name" placeholder="Ex.: Produto para cabelo">
-                    </div>
-
-                    <button type="submit" class="btn btn-default waves-effect waves-light validate">Salvar</button>
-                    <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
-                </div>
-            </form>
+                        <button type="submit" class="btn btn-default waves-effect waves-light validate">Salvar</button>
+                        <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
+                    
+                </form>
+            </div>
         </div>
     </div>
     <!-- end modal -->

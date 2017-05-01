@@ -74,7 +74,7 @@
                                 <a href="#custom-modal" class="btn btn-primary btn-md waves-effect waves-light " data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a"><i class="md md-add"></i> Adicionar URL</a>
                             </div>
                         </div>
-                        <div class="row col-sm-12">
+                        <div class="row col-sm-12" id="register-url">
                             <!-- Alerts -->
                             <?php echo $__env->make('includes.alerts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                             <?php echo $__env->make('includes.alerts_js', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
@@ -148,23 +148,30 @@
         </button>
         <h4 class="custom-modal-title">Adicionar URL</h4>
         <div class="custom-modal-text text-left">
-            <form role="form" action="<?php echo e(route('register_url')); ?>" method="post">
-                <!-- Security token -->
-                <?php echo e(csrf_field()); ?>
+            
+            <div class="validate-forms">
 
-                <input type="hidden" name="id_campaign" value="<?php echo e($campaign->id); ?>">
-                <div class="form-group">
-                    <label for="name">Descrição :</label>
-                    <input type="text" class="form-control" id="description" name="description" placeholder="Descrição da URL">
-                </div>
-                <div class="form-group">
-                    <label for="name">URL de destino:</label>
-                    <input type="text" class="form-control" id="destiny_url" name="destiny_url" placeholder="Ex.: http://sitedestino.com.br">
-                </div>
-                <br>
-                <button type="submit" class="btn btn-default waves-effect waves-light">Salvar</button>
-                <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
-            </form>
+                <?php echo $__env->make('includes.alerts_validations', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+                <form role="form" action="<?php echo e(route('register_url')); ?>" method="post">
+                    
+                        <!-- Security token -->
+                        <?php echo e(csrf_field()); ?>
+
+                        <input type="hidden" name="id_campaign" value="<?php echo e($campaign->id); ?>">
+                        <div class="form-group">
+                            <label for="name">Descrição :</label>
+                            <input type="text" class="required form-control" id="description" name="description" placeholder="Descrição da URL">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">URL de destino:</label>
+                            <input type="text" class="required form-control" id="destiny_url" name="destiny_url" placeholder="Ex.: http://sitedestino.com.br">
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-default waves-effect waves-light validate">Salvar</button>
+                        <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
+                </form>
+            </div>
         </div>
     </div>
     <!-- end modal -->
@@ -176,25 +183,32 @@
         </button>
         <h4 class="custom-modal-title">Editar URL</h4>
         <div class="custom-modal-text text-left">
-            <form role="form">
-                <input type="hidden" id="id_campaign" name="id_campaign" value="<?php echo e($campaign->id); ?>">
-                <input type="hidden" id="id_url" name="id_url" value="">
-                <div class="form-group">
-                    <label for="name">Descrição :</label>
-                    <input type="text" class="form-control" id="description" name="description" placeholder="Descrição da URL">
-                </div>
-                <div class="form-group">
-                    <label for="name">URL de destino:</label>
-                    <input type="text" class="form-control" id="destiny_url" name="destiny_url" placeholder="Ex.: http://sitedestino.com.br" disabled="true">
-                </div>
-                <div class="form-group">
-                    <label for="name">URL curto:</label>
-                    <input type="text" class="form-control" id="short_url" name="short_url" placeholder="Ex.: http://sitedestino.com.br" disabled="true">
-                </div>
-                <br>
-                <button type="button" class="btn btn-default waves-effect waves-light" id="form_update_url">Salvar</button>
-                <button class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
-            </form>
+            
+            <div class="validate-forms">
+                <?php echo $__env->make('includes.alerts_validations', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+                <form role="form">
+                    
+                    <input type="hidden" id="id_campaign" name="id_campaign" value="<?php echo e($campaign->id); ?>">
+                    <input type="hidden" id="id_url" name="id_url" value="">
+                    <div class="form-group">
+                        <label for="name">Descrição :</label>
+                        <input type="text" class="required form-control" id="description" name="description" placeholder="Descrição da URL">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">URL de destino:</label>
+                        <input type="text" class="form-control" id="destiny_url" name="destiny_url" placeholder="Ex.: http://sitedestino.com.br" disabled="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">URL curto:</label>
+                        <input type="text" class="form-control" id="short_url" name="short_url" placeholder="Ex.: http://sitedestino.com.br" disabled="true">
+                    </div>
+                    <br>
+                    <button type="button" class="btn btn-default waves-effect waves-light validate" id="form_update_url">Salvar</button>
+                    <button class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
+                
+                </form>
+            </div>
         </div>
     </div>
     <!-- end modal -->

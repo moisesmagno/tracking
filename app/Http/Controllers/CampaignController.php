@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Campaign;
 use App\URL;
+use App\URLResult;
 use Illuminate\Http\Request;
 use App\Http\Requests\CampaignRegisterRequest;
 
@@ -12,11 +13,13 @@ class CampaignController extends Controller
 
     private $campaign;
     private $url;
+    private $urlResult;
 
-    public function __construct(Campaign $campaign, URL $url)
+    public function __construct(Campaign $campaign, URL $url, URLResult $urlResult)
     {
         $this->campaign = $campaign;
         $this->url = $url;
+        $this->urlResult = $urlResult;
     }
 
     //Displays campaign home screen
@@ -29,7 +32,7 @@ class CampaignController extends Controller
         return view('campaigns.home')->with(['campaigns' => $campaigns]);
     }
 
-    //Register user
+    //Register Campaign
     public function store(CampaignRegisterRequest $request)
     {
 
@@ -55,15 +58,21 @@ class CampaignController extends Controller
         }
     }
 
-    //Delete user
+    //Delete Campaign
     public function destroy(Request $request)
     {
         if($request->ajax()){
 
             try{
                 
-                $deleteURL = $this->url->where('id_campaign', $request->get('id'))->delete();
-                
+                $urls = $this->url->where('id_campaign', $request->get('id'))->pluck('id')->toArray();
+
+                if($urls){
+                    $this->urlResult->whereIn('id_url', $urls)->delete();
+                }
+
+                $this->url->where('id_campaign', $request->get('id'))->delete();
+
                 $deleteCampaign = $this->campaign->find($request->get('id'))->delete();
 
                 if($deleteCampaign){

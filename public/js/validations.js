@@ -25,8 +25,8 @@ $( document ).ready(function() {
 		});
 
 		if(errors > 0){
-			$('#validate-danger').removeClass('hide');
-			$('#validate-danger span').html('Por favor preencher os campos obrigatórios!');
+			inputs.find('#validate-danger').removeClass('hide');
+			inputs.find('#validate-danger span').html('Por favor preencher os campos obrigatórios!');
             return false;            
         }
 	});

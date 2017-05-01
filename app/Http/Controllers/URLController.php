@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Campaign;
 use App\URL;
+use App\Campaign;
+use App\URLResult;
 use Illuminate\Http\Request;
 use App\Http\Requests\URLResgisterRequest;
 
@@ -12,11 +13,13 @@ class URLController extends Controller
 
     private $campaign;
     private $url;
+    private $urlResult;
 
-    public function __construct(Campaign $campaign, URL $url)
+    public function __construct(Campaign $campaign, URL $url,  URLResult $urlResult)
     {
         $this->campaign = $campaign;
         $this->url = $url;
+        $this->urlResult = $urlResult;
     }
 
     //Displays the list of urls
@@ -112,9 +115,15 @@ class URLController extends Controller
 
             try{
 
-                $delete = $this->url->find($request->get('id'))->delete();
+                $urls = $this->url->find($request->get('id'))->pluck('id')->toArray();
+                
+                if($urls){
+                    $this->urlResult->whereIn('id_url', $urls)->delete();
+                }
 
-                if($delete){
+                $deleteUrl = $this->url->find($request->get('id'))->delete();
+
+                if($deleteUrl){
                     return 'true';
                 }else{
                     return 'false';

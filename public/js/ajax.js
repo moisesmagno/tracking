@@ -18,14 +18,14 @@ $( document ).ready(function() {
             success: function (result) {
                 if(result == 'true'){
 
-                    $(".alert-success").removeClass('hide');
-                    $("#alert-success").html('<b>Sucesso!</b> A campanha foi removida.');
+                    $("#register .alert-success").removeClass('hide');
+                    $("#register .alert-success span").html('<b>Sucesso!</b> A campanha foi removida.');
 
                     _this.parents(".gradeU").fadeOut("slow"); //Temporário - Refazer, pois o datatable já exclui a row
 
                 }else{
-                    $(".alert-danger").removeClass('hide')
-                    $("#alert-danger").html('<b>Erro!</b> Ocorreu um erro ao tentar remover a campanha, por favor tente novamente ou entre em contato.')
+                    $("#register .alert-danger").removeClass('hide')
+                    $("#register .alert-danger span").html('<b>Erro!</b> Ocorreu um erro ao tentar remover a campanha, por favor tente novamente ou entre em contato.')
                 }
             }
         });
@@ -51,8 +51,8 @@ $( document ).ready(function() {
                     $('#modal_edit_campaign #name_campaign').val(result.name);
 
                 }else{
-                    $(".alert-danger").removeClass('hide')
-                    $("#alert-danger").html('<b>Erro!</b> Ocorreu um erro ao tentar trazer as informações da campanha, por favor tente novamente ou entre em contato.')
+                    $("#register .alert-danger").removeClass('hide')
+                    $("#register .alert-danger span").html('<b>Erro!</b> Ocorreu um erro ao tentar trazer as informações da campanha, por favor tente novamente ou entre em contato.')
                 }
             }
         });
@@ -73,19 +73,19 @@ $( document ).ready(function() {
 
                 if(result == 'true'){
                     Custombox.close();
-                    $(".alert-success").removeClass('hide')
-                    $("#alert-success").html('<b>Success!</b> O nome da campanha foi editada.')
+                    $("#register .alert-success").removeClass('hide')
+                    $("#register .alert-success span").html('<b>Success!</b> O nome da campanha foi editada.')
                     $('#tr_' + data.id).find('.text-name-campaign').html(data.name);
                     $('#tr_' + data.id).css({"border-left": "3px solid rgba(95, 190, 170, 0.4)"});
                 }else if(result == 'false'){
                     Custombox.close();
-                    $(".alert-danger").removeClass('hide')
-                    $("#alert-danger").html('<b>Erro!</b> Ocorreu um erro ao tentar editar a campanha, por favor tente novamente ou entre em contato.')
+                    $("#register .alert-danger").removeClass('hide')
+                    $("#register .alert-danger span").html('<b>Erro!</b> Ocorreu um erro ao tentar editar a campanha, por favor tente novamente ou entre em contato.')
                     $('#tr_' + data.id).css({"border-left": "3px solid #ebcccc"});
                 }else{
                     Custombox.close();
-                    $(".alert-danger").removeClass('hide')
-                    $("#alert-danger").html('<b>Erro!</b> Ocorreu um erro crítico ao tentar editar a campanha, por favor tente novamente ou entre em contato.')
+                    $("#register .alert-danger").removeClass('hide')
+                    $("#register .alert-danger span").html('<b>Erro!</b> Ocorreu um erro crítico ao tentar editar a campanha, por favor tente novamente ou entre em contato.')
                     $('#tr_' + data.id).css({"border-left": "3px solid #ebcccc"});
                 }
 
@@ -101,7 +101,7 @@ $( document ).ready(function() {
     /* ****************************************
      URL
      **************************************** */
-    //Edit campaign
+    //Edit URL
     $(".edit_url").click(function(event){
 
         event.preventDefault();
@@ -125,8 +125,8 @@ $( document ).ready(function() {
 
                 }else{
                     Custombox.close();
-                    $(".alert-danger").removeClass('hide')
-                    $("#alert-danger").html('<b>Erro!</b> Ocorreu um erro ao tentar trazer as informações da campanha, por favor tente novamente ou entre em contato.')
+                    $("#register-url .alert-danger").removeClass('hide')
+                    $("#register-url .alert-danger span").html('<b>Erro!</b> Ocorreu um erro ao tentar trazer as informações da campanha, por favor tente novamente ou entre em contato.')
                 }
             }
         });
@@ -150,19 +150,19 @@ $( document ).ready(function() {
 
                 if(result == 'true'){
                     Custombox.close();
-                    $(".alert-success").removeClass('hide')
-                    $("#alert-success").html('<b>Success!</b> A descrição da URL foi editada.')
+                    $("#register-url .alert-success").removeClass('hide')
+                    $("#register-url .alert-success span").html('<b>Success!</b> A descrição da URL foi editada.')
                     $('#tr_' + data.id).find('.text-description-url').html(data.description);
                     $('#tr_' + data.id).css({"border-left": "3px solid rgba(95, 190, 170, 0.4)"});
                 }else if(result == 'false'){
                     Custombox.close();
-                    $(".alert-danger").removeClass('hide')
-                    $("#alert-danger").html('<b>Erro!</b> Ocorreu um erro ao tentar editar a URL, por favor tente novamente ou entre em contato.')
+                    $("#register-url .alert-danger").removeClass('hide')
+                    $("#register-url .alert-danger span").html('<b>Erro!</b> Ocorreu um erro ao tentar editar a URL, por favor tente novamente ou entre em contato.')
                     $('#tr_' + data.id).css({"border-left": "3px solid #ebcccc"});
                 }else{
                     Custombox.close();
-                    $(".alert-danger").removeClass('hide')
-                    $("#alert-danger").html('<b>Erro!</b> Ocorreu um erro crítico ao tentar editar a URL, por favor tente novamente ou entre em contato.')
+                    $("#register-url .alert-danger").removeClass('hide')
+                    $("#register-url .alert-danger span").html('<b>Erro!</b> Ocorreu um erro crítico ao tentar editar a URL, por favor tente novamente ou entre em contato.')
                     $('#tr_' + data.id).css({"border-left": "3px solid #ebcccc"});
                 }
 
@@ -187,17 +187,17 @@ $( document ).ready(function() {
             success: function (result) {
                 if(result == 'true'){
 
-                    $(".alert-success").removeClass('hide');
-                    $("#alert-success").html('<b>Sucesso!</b> A URL foi removida.');
+                    $("#register-url .alert-success").removeClass('hide');
+                    $("#register-url .alert-success span").html('<b>Sucesso!</b> A URL foi removida.');
 
                     _this.parents(".gradeU").fadeOut("slow"); //Temporário - Refazer, pois o datatable já exclui a row
 
                 }else if(result == 'false'){
-                    $(".alert-danger").removeClass('hide')
-                    $("#alert-danger").html('<b>Erro!</b> Ocorreu um erro ao tentar remover a campanha, por favor tente novamente ou entre em contato.')
+                    $("#register-url .alert-danger").removeClass('hide')
+                    $("#register-url .alert-danger span").html('<b>Erro!</b> Ocorreu um erro ao tentar remover a campanha, por favor tente novamente ou entre em contato.')
                 }else{
-                    $(".alert-danger").removeClass('hide')
-                    $("#alert-danger").html('<b>Erro!</b> Ocorreu um erro crítico ao tentar remover a campanha, por favor tente novamente ou entre em contato.')
+                    $("#register-url .alert-danger").removeClass('hide')
+                    $("#register-url .alert-danger span").html('<b>Erro!</b> Ocorreu um erro crítico ao tentar remover a campanha, por favor tente novamente ou entre em contato.')
                 }
             }
         });

@@ -76,7 +76,7 @@
                                 <a href="#custom-modal" class="btn btn-primary btn-md waves-effect waves-light " data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a"><i class="md md-add"></i> Adicionar URL</a>
                             </div>
                         </div>
-                        <div class="row col-sm-12">
+                        <div class="row col-sm-12" id="register-url">
                             <!-- Alerts -->
                             @include('includes.alerts')
                             @include('includes.alerts_js')
@@ -150,22 +150,29 @@
         </button>
         <h4 class="custom-modal-title">Adicionar URL</h4>
         <div class="custom-modal-text text-left">
-            <form role="form" action="{{ route('register_url') }}" method="post">
-                <!-- Security token -->
-                {{ csrf_field() }}
-                <input type="hidden" name="id_campaign" value="{{ $campaign->id }}">
-                <div class="form-group">
-                    <label for="name">Descrição :</label>
-                    <input type="text" class="form-control" id="description" name="description" placeholder="Descrição da URL">
-                </div>
-                <div class="form-group">
-                    <label for="name">URL de destino:</label>
-                    <input type="text" class="form-control" id="destiny_url" name="destiny_url" placeholder="Ex.: http://sitedestino.com.br">
-                </div>
-                <br>
-                <button type="submit" class="btn btn-default waves-effect waves-light">Salvar</button>
-                <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
-            </form>
+            
+            <div class="validate-forms">
+
+                @include('includes.alerts_validations')
+
+                <form role="form" action="{{ route('register_url') }}" method="post">
+                    
+                        <!-- Security token -->
+                        {{ csrf_field() }}
+                        <input type="hidden" name="id_campaign" value="{{ $campaign->id }}">
+                        <div class="form-group">
+                            <label for="name">Descrição :</label>
+                            <input type="text" class="required form-control" id="description" name="description" placeholder="Descrição da URL">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">URL de destino:</label>
+                            <input type="text" class="required form-control" id="destiny_url" name="destiny_url" placeholder="Ex.: http://sitedestino.com.br">
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-default waves-effect waves-light validate">Salvar</button>
+                        <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
+                </form>
+            </div>
         </div>
     </div>
     <!-- end modal -->
@@ -177,25 +184,32 @@
         </button>
         <h4 class="custom-modal-title">Editar URL</h4>
         <div class="custom-modal-text text-left">
-            <form role="form">
-                <input type="hidden" id="id_campaign" name="id_campaign" value="{{ $campaign->id }}">
-                <input type="hidden" id="id_url" name="id_url" value="">
-                <div class="form-group">
-                    <label for="name">Descrição :</label>
-                    <input type="text" class="form-control" id="description" name="description" placeholder="Descrição da URL">
-                </div>
-                <div class="form-group">
-                    <label for="name">URL de destino:</label>
-                    <input type="text" class="form-control" id="destiny_url" name="destiny_url" placeholder="Ex.: http://sitedestino.com.br" disabled="true">
-                </div>
-                <div class="form-group">
-                    <label for="name">URL curto:</label>
-                    <input type="text" class="form-control" id="short_url" name="short_url" placeholder="Ex.: http://sitedestino.com.br" disabled="true">
-                </div>
-                <br>
-                <button type="button" class="btn btn-default waves-effect waves-light" id="form_update_url">Salvar</button>
-                <button class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
-            </form>
+            
+            <div class="validate-forms">
+                @include('includes.alerts_validations')
+
+                <form role="form">
+                    
+                    <input type="hidden" id="id_campaign" name="id_campaign" value="{{ $campaign->id }}">
+                    <input type="hidden" id="id_url" name="id_url" value="">
+                    <div class="form-group">
+                        <label for="name">Descrição :</label>
+                        <input type="text" class="required form-control" id="description" name="description" placeholder="Descrição da URL">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">URL de destino:</label>
+                        <input type="text" class="form-control" id="destiny_url" name="destiny_url" placeholder="Ex.: http://sitedestino.com.br" disabled="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">URL curto:</label>
+                        <input type="text" class="form-control" id="short_url" name="short_url" placeholder="Ex.: http://sitedestino.com.br" disabled="true">
+                    </div>
+                    <br>
+                    <button type="button" class="btn btn-default waves-effect waves-light validate" id="form_update_url">Salvar</button>
+                    <button class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
+                
+                </form>
+            </div>
         </div>
     </div>
     <!-- end modal -->
