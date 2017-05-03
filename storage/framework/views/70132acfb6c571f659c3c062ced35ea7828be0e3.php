@@ -57,5 +57,7 @@
         <!-- Main -->
         <script src="<?php echo e(asset('js/main.js')); ?>"></script>
 
+        <!-- Pixel conversion -->
+        <script src="<?php echo e(asset('js/pixel_conversion.js')); ?>"></script>
     </body>
 </html>

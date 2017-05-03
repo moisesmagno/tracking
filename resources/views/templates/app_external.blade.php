@@ -57,5 +57,7 @@
         <!-- Main -->
         <script src="{{ asset('js/main.js') }}"></script>
 
+        <!-- Pixel conversion -->
+        <script src="{{ asset('js/pixel_conversion.js') }}"></script>
     </body>
 </html>
