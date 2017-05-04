@@ -21,3 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::name('register_user')->post('/register-user', 'LoginController@store');
 
+Route::name('data_user')->post('/data', 'APIPixelConversionController@store');
+
