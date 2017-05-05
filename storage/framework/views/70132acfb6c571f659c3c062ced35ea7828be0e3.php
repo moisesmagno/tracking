@@ -58,6 +58,14 @@
         <script src="<?php echo e(asset('js/main.js')); ?>"></script>
 
         <!-- Pixel conversion -->
-        <script src="<?php echo e(asset('js/pixel_conversion.js')); ?>"></script>
+        <script type="text/javascript">
+
+            var u=1, px=1, c=1;
+
+            document.write(unescape("%3Cscript src='http://localhost/tracking/public/js/user_access_information.js' type='text/javascript'%3E%3C/script%3E"));
+
+        </script>
+
+
     </body>
 </html>

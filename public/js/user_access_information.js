@@ -75,10 +75,11 @@ $(document).ready(function () {
     var url = document.URL;
 
     $.getJSON("//freegeoip.net/json/", function (data) {
-    	
+
 		locationData = {
-			'id_user': 1,
-			'id_campaign': 15,  
+			'id_user': u,
+			'id_pixel_conversion': px,
+			'id_campaign': c,  
 			'agent': browser(),
 			'url': url,
     		'city': data.city,
@@ -95,7 +96,7 @@ $(document).ready(function () {
     	// Send information
         $.ajax({
 	        type: "POST",
-	        url: "http://localhost/tracking/public/api/data",
+	        url: "http://localhost/tracking/public/api/user/access-information",
 	        data: locationData
 	    });
 

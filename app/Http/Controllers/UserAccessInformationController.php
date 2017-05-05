@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\APIPixelConversion;
+use App\UserAccessInformation;
 use Illuminate\Http\Request;
 
-class APIPixelConversionController extends Controller
+class UserAccessInformationController extends Controller
 {
 
-	private $apiPixelConversion;
+	private $userAccessInformation;
 
-	public function __construct(APIPixelConversion $apiPixelConversion){
-		$this->apiPixelConversion = $apiPixelConversion;
+	public function __construct(UserAccessInformation $userAccessInformation){
+		$this->userAccessInformation = $userAccessInformation;
 	}
 
     //Register user Information
@@ -20,6 +20,7 @@ class APIPixelConversionController extends Controller
     	if($request->ajax()){
 
     		$id_user = $request->get('id_user');
+            $id_pixel_conversion = $request->get('id_pixel_conversion');
     		$id_campaign = $request->get('id_campaign');
     		$url = $request->get('url');
     		$agent = $request->get('agent');
@@ -33,8 +34,9 @@ class APIPixelConversionController extends Controller
     		$latitude = $request->get('latitude');
     		$longitude = $request->get('longitude');
 
-    		$this->apiPixelConversion->create([
+    		$this->userAccessInformation->create([
     				'id_user' => $id_user,
+                    'id_pixel_conversion' => $id_pixel_conversion,
     				'id_campaign' => $id_campaign,
     				'url' => $url,
     				'agent' => $agent,

@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class APIPixelConversion extends Model
+class PixelConversion extends Model
 {
     use SoftDeletes;
 
@@ -16,9 +16,7 @@ class APIPixelConversion extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'id_user', 'id_campaign', 'agent', 'short_url', 'agent', 'url', 'city', 'country_code', 'country_name', 'remote_addr', 'region_code', 'region_name', 'time_zone', 'latitude', 'longitude'
-    ];
+    protected $fillable = ['id_user', 'id_campaign', 'name', 'time_interval', 'interval_type'];
 
     protected $dates = ['deleted_at'];
 

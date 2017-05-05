@@ -155,8 +155,10 @@
                     <p>Copie e cole a url abaixo em todas as páginas ca campanha. Na página de conversão, onde o cliente compra ou se cadastra, adicione a variável da conversão como explicado abaixo.</p>
                     <hr>
                     <h4>Código:</h4>
-                    <div class="col-md-10 m-b-30">
-                        <input type="text" class="form-control" readonly="" value="código js aqui">
+                    <div class="col-md-12 m-b-30">
+                        <input type="text" class="form-control" readonly="" value='<script src="http://localhost/tracking/public/js/pixel_conversion.js"></script>'>
+
+                        
                     </div>
                     <p style="clear:both">Utilize o código comentado acima para adicionar um valor fixo ou uma variável do seu sistema que retorne o valor da conversão.</p>
                 </div>
