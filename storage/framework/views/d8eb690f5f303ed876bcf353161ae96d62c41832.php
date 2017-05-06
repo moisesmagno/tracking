@@ -1,5 +1,4 @@
 <?php $__env->startSection('content'); ?>
-
     <div class="container">
         <!-- Page-Title -->
         <div class="row">
@@ -11,9 +10,7 @@
                         <li>
                             <a href="#">Configurações</a>
                         </li>
-                        <li class="active">
-                            Pixels
-                        </li>
+                        <li class="active">Pixels</li>
                     </ol>
                 </div>
             </div>
@@ -39,6 +36,13 @@
                                 <a href="#custom-modal" class="btn btn-primary btn-md waves-effect waves-light " data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a"><i class="md md-add"></i> Criar novo pixel de conversão</a>
                             </div>
                         </div>
+
+                        <div class="row col-sm-12" id="crud-pixel-conversion">
+                            <!-- Alerts -->
+                            <?php echo $__env->make('includes.alerts_js', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                            <?php echo $__env->make('includes.alerts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                        </div>
+
                         <div class="">
                             <table id="demo-foo-row-toggler" class="table toggle-circle table-hover">
                                 <thead>
@@ -52,37 +56,25 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="gradeU">
-                                        <td><a href="links_campanha.html">Cadastro do Site Coca-Cola</a></td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>18/12/2016</td>
-                                        <td>15 dias</td>
-                                        <td class="actions">
-                                            <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                                            <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                                            <a href="#" class="on-default edit-row" data-toggle="modal" data-target="#myModal"><i class="typcn typcn-code"></i></a>
-                                            <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                            <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                        </td>
-                                    </tr>
+                                    
+                                    <?php $__currentLoopData = $pixeis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pixel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <tr class="gradeU">
+                                            <td><a href="links_campanha.html"><?php echo e($pixel->name); ?></a></td>
+                                            <td>3.200</td>
+                                            <td>R$ 4.000</td>
+                                            <td>18/12/2016</td>
+                                            <td><?php echo e($pixel->time_interval . ' ' . $pixel->interval_type); ?></td>
+                                            <td class="actions">
+                                                <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
+                                                <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
+                                                <a href="#" class="on-default edit-row code_tags_js" data-toggle="modal" data-target="#myModal" data-id-user-code="<?php echo e(session('id')); ?>" data-id-code="<?php echo e($pixel->id); ?>"><i class="typcn typcn-code"></i></a>
+                                                <a href="#modal_edit_pixel" data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-id-edit="<?php echo e($pixel->id); ?>" data-overlayColor="#36404a" class="edit_pixel_conversion"><i class="fa fa-pencil"></i></a>
+                                                <a href="#" data-id-delete="<?php echo e($pixel->id); ?>" class="on-default remove-row delete_pixel"><i class="fa fa-trash-o"></i></a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </tbody>
-                                <tbody>
-                                    <tr class="gradeU">
-                                        <td><a href="links_campanha.html">Compra no site Avon</a></td>
-                                        <td>3.200</td>
-                                        <td>R$ 125.900,00</td>
-                                        <td>10/12/2016</td>
-                                        <td>15 dias</td>
-                                        <td class="actions">
-                                            <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                                            <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                                            <a href="#" class="on-default edit-row"><i class="typcn typcn-code"></i></a>
-                                            <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                            <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                        </td>
-                                    </tr>
-                                </tbody>
+                             
                             </table>
                         </div>
                     </div>
@@ -117,27 +109,82 @@
         </button>
         <h4 class="custom-modal-title">Criar Pixel de conversão</h4>
         <div class="custom-modal-text text-left">
-            <form role="form">
-                <div class="form-group">
-                    <label for="name">Nome do pixel:</label>
-                    <input type="text" class="form-control" id="name" placeholder="Ex.: Cadastro no site do cliente">
-                </div>
-                <div class="form-group m-b-30">
-                    <label for="name">Janela de conversão:</label>
-                    <select class="form-control select2">
-                        <option>Selecione</option>
-                        <option value="">24 horas</option>
-                        <option value="">7 dias</option>
-                        <option value="">15 dias</option>
-                        <option value="">30 dias</option>
-                        <option value="">40 dias</option>
-                        <option value="">50 dias</option>
-                        <option value="">60 dias</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-default waves-effect waves-light">Salvar</button>
-                <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">Cancelar</button>
-            </form>
+            
+            <div class="validate-forms">
+               
+                <?php echo $__env->make('includes.alerts_validations', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            
+                <form role="form" action="<?php echo e(route('register_pixel_conversion')); ?>" method="post">
+
+                    <!-- Security token -->
+                    <?php echo e(csrf_field()); ?>
+
+
+                    <div class="form-group">
+                        <label for="name">Nome do pixel:</label>
+                        <input type="text" class="required form-control" id="name" name="name" placeholder="Ex.: Cadastro no site do cliente">
+                    </div>
+                    <div class="form-group m-b-30">
+                        <label for="name">Janela de conversão:</label>
+                        <select class="required form-control select2" name="interval">
+                            <option value="">Selecione</option>
+                            <option value="24|horas">24 horas</option>
+                            <option value="7|dias">7 dias</option>
+                            <option value="15|dias">15 dias</option>
+                            <option value="30|dias">30 dias</option>
+                            <option value="40|dias">40 dias</option>
+                            <option value="50|dias">50 dias</option>
+                            <option value="60|dias">60 dias</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-default waves-effect waves-light validate">Salvar</button>
+                    <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">Cancelar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- end modal -->
+
+    <!-- Modal edit pixel conversion -->
+    <div id="modal_edit_pixel" class="modal-demo">
+        <button type="button" class="close" onclick="Custombox.close();">
+            <span>&times;</span><span class="sr-only">Fechar</span>
+        </button>
+        <h4 class="custom-modal-title">Editar pixel de conversão</h4>
+        <div class="custom-modal-text text-left">
+            
+            <div class="validate-forms">
+               
+                <?php echo $__env->make('includes.alerts_validations', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            
+                <form role="form" action="<?php echo e(route('register_pixel_conversion')); ?>" method="post">
+
+                    <!-- Security token -->
+                    <?php echo e(csrf_field()); ?>
+
+
+                    <input type="hidden" id="id_pixel_conversion" name="id_pixel_conversion" value="">
+
+                    <div class="form-group">
+                        <label for="name">Nome do pixel:</label>
+                        <input type="text" class="required form-control" id="name" name="name" placeholder="Ex.: Cadastro no site do cliente">
+                    </div>
+                    <div class="form-group m-b-30">
+                        <label for="interval">Janela de conversão:</label>
+                        <select class="required form-control select2" name="interval" id="interval">
+                            <option class="op_interval" value="24|horas">24 horas</option>
+                            <option class="op_interval" value="7|dias">7 dias</option>
+                            <option class="op_interval" value="15|dias">15 dias</option>
+                            <option class="op_interval" value="30|dias">30 dias</option>
+                            <option class="op_interval" value="40|dias">40 dias</option>
+                            <option class="op_interval" value="50|dias">50 dias</option>
+                            <option class="op_interval" value="60|dias">60 dias</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-default waves-effect waves-light validate">Salvar</button>
+                    <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">Cancelar</button>
+                </form>
+            </div>
         </div>
     </div>
     <!-- end modal -->
@@ -156,9 +203,7 @@
                     <hr>
                     <h4>Código:</h4>
                     <div class="col-md-12 m-b-30">
-                        <input type="text" class="form-control" readonly="" value='<script src="http://localhost/tracking/public/js/pixel_conversion.js"></script>'>
-
-                        
+                        <textarea class="form-control" readonly=""  cols="30" rows="4"><script type="text/javascript"> var u=1,px=1,c=1; document.write(unescape("%3Cscript src='http://localhost/tracking/public/js/user_access_information.js' type='text/javascript'%3E%3C/script%3E")); </script></textarea>
                     </div>
                     <p style="clear:both">Utilize o código comentado acima para adicionar um valor fixo ou uma variável do seu sistema que retorne o valor da conversão.</p>
                 </div>

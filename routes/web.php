@@ -38,6 +38,9 @@ Route::group(['middleware' => 'auth'], function(){
 
     //Pixel conversion
     Route::name('pixel_conversion')->get('/pixel-conversao', 'PixelConversionController@index');
+    Route::name('register_pixel_conversion')->post('/pixel-conversao/register', 'PixelConversionController@store');
+    Route::name('edit_pixel_conversion')->post('/pixel-conversao/edit', 'PixelConversionController@edit');
+    Route::name('delete_pixel_conversion')->delete('/pixel-conversao/delete', 'PixelConversionController@destroy');
 
     //Plans
     Route::name('plans')->get('/planos', 'PlanosController@index');

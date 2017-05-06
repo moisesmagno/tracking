@@ -202,4 +202,77 @@ $( document ).ready(function() {
             }
         });
     });
+
+    /* ****************************************
+    PIXEL CONVERSION
+    **************************************** */
+    
+    //Edit Pixel Conversion
+    $(".edit_pixel_conversion").click(function(event){
+
+        event.preventDefault();
+
+        var data = {id: $(this).attr('data-id-edit')};
+        var _this = $(this);
+
+        $.ajax({
+            url: "pixel-conversao/edit",
+            method: "post",
+            data: data,
+            success: function(result){
+
+                if(result != 'null'){
+
+                    var result = JSON.parse(result);
+
+                    var interval = result.time_interval + '|' + result.interval_type;
+
+                    $('#modal_edit_pixel #id_pixel_conversion').val(result.id);
+                    $('#modal_edit_pixel #name').val(result.name);
+                    $('#modal_edit_pixel #interval').find('.op_interval').each(function(){
+                        var that_ = $(this);
+                        var value = that_.val();
+                        if(value == interval){
+                            that_.attr('selected', true);
+                        }
+                    });
+                    
+                }else{
+                    Custombox.close();
+                    $("#crud-pixel-conversion .alert-danger").removeClass('hide')
+                    $("#crud-pixel-conversion .alert-danger span").html('<b>Erro!</b> Ocorreu um erro ao tentar trazer as informações da campanha, por favor tente novamente ou entre em contato.')
+                }
+            }
+        });
+    });
+
+    //Delete pixel conversion
+    $('.delete_pixel').click(function(){
+        
+        event.preventDefault();
+
+        var data = {id: $(this).attr('data-id-delete')}
+        var _this = $(this);
+
+        $.ajax({
+            url: "pixel-conversao/delete",
+            method: "delete",
+            data: data,
+            success: function (result) {
+                
+                if(result == 'true'){
+
+                    $("#crud-pixel-conversion .alert-success").removeClass('hide');
+                    $("#crud-pixel-conversion .alert-success span").html('<b>Sucesso!</b> O pixel foi removido.');
+
+                    _this.parents(".gradeU").fadeOut("slow"); //Temporário - Refazer, pois o datatable já exclui a row
+
+                }else{
+                    $("#crud-pixel-conversion .alert-danger").removeClass('hide')
+                    $("#crud-pixel-conversion .alert-danger span").html('<b>Erro!</b> Ocorreu um erro crítico ao tentar remover o pixel, por favor tente novamente ou entre em contato.')
+                }
+             }
+        });
+    });
+
 });

@@ -3,21 +3,83 @@
 namespace App\Http\Controllers;
 
 use App\PixelConversion;
+use App\UserAccessInformation;
+use App\Http\Requests\PixelConversionRequest;
 use Illuminate\Http\Request;
 
 class PixelConversionController extends Controller
 {
     
     private $pixelConversion;
+    private $userAccessInformation;
 
-    public function __construct(PixelConversion $pixelConversion){
+    public function __construct(PixelConversion $pixelConversion, UserAccessInformation $userAccessInformation){
     	$this->pixelConversion = $pixelConversion;
+        $this->userAccessInformation = $userAccessInformation;
     }
 
     //Displays the conversion pixel screen
     public function index(){
-        return view('pixel_conversion.index');
+        $pixeis = $this->pixelConversion->where('id_user', session('id'))->get();
+       
+        return view('pixel_conversion.index')->with(['pixeis' => $pixeis]);
     }
+
+    //Register the conversion pixel
+    public function store(PixelConversionRequest $request){
+
+        if($request->name == '' || $request->interval == ''){
+            session()->flash('alert-danger', '<b>Erro!</b> Para criar um pixel de converção você precisa preencher todos os campos obrigatórios.');
+            return redirect()->back();
+        }
+
+        $interval = explode('|', $request->interval);
+        $time_interval = $interval[0];
+        $interval_type = $interval[1];
+
+        try{
+            
+            $this->pixelConversion->create([
+                'id_user' => session('id'),
+                'name' => $request->name,
+                'time_interval' => $time_interval,
+                'interval_type' => $interval_type,
+            ]);
+
+            session()->flash('alert-success', '<b>Sucesso!</b> Pixel de conversão cadastrado.');
+            
+            return redirect()->back();
+
+        } catch (PDOException $e) {
+            session()->flash('alert-danger', '<b>Erro!</b> Ocorreu uma falha crítica ao tentar cadastrar o pixel de conversão, por favor tente novamente ou entre em contato.');
+            return redirect()->back();
+        }
+    }
+
+    public function edit(Request $request){
+        if($request->ajax()){
+            $pixelConversion = $this->pixelConversion->find($request->get('id'));
+            return json_encode($pixelConversion);
+        }
+    }
+
+    public function destroy(Request $request){
+
+        if($request->ajax()){
+
+            try{
+
+                $this->pixelConversion->where('id', $request->get('id'))->delete();
+
+                return 'true';
+
+            } catch (PDOException $e) {
+                return 'error-exception';
+            }
+        }
+    }
+
+
 }
 
 
