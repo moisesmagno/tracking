@@ -15,11 +15,7 @@
                         Alterar senha
                     </h3>
                     <div class="portlet-widgets">
-                        <a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>
-                        <span class="divider"></span>
-                        <a data-toggle="collapse" data-parent="#accordion1" href="#bg-primary1"><i class="ion-minus-round"></i></a>
-                        <span class="divider"></span>
-                        <a href="#" data-toggle="remove"><i class="ion-close-round"></i></a>
+                        
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -80,11 +76,10 @@
                         Token
                     </h3>
                     <div class="portlet-widgets">
-                        <a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>
-                        <span class="divider"></span>
-                        <a data-toggle="collapse" data-parent="#accordion1" href="#bg-primary1"><i class="ion-minus-round"></i></a>
-                        <span class="divider"></span>
-                        <a href="#" data-toggle="remove"><i class="ion-close-round"></i></a>
+                        
+                        
+                        
+                        
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -92,7 +87,7 @@
                     <div class="portlet-body">
                         <div class="control-label m-b-10 m-t-10"><b>Token gerado:</b></div>
                         <div style="max-width: 520px">
-                            <input type="text" class="form-control" id="token" readonly="" value="$2y$10$a2PN9hPZVWq55Ldwm0vCFOjLSCIdyGKrELw2ImnbzmHjLG0jZJ/G6">
+                            <input type="text" class="form-control" id="token" readonly="" value="<?php echo e(session('token_user')); ?>">
                         </div>
                         <div class="control-label m-b-10 m-t-10">
                             <button type="button" class="btn btn-success waves-effect waves-light" id="btn_copy_token">

@@ -56,6 +56,7 @@ class PixelConversionController extends Controller
         }
     }
 
+    //Edit Pixel Conversion
     public function edit(Request $request){
         if($request->ajax()){
             $pixelConversion = $this->pixelConversion->find($request->get('id'));
@@ -63,6 +64,40 @@ class PixelConversionController extends Controller
         }
     }
 
+    //Update Pixel Conversion
+    public function update(Request $request){
+        
+        if($request->ajax()){
+
+            try{
+                
+                $interval = explode('|', $request->get('interval'));
+                $time_interval = $interval[0];
+                $interval_type = $interval[1];
+
+                $update = $this->pixelConversion->find($request->get('id'));
+
+                if($update){
+                    $update->update([
+                        'name' => $request->get('name'),
+                        'time_interval' => $time_interval,
+                        'interval_type' => $interval_type,
+                    ]);
+
+                    return 'true';
+
+                }else{
+                    return 'false';
+                }
+
+            } catch (PDOException $e) {
+                return 'error-exception';
+            }
+        }
+
+    }
+
+    //Destroy Pixel Conversion
     public function destroy(Request $request){
 
         if($request->ajax()){

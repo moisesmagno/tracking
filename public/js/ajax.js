@@ -246,6 +246,60 @@ $( document ).ready(function() {
         });
     });
 
+    //Update Pixel Conversion
+    $('#update_px_conversion').click(function(event){
+
+        event.preventDefault();
+
+        var data = {
+            id: $('#modal_edit_pixel #id_pixel_conversion').val(),
+            name: $('#modal_edit_pixel #name').val(),
+            interval: $('#modal_edit_pixel #interval').val()
+        };
+
+        var textInterval = $('#modal_edit_pixel #interval :selected').text();
+ 
+        $.ajax({
+            url: "pixel-conversao/update",
+            method: "put",
+            data: data,
+            success: function(result){
+                if(result == 'true'){
+                    Custombox.close();
+                    $("#crud-pixel-conversion .alert-success").removeClass('hide')
+                    $("#crud-pixel-conversion .alert-success span").html('<b>Success!</b> O pixel conversão foi editado.')
+                    $('#tr_' + data.id).find('.text-name-pixel').html(data.name);
+                    $('#tr_' + data.id).find('.text-interval-pixel').html(textInterval);
+                    $('#tr_' + data.id).css({"border-left": "3px solid rgba(95, 190, 170, 0.4)"});
+                }else if(result == 'false'){
+                    Custombox.close();
+                    $("#crud-pixel-conversion .alert-danger").removeClass('hide')
+                    $("#crud-pixel-conversion .alert-danger span").html('<b>Erro!</b> Ocorreu um erro ao tentar editar o pixel conversão, por favor tente novamente ou entre em contato.')
+                    $('#tr_' + data.id).css({"border-left": "3px solid #ebcccc"});
+                }else{
+                    Custombox.close();
+                    $("#crud-pixel-conversion .alert-danger").removeClass('hide')
+                    $("#crud-pixel-conversion .alert-danger span").html('<b>Erro!</b> Ocorreu um erro crítico ao tentar editar o pixel conversão, por favor tente novamente ou entre em contato.')
+                    $('#tr_' + data.id).css({"border-left": "3px solid #ebcccc"});
+                }
+
+                setTimeout(function () {
+                    $('#tr_' + data.id).css({"border-left": "0"});
+                }, 4000);
+            }
+        });
+    });
+
+    //Code pixel conversion
+    $('.code_tags_js').click(function(){
+        var idPixelConversion = $(this).attr('data-id-code');
+        var idUser = $(this).attr('data-id-user');
+
+       var scriptPixelConversion =" <script type=\"text/javascript\"> var u="+idUser+",px="+idPixelConversion+",c=NULL; document.write(unescape(\"%3Cscript src='http://localhost/tracking/public/js/user_access_information.js' type='text/javascript'%3E%3C/script%3E\")); </script>";
+       $('#code_tags_js_px').val(scriptPixelConversion);
+    });
+
+
     //Delete pixel conversion
     $('.delete_pixel').click(function(){
         

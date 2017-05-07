@@ -35,6 +35,7 @@ class LoginController extends Controller
                 session(['company_name' => Auth::user()->company_name]);
                 session(['email' => Auth::user()->email]);
                 session(['telephone' => Auth::user()->telephone]);
+                session(['token_user' => Auth::user()->token]);
 
                 return redirect()->intended('campanha/home');
             }

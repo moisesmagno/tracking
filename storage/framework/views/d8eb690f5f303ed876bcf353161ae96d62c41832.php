@@ -58,16 +58,16 @@
                                 <tbody>
                                     
                                     <?php $__currentLoopData = $pixeis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pixel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <tr class="gradeU">
-                                            <td><a href="links_campanha.html"><?php echo e($pixel->name); ?></a></td>
+                                        <tr class="gradeU" id="tr_<?php echo e($pixel->id); ?>">
+                                            <td><a href="links_campanha.html" class="text-name-pixel"><?php echo e($pixel->name); ?></a></td>
                                             <td>3.200</td>
                                             <td>R$ 4.000</td>
                                             <td>18/12/2016</td>
-                                            <td><?php echo e($pixel->time_interval . ' ' . $pixel->interval_type); ?></td>
+                                            <td class="text-interval-pixel"><?php echo e($pixel->time_interval . ' ' . $pixel->interval_type); ?></td>
                                             <td class="actions">
                                                 <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                                                 <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                                                <a href="#" class="on-default edit-row code_tags_js" data-toggle="modal" data-target="#myModal" data-id-user-code="<?php echo e(session('id')); ?>" data-id-code="<?php echo e($pixel->id); ?>"><i class="typcn typcn-code"></i></a>
+                                                <a href="#" class="on-default edit-row code_tags_js" data-toggle="modal" data-target="#code_pixel_conversion"  data-id-user="<?php echo e(session('id')); ?>" data-id-code="<?php echo e($pixel->id); ?>"><i class="typcn typcn-code"></i></a>
                                                 <a href="#modal_edit_pixel" data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-id-edit="<?php echo e($pixel->id); ?>" data-overlayColor="#36404a" class="edit_pixel_conversion"><i class="fa fa-pencil"></i></a>
                                                 <a href="#" data-id-delete="<?php echo e($pixel->id); ?>" class="on-default remove-row delete_pixel"><i class="fa fa-trash-o"></i></a>
                                             </td>
@@ -181,8 +181,8 @@
                             <option class="op_interval" value="60|dias">60 dias</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-default waves-effect waves-light validate">Salvar</button>
-                    <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">Cancelar</button>
+                    <button type="submit" class="btn btn-default waves-effect waves-light validate" id="update_px_conversion">Salvar</button>
+                    <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
                 </form>
             </div>
         </div>
@@ -190,7 +190,7 @@
     <!-- end modal -->
 
     <!-- Modal com o código js para embed na página do cliente -->
-    <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div id="code_pixel_conversion" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -203,13 +203,13 @@
                     <hr>
                     <h4>Código:</h4>
                     <div class="col-md-12 m-b-30">
-                        <textarea class="form-control" readonly=""  cols="30" rows="4"><script type="text/javascript"> var u=1,px=1,c=1; document.write(unescape("%3Cscript src='http://localhost/tracking/public/js/user_access_information.js' type='text/javascript'%3E%3C/script%3E")); </script></textarea>
+                        <textarea class="form-control" readonly="" cols="30" rows="4" id="code_tags_js_px"></textarea>
                     </div>
                     <p style="clear:both">Utilize o código comentado acima para adicionar um valor fixo ou uma variável do seu sistema que retorne o valor da conversão.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary waves-effect waves-light">Copiar código</button>
+                    <button type="button" class="btn btn-primary waves-effect waves-light" id="btn_script_js">Copiar código</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
