@@ -23,4 +23,10 @@ class UserAccessInformation extends Model
 	protected $dates = ['deleted_at'];
 
 	protected $softDelete = true;
+
+	public function pixelConversion(){
+		return $this->belongsTo(PixelConversion::class,'id','id_pixel_conversion');
+	}
+
+	
 }

@@ -59,12 +59,12 @@
                                 </thead>
                                 <tbody>
                                     
-                                    @foreach($pixeis as $pixel)
+                                    @foreach($pixels as $pixel)
                                         <tr class="gradeU" id="tr_{{ $pixel->id }}">
                                             <td><a href="links_campanha.html" class="text-name-pixel">{{ $pixel->name }}</a></td>
-                                            <td>3.200</td>
-                                            <td>R$ 4.000</td>
-                                            <td>18/12/2016</td>
+                                            <td>{{ count($pixel->usersAccessInformations) }}</td>
+                                            <td>R$ {{ count($pixel->usersAccessInformations) * 3.50 }}</td>
+                                            <td>{{ $pixel->created_at->format('m/d/Y') }}</td>
                                             <td class="text-interval-pixel">{{ $pixel->time_interval . ' ' . $pixel->interval_type }}</td>
                                             <td class="actions">
                                                 <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>

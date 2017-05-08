@@ -57,12 +57,12 @@
                                 </thead>
                                 <tbody>
                                     
-                                    <?php $__currentLoopData = $pixeis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pixel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php $__currentLoopData = $pixels; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pixel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr class="gradeU" id="tr_<?php echo e($pixel->id); ?>">
                                             <td><a href="links_campanha.html" class="text-name-pixel"><?php echo e($pixel->name); ?></a></td>
-                                            <td>3.200</td>
-                                            <td>R$ 4.000</td>
-                                            <td>18/12/2016</td>
+                                            <td><?php echo e(count($pixel->usersAccessInformations)); ?></td>
+                                            <td>R$ <?php echo e(count($pixel->usersAccessInformations) * 3.50); ?></td>
+                                            <td><?php echo e($pixel->created_at->format('m/d/Y')); ?></td>
                                             <td class="text-interval-pixel"><?php echo e($pixel->time_interval . ' ' . $pixel->interval_type); ?></td>
                                             <td class="actions">
                                                 <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>

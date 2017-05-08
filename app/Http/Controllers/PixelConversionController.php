@@ -20,9 +20,18 @@ class PixelConversionController extends Controller
 
     //Displays the conversion pixel screen
     public function index(){
-        $pixeis = $this->pixelConversion->where('id_user', session('id'))->get();
-       
-        return view('pixel_conversion.index')->with(['pixeis' => $pixeis]);
+
+       $pixels = $this->pixelConversion->with('usersAccessInformations')->where('id_user', session('id'))->get();
+
+    //    foreach($pixels as $key){
+    //         echo count($key->usersAccessInformations);
+    //         // count((array)$obj)
+    //     }
+        
+    //     die;
+
+        // $pixeis = $this->pixelConversion->where('id_user', session('id'))->get(['id', 'name', 'time_interval', 'interval_type', 'created_at']);
+        return view('pixel_conversion.index')->with(['pixels' => $pixels]);
     }
 
     //Register the conversion pixel

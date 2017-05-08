@@ -18,7 +18,11 @@ class PixelConversion extends Model
      */
     protected $fillable = ['id_user', 'id_campaign', 'name', 'time_interval', 'interval_type'];
 
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at', 'created_at'];
 
     protected $softDelete = true;
+
+    public function usersAccessInformations(){
+        return $this->hasMany(UserAccessInformation::class,'id_pixel_conversion','id');
+    }
 }

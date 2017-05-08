@@ -295,7 +295,8 @@ $( document ).ready(function() {
         var idPixelConversion = $(this).attr('data-id-code');
         var idUser = $(this).attr('data-id-user');
 
-       var scriptPixelConversion =" <script type=\"text/javascript\"> var u="+idUser+",px="+idPixelConversion+",c=NULL; document.write(unescape(\"%3Cscript src='http://localhost/tracking/public/js/user_access_information.js' type='text/javascript'%3E%3C/script%3E\")); </script>";
+       var scriptPixelConversion ="<script type=\"text/javascript\">var u="+idUser+",px="+idPixelConversion+",c=null; var imported = document.createElement('script'); imported.src = 'http://tracking.dev/js/user_access_information.js'; document.head.appendChild(imported); </script>";
+
        $('#code_tags_js_px').val(scriptPixelConversion);
     });
 
