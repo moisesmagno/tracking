@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class RecoverPassword extends Mailable
+class RegisterUserAPIMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -30,6 +30,6 @@ class RecoverPassword extends Mailable
      */
     public function build()
     {
-        return $this->markdown('email.recover_password.index');
+        return $this->markdown('email/register_user/register_user_api');
     }
 }

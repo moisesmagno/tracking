@@ -8,7 +8,7 @@ Senha temporária: 123456
 
 Obrigado :)
 
-@component('mail::button', ['url' => 'http://localhost/tracking/public/'])
+@component('mail::button', ['url' => PATH_URL])
 Ir para o Tracking Celebryts
 @endcomponent
 

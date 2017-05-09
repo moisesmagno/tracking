@@ -63,7 +63,7 @@
                                         <tr class="gradeU" id="tr_{{ $pixel->id }}">
                                             <td><a href="links_campanha.html" class="text-name-pixel">{{ $pixel->name }}</a></td>
                                             <td>{{ count($pixel->usersAccessInformations) }}</td>
-                                            <td>R$ {{ count($pixel->usersAccessInformations) * 3.50 }}</td>
+                                            <td>R$ {{ number_format(count($pixel->usersAccessInformations) * 3.50, 2, ',', '.') }}</td>
                                             <td>{{ $pixel->created_at->format('m/d/Y') }}</td>
                                             <td class="text-interval-pixel">{{ $pixel->time_interval . ' ' . $pixel->interval_type }}</td>
                                             <td class="actions">

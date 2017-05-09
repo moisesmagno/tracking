@@ -21,5 +21,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::name('register_user')->post('/register-user', 'LoginController@store');
 
+//User access information
 Route::name('user_access_information')->post('/user/access-information', 'UserAccessInformationController@store');
 
+//Register user
+route::name('new_user')->post('/new/user', 'UserAPIController@store');

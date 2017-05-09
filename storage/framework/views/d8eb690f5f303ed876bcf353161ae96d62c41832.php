@@ -61,7 +61,7 @@
                                         <tr class="gradeU" id="tr_<?php echo e($pixel->id); ?>">
                                             <td><a href="links_campanha.html" class="text-name-pixel"><?php echo e($pixel->name); ?></a></td>
                                             <td><?php echo e(count($pixel->usersAccessInformations)); ?></td>
-                                            <td>R$ <?php echo e(count($pixel->usersAccessInformations) * 3.50); ?></td>
+                                            <td>R$ <?php echo e(number_format(count($pixel->usersAccessInformations) * 3.50, 2, ',', '.')); ?></td>
                                             <td><?php echo e($pixel->created_at->format('m/d/Y')); ?></td>
                                             <td class="text-interval-pixel"><?php echo e($pixel->time_interval . ' ' . $pixel->interval_type); ?></td>
                                             <td class="actions">
