@@ -70,7 +70,7 @@ class UserAPIController extends Controller
                 return json_encode($registeredUser);
             }
         } catch (PDOException $e) {
-            return json_encode($error = ['status' => 'Register-false']);
+            return json_encode($error = ['status' => 'register-false']);
         }
     }
 

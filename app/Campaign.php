@@ -21,7 +21,7 @@ class Campaign extends Model
         'id_user', 'name'
     ];
 
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at', 'created_at'];
     
     protected $softDelete = true;
 }

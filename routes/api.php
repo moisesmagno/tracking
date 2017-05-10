@@ -28,3 +28,4 @@ Route::name('user_access_information')->post('/user/access-information', 'UserAc
 Route::name('new_user')->post('/new/user', 'UserAPIController@store');
 
 //Register Campaign
+Route::name('new_campaign')->post('/new/campaign', 'CampaignAPIController@store');
