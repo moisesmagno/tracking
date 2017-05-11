@@ -54,8 +54,9 @@
         <!-- Application Ajax-->
         <script src="<?php echo e(asset('js/ajax.js')); ?>"></script>
 
-        <!-- Main -->
-        <script src="<?php echo e(asset('js/main.js')); ?>"></script>
+        <!-- Mains -->
+        <script src="<?php echo e(asset('js/main-js-puro.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/main-jquery.js')); ?>"></script>
 
     </body>
 </html>

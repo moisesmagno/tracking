@@ -46,12 +46,12 @@
                     </div>
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control" type="text" name="company_name" placeholder="Nome da empresa" required="" value="<?php echo e(old('company_name')); ?>">
+                            <input class="form-control" type="text" name="company_name" placeholder="Nome da empresa" value="<?php echo e(old('company_name')); ?>">
                         </div>
                     </div>
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control" type="text" name="telephone" placeholder="Telefone" required="" value="<?php echo e(old('telephone')); ?>">
+                            <input class="form-control" type="text" name="telephone" placeholder="Telefone" value="<?php echo e(old('telephone')); ?>">
                         </div>
                     </div>
                     <div class="form-group">

@@ -53,7 +53,7 @@
                             <tbody>
                                 @foreach($url_results as $urlResult)
                                     <tr class="gradeU">
-                                        <td><a href="">{{ ($urlResult->referer == 'Outro') ? $urlResult->referer.'s' : $urlResult->referer}}</a></td>
+                                        <td><a>{{ ($urlResult->referer == 'Outro') ? $urlResult->referer.'s' : $urlResult->referer}}</a></td>
                                         <td>{{ $urlResult->total_clicks }}</td>
                                         <td>{{ $urlResult->unique_clicks or 0}}</td>
                                     </tr>

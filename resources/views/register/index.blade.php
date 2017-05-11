@@ -47,12 +47,12 @@
                     </div>
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control" type="text" name="company_name" placeholder="Nome da empresa" required="" value="{{ old('company_name') }}">
+                            <input class="form-control" type="text" name="company_name" placeholder="Nome da empresa" value="{{ old('company_name') }}">
                         </div>
                     </div>
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control" type="text" name="telephone" placeholder="Telefone" required="" value="{{ old('telephone') }}">
+                            <input class="form-control" type="text" name="telephone" placeholder="Telefone" value="{{ old('telephone') }}">
                         </div>
                     </div>
                     <div class="form-group">

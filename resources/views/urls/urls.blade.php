@@ -99,7 +99,7 @@
                                             <td>{{ $url->short_url }}</td>
                                             <td class="actions">
                                                 <a href="#modal_edit_url" data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-id-edit="{{ $url->id }}" data-overlayColor="#36404a" class="edit_url"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" onclick="return confirm('Deseja realmente excluir esta URL?');" class="on-default remove-row delete_url" data-id-delete="{{ $url->id }}"><i class="fa fa-trash-o"></i></a>
+                                                <a href="#" class="on-default remove-row delete_url" data-id-delete="{{ $url->id }}"><i class="fa fa-trash-o"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach

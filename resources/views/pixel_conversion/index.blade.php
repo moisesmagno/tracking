@@ -61,7 +61,7 @@
                                     
                                     @foreach($pixels as $pixel)
                                         <tr class="gradeU" id="tr_{{ $pixel->id }}">
-                                            <td><a href="links_campanha.html" class="text-name-pixel">{{ $pixel->name }}</a></td>
+                                            <td><a class="text-name-pixel">{{ $pixel->name }}</a></td>
                                             <td>{{ count($pixel->usersAccessInformations) }}</td>
                                             <td>R$ {{ number_format(count($pixel->usersAccessInformations) * 3.50, 2, ',', '.') }}</td>
                                             <td>{{ $pixel->created_at->format('m/d/Y') }}</td>
@@ -71,7 +71,7 @@
                                                 <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
                                                 <a href="#" class="on-default edit-row code_tags_js" data-toggle="modal" data-target="#code_pixel_conversion"  data-id-user="{{ session('id') }}" data-id-code="{{ $pixel->id }}"><i class="typcn typcn-code"></i></a>
                                                 <a href="#modal_edit_pixel" data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-id-edit="{{ $pixel->id }}" data-overlayColor="#36404a" class="edit_pixel_conversion"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" data-id-delete="{{ $pixel->id }}" class="on-default remove-row delete_pixel"><i class="fa fa-trash-o"></i></a>
+                                                <a href="#"  data-id-delete="{{ $pixel->id }}" class="on-default remove-row delete_pixel"><i class="fa fa-trash-o"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -1,6 +1,6 @@
 
 <?php if(session()->has('alert-success')): ?>
-    <div class="alert alert-success alert-dismyissable">
+    <div class="alert alert-success alert-dismyissable alert-php">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
             ×
         </button>
@@ -12,7 +12,7 @@
 
 
 <?php if(session()->has('alert-warning')): ?>
-    <div class="alert alert-warning alert-dismissable">
+    <div class="alert alert-warning alert-dismissable alert-php">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
             ×
         </button>
@@ -24,7 +24,7 @@
 
 
 <?php if(session()->has('alert-danger')): ?>
-    <div class="alert alert-danger alert-dismissable">
+    <div class="alert alert-danger alert-dismissable alert-php">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
             ×
         </button>
@@ -36,7 +36,7 @@
 
 
 <?php if(session()->has('alert-info')): ?>
-    <div class="alert alert-info alert-dismissable">
+    <div class="alert alert-info alert-dismissable alert-php">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
             ×
         </button>

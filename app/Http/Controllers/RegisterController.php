@@ -46,9 +46,9 @@ class RegisterController extends Controller
                     'token' => Hash::make($request->get('email'))
                 ]);
 
-                session()->flash('alert-success', '<b>Sucesso</b> Usuario cadastrado com sucesso!');
+                session()->flash('alert-success', '<b>Parabéns!</b> Você foi cadastrado com sucesso, acesse sua conta agora mesmo :)');
 
-                return redirect()->back();
+                return redirect('/');
             }
 
         } catch (PDOException $e) {

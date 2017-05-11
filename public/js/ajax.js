@@ -9,13 +9,21 @@ $( document ).ready(function() {
 
         event.preventDefault();
 
+        if(!confirm('Realmente deseja excluir esta campanha?')){
+            return false;
+        }
+
         var data = {id: $(this).attr('data-id-delete')};
         var _this = $(this);
+
         $.ajax({
             url: "delete",
             method: "delete",
             data: data,
             success: function (result) {
+
+                $(".alert").addClass('hide');
+
                 if(result == 'true'){
 
                     $("#register .alert-success").removeClass('hide');
@@ -27,6 +35,8 @@ $( document ).ready(function() {
                     $("#register .alert-danger").removeClass('hide')
                     $("#register .alert-danger span").html('<b>Erro!</b> Ocorreu um erro ao tentar remover a campanha, por favor tente novamente ou entre em contato.')
                 }
+
+                $(".alert-php").addClass('hide');
             }
         });
     });
@@ -71,6 +81,8 @@ $( document ).ready(function() {
             data: data,
             success: function(result){
 
+                $(".alert").addClass('hide');
+
                 if(result == 'true'){
                     Custombox.close();
                     $("#register .alert-success").removeClass('hide')
@@ -88,6 +100,8 @@ $( document ).ready(function() {
                     $("#register .alert-danger span").html('<b>Erro!</b> Ocorreu um erro crítico ao tentar editar a campanha, por favor tente novamente ou entre em contato.')
                     $('#tr_' + data.id).css({"border-left": "3px solid #ebcccc"});
                 }
+
+                $(".alert-php").addClass('hide');
 
                 setTimeout(function () {
                     $('#tr_' + data.id).css({"border-left": "0"});
@@ -148,6 +162,8 @@ $( document ).ready(function() {
             data: data,
             success: function(result){
 
+                $(".alert").addClass('hide');
+
                 if(result == 'true'){
                     Custombox.close();
                     $("#register-url .alert-success").removeClass('hide')
@@ -166,6 +182,8 @@ $( document ).ready(function() {
                     $('#tr_' + data.id).css({"border-left": "3px solid #ebcccc"});
                 }
 
+                $(".alert-php").addClass('hide');
+
                 setTimeout(function () {
                     $('#tr_' + data.id).css({"border-left": "0"});
                 }, 4000);
@@ -178,6 +196,10 @@ $( document ).ready(function() {
 
         event.preventDefault();
 
+        if(!confirm('Realmente deseja excluir esta URL?')){
+            return false;
+        }
+
         var data = {id: $(this).attr('data-id-delete')};
         var _this = $(this);
         $.ajax({
@@ -185,6 +207,9 @@ $( document ).ready(function() {
             method: "delete",
             data: data,
             success: function (result) {
+
+                $(".alert").addClass('hide');
+
                 if(result == 'true'){
 
                     $("#register-url .alert-success").removeClass('hide');
@@ -199,6 +224,8 @@ $( document ).ready(function() {
                     $("#register-url .alert-danger").removeClass('hide')
                     $("#register-url .alert-danger span").html('<b>Erro!</b> Ocorreu um erro crítico ao tentar remover a campanha, por favor tente novamente ou entre em contato.')
                 }
+
+                $(".alert-php").addClass('hide');
             }
         });
     });
@@ -264,6 +291,9 @@ $( document ).ready(function() {
             method: "put",
             data: data,
             success: function(result){
+
+                $(".alert").addClass('hide');
+
                 if(result == 'true'){
                     Custombox.close();
                     $("#crud-pixel-conversion .alert-success").removeClass('hide')
@@ -282,6 +312,8 @@ $( document ).ready(function() {
                     $("#crud-pixel-conversion .alert-danger span").html('<b>Erro!</b> Ocorreu um erro crítico ao tentar editar o pixel conversão, por favor tente novamente ou entre em contato.')
                     $('#tr_' + data.id).css({"border-left": "3px solid #ebcccc"});
                 }
+
+                $(".alert-php").addClass('hide');
 
                 setTimeout(function () {
                     $('#tr_' + data.id).css({"border-left": "0"});
@@ -306,6 +338,10 @@ $( document ).ready(function() {
         
         event.preventDefault();
 
+        if(!confirm('Realmente deseja excluir este pixel?')){
+            return false;
+        }
+
         var data = {id: $(this).attr('data-id-delete')}
         var _this = $(this);
 
@@ -314,7 +350,9 @@ $( document ).ready(function() {
             method: "delete",
             data: data,
             success: function (result) {
-                
+
+                $(".alert").addClass('hide');
+
                 if(result == 'true'){
 
                     $("#crud-pixel-conversion .alert-success").removeClass('hide');
@@ -326,6 +364,8 @@ $( document ).ready(function() {
                     $("#crud-pixel-conversion .alert-danger").removeClass('hide')
                     $("#crud-pixel-conversion .alert-danger span").html('<b>Erro!</b> Ocorreu um erro crítico ao tentar remover o pixel, por favor tente novamente ou entre em contato.')
                 }
+
+                $(".alert-php").addClass('hide');
              }
         });
     });

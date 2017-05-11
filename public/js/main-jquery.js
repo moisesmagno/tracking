@@ -20,4 +20,5 @@ $( document ).ready(function() {
         document.execCommand("copy");
         $temp.remove();
     });
+
 });

@@ -108,7 +108,7 @@
                                 <a href="javascript:void(0);" class="waves-effect"><i class="ti-paint-bucket"></i> <span> Campanhas</span> <span class="menu-arrow"></span> </a>
                                 <ul class="list-unstyled">
                                     <li><a href="{{ route('home') }}">Campanhas</a></li>
-                                    <li><a href="">URLs</a></li>
+                                    {{--<li><a href="">URLs</a></li>--}}
                                 </ul>
                             </li>
 
@@ -116,7 +116,7 @@
                                 <a href="javascript:void(0);" class="waves-effect"><i class="ti-settings"></i> <span> Campanhas</span> <span class="menu-arrow"></span> </a>
                                 <ul class="list-unstyled">
                                     <li><a href="{{ route('pixel_conversion') }}">Pixels de conversão</a></li>
-                                    <li><a href="ui-buttons.html">Dados da conta</a></li>
+                                    <li><a href="#">Dados da conta</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -183,7 +183,8 @@
         <script src="{{ asset('js/ajax.js') }}"></script>
 
         <!-- Main -->
-        <script src="{{ asset('js/main.js') }}"></script>
+            <script src="{{ asset('js/main-js-puro.js') }}"></script>
+            <script src="{{ asset('js/main-jquery.js') }}"></script>
 
         <!-- Validations -->
         <script src="{{ asset('js/validations.js') }}"></script>

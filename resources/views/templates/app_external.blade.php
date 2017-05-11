@@ -54,8 +54,9 @@
         <!-- Application Ajax-->
         <script src="{{ asset('js/ajax.js') }}"></script>
 
-        <!-- Main -->
-        <script src="{{ asset('js/main.js') }}"></script>
+        <!-- Mains -->
+        <script src="{{ asset('js/main-js-puro.js') }}"></script>
+        <script src="{{ asset('js/main-jquery.js') }}"></script>
 
     </body>
 </html>
