@@ -16,7 +16,7 @@ class PixelConversion extends Model
      *
      * @var array
      */
-    protected $fillable = ['id_user', 'id_campaign', 'name', 'time_interval', 'interval_type'];
+    protected $fillable = ['id_user', 'id_campaign', 'id_url', 'name', 'time_interval', 'interval_type'];
 
     protected $dates = ['deleted_at', 'created_at'];
 

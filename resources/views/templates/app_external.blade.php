@@ -58,5 +58,9 @@
         <script src="{{ asset('js/main-js-puro.js') }}"></script>
         <script src="{{ asset('js/main-jquery.js') }}"></script>
 
+        <!-- Masks -->
+        <script src="{{ asset('js/jquery-mask.js') }}"></script>
+        <script src="{{ asset('js/jquery-mask-custom.js') }}"></script>
+
     </body>
 </html>

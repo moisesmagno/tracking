@@ -17,8 +17,11 @@ class CreateTbPixelConversion extends Migration
             $table->increments('id');
             $table->integer('id_user')->unsigned();
             $table->foreign('id_user')->references('id')->on('users');
-            $table->integer('id_campaign')->nullable();
-            $table->string('name');
+            $table->integer('id_campaign')->unsigned();
+            $table->foreign('id_campaign')->references('id')->on('campaigns');
+            $table->integer('id_url')->unsigned();
+            $table->foreign('id_url')->references('id')->on('urls');
+            $table->string('name', 100);
             $table->integer('time_interval');
             $table->string('interval_type', 15);
             $table->timestamps();

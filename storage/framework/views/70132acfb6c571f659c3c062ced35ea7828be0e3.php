@@ -58,5 +58,9 @@
         <script src="<?php echo e(asset('js/main-js-puro.js')); ?>"></script>
         <script src="<?php echo e(asset('js/main-jquery.js')); ?>"></script>
 
+        <!-- Masks -->
+        <script src="<?php echo e(asset('js/jquery-mask.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/jquery-mask-custom.js')); ?>"></script>
+
     </body>
 </html>

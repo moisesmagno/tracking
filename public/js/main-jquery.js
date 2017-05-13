@@ -1,5 +1,9 @@
 $( document ).ready(function() {
-    
+
+     /* ************************************************
+     COPY BUTONS
+     ************************************************ */
+
     //Copy token
     $('#btn_copy_token').click(function(){
 
@@ -21,4 +25,11 @@ $( document ).ready(function() {
         $temp.remove();
     });
 
+    /* ************************************************
+    REMOVE MASKS
+    ************************************************ */
+    //Remove the phone mask - Register user
+    $('.form-register-user').submit(function(){
+        $('.telephone-mask').unmask();
+    });
 });

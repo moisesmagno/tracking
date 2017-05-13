@@ -98,27 +98,36 @@
                     <div id="sidebar-menu">
                         <ul>
                             <li class="text-muted menu-title">Navigation</li>
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="ti-home"></i> <span> Dashboard </span> <span class="menu-arrow"></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="<?php echo e(route('home')); ?>">Dashboard 1</a></li>
-                                </ul>
-                            </li>
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="ti-paint-bucket"></i> <span> Campanhas</span> <span class="menu-arrow"></span> </a>
-                                <ul class="list-unstyled">
-                                    <li><a href="<?php echo e(route('home')); ?>">Campanhas</a></li>
+                            
+                                
+
+                                
                                     
-                                </ul>
+                                
+                            
+                            <li class="has_sub">
+                                <a href="<?php echo e(route('home')); ?>" class="waves-effect"><i class="ti-paint-bucket"></i> <span> Campanhas</span> <span class="menu-arrow"></span> </a>
+                                
+                                
+                                    
+                                    
+                                
                             </li>
 
+
+
                             <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="ti-settings"></i> <span> Campanhas</span> <span class="menu-arrow"></span> </a>
-                                <ul class="list-unstyled">
-                                    <li><a href="<?php echo e(route('pixel_conversion')); ?>">Pixels de conversão</a></li>
-                                    <li><a href="#">Dados da conta</a></li>
-                                </ul>
+                                <a href="<?php echo e(route('pixel_conversion')); ?>" class="waves-effect"><i class="ti-settings"></i> <span> Pixeis de conversão</span> <span class="menu-arrow"></span> </a>
                             </li>
+
+
+                            
+                                
+                                
+                                    
+                                    
+                                
+                            
                         </ul>
                         <div class="clearfix"></div>
                     </div>
@@ -134,7 +143,6 @@
 
                 <!-- Start content -->
                 <div class="content">
-
 
                     <!-- Application content -->
                     <?php echo $__env->yieldContent('content'); ?>
@@ -152,6 +160,14 @@
         <script>
             var resizefunc = [];
         </script>
+
+        /* ---------------------------------------------------
+            Aqui vão os JS padrões
+        -----------------------------------------------------*/
+
+        /* ---------------------------------------------------
+            Aqui vão os JS próprios de cada página
+        -----------------------------------------------------*/
 
         <!-- jQuery  -->
         <script src="<?php echo e(asset('js/jquery.min.js')); ?>"></script>
@@ -183,11 +199,15 @@
         <script src="<?php echo e(asset('js/ajax.js')); ?>"></script>
 
         <!-- Main -->
-            <script src="<?php echo e(asset('js/main-js-puro.js')); ?>"></script>
-            <script src="<?php echo e(asset('js/main-jquery.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/main-js-puro.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/main-jquery.js')); ?>"></script>
 
         <!-- Validations -->
         <script src="<?php echo e(asset('js/validations.js')); ?>"></script>
+
+        <!-- Masks -->
+        <script src="<?php echo e(asset('js/jquery-mask.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/jquery-mask-custom.js')); ?>"></script>
 
         <script>
             $('#mainTable').editableTableWidget().numericInputExample().find('td:first').focus();

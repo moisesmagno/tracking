@@ -23,7 +23,7 @@
                     </div>
                 <?php endif; ?>
 
-                <form class="form-horizontal m-t-20" action="<?php echo e(route('register_new_user')); ?>" method="POST">
+                <form class="form-horizontal m-t-20 form-register-user" action="<?php echo e(route('register_new_user')); ?>" method="POST">
 
                     <!-- Security token -->
                     <?php echo e(csrf_field()); ?>
@@ -51,7 +51,7 @@
                     </div>
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control" type="text" name="telephone" placeholder="Telefone" value="<?php echo e(old('telephone')); ?>">
+                            <input class="form-control telephone-mask" type="text" name="telephone" placeholder="Telefone" value="<?php echo e(old('telephone')); ?>">
                         </div>
                     </div>
                     <div class="form-group">

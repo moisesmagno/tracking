@@ -86,6 +86,7 @@
                                     <th>URL</th>
                                     <th>Destino</th>
                                     <th>URL Curto</th>
+                                    <th>Pixel</th>
                                     <th>Ações</th>
                                 </tr>
                                 </thead>
@@ -95,6 +96,7 @@
                                             <td><a href="<?php echo e(route('url_results', ['id' => $url->id])); ?>" class="text-description-url"><?php echo e($url->description); ?></a></td>
                                             <td><?php echo e($url->destiny_url); ?></td>
                                             <td><?php echo e($url->short_url); ?></td>
+                                            <td><?php echo e($url->pixel_name); ?></td>
                                             <td class="actions">
                                                 <a href="#modal_edit_url" data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-id-edit="<?php echo e($url->id); ?>" data-overlayColor="#36404a" class="edit_url"><i class="fa fa-pencil"></i></a>
                                                 <a href="#" class="on-default remove-row delete_url" data-id-delete="<?php echo e($url->id); ?>"><i class="fa fa-trash-o"></i></a>
