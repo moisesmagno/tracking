@@ -28,7 +28,7 @@ class ShortURLController extends Controller
         if($dataUrl){
 
             //Save informations the link
-            if($this->store($dataUrl->id)){
+            if($this->store($dataUrl)){
                 header('Location: '.$dataUrl->destiny_url);
                 die;
             }
@@ -39,7 +39,7 @@ class ShortURLController extends Controller
         }
     }
 
-    public function store($id_url){
+    public function store($dataUrl){
 
         //REFERER
         if(isset($_SERVER['HTTP_REFERER'])){
@@ -83,7 +83,8 @@ class ShortURLController extends Controller
         try{
 
             $data = $this->url_result->create([
-                'id_url' => $id_url,
+                'id_user' => $dataUrl->id_user,
+                'id_url' => $dataUrl->id,
                 'referer' => $referer,
                 'agent' => $browser,
                 'remote_addr' => $remote_addr,

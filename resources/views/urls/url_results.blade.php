@@ -8,14 +8,14 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-header-1">
-                    <h4 class="page-title">Resultado do influencidor</h4>
-                    <p>Veja como está o resultado do influenciador</p>
+                    <h4 class="page-title">Resultado do link</h4>
+                    <p>Veja como está o resultado do link vinculado ao seu influenciador</p>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="#">Home</a>
+                            <a href="#">Campanhas</a>
                         </li>
                         <li class="active">
-                            <a href="">Campanhas</a>
+                            <a href="">Influenciadores</a>
                         </li>
                         <li class="active">
                             <a href="">URLs</a>
@@ -33,11 +33,11 @@
             <!-- corpo -->
 
             <h2>{{ $url->description }}</h2>
-            <p>
-                <strong>Primeiro link identificado:</strong> 12/11/2016
-                <br>
-                <strong>Pixel de conversão:</strong> Compra no site
-            </p>
+            {{--<p>--}}
+                {{--<strong>Primeiro link identificado:</strong> 12/11/2016--}}
+                {{--<br>--}}
+                {{--<strong>Pixel de conversão:</strong> Compra no site--}}
+            {{--</p>--}}
             <br>
             <div class="panel">
                 <div class="panel-body">
