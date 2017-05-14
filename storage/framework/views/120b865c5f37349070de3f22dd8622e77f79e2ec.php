@@ -80,7 +80,7 @@
                             <?php echo $__env->make('includes.alerts_js', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                         </div>
                         <div class="">
-                            <table class="table table-striped" id="_datatable-editable">
+                            <table class="table table-striped">
                                 <thead>
                                 <tr>
                                     <th>URL</th>
@@ -201,9 +201,17 @@
                     </div>
                     <div class="form-group">
                         <label for="name">URL curto:</label>
-                        <input type="text" class="form-control" id="short_url" name="short_url" placeholder="Ex.: http://sitedestino.com.br" disabled="true">
-                        <button type="button" class="btn btn-success waves-effect waves-light" id="btn_copy_token">
-                            <span class="btn-label"><i class="fa fa-copy"></i></span>Copiar URL</button>
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <input type="text" class="form-control short_url_generated" id="short_url" name="short_url" placeholder="Ex.: http://sitedestino.com.br" readonly="true">
+                            </div>
+                            <div class="col-md-4">
+                                <button type="button" class="btn btn-success waves-effect waves-light" id="btn_copy_short_url">
+                                    <span class="btn-label"><i class="fa fa-copy"></i></span>Copiar URL</button>
+                            </div>
+                        </div>
+
                     </div>
                     <br>
                     <button type="button" class="btn btn-default waves-effect waves-light validate" id="form_update_url">Salvar</button>

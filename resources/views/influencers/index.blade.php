@@ -46,7 +46,7 @@
                             @include('includes.alerts')
                         </div>
                         <div class="">
-                            <table class="table table-striped" id="_datatable-editable">
+                            <table class="table table-striped">
                                 <thead>
                                 <tr>
                                     <th>Influenciador</th>

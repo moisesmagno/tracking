@@ -155,10 +155,10 @@ class URLController extends Controller
 
                 }
 
-                $delteURL = $this->url->where('id_user', session('id'))->where('id', $request->get('id'))->delete();
+                $deleteURL = $this->url->where('id_user', session('id'))->where('id', $request->get('id'))->delete();
                 
 
-                if($deleteUrl){
+                if($deleteURL){
                     return 'delete-true';
                 }
 
