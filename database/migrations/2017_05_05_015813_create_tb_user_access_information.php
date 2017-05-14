@@ -15,11 +15,9 @@ class CreateTbUserAccessInformation extends Migration
     {
         Schema::create('user_access_information', function(Blueprint $table){
             $table->increments('id');
-            $table->integer('id_user')->unsigned();
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->integer('id_user');
             $table->integer('id_pixel_conversion')->unsigned();
             $table->foreign('id_pixel_conversion')->references('id')->on('pixel_conversion');
-            $table->integer('id_campaign')->nullable();
             $table->string('url');
             $table->string('agent', 25);
             $table->string('remote_addr', 15);

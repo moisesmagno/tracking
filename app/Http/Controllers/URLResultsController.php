@@ -18,7 +18,7 @@ class URLResultsController extends Controller
         $this->urlResult = $url_result;
     }
 
-    //Displays the screen results screen
+    //Display urls result screen
     public function index($id){
 
         $url = $this->url->find($id);

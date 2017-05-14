@@ -204,6 +204,8 @@
                     <div class="form-group">
                         <label for="name">URL curto:</label>
                         <input type="text" class="form-control" id="short_url" name="short_url" placeholder="Ex.: http://sitedestino.com.br" disabled="true">
+                        <button type="button" class="btn btn-success waves-effect waves-light" id="btn_copy_token">
+                            <span class="btn-label"><i class="fa fa-copy"></i></span>Copiar URL</button>
                     </div>
                     <br>
                     <button type="button" class="btn btn-default waves-effect waves-light validate" id="form_update_url">Salvar</button>

@@ -19,7 +19,6 @@ class UserAccessInformationController extends Controller
 	
 		$id_user = $_POST['id_user'];
 		$id_pixel_conversion = $_POST['id_pixel_conversion'];
-		// $id_campaign = $_POST['id_campaign'];
 		$url = $_POST['url'];
 		$agent = $_POST['agent'];
 		$remote_addr = $_POST['remote_addr'];
@@ -41,7 +40,6 @@ class UserAccessInformationController extends Controller
 			$this->userAccessInformation->create([
 				'id_user' => $id_user,
 				'id_pixel_conversion' => $id_pixel_conversion,
-				// 'id_campaign' => $id_campaign,
 				'url' => $url,
 				'agent' => $agent,
 				'remote_addr' => $remote_addr,

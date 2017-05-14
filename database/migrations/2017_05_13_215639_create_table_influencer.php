@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableUrl extends Migration
+class CreateTableInfluencer extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreateTableUrl extends Migration
      */
     public function up()
     {
-        Schema::create('urls', function (Blueprint $table) {
+        Schema::create('influencer', function(Blueprint $table){
             $table->increments('id');
             $table->integer('id_user');
-            $table->integer('id_influencer')->unsigned();
-            $table->foreign('id_influencer')->references('id')->on('influencer');
-            $table->string('description', 100);
-            $table->string('destiny_url');
-            $table->string('short_url', 50);
-            $table->string('pixel_name', 100)->default('--');
+            $table->integer('id_campaign')->unsigned();
+            $table->foreign('id_campaign')->references('id')->on('campaigns');
+            $table->string('name', 100);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -17,7 +17,7 @@ class UserAccessInformation extends Model
 	 * @var array
 	 */
 	protected $fillable = [
-		'id_user', 'id_pixel_conversion', 'id_campaign', 'agent', 'short_url', 'agent', 'url', 'city', 'country_code', 'country_name', 'remote_addr', 'region_code', 'region_name', 'time_zone', 'latitude', 'longitude'
+		'id_user', 'id_pixel_conversion', 'url', 'agent', 'remote_addr', 'city', 'region_code', 'region_name', 'country_code', 'country_name', 'time_zone', 'latitude', 'longitude'
 	];
 
 	protected $dates = ['deleted_at'];
