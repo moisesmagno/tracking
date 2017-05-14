@@ -25,7 +25,7 @@
                     </div>
                 @endif
 
-                <form class="form-horizontal m-t-20 form-register-user" action="{{ route('register_new_user') }}" method="POST">
+                <form class="form-horizontal m-t-20" action="{{ route('register_new_user') }}" method="POST">
 
                     <!-- Security token -->
                     {{ csrf_field() }}

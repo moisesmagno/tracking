@@ -7,14 +7,14 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-header-1">
-                    <h4 class="page-title">Lista de influenciadores</h4>
-                    <p>Administre os influenciadores da campanha</p>
+                    <h4 class="page-title">Lista de Links</h4>
+                    <p>Administre os links vinculados ao influenciador.</p>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="">Home</a>
+                            <a href="">Campanhas</a>
                         </li>
                         <li class="active">
-                            <a href="">Campanhas</a>
+                            <a href="">Influenciadores</a>
                         </li>
                         <li class="active">
                             URLs
@@ -27,7 +27,7 @@
         <div style="min-height: 1000px;">
 
             <!-- corpo -->
-            <h1>{{ $campaign->name }}</h1>
+            <h1>{{ $influencer->name }}</h1>
             <br>
             <!-- influenciador add com sucesso -->
             {{--<div class="portlet">--}}
@@ -137,12 +137,6 @@
 
 @endsection
 
-@section('footer')
-    <footer class="footer text-right">
-        © 2016. All rights reserved.
-    </footer>
-@endsection
-
 @section('modals')
 
     <!-- Modal - Register URL -->
@@ -161,7 +155,8 @@
                     
                         <!-- Security token -->
                         {{ csrf_field() }}
-                        <input type="hidden" name="id_campaign" value="{{ $campaign->id }}">
+                        <input type="hidden" name="id_influencer" value="{{ $influencer->id }}">
+
                         <div class="form-group">
                             <label for="name">Descrição :</label>
                             <input type="text" class="required form-control" id="description" name="description" placeholder="Descrição da URL">
@@ -188,12 +183,15 @@
         <div class="custom-modal-text text-left">
             
             <div class="validate-forms">
+
                 @include('includes.alerts_validations')
 
                 <form role="form">
                     
-                    <input type="hidden" id="id_campaign" name="id_campaign" value="{{ $campaign->id }}">
+                    <input type="hidden" id="id_influencer" name="id_influencer" value="{{ $influencer->id }}">
+
                     <input type="hidden" id="id_url" name="id_url" value="">
+
                     <div class="form-group">
                         <label for="name">Descrição :</label>
                         <input type="text" class="required form-control" id="description" name="description" placeholder="Descrição da URL">

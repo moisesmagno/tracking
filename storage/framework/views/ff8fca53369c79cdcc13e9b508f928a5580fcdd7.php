@@ -7,15 +7,7 @@
             <div class="col-sm-12">
                 <div class="page-header-1">
                     <h4 class="page-title">Campanhas</h4>
-                    <p>Crie suas campanhas para organizar os influenciadores</p>
-                    <ol class="breadcrumb">
-                        <li>
-                            <a href="">Home</a>
-                        </li>
-                        <li class="active">
-                            Campanhas
-                        </li>
-                    </ol>
+                    <p>Crie suas campanhas para organizar os influenciadores.</p>
                 </div>
             </div>
         </div>
@@ -55,7 +47,7 @@
 
                                     <?php $__currentLoopData = $campaigns; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $campaign): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr class="gradeU" id="tr_<?php echo e($campaign->id); ?>">
-                                            <td><a href="<?php echo e(route('urls', ['id' => $campaign->id])); ?>" class="text-name-campaign"><?php echo e($campaign->name); ?></a></td>
+                                            <td><a href="<?php echo e(route('list_influencers', ['id' => $campaign->id])); ?>" class="text-name-campaign"><?php echo e($campaign->name); ?></a></td>
                                             <td class="actions">
                                                 <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                                                 <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
@@ -76,12 +68,6 @@
         </div> <!-- container -->
     </div> <!-- content -->
 
-<?php $__env->stopSection(); ?>
-
-<?php $__env->startSection('footer'); ?>
-    <footer class="footer text-right">
-        © 2016. All rights reserved.
-    </footer>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('modals'); ?>
@@ -125,6 +111,9 @@
         </button>
         <h4 class="custom-modal-title">Editar Campanha</h4>
         <div class="custom-modal-text text-left">
+
+            <?php echo $__env->make('includes.alerts_validations', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
             <form role="form">
                 <input type="hidden" id="id_campaign" name="id_campaign" value="">
                 <div class="form-group">

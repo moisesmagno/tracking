@@ -3,44 +3,6 @@ $( document ).ready(function() {
     /* ****************************************
      CAMPAIGN
     **************************************** */
-
-    //Delete campaign
-    $(".delete_campaign").click(function(event){
-
-        event.preventDefault();
-
-        if(!confirm('Realmente deseja excluir esta campanha?')){
-            return false;
-        }
-
-        var data = {id: $(this).attr('data-id-delete')};
-        var _this = $(this);
-
-        $.ajax({
-            url: "delete",
-            method: "delete",
-            data: data,
-            success: function (result) {
-
-                $(".alert").addClass('hide');
-
-                if(result == 'true'){
-
-                    $("#register .alert-success").removeClass('hide');
-                    $("#register .alert-success span").html('<b>Sucesso!</b> A campanha foi removida.');
-
-                    _this.parents(".gradeU").fadeOut("slow"); //Temporário - Refazer, pois o datatable já exclui a row
-
-                }else{
-                    $("#register .alert-danger").removeClass('hide')
-                    $("#register .alert-danger span").html('<b>Erro!</b> Ocorreu um erro ao tentar remover a campanha, por favor tente novamente ou entre em contato.')
-                }
-
-                $(".alert-php").addClass('hide');
-            }
-        });
-    });
-
     //Edit campaign
     $(".edit_campaign").click(function(event){
 
@@ -83,17 +45,15 @@ $( document ).ready(function() {
 
                 $(".alert").addClass('hide');
 
-                if(result == 'true'){
+                if(result == 'register-ok'){
                     Custombox.close();
                     $("#register .alert-success").removeClass('hide')
                     $("#register .alert-success span").html('<b>Success!</b> O nome da campanha foi editada.')
                     $('#tr_' + data.id).find('.text-name-campaign').html(data.name);
                     $('#tr_' + data.id).css({"border-left": "3px solid rgba(95, 190, 170, 0.4)"});
-                }else if(result == 'false'){
-                    Custombox.close();
-                    $("#register .alert-danger").removeClass('hide')
-                    $("#register .alert-danger span").html('<b>Erro!</b> Ocorreu um erro ao tentar editar a campanha, por favor tente novamente ou entre em contato.')
-                    $('#tr_' + data.id).css({"border-left": "3px solid #ebcccc"});
+                }else if(result == 'name-existing'){
+                    $("#modal_edit_campaign .alert-warning").removeClass('hide')
+                    $("#modal_edit_campaign .alert-warning span").html('<b>Atenção!</b> Não foi possível alterar o nome da campanha, pois já existe outra campanha com o mesmo nome.')
                 }else{
                     Custombox.close();
                     $("#register .alert-danger").removeClass('hide')
@@ -110,13 +70,49 @@ $( document ).ready(function() {
         });
     });
 
+    //Delete campaign
+    $(".delete_campaign").click(function(event){
+
+        event.preventDefault();
+
+        if(!confirm('Realmente deseja excluir esta campanha?')){
+            return false;
+        }
+
+        var data = {id: $(this).attr('data-id-delete')};
+        var _this = $(this);
+
+        $.ajax({
+            url: "delete",
+            method: "delete",
+            data: data,
+            success: function (result) {
+
+                $(".alert").addClass('hide');
+
+                if(result == 'delete-true'){
+
+                    $("#register .alert-success").removeClass('hide');
+                    $("#register .alert-success span").html('<b>Sucesso!</b> A campanha foi removida.');
+
+                    _this.parents(".gradeU").fadeOut("slow"); //Temporário - Refazer, pois o datatable já exclui a row
+
+                }else{
+                    $("#register .alert-danger").removeClass('hide')
+                    $("#register .alert-danger span").html('<b>Erro!</b> Ocorreu um erro ao tentar remover a campanha, por favor tente novamente ou entre em contato.')
+                }
+
+                $(".alert-php").addClass('hide');
+            }
+        });
+    });
 
 
-    /* ****************************************
-     URL
+     /* ****************************************
+     INFLUENCER
      **************************************** */
-    //Edit URL
-    $(".edit_url").click(function(event){
+    //Edit influencer
+    $(".edit_influencer").click(function(event){
 
         event.preventDefault();
 
@@ -124,10 +120,121 @@ $( document ).ready(function() {
         var _this = $(this);
 
         $.ajax({
-            url: "edit",
+            url: "/campanha/influencer/edit",
             method: "post",
             data: data,
             success: function(result){
+                if(result != 'null'){
+
+                    var result = JSON.parse(result);
+                    $('#modal_edit_influencer #id_influencer').val(result.id);
+                    $('#modal_edit_influencer #id_campaign').val(result.id_campaign);
+                    $('#modal_edit_influencer #name_influencer').val(result.name);
+
+                }else{
+                    $("#register .alert-danger").removeClass('hide')
+                    $("#register .alert-danger span").html('<b>Erro!</b> Ocorreu um erro ao tentar trazer as informações do influenciador, por favor tente novamente ou entre em contato.')
+                }
+            }
+        });
+    });
+
+    //Update influencer
+    $('#form_update_influencer').click(function(){
+        var data = {
+            id: $('#id_influencer').val(),
+            id_campaign: $('#id_campaign').val(),
+            name: $('#name_influencer').val()
+        };
+
+        $.ajax({
+            url: "/campanha/influencer/update",
+            method: "put",
+            data: data,
+            success: function(result){
+
+                $(".alert").addClass('hide');
+
+                if(result == 'update-true'){
+                    Custombox.close();
+                    $("#register .alert-success").removeClass('hide')
+                    $("#register .alert-success span").html('<b>Success!</b> O nome do influenciador foi editado.')
+                    $('#tr_' + data.id).find('.text-name-influencer').html(data.name);
+                    $('#tr_' + data.id).css({"border-left": "3px solid rgba(95, 190, 170, 0.4)"});
+                }else if(result == 'name-existing'){
+                    $("#modal_edit_influencer .alert-warning").removeClass('hide')
+                    $("#modal_edit_influencer .alert-warning span").html('<b>Atenção!</b> Não foi possível alterar o nome do influenciador, pois já existe outro influenciador com o mesmo nome.')
+                }else{
+                    Custombox.close();
+                    $("#register .alert-danger").removeClass('hide')
+                    $("#register .alert-danger span").html('<b>Erro!</b> Ocorreu um erro crítico ao tentar editar o influenciador, por favor tente novamente ou entre em contato.')
+                    $('#tr_' + data.id).css({"border-left": "3px solid #ebcccc"});
+                }
+
+                $(".alert-php").addClass('hide');
+
+                setTimeout(function () {
+                    $('#tr_' + data.id).css({"border-left": "0"});
+                }, 4000);
+            }
+        });
+    });
+
+    //Delete influencer
+    $(".delete_influencer").click(function(event){
+
+        event.preventDefault();
+
+        if(!confirm('Realmente deseja excluir este influenciador?')){
+            return false;
+        }
+
+        var data = {id: $(this).attr('data-id-delete')};
+        var _this = $(this);
+
+        $.ajax({
+            url: "/campanha/influencer/delete",
+            method: "delete",
+            data: data,
+            success: function (result) {
+
+                $(".alert").addClass('hide');
+
+                if(result == 'delete-true'){
+
+                    $("#register .alert-success").removeClass('hide');
+                    $("#register .alert-success span").html('<b>Sucesso!</b> O influenciador foi removido.');
+
+                    _this.parents(".gradeU").fadeOut("slow");
+
+                }else{
+                    $("#register .alert-danger").removeClass('hide')
+                    $("#register .alert-danger span").html('<b>Erro!</b> Ocorreu um erro ao tentar remover o influenciador, por favor tente novamente ou entre em contato.')
+                }
+
+                $(".alert-php").addClass('hide');
+            }
+        });
+    });
+
+
+     /* ****************************************
+     URL
+     **************************************** */
+     //Edit URL
+     $(".edit_url").click(function(event){
+
+        event.preventDefault();
+
+        var data = {id: $(this).attr('data-id-edit')};
+        var _this = $(this);
+
+        $.ajax({
+            url: "/campanha/url/edit",
+            method: "post",
+            data: data,
+            success: function(result){
+
                 if(result != 'null'){
 
                     var result = JSON.parse(result);
@@ -144,36 +251,36 @@ $( document ).ready(function() {
                 }
             }
         });
-    });
+     });
 
-    //Update URL
-    $('#form_update_url').click(function(event){
+     //Update URL
+     $('#form_update_url').click(function(event){
 
         event.preventDefault();
 
         var data = {
             id:  $('#modal_edit_url #id_url').val(),
+            id_influencer: $('#id_influencer').val(),
             description: $('#modal_edit_url #description').val(),
         };
 
         $.ajax({
-            url: "update",
+            url: "/campanha/url/update",
             method: "put",
             data: data,
             success: function(result){
 
                 $(".alert").addClass('hide');
 
-                if(result == 'true'){
+                if(result == 'update-true'){
                     Custombox.close();
                     $("#register-url .alert-success").removeClass('hide')
                     $("#register-url .alert-success span").html('<b>Success!</b> A descrição da URL foi editada.')
                     $('#tr_' + data.id).find('.text-description-url').html(data.description);
                     $('#tr_' + data.id).css({"border-left": "3px solid rgba(95, 190, 170, 0.4)"});
-                }else if(result == 'false'){
-                    Custombox.close();
-                    $("#register-url .alert-danger").removeClass('hide')
-                    $("#register-url .alert-danger span").html('<b>Erro!</b> Ocorreu um erro ao tentar editar a URL, por favor tente novamente ou entre em contato.')
+                }else if(result == 'name-existing'){
+                    $("#modal_edit_url .alert-warning").removeClass('hide')
+                    $("#modal_edit_url .alert-warning span").html('<b>Atenção!</b> Não foi possível alterar a descrição da URL, pois já existe outra URL com o mesmo nome.')
                     $('#tr_' + data.id).css({"border-left": "3px solid #ebcccc"});
                 }else{
                     Custombox.close();
@@ -189,10 +296,10 @@ $( document ).ready(function() {
                 }, 4000);
             }
         });
-    });
+     });
 
-    //Delete URL
-    $(".delete_url").click(function(event){
+     //Delete URL
+     $(".delete_url").click(function(event){
 
         event.preventDefault();
 
@@ -202,24 +309,22 @@ $( document ).ready(function() {
 
         var data = {id: $(this).attr('data-id-delete')};
         var _this = $(this);
+
         $.ajax({
-            url: "delete",
+            url: "/campanha/url/delete",
             method: "delete",
             data: data,
             success: function (result) {
 
                 $(".alert").addClass('hide');
 
-                if(result == 'true'){
+                if(result == 'delete-true'){
 
                     $("#register-url .alert-success").removeClass('hide');
                     $("#register-url .alert-success span").html('<b>Sucesso!</b> A URL foi removida.');
 
-                    _this.parents(".gradeU").fadeOut("slow"); //Temporário - Refazer, pois o datatable já exclui a row
+                    _this.parents(".gradeU").fadeOut("slow");
 
-                }else if(result == 'false'){
-                    $("#register-url .alert-danger").removeClass('hide')
-                    $("#register-url .alert-danger span").html('<b>Erro!</b> Ocorreu um erro ao tentar remover a campanha, por favor tente novamente ou entre em contato.')
                 }else{
                     $("#register-url .alert-danger").removeClass('hide')
                     $("#register-url .alert-danger span").html('<b>Erro!</b> Ocorreu um erro crítico ao tentar remover a campanha, por favor tente novamente ou entre em contato.')
@@ -228,14 +333,14 @@ $( document ).ready(function() {
                 $(".alert-php").addClass('hide');
             }
         });
-    });
+     });
 
-    /* ****************************************
-    PIXEL CONVERSION
-    **************************************** */
-    
-    //Edit Pixel Conversion
-    $(".edit_pixel_conversion").click(function(event){
+
+     /* ****************************************
+     PIXEL CONVERSION
+     **************************************** */
+     //Edit Pixel Conversion
+     $(".edit_pixel_conversion").click(function(event){
 
         event.preventDefault();
 
@@ -271,10 +376,10 @@ $( document ).ready(function() {
                 }
             }
         });
-    });
+     });
 
-    //Update Pixel Conversion
-    $('#update_px_conversion').click(function(event){
+     //Update Pixel Conversion
+     $('#update_px_conversion').click(function(event){
 
         event.preventDefault();
 
@@ -320,21 +425,21 @@ $( document ).ready(function() {
                 }, 4000);
             }
         });
-    });
+     });
 
-    //Code pixel conversion
-    $('.code_tags_js').click(function(){
+     //Code pixel conversion
+     $('.code_tags_js').click(function(){
         var idPixelConversion = $(this).attr('data-id-code');
         var idUser = $(this).attr('data-id-user');
 
        var scriptPixelConversion ="<script type=\"text/javascript\">var u="+idUser+",px="+idPixelConversion+"; var imported = document.createElement('script'); imported.src = 'http://tracking.dev/js/user_access_information.js'; document.head.appendChild(imported); </script>";
 
        $('#code_tags_js_px').val(scriptPixelConversion);
-    });
+     });
 
 
-    //Delete pixel conversion
-    $('.delete_pixel').click(function(){
+     //Delete pixel conversion
+     $('.delete_pixel').click(function(){
         
         event.preventDefault();
 
@@ -368,6 +473,6 @@ $( document ).ready(function() {
                 $(".alert-php").addClass('hide');
              }
         });
-    });
+     });
 
 });

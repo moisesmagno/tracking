@@ -148,7 +148,9 @@
                     <?php echo $__env->yieldContent('content'); ?>
 
                     <!-- Application footer -->
-                    <?php echo $__env->yieldContent('footer'); ?>
+                    <footer class="footer text-right">
+                        © 2016. All rights reserved.
+                    </footer>
 
                 </div>
 
@@ -161,13 +163,13 @@
             var resizefunc = [];
         </script>
 
-        /* ---------------------------------------------------
-            Aqui vão os JS padrões
-        -----------------------------------------------------*/
+        
+            
+        
 
-        /* ---------------------------------------------------
-            Aqui vão os JS próprios de cada página
-        -----------------------------------------------------*/
+        
+            
+        
 
         <!-- jQuery  -->
         <script src="<?php echo e(asset('js/jquery.min.js')); ?>"></script>

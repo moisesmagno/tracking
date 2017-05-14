@@ -49,15 +49,22 @@ Route::group(['middleware' => 'auth'], function(){
     /* ----- Group Capaigns ----- */
     Route::group(['prefix' => 'campanha'], function(){
 
-        //Home - Campaigns
+        //Campaigns
         Route::name('home')->get('/home', 'CampaignController@index');
         Route::name('register_campaign')->post('/register', 'CampaignController@store');
-        Route::name('delete_campaign')->delete('/delete', 'CampaignController@destroy');
         Route::name('edit_campaign')->post('/edit', 'CampaignController@edit');
         Route::name('update_campaign')->put('/update', 'CampaignController@update');
+        Route::name('delete_campaign')->delete('/delete', 'CampaignController@destroy');
+
+        //Ifluencers
+        Route::name('list_influencers')->get('/{id}/influenciadores', 'InfluencerController@index');
+        Route::name('register_influencer')->post('/influencer/register', 'InfluencerController@store');
+        Route::name('edit_influencer')->post('/influencer/edit', 'InfluencerController@edit');
+        Route::name('update_influencer')->put('/influencer/update', 'InfluencerController@update');
+        Route::name('delete_influencer')->delete('/influencer/delete', 'InfluencerController@destroy');
 
         //URLs
-        Route::name('urls')->get('/url/{id}', 'URLController@index');
+        Route::name('urls')->get('/{id}/url', 'URLController@index');
         Route::name('register_url')->post('/url/register', 'URLController@store');
         Route::name('edit_url')->post('/url/edit', 'URLController@edit');
         Route::name('update_url')->put('/url/update', 'URLController@update');

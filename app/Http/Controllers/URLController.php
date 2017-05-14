@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\URL;
 use App\Campaign;
+use App\Influencer;
 use App\URLResult;
+use App\PixelConversion;
+use App\UserAccessInformation;
 use Illuminate\Http\Request;
 use App\Http\Requests\URLResgisterRequest;
 
@@ -14,22 +17,28 @@ class URLController extends Controller
     private $campaign;
     private $url;
     private $urlResult;
+    private $influencer;
+    private $pixel;
+    private $userAccessInformation;
 
-    public function __construct(Campaign $campaign, URL $url,  URLResult $urlResult)
+    public function __construct(Campaign $campaign, URL $url,  URLResult $urlResult, Influencer $influencer, PixelConversion $pixel, UserAccessInformation $userAccessInformation)
     {
         $this->campaign = $campaign;
         $this->url = $url;
         $this->urlResult = $urlResult;
+        $this->influencer = $influencer;
+        $this->pixel = $pixel;
+        $this->userAccessInformation = $userAccessInformation;
     }
 
     //Displays the list of urls
     public function index($id){
 
-        $campaign = $this->campaign->find($id);
+        $influencer = $this->influencer->find($id);
 
-        $urls = $this->url->where('id_campaign', $id)->orderBy('id', 'desc')->get();
+        $urls = $this->url->where('id_user', session('id'))->where('id_influencer', $id)->orderBy('id', 'desc')->get();
 
-        return view('urls.urls')->with(['campaign' => $campaign, 'urls' => $urls]);
+        return view('urls.urls')->with(['influencer' => $influencer, 'urls' => $urls]);
     }
 
     //Register URL
@@ -52,7 +61,8 @@ class URLController extends Controller
             }
 
             $url = $this->url->create([
-                'id_campaign' => $request->get('id_campaign'),
+                'id_user' => session('id'),
+                'id_influencer' => $request->get('id_influencer'),
                 'description' => $request->get('description'),
                 'destiny_url' => $request->get('destiny_url'),
                 'short_url' => $short_url,
@@ -89,17 +99,26 @@ class URLController extends Controller
 
             try{
 
-                $update = $this->url->find($request->get('id'));
+                $url = $this->url
+                ->where('id_user', session('id'))
+                ->where('id_influencer', $request->get('id_influencer'))
+                ->where('description', $request->get('description'))
+                ->first();
 
-                if($update){
-                    $update->update([
-                        'description' => $request->get('description'),
-                    ]);
+                if(!empty($url) && $url->id != $request->get('id')){
 
-                    return 'true';
+                    return 'name-existing';
 
                 }else{
-                    return 'false';
+
+                    $this->url
+                    ->where('id', $request->get('id'))
+                    ->where('id_user', session('id'))
+                    ->where('id_influencer', $request->get('id_influencer'))
+                    ->update([
+                        'description' => $request->get('description'),
+                    ]);
+                    return 'update-true';
                 }
 
             } catch (PDOException $e) {
@@ -115,18 +134,32 @@ class URLController extends Controller
 
             try{
 
-                $urls = $this->url->find($request->get('id'))->pluck('id')->toArray();
-                
-                if($urls){
-                    $this->urlResult->whereIn('id_url', $urls)->delete();
+                $this->urlResult
+                ->where('id_user', session('id'))
+                ->where('id_url', $request->get('id'))
+                ->delete();
+
+                $pixel = $this->pixel
+                ->where('id_user', session('id'))
+                ->where('id_url', $request->get('id'))
+                ->first();
+
+                if($pixel){
+
+                    $this->userAccessInformation
+                    ->where('id_user', session('id'))
+                    ->where('id_pixel_conversion', $pixel->id)
+                    ->delete();
+
+                    $this->pixel->where('id_user', session('id'))->where('id_url', $request->get('id'))->delete();
+
                 }
 
-                $deleteUrl = $this->url->find($request->get('id'))->delete();
+                $delteURL = $this->url->where('id_user', session('id'))->where('id', $request->get('id'))->delete();
+                
 
                 if($deleteUrl){
-                    return 'true';
-                }else{
-                    return 'false';
+                    return 'delete-true';
                 }
 
             } catch (PDOException $e) {

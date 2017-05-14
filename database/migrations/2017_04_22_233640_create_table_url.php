@@ -17,7 +17,7 @@ class CreateTableUrl extends Migration
             $table->increments('id');
             $table->integer('id_user');
             $table->integer('id_influencer')->unsigned();
-            $table->foreign('id_influencer')->references('id')->on('influencer');
+            $table->foreign('id_influencer')->references('id')->on('influencers');
             $table->string('description', 100);
             $table->string('destiny_url');
             $table->string('short_url', 50);

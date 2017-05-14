@@ -5,14 +5,14 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-header-1">
-                    <h4 class="page-title">Lista de influenciadores</h4>
-                    <p>Administre os influenciadores da campanha</p>
+                    <h4 class="page-title">Lista de Links</h4>
+                    <p>Administre os links vinculados ao influenciador.</p>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="">Home</a>
+                            <a href="">Campanhas</a>
                         </li>
                         <li class="active">
-                            <a href="">Campanhas</a>
+                            <a href="">Influenciadores</a>
                         </li>
                         <li class="active">
                             URLs
@@ -25,7 +25,7 @@
         <div style="min-height: 1000px;">
 
             <!-- corpo -->
-            <h1><?php echo e($campaign->name); ?></h1>
+            <h1><?php echo e($influencer->name); ?></h1>
             <br>
             <!-- influenciador add com sucesso -->
             
@@ -135,12 +135,6 @@
 
 <?php $__env->stopSection(); ?>
 
-<?php $__env->startSection('footer'); ?>
-    <footer class="footer text-right">
-        © 2016. All rights reserved.
-    </footer>
-<?php $__env->stopSection(); ?>
-
 <?php $__env->startSection('modals'); ?>
 
     <!-- Modal - Register URL -->
@@ -160,7 +154,8 @@
                         <!-- Security token -->
                         <?php echo e(csrf_field()); ?>
 
-                        <input type="hidden" name="id_campaign" value="<?php echo e($campaign->id); ?>">
+                        <input type="hidden" name="id_influencer" value="<?php echo e($influencer->id); ?>">
+
                         <div class="form-group">
                             <label for="name">Descrição :</label>
                             <input type="text" class="required form-control" id="description" name="description" placeholder="Descrição da URL">
@@ -187,12 +182,15 @@
         <div class="custom-modal-text text-left">
             
             <div class="validate-forms">
+
                 <?php echo $__env->make('includes.alerts_validations', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
                 <form role="form">
                     
-                    <input type="hidden" id="id_campaign" name="id_campaign" value="<?php echo e($campaign->id); ?>">
+                    <input type="hidden" id="id_influencer" name="id_influencer" value="<?php echo e($influencer->id); ?>">
+
                     <input type="hidden" id="id_url" name="id_url" value="">
+
                     <div class="form-group">
                         <label for="name">Descrição :</label>
                         <input type="text" class="required form-control" id="description" name="description" placeholder="Descrição da URL">

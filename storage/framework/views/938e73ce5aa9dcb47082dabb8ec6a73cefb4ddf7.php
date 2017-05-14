@@ -23,7 +23,7 @@
                     </div>
                 <?php endif; ?>
 
-                <form class="form-horizontal m-t-20 form-register-user" action="<?php echo e(route('register_new_user')); ?>" method="POST">
+                <form class="form-horizontal m-t-20" action="<?php echo e(route('register_new_user')); ?>" method="POST">
 
                     <!-- Security token -->
                     <?php echo e(csrf_field()); ?>

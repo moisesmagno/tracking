@@ -9,15 +9,7 @@
             <div class="col-sm-12">
                 <div class="page-header-1">
                     <h4 class="page-title">Campanhas</h4>
-                    <p>Crie suas campanhas para organizar os influenciadores</p>
-                    <ol class="breadcrumb">
-                        <li>
-                            <a href="">Home</a>
-                        </li>
-                        <li class="active">
-                            Campanhas
-                        </li>
-                    </ol>
+                    <p>Crie suas campanhas para organizar os influenciadores.</p>
                 </div>
             </div>
         </div>
@@ -57,7 +49,7 @@
 
                                     @foreach($campaigns as $campaign)
                                         <tr class="gradeU" id="tr_{{ $campaign->id }}">
-                                            <td><a href="{{ route('urls', ['id' => $campaign->id])}}" class="text-name-campaign">{{$campaign->name}}</a></td>
+                                            <td><a href="{{ route('list_influencers', ['id' => $campaign->id])}}" class="text-name-campaign">{{$campaign->name}}</a></td>
                                             <td class="actions">
                                                 <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                                                 <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
@@ -78,12 +70,6 @@
         </div> <!-- container -->
     </div> <!-- content -->
 
-@endsection
-
-@section('footer')
-    <footer class="footer text-right">
-        © 2016. All rights reserved.
-    </footer>
 @endsection
 
 @section('modals')
@@ -126,6 +112,9 @@
         </button>
         <h4 class="custom-modal-title">Editar Campanha</h4>
         <div class="custom-modal-text text-left">
+
+            @include('includes.alerts_validations')
+
             <form role="form">
                 <input type="hidden" id="id_campaign" name="id_campaign" value="">
                 <div class="form-group">

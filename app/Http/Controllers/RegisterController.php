@@ -42,7 +42,7 @@ class RegisterController extends Controller
                     'password' => Hash::make($request->get('password')),
                     'name' => $request->get('name'),
                     'company_name' => $request->get('company_name'),
-                    'telephone' => $request->get('telephone'),
+                    'telephone' => preg_replace("/\D+/", "", $request->get('telephone')),
                     'token' => Hash::make($request->get('email'))
                 ]);
 

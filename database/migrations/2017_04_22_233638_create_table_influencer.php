@@ -13,7 +13,7 @@ class CreateTableInfluencer extends Migration
      */
     public function up()
     {
-        Schema::create('influencer', function(Blueprint $table){
+        Schema::create('influencers', function(Blueprint $table){
             $table->increments('id');
             $table->integer('id_user');
             $table->integer('id_campaign')->unsigned();
