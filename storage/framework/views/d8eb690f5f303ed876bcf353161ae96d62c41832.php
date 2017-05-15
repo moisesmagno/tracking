@@ -5,13 +5,7 @@
             <div class="col-sm-12">
                 <div class="page-header-1">
                     <h4 class="page-title">Pixel de conversão</h4>
-                    <p>Para mensurar o resultado da conversão, crie o pixel e adicione em todas as páginas do site de destino.</p>
-                    <ol class="breadcrumb">
-                        <li>
-                            <a href="#">Configurações</a>
-                        </li>
-                        <li class="active">Pixels</li>
-                    </ol>
+                    <p>Lista de resultados das conversões adicionados em todas as páginas de sites de destino.</p>
                 </div>
             </div>
         </div>
@@ -23,20 +17,6 @@
             <div class="panel">
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-sm-8">
-                            <form role="form">
-                                <div class="form-group contact-search m-b-30">
-                                    <input type="text" id="search" class="form-control" placeholder="Search...">
-                                    <button type="submit" class="btn btn-white"><i class="fa fa-search"></i></button>
-                                </div> <!-- form-group -->
-                            </form>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="m-b-30">
-                                <a href="#custom-modal" class="btn btn-primary btn-md waves-effect waves-light " data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a"><i class="md md-add"></i> Criar novo pixel de conversão</a>
-                            </div>
-                        </div>
-
                         <div class="row col-sm-12" id="crud-pixel-conversion">
                             <!-- Alerts -->
                             <?php echo $__env->make('includes.alerts_js', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
@@ -61,7 +41,7 @@
                                         <tr class="gradeU" id="tr_<?php echo e($pixel->id); ?>">
                                             <td><a class="text-name-pixel"><?php echo e($pixel->name); ?></a></td>
                                             <td><?php echo e(count($pixel->usersAccessInformations)); ?></td>
-                                            <td>R$ <?php echo e(number_format(count($pixel->usersAccessInformations) * 3.50, 2, ',', '.')); ?></td>
+                                            <td>R$ <?php echo e(number_format(count($pixel->usersAccessInformations) * $pixel->value, 2, ',', '.')); ?></td>
                                             <td><?php echo e($pixel->created_at->format('m/d/Y')); ?></td>
                                             <td class="text-interval-pixel"><?php echo e($pixel->time_interval . ' ' . $pixel->interval_type); ?></td>
                                             <td class="actions">
@@ -89,14 +69,6 @@
         </div> <!-- container -->
 
     </div> <!-- content -->
-
-<?php $__env->stopSection(); ?>
-
-<?php $__env->startSection('footer'); ?>
-
-    <footer class="footer text-right">
-        © 2016. All rights reserved.
-    </footer>
 
 <?php $__env->stopSection(); ?>
 

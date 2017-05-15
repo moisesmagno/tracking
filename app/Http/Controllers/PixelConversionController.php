@@ -23,21 +23,13 @@ class PixelConversionController extends Controller
 
        $pixels = $this->pixelConversion->with('usersAccessInformations')->where('id_user', session('id'))->get();
 
-    //    foreach($pixels as $key){
-    //         echo count($key->usersAccessInformations);
-    //         // count((array)$obj)
-    //     }
-        
-    //     die;
-
-        // $pixeis = $this->pixelConversion->where('id_user', session('id'))->get(['id', 'name', 'time_interval', 'interval_type', 'created_at']);
         return view('pixel_conversion.index')->with(['pixels' => $pixels]);
     }
 
     //Register the conversion pixel
     public function store(PixelConversionRequest $request){
 
-        if($request->name == '' || $request->interval == ''){
+        if($request->name == '' || $request->interval == '' || $request->value == ''){
             session()->flash('alert-danger', '<b>Erro!</b> Para criar um pixel de converção você precisa preencher todos os campos obrigatórios.');
             return redirect()->back();
         }
@@ -50,7 +42,9 @@ class PixelConversionController extends Controller
             
             $this->pixelConversion->create([
                 'id_user' => session('id'),
+                'id_url' => $request->id_url,
                 'name' => $request->name,
+                'value' => str_replace(',', '.', str_replace('.', '', $request->value)),
                 'time_interval' => $time_interval,
                 'interval_type' => $interval_type,
             ]);
