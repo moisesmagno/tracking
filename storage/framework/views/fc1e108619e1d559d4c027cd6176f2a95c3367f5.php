@@ -78,11 +78,33 @@
 
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="m-b-30 pull-right">
-                        <a href="#custom-modal" class="btn btn-primary btn-md waves-effect waves-light " data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a"><i class="md md-add"></i> Criar novo pixel de conversão</a>
+
+                <?php if(!$pixel): ?>
+                    <div class="col-sm-4 btn-add-pixel">
+                        <div class="m-b-30 pull-right">
+                            <a href="#custom-modal" class="btn btn-primary btn-md waves-effect waves-light " data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a"><i class="md md-add"></i> Criar novo pixel de conversão</a>
+                        </div>
                     </div>
-                </div>
+
+                <?php else: ?>
+
+                    <div class="col-sm-4 btn-add-pixel hide">
+                        <div class="m-b-30 pull-right">
+                            <a href="#custom-modal" class="btn btn-primary btn-md waves-effect waves-light " data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a"><i class="md md-add"></i> Criar novo pixel de conversão</a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 btn-remove-pixel">
+                        <div style="clear:both" class="p-t-10 pull-right">
+                            <button type="button" data-id-delete="<?php echo e($pixel->id); ?>" class="btn btn-danger waves-effect waves-light delete_pixel">
+                                 <span class="btn-label">
+                                     <i class="fa fa-times"></i>
+                                 </span>
+                                Remover influenciador</button>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
             </div>
 
             <div style="min-height: 1000px;">
@@ -147,128 +169,135 @@
 <?php $__env->startSection('modals'); ?>
 
     <!-- Modal -->
-        <div id="custom-modal" class="modal-demo">
-            <button type="button" class="close" onclick="Custombox.close();">
-                <span>&times;</span><span class="sr-only">Fechar</span>
-            </button>
-            <h4 class="custom-modal-title">Criar Pixel de conversão</h4>
-            <div class="custom-modal-text text-left">
+    <div id="custom-modal" class="modal-demo">
+        <button type="button" class="close" onclick="Custombox.close();">
+            <span>&times;</span><span class="sr-only">Fechar</span>
+        </button>
+        <h4 class="custom-modal-title">Criar Pixel de conversão</h4>
+        <div class="custom-modal-text text-left">
 
-                <div class="validate-forms">
+            <div class="validate-forms">
 
-                    <?php echo $__env->make('includes.alerts_validations', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                <?php echo $__env->make('includes.alerts_validations', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
-                    <form role="form" action="<?php echo e(route('register_pixel_conversion')); ?>" method="post">
+                <form role="form" action="<?php echo e(route('register_pixel_conversion')); ?>" method="post">
 
-                        <!-- Security token -->
-                        <?php echo e(csrf_field()); ?>
+                    <!-- Security token -->
+                    <?php echo e(csrf_field()); ?>
 
 
-                        <input type="hidden" name="id_url" value="<?php echo e($url->id); ?>">
+                    <input type="hidden" name="id_url" value="<?php echo e($url->id); ?>">
 
-                        <div class="form-group">
-                            <label for="name">Nome do pixel:</label>
-                            <input type="text" class="required form-control" id="name" name="name" placeholder="Ex.: Cadastro no site do cliente">
-                        </div>
+                    <div class="form-group">
+                        <label for="name">Nome do pixel:</label>
+                        <input type="text" class="required form-control" id="name" name="name" placeholder="Ex.: Cadastro no site do cliente">
+                    </div>
 
-                        <div class="form-group">
-                            <label for="value">Valor do pixel:</label>
-                            <span class="real-money-pixel">R$</span>
-                            <input type="text" class="required form-control money-mask" id="value" name="value" placeholder="0,00">
-                        </div>
+                    <div class="form-group">
+                        <label for="value">Valor do pixel:</label>
+                        <span class="real-money-pixel">R$</span>
+                        <input type="text" class="required form-control money-mask" id="value" name="value" placeholder="0,00">
+                    </div>
 
-                        <div class="form-group m-b-30">
-                            <label for="name">Janela de conversão:</label>
-                            <select class="required form-control select2" name="interval">
-                                <option value="">Selecione</option>
-                                <option value="24|horas">24 horas</option>
-                                <option value="7|dias">7 dias</option>
-                                <option value="15|dias">15 dias</option>
-                                <option value="30|dias">30 dias</option>
-                                <option value="40|dias">40 dias</option>
-                                <option value="50|dias">50 dias</option>
-                                <option value="60|dias">60 dias</option>
-                            </select>
-                        </div>
+                    <div class="form-group m-b-30">
+                        <label for="name">Janela de conversão:</label>
+                        <select class="required form-control select2" name="interval">
+                            <option value="">Selecione</option>
+                            <option value="24|horas">24 horas</option>
+                            <option value="7|dias">7 dias</option>
+                            <option value="15|dias">15 dias</option>
+                            <option value="30|dias">30 dias</option>
+                            <option value="40|dias">40 dias</option>
+                            <option value="50|dias">50 dias</option>
+                            <option value="60|dias">60 dias</option>
+                        </select>
+                    </div>
 
-                        <button type="submit" class="btn btn-default waves-effect waves-light validate">Salvar</button>
-                        <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">Cancelar</button>
-                    </form>
-                </div>
+                    <button type="submit" class="btn btn-default waves-effect waves-light validate">Salvar</button>
+                    <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">Cancelar</button>
+                </form>
             </div>
         </div>
-        <!-- end modal -->
+    </div>
+    <!-- end modal -->
 
-        <!-- Modal edit pixel conversion -->
-        <div id="modal_edit_pixel" class="modal-demo">
-            <button type="button" class="close" onclick="Custombox.close();">
-                <span>&times;</span><span class="sr-only">Fechar</span>
-            </button>
-            <h4 class="custom-modal-title">Editar pixel de conversão</h4>
-            <div class="custom-modal-text text-left">
+    <!-- Modal edit pixel conversion -->
+    <div id="modal_edit_pixel" class="modal-demo">
+        <button type="button" class="close" onclick="Custombox.close();">
+            <span>&times;</span><span class="sr-only">Fechar</span>
+        </button>
+        <h4 class="custom-modal-title">Editar pixel de conversão</h4>
+        <div class="custom-modal-text text-left">
 
-                <div class="validate-forms">
+            <div class="validate-forms">
 
-                    <?php echo $__env->make('includes.alerts_validations', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                <?php echo $__env->make('includes.alerts_validations', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
-                    <form role="form" action="<?php echo e(route('register_pixel_conversion')); ?>" method="post">
+                <form role="form" action="<?php echo e(route('register_pixel_conversion')); ?>" method="post">
 
-                        <!-- Security token -->
-                        <?php echo e(csrf_field()); ?>
+                    <!-- Security token -->
+                    <?php echo e(csrf_field()); ?>
 
 
-                        <input type="hidden" id="id_pixel_conversion" name="id_pixel_conversion" value="">
+                    <input type="hidden" id="id_pixel_conversion" name="id_pixel_conversion" value="">
 
-                        <div class="form-group">
-                            <label for="name">Nome do pixel:</label>
-                            <input type="text" class="required form-control" id="name" name="name" placeholder="Ex.: Cadastro no site do cliente">
-                        </div>
-                        <div class="form-group m-b-30">
-                            <label for="interval">Janela de conversão:</label>
-                            <select class="required form-control select2" name="interval" id="interval">
-                                <option class="op_interval" value="24|horas">24 horas</option>
-                                <option class="op_interval" value="7|dias">7 dias</option>
-                                <option class="op_interval" value="15|dias">15 dias</option>
-                                <option class="op_interval" value="30|dias">30 dias</option>
-                                <option class="op_interval" value="40|dias">40 dias</option>
-                                <option class="op_interval" value="50|dias">50 dias</option>
-                                <option class="op_interval" value="60|dias">60 dias</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-default waves-effect waves-light validate" id="update_px_conversion">Salvar</button>
-                        <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
-                    </form>
-                </div>
+                    <div class="form-group">
+                        <label for="name">Nome do pixel:</label>
+                        <input type="text" class="required form-control" id="name" name="name" placeholder="Ex.: Cadastro no site do cliente">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="value">Valor do pixel:</label>
+                        <span class="real-money-pixel">R$</span>
+                        <input type="text" class="required form-control money-mask" id="value" name="value" value="" placeholder="0,00">
+                    </div>
+
+                    <div class="form-group m-b-30">
+                        <label for="interval">Janela de conversão:</label>
+                        <select class="required form-control select2" name="interval" id="interval">
+                            <option class="op_interval" value="24|horas">24 horas</option>
+                            <option class="op_interval" value="7|dias">7 dias</option>
+                            <option class="op_interval" value="15|dias">15 dias</option>
+                            <option class="op_interval" value="30|dias">30 dias</option>
+                            <option class="op_interval" value="40|dias">40 dias</option>
+                            <option class="op_interval" value="50|dias">50 dias</option>
+                            <option class="op_interval" value="60|dias">60 dias</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-default waves-effect waves-light validate" id="update_px_conversion">Salvar</button>
+                    <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
+                </form>
             </div>
         </div>
-        <!-- end modal -->
+    </div>
+    <!-- end modal -->
 
-        <!-- Modal com o código js para embed na página do cliente -->
-        <div id="code_pixel_conversion" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title" id="myModalLabel">Código da conversão</h4>
+    <!-- Modal com o código js para embed na página do cliente -->
+    <div id="code_pixel_conversion" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Código da conversão</h4>
+                </div>
+                <div class="modal-body">
+                    <h4><b>Pixel:</b> Cadastro do site Coca-Cola</h4>
+                    <p>Copie e cole a url abaixo em todas as páginas ca campanha. Na página de conversão, onde o cliente compra ou se cadastra, adicione a variável da conversão como explicado abaixo.</p>
+                    <hr>
+                    <h4>Código:</h4>
+                    <div class="col-md-12 m-b-30">
+                        <textarea class="form-control" readonly="" cols="30" rows="4" id="code_tags_js_px"></textarea>
                     </div>
-                    <div class="modal-body">
-                        <h4><b>Pixel:</b> Cadastro do site Coca-Cola</h4>
-                        <p>Copie e cole a url abaixo em todas as páginas ca campanha. Na página de conversão, onde o cliente compra ou se cadastra, adicione a variável da conversão como explicado abaixo.</p>
-                        <hr>
-                        <h4>Código:</h4>
-                        <div class="col-md-12 m-b-30">
-                            <textarea class="form-control" readonly="" cols="30" rows="4" id="code_tags_js_px"></textarea>
-                        </div>
-                        <p style="clear:both">Utilize o código comentado acima para adicionar um valor fixo ou uma variável do seu sistema que retorne o valor da conversão.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Fechar</button>
-                        <button type="button" class="btn btn-primary waves-effect waves-light" id="btn_script_js">Copiar código</button>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div>
-        <!-- end modal com js para embed na página do cliente -->
+                    <p style="clear:both">Utilize o código comentado acima para adicionar um valor fixo ou uma variável do seu sistema que retorne o valor da conversão.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary waves-effect waves-light" id="btn_script_js">Copiar código</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+    <!-- end modal com js para embed na página do cliente -->
 
 <?php $__env->stopSection(); ?>
 

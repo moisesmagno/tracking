@@ -78,11 +78,14 @@ class PixelConversionController extends Controller
                 $time_interval = $interval[0];
                 $interval_type = $interval[1];
 
+                $valor = $request->get('value');
+
                 $update = $this->pixelConversion->find($request->get('id'));
 
                 if($update){
                     $update->update([
                         'name' => $request->get('name'),
+                        'value' => str_replace(',', '.', str_replace('.', '', $valor)),
                         'time_interval' => $time_interval,
                         'interval_type' => $interval_type,
                     ]);

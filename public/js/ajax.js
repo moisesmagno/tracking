@@ -348,7 +348,7 @@ $( document ).ready(function() {
         var _this = $(this);
 
         $.ajax({
-            url: "pixel-conversao/edit",
+            url: "/pixel-conversao/edit",
             method: "post",
             data: data,
             success: function(result){
@@ -361,6 +361,8 @@ $( document ).ready(function() {
 
                     $('#modal_edit_pixel #id_pixel_conversion').val(result.id);
                     $('#modal_edit_pixel #name').val(result.name);
+                    $('#modal_edit_pixel #value').val(formatReal(result.value));
+                    // $('#modal_edit_pixel #value').val(formatReal(value));
                     $('#modal_edit_pixel #interval').find('.op_interval').each(function(){
                         var that_ = $(this);
                         var value = that_.val();
@@ -386,13 +388,14 @@ $( document ).ready(function() {
         var data = {
             id: $('#modal_edit_pixel #id_pixel_conversion').val(),
             name: $('#modal_edit_pixel #name').val(),
+            value: $('#modal_edit_pixel #value').val(),
             interval: $('#modal_edit_pixel #interval').val()
         };
 
         var textInterval = $('#modal_edit_pixel #interval :selected').text();
  
         $.ajax({
-            url: "pixel-conversao/update",
+            url: "/pixel-conversao/update",
             method: "put",
             data: data,
             success: function(result){
@@ -448,10 +451,9 @@ $( document ).ready(function() {
         }
 
         var data = {id: $(this).attr('data-id-delete')}
-        var _this = $(this);
 
         $.ajax({
-            url: "pixel-conversao/delete",
+            url: "/pixel-conversao/delete",
             method: "delete",
             data: data,
             success: function (result) {
@@ -463,7 +465,9 @@ $( document ).ready(function() {
                     $("#crud-pixel-conversion .alert-success").removeClass('hide');
                     $("#crud-pixel-conversion .alert-success span").html('<b>Sucesso!</b> O pixel foi removido.');
 
-                    _this.parents(".gradeU").fadeOut("slow"); //Temporário - Refazer, pois o datatable já exclui a row
+                    $('.delete_pixel').parents(".gradeU").fadeOut("slow");
+                    $('.btn-remove-pixel').addClass('hide');
+                    $('.btn-add-pixel').removeClass('hide');
 
                 }else{
                     $("#crud-pixel-conversion .alert-danger").removeClass('hide')
