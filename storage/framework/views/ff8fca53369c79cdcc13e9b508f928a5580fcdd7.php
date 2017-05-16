@@ -36,7 +36,7 @@
                             <?php echo $__env->make('includes.alerts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                         </div>
                         <div class="">
-                            <table class="table table-striped" id="_datatable-editable">
+                            <table class="table table-striped">
                                 <thead>
                                 <tr>
                                     <th>Nome da campanha</th>

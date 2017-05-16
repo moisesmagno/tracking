@@ -9,6 +9,7 @@ use App\URLResult;
 use App\PixelConversion;
 use App\UserAccessInformation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\URLResgisterRequest;
 
 class URLController extends Controller
@@ -33,6 +34,9 @@ class URLController extends Controller
 
     //Displays the list of urls
     public function index($id){
+
+        //Session to be used in the page navigator
+        session(['id_influencer' => $id]);
 
         $influencer = $this->influencer->find($id);
 

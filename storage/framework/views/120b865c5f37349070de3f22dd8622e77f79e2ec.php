@@ -9,10 +9,10 @@
                     <p>Administre os links vinculados ao influenciador.</p>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="">Campanhas</a>
+                            <a href="<?php echo e(route('home')); ?>">Campanhas</a>
                         </li>
                         <li class="active">
-                            <a href="">Influenciadores</a>
+                            <a href="<?php echo e(route('list_influencers', ['id' => session('id_campaign')])); ?>">Influenciadores</a>
                         </li>
                         <li class="active">
                             URLs
@@ -27,36 +27,6 @@
             <!-- corpo -->
             <h1><?php echo e($influencer->name); ?></h1>
             <br>
-            <!-- influenciador add com sucesso -->
-            
-                
-                    
-                        
-                    
-                    
-                        
-                        
-                        
-                        
-                        
-                    
-                    
-                
-                
-                    
-                        
-                        
-                        
-                            
-                        
-                        
-                            
-                                
-                        
-                    
-                
-            
-            <!-- end influenciador add com sucesso -->
 
             <div class="panel">
                 <div class="panel-body">
@@ -114,20 +84,6 @@
                 <!-- corpo teste -->
 
             </div>
-
-            
-                
-                    
-                
-                
-                    
-                        
-                    
-                    
-                        
-                    
-                
-            
 
         </div> <!-- container -->
 

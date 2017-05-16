@@ -32,6 +32,9 @@ class InfluencerController extends Controller
     //Display the influencers screen
     public function index($id){
 
+        //Session to be used in the page navigator
+        session(['id_campaign' => $id]);
+
         $campaign = $this->campaign->find($id);
 
         $influencers = $this->influencer->where('id_user', session('id'))->where('id_campaign', $id)->get();

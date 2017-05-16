@@ -29,6 +29,7 @@
                             <table id="demo-foo-row-toggler" class="table toggle-circle table-hover">
                                 <thead>
                                     <tr>
+                                        <th>Detalhes</th>
                                         <th>Nome da conversão</th>
                                         <th>Conversões</th>
                                         <th>Valor</th>
@@ -41,6 +42,7 @@
                                     
                                     @foreach($pixels as $pixel)
                                         <tr class="gradeU" id="tr_{{ $pixel->id }}">
+                                            <td><a href="#data_pixel_conversion" data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-id-pixel="{{ $pixel->id }}" data-id-url="{{ $pixel->id_url }}" data-overlayColor="#36404a" class="data_pixel_conversion"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
                                             <td><a class="text-name-pixel">{{ $pixel->name }}</a></td>
                                             <td>{{ count($pixel->usersAccessInformations) }}</td>
                                             <td>R$ {{ number_format(count($pixel->usersAccessInformations) * $pixel->value, 2, ',', '.') }}</td>
@@ -141,6 +143,13 @@
                         <label for="name">Nome do pixel:</label>
                         <input type="text" class="required form-control" id="name" name="name" placeholder="Ex.: Cadastro no site do cliente">
                     </div>
+
+                    <div class="form-group">
+                        <label for="value">Valor do pixel:</label>
+                        <span class="real-money-pixel">R$</span>
+                        <input type="text" class="required form-control money-mask" id="value" name="value" value="" placeholder="0,00">
+                    </div>
+
                     <div class="form-group m-b-30">
                         <label for="interval">Janela de conversão:</label>
                         <select class="required form-control select2" name="interval" id="interval">
@@ -188,4 +197,62 @@
     </div>
     <!-- end modal com js para embed na página do cliente -->
 
+    <!-- Modal - Data conversion pixel-->
+    <div id="data_pixel_conversion" class="modal-demo">
+        <button type="button" class="close" onclick="Custombox.close();">
+            <span>&times;</span><span class="sr-only">Fechar</span>
+        </button>
+        <h4 class="custom-modal-title">Dados do pixel de conversão</h4>
+        <div class="custom-modal-text text-left">
+
+            <div class="validate-forms">
+
+                @include('includes.alerts_validations')
+
+                <form role="form" action="" method="post">
+
+                    <input type="hidden" id="path_url" value="{{ PATH_URL }}">
+
+                    <div class="form-group">
+                        <label for="name">Campanha:</label>
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="campaign" value="" placeholder="Nome da campanha" readonly="true">
+                            </div>
+                            <div class="col-sm-2">
+                                <a href="" target="_blank" class="btn btn-primary btn-md waves-effect waves-light link_campaign" data-animation="fadein"><i class="fa fa-external-link" aria-hidden="true"></i> Ir</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="value">Influenciador:</label>
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="influencer" value="" placeholder="Nome do influenciador" readonly="true">
+                            </div>
+                            <div class="col-sm-2">
+                                <a href="" target="_blank" class="btn btn-primary btn-md waves-effect waves-light link_influencer" data-animation="fadein"><i class="fa fa-external-link" aria-hidden="true"></i> Ir</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="value">Link:</label>
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="link" value="" placeholder="Nome do link" readonly="true">
+                            </div>
+                            <div class="col-sm-2">
+                                <a href="" target="_blank" class="btn btn-primary btn-md waves-effect waves-light url_link" data-animation="fadein"><i class="fa fa-external-link" aria-hidden="true"></i> Ir</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- End modal - Data conversion pixel -->
 @endsection
+

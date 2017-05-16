@@ -11,10 +11,10 @@
                     <p>Administre os links vinculados ao influenciador.</p>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="">Campanhas</a>
+                            <a href="{{ route('home') }}">Campanhas</a>
                         </li>
                         <li class="active">
-                            <a href="">Influenciadores</a>
+                            <a href="{{ route('list_influencers', ['id' => session('id_campaign')]) }}">Influenciadores</a>
                         </li>
                         <li class="active">
                             URLs
@@ -29,36 +29,6 @@
             <!-- corpo -->
             <h1>{{ $influencer->name }}</h1>
             <br>
-            <!-- influenciador add com sucesso -->
-            {{--<div class="portlet">--}}
-                {{--<div class="portlet-heading bg-custom">--}}
-                    {{--<h3 class="portlet-title">--}}
-                        {{--URL--}}
-                    {{--</h3>--}}
-                    {{--<div class="portlet-widgets">--}}
-                        {{--<a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>--}}
-                        {{--<span class="divider"></span>--}}
-                        {{--<a data-toggle="collapse" data-parent="#accordion1" href="#bg-primary1"><i class="ion-minus-round"></i></a>--}}
-                        {{--<span class="divider"></span>--}}
-                        {{--<a href="#" data-toggle="remove"><i class="ion-close-round"></i></a>--}}
-                    {{--</div>--}}
-                    {{--<div class="clearfix"></div>--}}
-                {{--</div>--}}
-                {{--<div id="bg-primary1" class="panel-collapse collapse in">--}}
-                    {{--<div class="portlet-body">--}}
-                        {{--Agora é só compartilhar essa url com o influenciador, ela já vai indexar todas as redes assim que for inserida nos post das redes.--}}
-                        {{--<div class="control-label m-b-10 m-t-10"><b>Url gerada:</b></div>--}}
-                        {{--<div style="max-width: 300px">--}}
-                            {{--<input type="text" class="form-control" readonly="" value="http://celebryts.com/coca-cola/21">--}}
-                        {{--</div>--}}
-                        {{--<div class="control-label m-b-10 m-t-10">--}}
-                            {{--<button type="button" class="btn btn-success waves-effect waves-light">--}}
-                                {{--<span class="btn-label"><i class="fa fa-copy"></i></span>Copiar url</button>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-            <!-- end influenciador add com sucesso -->
 
             <div class="panel">
                 <div class="panel-body">
@@ -116,20 +86,6 @@
                 <!-- corpo teste -->
 
             </div>
-
-            {{--<div class="panel panel-border panel-danger">--}}
-                {{--<div class="panel-heading">--}}
-                    {{--<h3 class="panel-title">Limite de links criados</h3>--}}
-                {{--</div>--}}
-                {{--<div class="panel-body">--}}
-                    {{--<p>--}}
-                        {{--Você já possui 3 links criados. Para criar novos links é necessário fazer upgrade da conta.--}}
-                    {{--</p>--}}
-                    {{--<p>--}}
-                        {{--<a href="planos.html" class="btn btn-default waves-effect waves-light"> <span>Fazer Upgrade</span> </a>--}}
-                    {{--</p>--}}
-                {{--</div>--}}
-            {{--</div>--}}
 
         </div> <!-- container -->
 

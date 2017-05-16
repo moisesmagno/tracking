@@ -191,11 +191,11 @@
 
         <!-- Examples -->
         <script src="<?php echo e(asset('plugins/magnific-popup/js/jquery.magnific-popup.min.js')); ?>"></script>
-        <script src="<?php echo e(asset('plugins/jquery-datatables-editable/jquery.dataTables.js')); ?>"></script>
-        <script src="<?php echo e(asset('plugins/datatables/dataTables.bootstrap.js')); ?>"></script>
+        
+        
         <script src="<?php echo e(asset('plugins/tiny-editable/mindmup-editabletable.js')); ?>"></script>
         <script src="<?php echo e(asset('plugins/tiny-editable/numeric-input-example.js')); ?>"></script>
-        <script src="<?php echo e(asset('pages/datatables.editable.init.js')); ?>"></script>
+        
 
         <!-- Application Ajax-->
         <script src="<?php echo e(asset('js/ajax.js')); ?>"></script>

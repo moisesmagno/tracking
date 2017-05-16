@@ -10,13 +10,13 @@
                     <p>Veja como está o resultado do link vinculado ao seu influenciador</p>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="#">Campanhas</a>
+                            <a href="<?php echo e(route('home')); ?>">Campanhas</a>
                         </li>
                         <li class="active">
-                            <a href="">Influenciadores</a>
+                            <a href="<?php echo e(route('list_influencers', ['id' => session('id_campaign')])); ?>">Influenciadores</a>
                         </li>
                         <li class="active">
-                            <a href="">URLs</a>
+                            <a href="<?php echo e(route('urls', ['id' => session('id_influencer')])); ?>">URLs</a>
                         </li>
                         <li class="active">
                             Relatório
@@ -145,7 +145,7 @@
                                                     <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
                                                     <a href="#" class="on-default edit-row code_tags_js" data-toggle="modal" data-target="#code_pixel_conversion"  data-id-user="<?php echo e(session('id')); ?>" data-id-code="<?php echo e($pixel->id); ?>"><i class="typcn typcn-code"></i></a>
                                                     <a href="#modal_edit_pixel" data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-id-edit="<?php echo e($pixel->id); ?>" data-overlayColor="#36404a" class="edit_pixel_conversion"><i class="fa fa-pencil"></i></a>
-                                                    <a href="#"  data-id-delete="<?php echo e($pixel->id); ?>" class="on-default remove-row delete_pixel"><i class="fa fa-trash-o"></i></a>
+                                                    <a href="#"  data-id-delete="<?php echo e($pixel->id); ?>" data-id-url="<?php echo e($url->id); ?>" class="on-default remove-row delete_pixel"><i class="fa fa-trash-o"></i></a>
                                                 </td>
                                             </tr>
                                         <?php endif; ?>

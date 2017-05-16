@@ -442,7 +442,7 @@ $( document ).ready(function() {
 
 
      //Delete pixel conversion
-     $('.delete_pixel').click(function(){
+     $('.delete_pixel').click(function(event){
         
         event.preventDefault();
 
@@ -450,7 +450,10 @@ $( document ).ready(function() {
             return false;
         }
 
-        var data = {id: $(this).attr('data-id-delete')}
+        var data = {
+            id: $(this).attr('data-id-delete'),
+            id_url: $(this).attr('data-id-url')
+        }
 
         $.ajax({
             url: "/pixel-conversao/delete",
@@ -478,5 +481,43 @@ $( document ).ready(function() {
              }
         });
      });
+
+    //Data pixel conversion
+    $('.data_pixel_conversion').click(function(){
+        event.preventDefault();
+
+        var data = {
+            id: $(this).attr('data-id-pixel'),
+            id_url: $(this).attr('data-id-url')
+        }
+
+        $.ajax({
+            url: "/pixel-conversao/recover-data",
+            method: "post",
+            data: data,
+            success: function (result) {
+
+                if(result){
+
+                    var path_url = $('#path_url').val();
+
+                    $('#campaign').val(result.name_campaign);
+                    $('.link_campaign').attr('href', path_url + '/campanha/' + result.id_campaign + '/influenciadores');
+
+                    $('#influencer').val(result.name_influencer);
+                    $('.link_influencer').attr('href', path_url + '/campanha/' + result.id_influencer + '/url');
+
+                    $('#link').val(result.description_link);
+                    $('.url_link').attr('href', path_url + '/campanha/url/' + result.id_link + '/relatorio');
+
+
+                }else{
+                    alert('Desculpe, ocorreu um erro ao trazer os dados do pixel de conversão, por favor entre em contao com a gente.');
+                    return false;
+                }
+            }
+        });
+
+    });
 
 });

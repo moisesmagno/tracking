@@ -12,7 +12,7 @@
                     <p>Crie seus influenciadores para despois agregar diversos links.</p>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="">Campanhas</a>
+                            <a href="{{ route('home') }}">Campanhas</a>
                         </li>
                         <li class="active">
                             Influenciadores

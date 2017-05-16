@@ -42,6 +42,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::name('edit_pixel_conversion')->post('/pixel-conversao/edit', 'PixelConversionController@edit');
     Route::name('delete_pixel_conversion')->delete('/pixel-conversao/delete', 'PixelConversionController@destroy');
     Route::name('update_pixel_conversion')->put('/pixel-conversao/update', 'PixelConversionController@update');
+    Route::name('recover_data_pixel_conversion')->post('/pixel-conversao/recover-data', 'PixelConversionController@recoverData');
 
     //Plans
     Route::name('plans')->get('/planos', 'PlanosController@index');
