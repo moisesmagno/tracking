@@ -215,7 +215,7 @@
                     </div>
 
                     <button type="submit" class="btn btn-default waves-effect waves-light validate">Salvar</button>
-                    <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">Cancelar</button>
+                    <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
                 </form>
             </div>
         </div>
@@ -291,7 +291,7 @@
                     <p style="clear:both">Utilize o código comentado acima para adicionar um valor fixo ou uma variável do seu sistema que retorne o valor da conversão.</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal" onclick="Custombox.close();">Fechar</button>
                     <button type="button" class="btn btn-primary waves-effect waves-light" id="btn_script_js">Copiar código</button>
                 </div>
             </div><!-- /.modal-content -->

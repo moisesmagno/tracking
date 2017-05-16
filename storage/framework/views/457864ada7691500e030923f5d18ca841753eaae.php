@@ -189,13 +189,6 @@
         <script src="<?php echo e(asset('plugins/custombox/js/custombox.min.js')); ?>"></script>
         <script src="<?php echo e(asset('plugins/custombox/js/legacy.min.js')); ?>"></script>
 
-        <!-- Examples -->
-        <script src="<?php echo e(asset('plugins/magnific-popup/js/jquery.magnific-popup.min.js')); ?>"></script>
-        
-        
-        <script src="<?php echo e(asset('plugins/tiny-editable/mindmup-editabletable.js')); ?>"></script>
-        <script src="<?php echo e(asset('plugins/tiny-editable/numeric-input-example.js')); ?>"></script>
-        
 
         <!-- Application Ajax-->
         <script src="<?php echo e(asset('js/ajax.js')); ?>"></script>

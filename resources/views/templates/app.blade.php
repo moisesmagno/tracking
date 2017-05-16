@@ -189,13 +189,6 @@
         <script src="{{ asset('plugins/custombox/js/custombox.min.js') }}"></script>
         <script src="{{ asset('plugins/custombox/js/legacy.min.js') }}"></script>
 
-        <!-- Examples -->
-        <script src="{{ asset('plugins/magnific-popup/js/jquery.magnific-popup.min.js') }}"></script>
-        {{--<script src="{{ asset('plugins/jquery-datatables-editable/jquery.dataTables.js') }}"></script>--}}
-        {{--<script src="{{ asset('plugins/datatables/dataTables.bootstrap.js') }}"></script>--}}
-        <script src="{{ asset('plugins/tiny-editable/mindmup-editabletable.js') }}"></script>
-        <script src="{{ asset('plugins/tiny-editable/numeric-input-example.js') }}"></script>
-        {{--<script src="{{ asset('pages/datatables.editable.init.js') }}"></script>--}}
 
         <!-- Application Ajax-->
         <script src="{{ asset('js/ajax.js') }}"></script>

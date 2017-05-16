@@ -24,19 +24,24 @@ class URLResultsController extends Controller
     //Display urls result screen
     public function index($id){
 
-        $url = $this->url->where('id_user', session('id'))->where('id', $id)->first();
+        $url = $this->url
+            ->where('id_user', session('id'))
+            ->where('id', $id)
+            ->first();
 
         $url_results = $this->urlResult
-        ->where('id_url', $id)
-        ->where('id_user', session('id'))
-        ->selectRaw("count(id) as total_clicks, referer, (
-                select count('remote_addr')from url_results as url_result
-                where url_result.referer = url_results.referer
-                group by referer, remote_addr
-                having count('remote_addr') > 1
-            ) as unique_clicks")
-        ->groupBy('referer')
-        ->get();
+            ->where('id_url', $id)
+            ->where('id_user', session('id'))
+            ->selectRaw("count(id) as total_clicks, 
+                        referer, 
+                        (select count('remote_addr') from url_results
+                        where id_url = " . $id . "
+                        and id_user = " . session('id') . "
+                        having count('remote_addr') >= 1
+                        ) as unique_clicks")
+            ->groupBy('referer')
+            ->get();
+
 
         $pixel = $this->pixelConversion
         ->with('usersAccessInformations')
