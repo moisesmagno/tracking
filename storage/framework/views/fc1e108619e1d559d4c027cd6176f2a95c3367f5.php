@@ -35,7 +35,7 @@
             <div class="panel">
                 <div class="panel-body">
                     <div class="">
-                        <table class="table table-striped" id="_datatable-editable">
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>Rede</th>
@@ -96,11 +96,11 @@
 
                     <div class="col-sm-4 btn-remove-pixel">
                         <div style="clear:both" class="p-t-10 pull-right">
-                            <button type="button" data-id-delete="<?php echo e($pixel->id); ?>" class="btn btn-danger waves-effect waves-light delete_pixel">
+                            <button type="button" data-id-delete="<?php echo e($pixel->id); ?>" data-id-url="<?php echo e($url->id); ?>" class="btn btn-danger waves-effect waves-light delete_pixel">
                                  <span class="btn-label">
                                      <i class="fa fa-times"></i>
                                  </span>
-                                Remover influenciador</button>
+                                Excluir pixel de conversão</button>
                         </div>
                     </div>
                 <?php endif; ?>

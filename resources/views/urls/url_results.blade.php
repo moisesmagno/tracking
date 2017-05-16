@@ -98,11 +98,11 @@
 
                     <div class="col-sm-4 btn-remove-pixel">
                         <div style="clear:both" class="p-t-10 pull-right">
-                            <button type="button" data-id-delete="{{ $pixel->id }}" class="btn btn-danger waves-effect waves-light delete_pixel">
+                            <button type="button" data-id-delete="{{ $pixel->id }}" data-id-url="{{ $url->id }}" class="btn btn-danger waves-effect waves-light delete_pixel">
                                  <span class="btn-label">
                                      <i class="fa fa-times"></i>
                                  </span>
-                                Remover influenciador</button>
+                                Excluir pixel de conversão</button>
                         </div>
                     </div>
                 @endif
