@@ -64,7 +64,7 @@
                             </div>
 
                             <form role="search" class="navbar-left app-search pull-left hidden-xs">
-                                <input type="text" placeholder="Search..." class="form-control">
+                                <input type="text" placeholder="Buscar..." class="form-control">
                                 <a href=""><i class="fa fa-search"></i></a>
                             </form>
 
@@ -77,9 +77,9 @@
                                 <li class="dropdown top-menu-item-xs">
                                     <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><img src="<?php echo e(asset('images/users/avatar-1.jpg')); ?>" alt="user-img" class="img-circle"> </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="<?php echo e(route('profile_user')); ?>"><i class="ti-user m-r-10 text-custom"></i> Profile</a></li>
+                                        <li><a href="<?php echo e(route('profile_user')); ?>"><i class="ti-user m-r-10 text-custom"></i> Perfil</a></li>
                                         <li class="divider"></li>
-                                        <li><a href="<?php echo e(route('logout_user')); ?>"><i class="ti-power-off m-r-10 text-danger"></i> Logout</a></li>
+                                        <li><a href="<?php echo e(route('logout_user')); ?>"><i class="ti-power-off m-r-10 text-danger"></i> Sair</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -97,7 +97,7 @@
                     <!--- Divider -->
                     <div id="sidebar-menu">
                         <ul>
-                            <li class="text-muted menu-title">Navigation</li>
+                            <li class="text-muted menu-title">Navegação</li>
                             
                                 
 

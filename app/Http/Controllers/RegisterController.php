@@ -41,8 +41,8 @@ class RegisterController extends Controller
                     'email' => $request->get('email'),
                     'password' => Hash::make($request->get('password')),
                     'name' => $request->get('name'),
-                    'company_name' => $request->get('company_name'),
-                    'telephone' => preg_replace("/\D+/", "", $request->get('telephone')),
+                    'company_name' => ($request->get('company_name') != '') ? $request->get('company_name') : NULL,
+                    'telephone' => ($request->get('telephone') != '') ? preg_replace("/\D+/", "", $request->get('telephone')) : NULL,
                     'token' => Hash::make($request->get('email'))
                 ]);
 
