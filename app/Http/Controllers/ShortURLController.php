@@ -42,15 +42,23 @@ class ShortURLController extends Controller
     public function store($dataUrl){
 
         //REFERER
-        if(isset($_SERVER['HTTP_REFERER'])){
+        if(isset($_SERVER['HTTP_REFERER'])) {
             $referer = $_SERVER['HTTP_REFERER'];
 
-            if(strpos($referer,'facebook')){
+            if(strpos($referer, 'pinterest')){
+                $referer = 'Pinterest';
+            }elseif(strpos($referer,'facebook')){
                 $referer = 'Facebook';
             }elseif(strpos($referer, 'linkedin')){
                 $referer = 'Linkedin';
             }elseif(strpos($referer, 'outlook')){
                 $referer = 'Outlook';
+            }elseif(strpos($referer, 't.co')){
+                $referer = 'Twitter';
+            }elseif(strpos($referer, 'instagram')){
+                $referer = 'Instagram';
+            }elseif(strpos($referer, 'plus.google')){
+                $referer = 'Google plus';
             }else{
                 $referer = 'Outro';
             }

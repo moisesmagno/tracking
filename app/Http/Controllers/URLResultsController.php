@@ -29,20 +29,17 @@ class URLResultsController extends Controller
             ->where('id', $id)
             ->first();
 
+        //URL click counter
         $url_results = $this->urlResult
+            ->selectRaw("referer,
+                         count(id) as total_clicks, 
+                         count(distinct remote_addr) as unique_clicks")
             ->where('id_url', $id)
             ->where('id_user', session('id'))
-            ->selectRaw("count(id) as total_clicks, 
-                        referer, 
-                        (select count('remote_addr') from url_results
-                        where id_url = " . $id . "
-                        and id_user = " . session('id') . "
-                        having count('remote_addr') >= 1
-                        ) as unique_clicks")
             ->groupBy('referer')
             ->get();
 
-
+        //Pixel data and conversions
         $pixel = $this->pixelConversion
         ->with('usersAccessInformations')
         ->where('id_user', session('id'))

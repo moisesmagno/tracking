@@ -75,7 +75,7 @@ class CampaignAPIController extends Controller
                         'created_at' => $Campaign->created_at->format('m/d/Y')
                     ];
 
-                    return json_encode($dataNewCampaign);
+                    return response()->json($dataNewCampaign);
                 }
             }
             die;
@@ -84,7 +84,7 @@ class CampaignAPIController extends Controller
 
 
         }catch (PDOException $e) {
-           return json_encode($error = ['status' => 'register-false']);
+            return response()->json(['status' => 'register-false']);
         }
     }
 }

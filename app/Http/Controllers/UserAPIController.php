@@ -67,10 +67,10 @@ class UserAPIController extends Controller
 
                 Mail::to($dataUser->email)->send(new RegisterUserAPIMail($dataUser));
 
-                return json_encode($registeredUser);
+                return response()->json($registeredUser);
             }
         } catch (PDOException $e) {
-            return json_encode($error = ['status' => 'register-false']);
+            return response()->json(['status' => 'register-false']);
         }
     }
 
