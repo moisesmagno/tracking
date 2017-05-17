@@ -36,7 +36,7 @@
                         <div class="col-sm-8">
                             <form role="form">
                                 <div class="form-group contact-search m-b-30">
-                                    <input type="text" id="search" class="form-control" placeholder="Search...">
+                                    <input type="text" id="search" class="form-control" placeholder="Buscar...">
                                     <button type="submit" class="btn btn-white"><i class="fa fa-search"></i></button>
                                 </div> <!-- form-group -->
                             </form>

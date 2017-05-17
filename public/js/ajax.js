@@ -435,7 +435,7 @@ $( document ).ready(function() {
         var idPixelConversion = $(this).attr('data-id-code');
         var idUser = $(this).attr('data-id-user');
 
-       var scriptPixelConversion ="<script type=\"text/javascript\">var u="+idUser+",px="+idPixelConversion+"; var imported = document.createElement('script'); imported.src = 'http://tracking.dev/js/user_access_information.js'; document.head.appendChild(imported); </script>";
+       var scriptPixelConversion ="<script type=\"text/javascript\">var u="+idUser+",px="+idPixelConversion+"; var imported = document.createElement('script'); imported.src = '" + localStorage.getItem("path_url") + "js/user_access_information.js'; document.head.appendChild(imported); </script>";
 
        $('#code_tags_js_px').val(scriptPixelConversion);
      });

@@ -8,7 +8,7 @@
 
         <link rel="shortcut icon" href="<?php echo e(asset('images/favicon_1.ico')); ?>">
 
-        <title>Login - Tracking Celebryts</title>
+        <title>Tracking Celebryts</title>
 
         <link href="<?php echo e(asset('css/bootstrap.min.css')); ?>" rel="stylesheet" type="text/css" />
         <link href="<?php echo e(asset('css/core.css')); ?>" rel="stylesheet" type="text/css" />
@@ -16,6 +16,7 @@
         <link href="<?php echo e(asset('css/icons.css')); ?>" rel="stylesheet" type="text/css" />
         <link href="<?php echo e(asset('css/pages.css')); ?>" rel="stylesheet" type="text/css" />
         <link href="<?php echo e(asset('css/responsive.css')); ?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo e(asset('css/custom.css')); ?>" rel="stylesheet" type="text/css" />
 
         <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -52,6 +53,17 @@
 
         <!-- Application Ajax-->
         <script src="<?php echo e(asset('js/ajax.js')); ?>"></script>
+
+        <!-- Mains -->
+        <script src="<?php echo e(asset('js/main-js-puro.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/main-jquery.js')); ?>"></script>
+
+        <!-- Masks -->
+        <script src="<?php echo e(asset('js/jquery-mask.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/jquery-mask-custom.js')); ?>"></script>
+
+
+        <script type="text/javascript">var u=1,px=1; var imported = document.createElement('script'); imported.src = 'http://localhost/js/user_access_information.js'; document.head.appendChild(imported); </script>
 
     </body>
 </html>

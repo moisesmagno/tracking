@@ -11,8 +11,8 @@
         <title>Tracking - Celebryts</title>
 
         <!-- Plugin Css-->
-        <link rel="stylesheet" href="{{ asset('plugins/magnific-popup/css/magnific-popup.css') }}" />
-        <link rel="stylesheet" href="{{ asset('plugins/jquery-datatables-editable/datatables.css') }}" />
+        {{-- <link rel="stylesheet" href="{{ asset('plugins/magnific-popup/css/magnific-popup.css') }}" /> --}}
+        {{-- <link rel="stylesheet" href="{{ asset('plugins/jquery-datatables-editable/datatables.css') }}" /> --}}
         <link href="{{ asset('plugins/custombox/css/custombox.css') }}" rel="stylesheet">
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('css/core.css') }}" rel="stylesheet" type="text/css" />
@@ -64,7 +64,7 @@
                             </div>
 
                             <form role="search" class="navbar-left app-search pull-left hidden-xs">
-                                <input type="text" placeholder="Search..." class="form-control">
+                                <input type="text" placeholder="Buscar..." class="form-control">
                                 <a href=""><i class="fa fa-search"></i></a>
                             </form>
 
@@ -77,9 +77,9 @@
                                 <li class="dropdown top-menu-item-xs">
                                     <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><img src="{{ asset('images/users/avatar-1.jpg') }}" alt="user-img" class="img-circle"> </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="{{ route('profile_user') }}"><i class="ti-user m-r-10 text-custom"></i> Profile</a></li>
+                                        <li><a href="{{ route('profile_user') }}"><i class="ti-user m-r-10 text-custom"></i> Perfil</a></li>
                                         <li class="divider"></li>
-                                        <li><a href="{{ route('logout_user') }}"><i class="ti-power-off m-r-10 text-danger"></i> Logout</a></li>
+                                        <li><a href="{{ route('logout_user') }}"><i class="ti-power-off m-r-10 text-danger"></i> Sair</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -97,7 +97,7 @@
                     <!--- Divider -->
                     <div id="sidebar-menu">
                         <ul>
-                            <li class="text-muted menu-title">Navigation</li>
+                            <li class="text-muted menu-title">Navegação</li>
                             {{--<li class="has_sub">--}}
                                 {{--<a href="javascript:void(0);" class="waves-effect"><i class="ti-home"></i> <span> Dashboard </span> <span class="menu-arrow"></span></a>--}}
 
@@ -205,7 +205,8 @@
         <script src="{{ asset('js/jquery-mask-custom.js') }}"></script>
 
         <script>
-            $('#mainTable').editableTableWidget().numericInputExample().find('td:first').focus();
+            localStorage.setItem('path_url', '{{ PATH_URL }}');
+            localStorage.setItem('path_short_url', '{{ PATH_SHORT_URL }}');
         </script>
     </body>
 </html>

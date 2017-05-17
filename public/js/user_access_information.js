@@ -58,7 +58,6 @@ function generalUserData(locationData){
 	var data = new FormData();
 	data.append('id_user', u);
 	data.append('id_pixel_conversion', px);
-	// data.append('id_campaign', c);
 	data.append('agent', browser());
 	data.append('url', url);
 	data.append('city', locationData.city);
@@ -72,7 +71,7 @@ function generalUserData(locationData){
 	data.append('longitude', locationData.longitude);
 
 	var xhr = new XMLHttpRequest();
-	xhr.open("POST", "http://tracking.dev/api/user/access-information", true);
+	xhr.open("POST", localStorage.getItem("path_url") + "api/user/access-information", true);
 	xhr.onload = function () {
 		console.log(this.responseText);
 	};

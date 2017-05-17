@@ -11,8 +11,8 @@
         <title>Tracking - Celebryts</title>
 
         <!-- Plugin Css-->
-        <link rel="stylesheet" href="<?php echo e(asset('plugins/magnific-popup/css/magnific-popup.css')); ?>" />
-        <link rel="stylesheet" href="<?php echo e(asset('plugins/jquery-datatables-editable/datatables.css')); ?>" />
+        
+        
         <link href="<?php echo e(asset('plugins/custombox/css/custombox.css')); ?>" rel="stylesheet">
         <link href="<?php echo e(asset('css/bootstrap.min.css')); ?>" rel="stylesheet" type="text/css" />
         <link href="<?php echo e(asset('css/core.css')); ?>" rel="stylesheet" type="text/css" />
@@ -20,6 +20,7 @@
         <link href="<?php echo e(asset('css/icons.css')); ?>" rel="stylesheet" type="text/css" />
         <link href="<?php echo e(asset('css/pages.css')); ?>" rel="stylesheet" type="text/css" />
         <link href="<?php echo e(asset('css/responsive.css')); ?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo e(asset('css/custom.css')); ?>" rel="stylesheet" type="text/css" />
 
         <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -97,27 +98,36 @@
                     <div id="sidebar-menu">
                         <ul>
                             <li class="text-muted menu-title">Navigation</li>
+                            
+                                
+
+                                
+                                    
+                                
+                            
                             <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="ti-home"></i> <span> Dashboard </span> <span class="menu-arrow"></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="<?php echo e(route('home')); ?>">Dashboard 1</a></li>
-                                </ul>
-                            </li>
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="ti-paint-bucket"></i> <span> Campanhas</span> <span class="menu-arrow"></span> </a>
-                                <ul class="list-unstyled">
-                                    <li><a href="<?php echo e(route('home')); ?>">Campanhas</a></li>
-                                    <li><a href="">URLs</a></li>
-                                </ul>
+                                <a href="<?php echo e(route('home')); ?>" class="waves-effect"><i class="ti-paint-bucket"></i> <span> Campanhas</span> <span class="menu-arrow"></span> </a>
+                                
+                                
+                                    
+                                    
+                                
                             </li>
 
+
+
                             <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="ti-settings"></i> <span> Campanhas</span> <span class="menu-arrow"></span> </a>
-                                <ul class="list-unstyled">
-                                    <li><a href="<?php echo e(route('pixel_conversion')); ?>">Pixels de conversão</a></li>
-                                    <li><a href="ui-buttons.html">Dados da conta</a></li>
-                                </ul>
+                                <a href="<?php echo e(route('pixel_conversion')); ?>" class="waves-effect"><i class="ti-settings"></i> <span> Pixeis de conversão</span> <span class="menu-arrow"></span> </a>
                             </li>
+
+
+                            
+                                
+                                
+                                    
+                                    
+                                
+                            
                         </ul>
                         <div class="clearfix"></div>
                     </div>
@@ -134,12 +144,13 @@
                 <!-- Start content -->
                 <div class="content">
 
-
                     <!-- Application content -->
                     <?php echo $__env->yieldContent('content'); ?>
 
                     <!-- Application footer -->
-                    <?php echo $__env->yieldContent('footer'); ?>
+                    <footer class="footer text-right">
+                        © 2016. All rights reserved.
+                    </footer>
 
                 </div>
 
@@ -151,6 +162,14 @@
         <script>
             var resizefunc = [];
         </script>
+
+        
+            
+        
+
+        
+            
+        
 
         <!-- jQuery  -->
         <script src="<?php echo e(asset('js/jquery.min.js')); ?>"></script>
@@ -170,20 +189,24 @@
         <script src="<?php echo e(asset('plugins/custombox/js/custombox.min.js')); ?>"></script>
         <script src="<?php echo e(asset('plugins/custombox/js/legacy.min.js')); ?>"></script>
 
-        <!-- Examples -->
-        <script src="<?php echo e(asset('plugins/magnific-popup/js/jquery.magnific-popup.min.js')); ?>"></script>
-        <script src="<?php echo e(asset('plugins/jquery-datatables-editable/jquery.dataTables.js')); ?>"></script>
-        <script src="<?php echo e(asset('plugins/datatables/dataTables.bootstrap.js')); ?>"></script>
-        <script src="<?php echo e(asset('plugins/tiny-editable/mindmup-editabletable.js')); ?>"></script>
-        <script src="<?php echo e(asset('plugins/tiny-editable/numeric-input-example.js')); ?>"></script>
-        <script src="<?php echo e(asset('pages/datatables.editable.init.js')); ?>"></script>
 
         <!-- Application Ajax-->
         <script src="<?php echo e(asset('js/ajax.js')); ?>"></script>
+
+        <!-- Main -->
+        <script src="<?php echo e(asset('js/main-js-puro.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/main-jquery.js')); ?>"></script>
+
+        <!-- Validations -->
         <script src="<?php echo e(asset('js/validations.js')); ?>"></script>
 
+        <!-- Masks -->
+        <script src="<?php echo e(asset('js/jquery-mask.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/jquery-mask-custom.js')); ?>"></script>
+
         <script>
-            $('#mainTable').editableTableWidget().numericInputExample().find('td:first').focus();
+            localStorage.setItem('path_url', '<?php echo e(PATH_URL); ?>');
+            localStorage.setItem('path_short_url', '<?php echo e(PATH_SHORT_URL); ?>');
         </script>
     </body>
 </html>

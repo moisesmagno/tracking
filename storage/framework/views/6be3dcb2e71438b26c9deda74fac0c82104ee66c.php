@@ -1,6 +1,4 @@
-@extends('templates.app')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
     <div class="container">
 
@@ -12,7 +10,7 @@
                     <p>Crie seus influenciadores para despois agregar diversos links.</p>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="{{ route('home') }}">Campanhas</a>
+                            <a href="<?php echo e(route('home')); ?>">Campanhas</a>
                         </li>
                         <li class="active">
                             Influenciadores
@@ -30,7 +28,7 @@
                         <div class="col-sm-8">
                             <form role="form">
                                 <div class="form-group contact-search m-b-30">
-                                    <input type="text" id="search" class="form-control" placeholder="Buscar...">
+                                    <input type="text" id="search" class="form-control" placeholder="Search...">
                                     <button type="submit" class="btn btn-white"><i class="fa fa-search"></i></button>
                                 </div> <!-- form-group -->
                             </form>
@@ -42,8 +40,8 @@
                         </div>
                         <div class="row col-sm-12" id="register">
                             <!-- Alerts -->
-                            @include('includes.alerts_js')
-                            @include('includes.alerts')
+                            <?php echo $__env->make('includes.alerts_js', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                            <?php echo $__env->make('includes.alerts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                         </div>
                         <div class="">
                             <table class="table table-striped">
@@ -55,17 +53,17 @@
                                 </thead>
                                 <tbody>
 
-                                @foreach($influencers as $influencer)
-                                    <tr class="gradeU" id="tr_{{ $influencer->id }}">
-                                        <td><a href="{{ route('urls', ['id' => $influencer->id]) }}" class="text-name-influencer">{{$influencer->name}}</a></td>
+                                <?php $__currentLoopData = $influencers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $influencer): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <tr class="gradeU" id="tr_<?php echo e($influencer->id); ?>">
+                                        <td><a href="<?php echo e(route('urls', ['id' => $influencer->id])); ?>" class="text-name-influencer"><?php echo e($influencer->name); ?></a></td>
                                         <td class="actions">
                                             <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                                             <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                                            <a href="#modal_edit_influencer" data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-id-edit="{{ $influencer->id }}" data-overlayColor="#36404a" class="edit_influencer"><i class="fa fa-pencil"></i></a>
-                                            <a href="" class="on-default remove-row delete_influencer" data-id-delete="{{ $influencer->id }}"><i class="fa fa-trash-o"></i></a>
+                                            <a href="#modal_edit_influencer" data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-id-edit="<?php echo e($influencer->id); ?>" data-overlayColor="#36404a" class="edit_influencer"><i class="fa fa-pencil"></i></a>
+                                            <a href="" class="on-default remove-row delete_influencer" data-id-delete="<?php echo e($influencer->id); ?>"><i class="fa fa-trash-o"></i></a>
                                         </td>
                                     </tr>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                 </tbody>
                             </table>
@@ -78,9 +76,9 @@
         </div> <!-- container -->
     </div> <!-- content -->
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('modals')
+<?php $__env->startSection('modals'); ?>
 
     <!-- Modal register new influencer -->
     <div id="custom-modal" class="modal-demo">
@@ -93,15 +91,16 @@
 
             <div class="validate-forms">
 
-                @include('includes.alerts_validations')
+                <?php echo $__env->make('includes.alerts_validations', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
-                <form role="form" method="POST" action="{{ route('register_influencer') }}">
+                <form role="form" method="POST" action="<?php echo e(route('register_influencer')); ?>">
 
-                    {{ csrf_field() }}
+                    <?php echo e(csrf_field()); ?>
+
 
                     <div class="form-group">
 
-                        <input type="hidden" name="id_campaign" value="{{ $campaign->id }}">
+                        <input type="hidden" name="id_campaign" value="<?php echo e($campaign->id); ?>">
 
                         <label for="name">Nome do influenciador:</label>
                         <input type="text" class="required form-control" id="name" name="name" placeholder="Ex.: Ana Maria Brogui">
@@ -124,7 +123,7 @@
         <h4 class="custom-modal-title">Editar Influenciador</h4>
         <div class="custom-modal-text text-left">
 
-            @include('includes.alerts_validations')
+            <?php echo $__env->make('includes.alerts_validations', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
             <form role="form">
 
@@ -143,4 +142,5 @@
     </div>
     <!-- end modal -->
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

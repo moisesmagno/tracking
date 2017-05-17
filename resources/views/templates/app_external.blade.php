@@ -8,7 +8,7 @@
 
         <link rel="shortcut icon" href="{{ asset('images/favicon_1.ico') }}">
 
-        <title>Login - Tracking Celebryts</title>
+        <title>Tracking Celebryts</title>
 
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('css/core.css') }}" rel="stylesheet" type="text/css" />
