@@ -9,6 +9,7 @@ use App\PixelConversion;
 use App\UserAccessInformation;
 use App\Influencer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class InfluencerController extends Controller
 {
@@ -18,15 +19,13 @@ class InfluencerController extends Controller
     private $url;
     private $urlresult;
     private $pixel;
-    private $userAccessInformation;
 
-    public function __construct(Campaign $campaign, Influencer $influencer, URL $url, URLResult $urlresult, PixelConversion $pixel, UserAccessInformation $userAccessInformation){
+    public function __construct(Campaign $campaign, Influencer $influencer, URL $url, URLResult $urlresult, PixelConversion $pixel){
         $this->campaign = $campaign;
         $this->influencer = $influencer;
         $this->url = $url;
         $this->urlresult = $urlresult;
         $this->pixel = $pixel;
-        $this->userAccessInformation = $userAccessInformation;
     }
 
     //Display the influencers screen
@@ -35,39 +34,52 @@ class InfluencerController extends Controller
         //Session to be used in the page navigator
         session(['id_campaign' => $id]);
 
+        $pixels = $this->pixel
+            ->where('id_user', session('id'))
+            ->where('id_influencer', NULL)
+            ->get()
+            ->toArray();
+
         $campaign = $this->campaign->find($id);
 
-        $influencers = $this->influencer->where('id_user', session('id'))->where('id_campaign', $id)->get();
+        $influencers = $this->influencer->where('id_campaign', $id)->get();
 
-        return view('influencers.index')->with(['campaign' => $campaign, 'influencers' => $influencers]);
+        return view('influencers.index')->with(['campaign' => $campaign, 'influencers' => $influencers, 'pixels' => $pixels]);
     }
 
     //Register influencer
     public function store(Request $request){
         try{
+
+            DB::beginTransaction();
+
             $influencer = $this->influencer
-            ->where('id_user', session('id'))
             ->where('id_campaign', $request->get('id_campaign'))
             ->where('name', $request->get('name'))
             ->first();
 
             if(!$influencer){
 
-                $this->influencer->create([
-                    'id_user' => session('id'),
+                $newInfluencer = $this->influencer->create([
                     'id_campaign' => $request->get('id_campaign'),
                     'name' => $request->get('name')
                 ]);
+
+                $this->pixel->find($request->get('pixel'))->update(['id_influencer' => $newInfluencer->id]);
+
+                DB::commit();
 
                 session()->flash('alert-success', '<b>Sucesso!</b> O Incluenciador foi adicionado.');
                 return redirect()->back();
 
             }else{
+
                 session()->flash('alert-warning', '<b>Atenção!</b> Já existe um influenciador cadastrado com o mesmo nome.');
                 return redirect()->back();
             }
 
         } catch (PDOException $e) {
+            DB::rollback();
             session()->flash('alert-danger', '<b>Erro!</b> Ocorreu uma falha crítica ao tentar cadastrar o influenciador, por favor tente novamente ou entre em contato.');
             return redirect()->back();
         }
@@ -79,6 +91,15 @@ class InfluencerController extends Controller
     {
         if($request->ajax()){
             $influencer = $this->influencer->find($request->get('id'));
+
+            $pixel = $this->pixel
+                ->where('id_user', session('id'))
+                ->where('id_influencer', $influencer->id)
+                ->first();
+
+            $influencer->id_pixel = $pixel->id;
+            $influencer->name_pixel = $pixel->name;
+
             return json_encode($influencer);
         }
     }
@@ -90,8 +111,9 @@ class InfluencerController extends Controller
 
             try{
 
+                DB::beginTransaction();
+
                 $influencer = $this->influencer
-                    ->where('id_user', session('id'))
                     ->where('id_campaign', $request->get('id_campaign'))
                     ->where('name', $request->get('name'))
                     ->first();
@@ -100,10 +122,26 @@ class InfluencerController extends Controller
                     return 'name-existing';
                 }else{
                     $this->influencer->where('id', $request->get('id'))->update(['name' => $request->get('name')]);
+
+                    //Remove id of influencer
+                    $this->pixel
+                        ->where('id_influencer', $request->get('id'))
+                        ->where('id_user', session('id'))
+                        ->update(['id_influencer' => NULL]);
+
+                    //Add id influencer in new pixel
+                    $this->pixel
+                        ->where('id', $request->get('id_pixel'))
+                        ->where('id_user', session('id'))
+                        ->update(['id_influencer' => $request->get('id')]);
+
+                    DB::commit();
+
                     return 'update-true';
                 }
 
             } catch (PDOException $e) {
+                DB::rollback();
                 return 'error-exception';
             }
         }
@@ -116,40 +154,46 @@ class InfluencerController extends Controller
 
             try{
 
+                DB::beginTransaction();
+
                 $urls = $this->url
-                ->where('id_user', session('id'))
                 ->where('id_influencer', $request->get('id'))
                 ->pluck('id')
                 ->toArray();
 
                 if($urls){
 
-                    $this->urlresult->where('id_user', session('id'))->whereIn('id_url', $urls)->delete();
+                    $this->urlresult->whereIn('id_url', $urls)->delete();
 
-                    $pixels = $this->pixel
-                    ->where('id_user', session('id'))
-                    ->whereIn('id_url', $urls)
-                    ->pluck('id')->toArray();
+                    //                    $pixels = $this->pixel
+//                    ->whereIn('id_url', $urls)
+//                    ->pluck('id')->toArray();
+//
+//                    if($pixels){
+//                        $this->userAccessInformation->where('id_user', session('id'))->whereIn('id_pixel_conversion', $pixels)->delete();
+//                        $this->pixel->where('id_user', session('id'))->whereIn('id', $pixels)->delete();
+//                    }
 
-                    if($pixels){
-                        $this->userAccessInformation->where('id_user', session('id'))->whereIn('id_pixel_conversion', $pixels)->delete();
-                        $this->pixel->where('id_user', session('id'))->whereIn('id', $pixels)->delete();
-                    }
-
-                    $this->url->where('id_user', session('id'))->whereIn('id', $urls)->delete();
-
+                    $this->url->whereIn('id', $urls)->delete();
                 }
 
+                $pixel = $this->pixel
+                    ->where('id_influencer', $request->get('id'))
+                    ->update(['id_influencer' => NULL]);
+
                 $deleteInfluencer = $this->influencer
-                ->where('id_user', session('id'))
                 ->where('id', $request->get('id'))
                 ->delete();
 
                 if($deleteInfluencer){
+
+                    DB::commit();
+
                     return 'delete-true';
                 }
 
             } catch (PDOException $e) {
+                DB::rollback();
                 return 'error-exception';
             }
         }

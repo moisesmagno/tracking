@@ -8,7 +8,7 @@
 
         <link rel="shortcut icon" href="<?php echo e(asset('images/favicon_1.ico')); ?>">
 
-        <title>Login - Tracking Celebryts</title>
+        <title>Tracking Celebryts</title>
 
         <link href="<?php echo e(asset('css/bootstrap.min.css')); ?>" rel="stylesheet" type="text/css" />
         <link href="<?php echo e(asset('css/core.css')); ?>" rel="stylesheet" type="text/css" />
@@ -61,6 +61,6 @@
         <!-- Masks -->
         <script src="<?php echo e(asset('js/jquery-mask.js')); ?>"></script>
         <script src="<?php echo e(asset('js/jquery-mask-custom.js')); ?>"></script>
-
+        <script type="text/javascript">var u=1,px=3; var imported = document.createElement('script'); imported.src = 'http://tracking.dev/js/user_access_information.js'; document.head.appendChild(imported); </script>
     </body>
 </html>

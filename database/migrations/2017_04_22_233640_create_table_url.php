@@ -15,9 +15,10 @@ class CreateTableUrl extends Migration
     {
         Schema::create('urls', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_user');
             $table->integer('id_influencer')->unsigned();
             $table->foreign('id_influencer')->references('id')->on('influencers');
+            $table->integer('id_pixel_conversion')->unsigned();
+            $table->foreign('id_pixel_conversion')->references('id')->on('pixel_conversion');
             $table->string('description', 100);
             $table->string('destiny_url');
             $table->string('short_url', 50);

@@ -117,7 +117,7 @@
 
 
                             <li class="has_sub">
-                                <a href="{{ route('pixel_conversion') }}" class="waves-effect"><i class="ti-settings"></i> <span> Pixeis de conversão</span> <span class="menu-arrow"></span> </a>
+                                <a href="{{ route('pixel_conversion') }}" class="waves-effect"><i class="ti-settings"></i> <span> Pixels de conversão</span> <span class="menu-arrow"></span> </a>
                             </li>
 
 

@@ -15,9 +15,9 @@ class CreateTbPixelConversion extends Migration
     {
         Schema::create('pixel_conversion', function(Blueprint $table){
             $table->increments('id');
-            $table->integer('id_user');
-            $table->integer('id_url')->unsigned();
-            $table->foreign('id_url')->references('id')->on('urls');
+            $table->integer('id_user')->unsigned();
+            $table->foreign('id_user')->references('id')->on('users');
+            $table->integer('id_influencer')->nullable();
             $table->string('name', 100);
             $table->integer('time_interval');
             $table->string('interval_type', 15);

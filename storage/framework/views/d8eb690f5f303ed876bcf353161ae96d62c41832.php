@@ -14,6 +14,13 @@
 
             <!-- corpo -->
 
+            <div class="col-sm-12 btn-add-pixel">
+                <br>
+                <div class="m-b-30 pull-right">
+                    <a href="#custom-modal" class="btn btn-primary btn-md waves-effect waves-light " data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a"><i class="md md-add"></i> Criar novo pixel de conversão</a>
+                </div>
+            </div>
+
             <div class="panel">
                 <div class="panel-body">
                     <div class="row">
@@ -27,8 +34,8 @@
                             <table id="demo-foo-row-toggler" class="table toggle-circle table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Detalhes</th>
                                         <th>Nome da conversão</th>
+                                        <th>Influenciador</th>
                                         <th>Conversões</th>
                                         <th>Valor</th>
                                         <th>Criado em</th>
@@ -40,11 +47,11 @@
                                     
                                     <?php $__currentLoopData = $pixels; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pixel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr class="gradeU" id="tr_<?php echo e($pixel->id); ?>">
-                                            <td><a href="#data_pixel_conversion" data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-id-pixel="<?php echo e($pixel->id); ?>" data-id-url="<?php echo e($pixel->id_url); ?>" data-overlayColor="#36404a" class="data_pixel_conversion"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
                                             <td><a class="text-name-pixel"><?php echo e($pixel->name); ?></a></td>
+                                            <td><a class="text-name-pixel">Influenciador</a></td>
                                             <td><?php echo e(count($pixel->usersAccessInformations)); ?></td>
                                             <td>R$ <?php echo e(number_format(count($pixel->usersAccessInformations) * $pixel->value, 2, ',', '.')); ?></td>
-                                            <td><?php echo e($pixel->created_at->format('m/d/Y')); ?></td>
+                                            <td><?php echo e($pixel->created_at->format('d/m/Y')); ?></td>
                                             <td class="text-interval-pixel"><?php echo e($pixel->time_interval . ' ' . $pixel->interval_type); ?></td>
                                             <td class="actions">
                                                 <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
@@ -83,11 +90,11 @@
         </button>
         <h4 class="custom-modal-title">Criar Pixel de conversão</h4>
         <div class="custom-modal-text text-left">
-            
+
             <div class="validate-forms">
-               
+
                 <?php echo $__env->make('includes.alerts_validations', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-            
+
                 <form role="form" action="<?php echo e(route('register_pixel_conversion')); ?>" method="post">
 
                     <!-- Security token -->
@@ -98,6 +105,13 @@
                         <label for="name">Nome do pixel:</label>
                         <input type="text" class="required form-control" id="name" name="name" placeholder="Ex.: Cadastro no site do cliente">
                     </div>
+
+                    <div class="form-group">
+                        <label for="value">Valor do pixel:</label>
+                        <span class="real-money-pixel">R$</span>
+                        <input type="text" class="required form-control money-mask" id="value" name="value" placeholder="0,00">
+                    </div>
+
                     <div class="form-group m-b-30">
                         <label for="name">Janela de conversão:</label>
                         <select class="required form-control select2" name="interval">
@@ -111,8 +125,9 @@
                             <option value="60|dias">60 dias</option>
                         </select>
                     </div>
+
                     <button type="submit" class="btn btn-default waves-effect waves-light validate">Salvar</button>
-                    <button type="button" class="btn btn-danger waves-effect waves-light m-l-10">Cancelar</button>
+                    <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
                 </form>
             </div>
         </div>
@@ -197,63 +212,6 @@
     </div>
     <!-- end modal com js para embed na página do cliente -->
 
-    <!-- Modal - Data conversion pixel-->
-    <div id="data_pixel_conversion" class="modal-demo">
-        <button type="button" class="close" onclick="Custombox.close();">
-            <span>&times;</span><span class="sr-only">Fechar</span>
-        </button>
-        <h4 class="custom-modal-title">Dados do pixel de conversão</h4>
-        <div class="custom-modal-text text-left">
-
-            <div class="validate-forms">
-
-                <?php echo $__env->make('includes.alerts_validations', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-
-                <form role="form" action="" method="post">
-
-                    <input type="hidden" id="path_url" value="<?php echo e(PATH_URL); ?>">
-
-                    <div class="form-group">
-                        <label for="name">Campanha:</label>
-                        <div class="row">
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="campaign" value="" placeholder="Nome da campanha" readonly="true">
-                            </div>
-                            <div class="col-sm-2">
-                                <a href="" target="_blank" class="btn btn-primary btn-md waves-effect waves-light link_campaign" data-animation="fadein"><i class="fa fa-external-link" aria-hidden="true"></i> Ir</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="value">Influenciador:</label>
-                        <div class="row">
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="influencer" value="" placeholder="Nome do influenciador" readonly="true">
-                            </div>
-                            <div class="col-sm-2">
-                                <a href="" target="_blank" class="btn btn-primary btn-md waves-effect waves-light link_influencer" data-animation="fadein"><i class="fa fa-external-link" aria-hidden="true"></i> Ir</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="value">Link:</label>
-                        <div class="row">
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="link" value="" placeholder="Nome do link" readonly="true">
-                            </div>
-                            <div class="col-sm-2">
-                                <a href="" target="_blank" class="btn btn-primary btn-md waves-effect waves-light url_link" data-animation="fadein"><i class="fa fa-external-link" aria-hidden="true"></i> Ir</a>
-                            </div>
-                        </div>
-                    </div>
-
-                </form>
-            </div>
-        </div>
-    </div>
-    <!-- End modal - Data conversion pixel -->
 <?php $__env->stopSection(); ?>
 
 

@@ -25,7 +25,6 @@ class URLResultsController extends Controller
     public function index($id){
 
         $url = $this->url
-            ->where('id_user', session('id'))
             ->where('id', $id)
             ->first();
 
@@ -35,7 +34,6 @@ class URLResultsController extends Controller
                          count(id) as total_clicks, 
                          count(distinct remote_addr) as unique_clicks")
             ->where('id_url', $id)
-            ->where('id_user', session('id'))
             ->groupBy('referer')
             ->get();
 
@@ -43,7 +41,7 @@ class URLResultsController extends Controller
         $pixel = $this->pixelConversion
         ->with('usersAccessInformations')
         ->where('id_user', session('id'))
-        ->where('id_url', $id)
+        ->where('id_influencer', $url->id_influencer)
         ->first();
 
         return view('urls.url_results')->with(['url' => $url, 'url_results' => $url_results, 'pixel' => $pixel]);

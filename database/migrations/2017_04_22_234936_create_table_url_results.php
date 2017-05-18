@@ -15,7 +15,6 @@ class CreateTableUrlResults extends Migration
     {
         Schema::create('url_results', function(Blueprint $table){
             $table->increments('id');
-            $table->integer('id_user');
             $table->integer('id_url')->unsigned();
             $table->foreign('id_url')->references('id')->on('urls');
             $table->string('referer');

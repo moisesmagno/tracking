@@ -116,7 +116,10 @@ $( document ).ready(function() {
 
         event.preventDefault();
 
-        var data = {id: $(this).attr('data-id-edit')};
+        var data = {
+            id: $(this).attr('data-id-edit'),
+            id_pixel: $(this).attr('data-id-pixel')
+        };
         var _this = $(this);
 
         $.ajax({
@@ -124,12 +127,15 @@ $( document ).ready(function() {
             method: "post",
             data: data,
             success: function(result){
+
                 if(result != 'null'){
 
                     var result = JSON.parse(result);
                     $('#modal_edit_influencer #id_influencer').val(result.id);
                     $('#modal_edit_influencer #id_campaign').val(result.id_campaign);
                     $('#modal_edit_influencer #name_influencer').val(result.name);
+                    $('#modal_edit_influencer #op-pixel-edit').val(result.id_pixel);
+                    $('#modal_edit_influencer #op-pixel-edit').html(result.name_pixel);
 
                 }else{
                     $("#register .alert-danger").removeClass('hide')
@@ -142,9 +148,10 @@ $( document ).ready(function() {
     //Update influencer
     $('#form_update_influencer').click(function(){
         var data = {
-            id: $('#id_influencer').val(),
-            id_campaign: $('#id_campaign').val(),
-            name: $('#name_influencer').val()
+            id: $('#modal_edit_influencer #id_influencer').val(),
+            id_campaign: $('#modal_edit_influencer #id_campaign').val(),
+            name: $('#modal_edit_influencer #name_influencer').val(),
+            id_pixel: $('#modal_edit_influencer #pixel').val()
         };
 
         $.ajax({
@@ -230,7 +237,7 @@ $( document ).ready(function() {
         var _this = $(this);
 
         $.ajax({
-            url: "/campanha/url/edit",
+            url: "/campanha/influencer/url/edit",
             method: "post",
             data: data,
             success: function(result){
@@ -265,7 +272,7 @@ $( document ).ready(function() {
         };
 
         $.ajax({
-            url: "/campanha/url/update",
+            url: "/campanha/influencer/url/update",
             method: "put",
             data: data,
             success: function(result){
@@ -311,7 +318,7 @@ $( document ).ready(function() {
         var _this = $(this);
 
         $.ajax({
-            url: "/campanha/url/delete",
+            url: "/campanha//url/delete",
             method: "delete",
             data: data,
             success: function (result) {
@@ -362,7 +369,6 @@ $( document ).ready(function() {
                     $('#modal_edit_pixel #id_pixel_conversion').val(result.id);
                     $('#modal_edit_pixel #name').val(result.name);
                     $('#modal_edit_pixel #value').val(formatReal(result.value));
-                    // $('#modal_edit_pixel #value').val(formatReal(value));
                     $('#modal_edit_pixel #interval').find('.op_interval').each(function(){
                         var that_ = $(this);
                         var value = that_.val();
@@ -452,8 +458,9 @@ $( document ).ready(function() {
 
         var data = {
             id: $(this).attr('data-id-delete'),
-            id_url: $(this).attr('data-id-url')
         }
+
+        var _this = $(this);
 
         $.ajax({
             url: "/pixel-conversao/delete",
@@ -468,9 +475,7 @@ $( document ).ready(function() {
                     $("#crud-pixel-conversion .alert-success").removeClass('hide');
                     $("#crud-pixel-conversion .alert-success span").html('<b>Sucesso!</b> O pixel foi removido.');
 
-                    $('.delete_pixel').parents(".gradeU").fadeOut("slow");
-                    $('.btn-remove-pixel').addClass('hide');
-                    $('.btn-add-pixel').removeClass('hide');
+                    _this.parents(".gradeU").fadeOut("slow");
 
                 }else{
                     $("#crud-pixel-conversion .alert-danger").removeClass('hide')
@@ -481,43 +486,5 @@ $( document ).ready(function() {
              }
         });
      });
-
-    //Data pixel conversion
-    $('.data_pixel_conversion').click(function(){
-        event.preventDefault();
-
-        var data = {
-            id: $(this).attr('data-id-pixel'),
-            id_url: $(this).attr('data-id-url')
-        }
-
-        $.ajax({
-            url: "/pixel-conversao/recover-data",
-            method: "post",
-            data: data,
-            success: function (result) {
-
-                if(result){
-
-                    var path_url = $('#path_url').val();
-
-                    $('#campaign').val(result.name_campaign);
-                    $('.link_campaign').attr('href', path_url + '/campanha/' + result.id_campaign + '/influenciadores');
-
-                    $('#influencer').val(result.name_influencer);
-                    $('.link_influencer').attr('href', path_url + '/campanha/' + result.id_influencer + '/url');
-
-                    $('#link').val(result.description_link);
-                    $('.url_link').attr('href', path_url + '/campanha/url/' + result.id_link + '/relatorio');
-
-
-                }else{
-                    alert('Desculpe, ocorreu um erro ao trazer os dados do pixel de conversão, por favor entre em contao com a gente.');
-                    return false;
-                }
-            }
-        });
-
-    });
 
 });

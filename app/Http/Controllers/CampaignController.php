@@ -18,17 +18,13 @@ class CampaignController extends Controller
     private $url;
     private $urlResult;
     private $influencer;
-    private $pixel;
-    private $userAccessInformation;
 
-    public function __construct(Campaign $campaign, Influencer $influencer, URL $url, URLResult $urlResult, PixelConversion $pixel, UserAccessInformation $userAccessInformation)
+    public function __construct(Campaign $campaign, Influencer $influencer, URL $url, URLResult $urlResult)
     {
         $this->campaign = $campaign;
         $this->url = $url;
         $this->urlResult = $urlResult;
         $this->influencer = $influencer;
-        $this->pixel = $pixel;
-        $this->userAccessInformation = $userAccessInformation;
     }
 
     //Displays campaign home screen
@@ -78,7 +74,6 @@ class CampaignController extends Controller
             try{
 
                 $influencer = $this->influencer
-                ->where('id_user', session('id'))
                 ->where('id_campaign', $request->get('id'))
                 ->pluck('id')
                 ->toArray();
@@ -86,29 +81,15 @@ class CampaignController extends Controller
                 if($influencer){
 
                     $urls = $this->url
-                    ->where('id_user', session('id'))
                     ->whereIn('id_influencer', $influencer)
                     ->pluck('id')->toArray();
 
                     if($urls){
-
-                        $this->urlResult->where('id_user', session('id'))->whereIn('id_url', $urls)->delete();
-
-                        $pixels = $this->pixel
-                        ->where('id_user', session('id'))
-                        ->whereIn('id_url', $urls)
-                        ->pluck('id')->toArray();
-
-                        if($pixels){
-                            $this->userAccessInformation->where('id_user', session('id'))->whereIn('id_pixel_conversion', $pixels)->delete();
-                            $this->pixel->where('id_user', session('id'))->whereIn('id', $pixels)->delete();
-                        }
-
-                        $this->url->where('id_user', session('id'))->whereIn('id', $urls)->delete();
-
+                        $this->urlResult->whereIn('id_url', $urls)->delete();
+                        $this->url->whereIn('id', $urls)->delete();
                     }
 
-                    $this->influencer->where('id_user', session('id'))->whereIn('id', $influencer)->delete();
+                    $this->influencer->whereIn('id', $influencer)->delete();
                 }
 
                 $deleteCampaign = $this->campaign

@@ -20,16 +20,14 @@ class URLController extends Controller
     private $urlResult;
     private $influencer;
     private $pixel;
-    private $userAccessInformation;
 
-    public function __construct(Campaign $campaign, URL $url,  URLResult $urlResult, Influencer $influencer, PixelConversion $pixel, UserAccessInformation $userAccessInformation)
+    public function __construct(Campaign $campaign, URL $url,  URLResult $urlResult, Influencer $influencer, PixelConversion $pixel)
     {
         $this->campaign = $campaign;
         $this->url = $url;
         $this->urlResult = $urlResult;
         $this->influencer = $influencer;
         $this->pixel = $pixel;
-        $this->userAccessInformation = $userAccessInformation;
     }
 
     //Displays the list of urls
@@ -40,15 +38,19 @@ class URLController extends Controller
 
         $influencer = $this->influencer->find($id);
 
-        $urls = $this->url->where('id_user', session('id'))->where('id_influencer', $id)->orderBy('id', 'desc')->get();
+        $pixel = $this->pixel->where('id_influencer', $influencer->id)->first();
 
-        return view('urls.urls')->with(['influencer' => $influencer, 'urls' => $urls]);
+        $urls = $this->url->where('id_influencer', $id)->orderBy('id', 'desc')->get();
+
+        return view('urls.urls')->with(['influencer' => $influencer, 'urls' => $urls, 'pixel' => $pixel]);
     }
 
     //Register URL
     public function store(URLResgisterRequest $request){
 
         try{
+
+            DB::beginTransaction();
 
             $validate = true;
             while($validate == true){
@@ -64,24 +66,35 @@ class URLController extends Controller
                 }
             }
 
-            $url = $this->url->create([
-                'id_user' => session('id'),
-                'id_influencer' => $request->get('id_influencer'),
-                'description' => $request->get('description'),
-                'destiny_url' => $request->get('destiny_url'),
-                'short_url' => $short_url,
-            ]);
+            $validateUrl = $this->url
+                ->where('id_influencer', $request->get('id_influencer'))
+                ->where('description', $request->get('description'))
+                ->where('destiny_url', $request->get('destiny_url'))
+                ->first();
 
-            if($url){
-                session()->flash('alert-success', '<b>Sucesso!</b> Nova URL cadastrada.');
+            if(!empty($validateUrl)){
+
+                session()->flash('alert-warning', '<b>Atenção!</b> Uma URL com a mesma descrição, mesmo destino e o mesmo influenciador já está cadastrado.');
                 return redirect()->back();
 
             }else{
-                session()->flash('alert-danger', '<b>Erro!</b> Ocorreu uma falha ao tentar cadastrar a url, por favor tente novamente ou entre em contato.');
+
+                $url = $this->url->create([
+                    'id_influencer' => $request->get('id_influencer'),
+                    'id_pixel_conversion' => $request->get('id_pixel'),
+                    'description' => $request->get('description'),
+                    'destiny_url' => $request->get('destiny_url'),
+                    'short_url' => $short_url,
+                ]);
+
+                DB::commit();
+
+                session()->flash('alert-success', '<b>Sucesso!</b> Nova URL cadastrada.');
                 return redirect()->back();
             }
 
         }catch (PDOException $e) {
+            DB::rollback();
             session()->flash('alert-danger', '<b>Erro!</b> Ocorreu uma falha crítica ao tentar cadastrar a url, por favor tente novamente ou entre em contato.');
             return redirect()->back();
         }
@@ -104,7 +117,6 @@ class URLController extends Controller
             try{
 
                 $url = $this->url
-                ->where('id_user', session('id'))
                 ->where('id_influencer', $request->get('id_influencer'))
                 ->where('description', $request->get('description'))
                 ->first();
@@ -117,7 +129,6 @@ class URLController extends Controller
 
                     $this->url
                     ->where('id', $request->get('id'))
-                    ->where('id_user', session('id'))
                     ->where('id_influencer', $request->get('id_influencer'))
                     ->update([
                         'description' => $request->get('description'),
@@ -139,29 +150,11 @@ class URLController extends Controller
             try{
 
                 $this->urlResult
-                ->where('id_user', session('id'))
                 ->where('id_url', $request->get('id'))
                 ->delete();
 
-                $pixel = $this->pixel
-                ->where('id_user', session('id'))
-                ->where('id_url', $request->get('id'))
-                ->first();
-
-                if($pixel){
-
-                    $this->userAccessInformation
-                    ->where('id_user', session('id'))
-                    ->where('id_pixel_conversion', $pixel->id)
-                    ->delete();
-
-                    $this->pixel->where('id_user', session('id'))->where('id_url', $request->get('id'))->delete();
-
-                }
-
-                $deleteURL = $this->url->where('id_user', session('id'))->where('id', $request->get('id'))->delete();
+                $deleteURL = $this->url->where('id', $request->get('id'))->delete();
                 
-
                 if($deleteURL){
                     return 'delete-true';
                 }

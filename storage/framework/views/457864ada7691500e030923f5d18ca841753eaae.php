@@ -11,8 +11,8 @@
         <title>Tracking - Celebryts</title>
 
         <!-- Plugin Css-->
-        <link rel="stylesheet" href="<?php echo e(asset('plugins/magnific-popup/css/magnific-popup.css')); ?>" />
-        <link rel="stylesheet" href="<?php echo e(asset('plugins/jquery-datatables-editable/datatables.css')); ?>" />
+        
+        
         <link href="<?php echo e(asset('plugins/custombox/css/custombox.css')); ?>" rel="stylesheet">
         <link href="<?php echo e(asset('css/bootstrap.min.css')); ?>" rel="stylesheet" type="text/css" />
         <link href="<?php echo e(asset('css/core.css')); ?>" rel="stylesheet" type="text/css" />
@@ -64,7 +64,7 @@
                             </div>
 
                             <form role="search" class="navbar-left app-search pull-left hidden-xs">
-                                <input type="text" placeholder="Search..." class="form-control">
+                                <input type="text" placeholder="Buscar..." class="form-control">
                                 <a href=""><i class="fa fa-search"></i></a>
                             </form>
 
@@ -77,9 +77,9 @@
                                 <li class="dropdown top-menu-item-xs">
                                     <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><img src="<?php echo e(asset('images/users/avatar-1.jpg')); ?>" alt="user-img" class="img-circle"> </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="<?php echo e(route('profile_user')); ?>"><i class="ti-user m-r-10 text-custom"></i> Profile</a></li>
+                                        <li><a href="<?php echo e(route('profile_user')); ?>"><i class="ti-user m-r-10 text-custom"></i> Perfil</a></li>
                                         <li class="divider"></li>
-                                        <li><a href="<?php echo e(route('logout_user')); ?>"><i class="ti-power-off m-r-10 text-danger"></i> Logout</a></li>
+                                        <li><a href="<?php echo e(route('logout_user')); ?>"><i class="ti-power-off m-r-10 text-danger"></i> Sair</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -97,7 +97,7 @@
                     <!--- Divider -->
                     <div id="sidebar-menu">
                         <ul>
-                            <li class="text-muted menu-title">Navigation</li>
+                            <li class="text-muted menu-title">Navegação</li>
                             
                                 
 
@@ -117,7 +117,7 @@
 
 
                             <li class="has_sub">
-                                <a href="<?php echo e(route('pixel_conversion')); ?>" class="waves-effect"><i class="ti-settings"></i> <span> Pixeis de conversão</span> <span class="menu-arrow"></span> </a>
+                                <a href="<?php echo e(route('pixel_conversion')); ?>" class="waves-effect"><i class="ti-settings"></i> <span> Pixels de conversão</span> <span class="menu-arrow"></span> </a>
                             </li>
 
 
@@ -205,7 +205,8 @@
         <script src="<?php echo e(asset('js/jquery-mask-custom.js')); ?>"></script>
 
         <script>
-            $('#mainTable').editableTableWidget().numericInputExample().find('td:first').focus();
+            localStorage.setItem('path_url', '<?php echo e(PATH_URL); ?>');
+            localStorage.setItem('path_short_url', '<?php echo e(PATH_SHORT_URL); ?>');
         </script>
     </body>
 </html>

@@ -18,7 +18,7 @@ class URL extends Model
      * @var array
      */
     protected $fillable = [
-        'id_user', 'id_influencer', 'description', 'destiny_url', 'short_url', 'pixel_name'
+        'id_influencer', 'id_pixel_conversion','description', 'destiny_url', 'short_url', 'pixel_name'
     ];
 
     protected $dates = ['deleted_at'];

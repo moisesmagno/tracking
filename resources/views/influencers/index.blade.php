@@ -99,15 +99,32 @@
 
                     {{ csrf_field() }}
 
-                    <div class="form-group">
-
+                    @if(!empty($pixels))
                         <input type="hidden" name="id_campaign" value="{{ $campaign->id }}">
+                        <div class="form-group">
+                            <label for="name">Nome do influenciador:</label>
+                            <input type="text" class="required form-control" id="name" name="name" placeholder="Ex.: Ana Maria Brogui">
+                        </div>
+                        <div class="form-group">
+                            <label for="sel1">Pixel de conversão:</label>
+                            <select class="required form-control" name="pixel" id="pixel">
+                                <option value="" disabled selected>Selecione</option>
+                                @foreach($pixels as $pixel)
+                                    <option value="{{ $pixel['id'] }}">{{ $pixel['name'] }}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
-                        <label for="name">Nome do influenciador:</label>
-                        <input type="text" class="required form-control" id="name" name="name" placeholder="Ex.: Ana Maria Brogui">
-                    </div>
+                        <button type="submit" class="btn btn-default waves-effect waves-light validate">Salvar</button>
+                    @else
+                        <div class="form-group">
+                        <span><b>Atenção!</b> Não é possivel cadastrar um influenciador sem um pixel cadastrado previamente </span>
+                        </div>
+                        <a href="{{ route('pixel_conversion') }}">
+                            <button type="button" class="btn btn-default waves-effect waves-light validate">Cadastrar o pixel</button>
+                        </a>
+                    @endif
 
-                    <button type="submit" class="btn btn-default waves-effect waves-light validate">Salvar</button>
                     <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
 
                 </form>
@@ -134,6 +151,16 @@
                 <div class="form-group">
                     <label for="name">Nome do influenciador:</label>
                     <input type="text" class="form-control" id="name_influencer" name="name" required="" placeholder="Ex.: Ana Maria Brogui">
+                </div>
+
+                <div class="form-group">
+                    <label for="sel1">Pixel de conversão:</label>
+                    <select class="required form-control" name="pixel" id="pixel">
+                        <option id="op-pixel-edit" value="" selected></option>
+                        @foreach($pixels as $pixel)
+                            <option value="{{ $pixel['id'] }}">{{ $pixel['name'] }}</option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <button type="button" id="form_update_influencer" class="btn btn-default waves-effect waves-light">Salvar</button>

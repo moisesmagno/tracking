@@ -65,11 +65,11 @@ Route::group(['middleware' => 'auth'], function(){
         Route::name('delete_influencer')->delete('/influencer/delete', 'InfluencerController@destroy');
 
         //URLs
-        Route::name('urls')->get('/{id}/url', 'URLController@index');
-        Route::name('register_url')->post('/url/register', 'URLController@store');
-        Route::name('edit_url')->post('/url/edit', 'URLController@edit');
-        Route::name('update_url')->put('/url/update', 'URLController@update');
-        Route::name('delete_url')->delete('/url/delete', 'URLController@destroy');
+        Route::name('urls')->get('/influenciador/{id}/url', 'URLController@index');
+        Route::name('register_url')->post('/influencer/url/register', 'URLController@store');
+        Route::name('edit_url')->post('/influencer/url/edit', 'URLController@edit');
+        Route::name('update_url')->put('/influencer/url/update', 'URLController@update');
+        Route::name('delete_url')->delete('/influencer/url/delete', 'URLController@destroy');
 
         //URL Results
         Route::name('url_results')->get('/url/{id}/relatorio', 'URLResultsController@index');

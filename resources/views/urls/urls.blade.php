@@ -68,7 +68,7 @@
                                             <td><a href="{{ route('url_results', ['id' => $url->id]) }}" class="text-description-url">{{ $url->description }}</a></td>
                                             <td>{{ $url->destiny_url }}</td>
                                             <td>{{ $url->short_url }}</td>
-                                            <td>{{ $url->pixel_name }}</td>
+                                            <td>{{ $pixel->name or '--'}}</td>
                                             <td class="actions">
                                                 <a href="#modal_edit_url" data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-id-edit="{{ $url->id }}" data-overlayColor="#36404a" class="edit_url"><i class="fa fa-pencil"></i></a>
                                                 <a href="#" class="on-default remove-row delete_url" data-id-delete="{{ $url->id }}"><i class="fa fa-trash-o"></i></a>
@@ -112,6 +112,7 @@
                         <!-- Security token -->
                         {{ csrf_field() }}
                         <input type="hidden" name="id_influencer" value="{{ $influencer->id }}">
+                        <input type="hidden" name="id_pixel" value="{{ $pixel->id }}">
 
                         <div class="form-group">
                             <label for="name">Descrição :</label>
@@ -145,6 +146,7 @@
                 <form role="form">
                     
                     <input type="hidden" id="id_influencer" name="id_influencer" value="{{ $influencer->id }}">
+                    <input type="hidden" id="id_pixel" name="id_pixel" value="{{ $pixel->id }}">
 
                     <input type="hidden" id="id_url" name="id_url" value="">
 

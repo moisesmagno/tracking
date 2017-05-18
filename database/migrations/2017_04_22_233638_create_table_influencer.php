@@ -15,7 +15,6 @@ class CreateTableInfluencer extends Migration
     {
         Schema::create('influencers', function(Blueprint $table){
             $table->increments('id');
-            $table->integer('id_user');
             $table->integer('id_campaign')->unsigned();
             $table->foreign('id_campaign')->references('id')->on('campaigns');
             $table->string('name', 100);

@@ -28,7 +28,7 @@
                         <div class="col-sm-8">
                             <form role="form">
                                 <div class="form-group contact-search m-b-30">
-                                    <input type="text" id="search" class="form-control" placeholder="Search...">
+                                    <input type="text" id="search" class="form-control" placeholder="Buscar...">
                                     <button type="submit" class="btn btn-white"><i class="fa fa-search"></i></button>
                                 </div> <!-- form-group -->
                             </form>
@@ -98,15 +98,32 @@
                     <?php echo e(csrf_field()); ?>
 
 
-                    <div class="form-group">
-
+                    <?php if(!empty($pixels)): ?>
                         <input type="hidden" name="id_campaign" value="<?php echo e($campaign->id); ?>">
+                        <div class="form-group">
+                            <label for="name">Nome do influenciador:</label>
+                            <input type="text" class="required form-control" id="name" name="name" placeholder="Ex.: Ana Maria Brogui">
+                        </div>
+                        <div class="form-group">
+                            <label for="sel1">Pixel de conversão:</label>
+                            <select class="required form-control" name="pixel" id="pixel">
+                                <option value="" disabled selected>Selecione</option>
+                                <?php $__currentLoopData = $pixels; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pixel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($pixel['id']); ?>"><?php echo e($pixel['name']); ?></option>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </select>
+                        </div>
 
-                        <label for="name">Nome do influenciador:</label>
-                        <input type="text" class="required form-control" id="name" name="name" placeholder="Ex.: Ana Maria Brogui">
-                    </div>
+                        <button type="submit" class="btn btn-default waves-effect waves-light validate">Salvar</button>
+                    <?php else: ?>
+                        <div class="form-group">
+                        <span><b>Atenção!</b> Não é possivel cadastrar um influenciador sem um pixel cadastrado previamente </span>
+                        </div>
+                        <a href="<?php echo e(route('pixel_conversion')); ?>">
+                            <button type="button" class="btn btn-default waves-effect waves-light validate">Cadastrar o pixel</button>
+                        </a>
+                    <?php endif; ?>
 
-                    <button type="submit" class="btn btn-default waves-effect waves-light validate">Salvar</button>
                     <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
 
                 </form>
@@ -133,6 +150,16 @@
                 <div class="form-group">
                     <label for="name">Nome do influenciador:</label>
                     <input type="text" class="form-control" id="name_influencer" name="name" required="" placeholder="Ex.: Ana Maria Brogui">
+                </div>
+
+                <div class="form-group">
+                    <label for="sel1">Pixel de conversão:</label>
+                    <select class="required form-control" name="pixel" id="pixel">
+                        <option id="op-pixel-edit" value="" selected></option>
+                        <?php $__currentLoopData = $pixels; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pixel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($pixel['id']); ?>"><?php echo e($pixel['name']); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </select>
                 </div>
 
                 <button type="button" id="form_update_influencer" class="btn btn-default waves-effect waves-light">Salvar</button>

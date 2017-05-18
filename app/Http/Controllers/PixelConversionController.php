@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Campaign;
 use App\Influencer;
 use App\URL;
+use App\URLResult;
 use App\PixelConversion;
 use App\UserAccessInformation;
 use App\Http\Requests\PixelConversionRequest;
@@ -17,13 +18,15 @@ class PixelConversionController extends Controller
     private $campaign;
     private $influencer;
     private $url;
+    private $urlResult;
     private $pixelConversion;
     private $userAccessInformation;
 
-    public function __construct(Campaign $campaign, Influencer $influencer, URL $url, PixelConversion $pixelConversion, UserAccessInformation $userAccessInformation){
+    public function __construct(Campaign $campaign, Influencer $influencer, URL $url, URLResult $urlResult, PixelConversion $pixelConversion, UserAccessInformation $userAccessInformation){
     	$this->campaign = $campaign;
     	$this->influencer = $influencer;
         $this->url = $url;
+        $this->urlResult = $urlResult;
         $this->pixelConversion = $pixelConversion;
         $this->userAccessInformation = $userAccessInformation;
     }
@@ -39,7 +42,7 @@ class PixelConversionController extends Controller
     //Register the conversion pixel
     public function store(PixelConversionRequest $request){
 
-        if($request->name == '' || $request->interval == '' || $request->value == ''){
+        if($request->name == '' || $request->value  == '' || $request->interval == '' || $request->value == ''){
             session()->flash('alert-danger', '<b>Erro!</b> Para criar um pixel de converção você precisa preencher todos os campos obrigatórios.');
             return redirect()->back();
         }
@@ -54,18 +57,11 @@ class PixelConversionController extends Controller
 
             $pixel = $this->pixelConversion->create([
                 'id_user' => session('id'),
-                'id_url' => $request->id_url,
                 'name' => $request->name,
                 'value' => str_replace(',', '.', str_replace('.', '', $request->value)),
                 'time_interval' => $time_interval,
                 'interval_type' => $interval_type,
             ]);
-
-            if($pixel){
-
-                //Add the pixel name from the linked URL
-                $this->url->where('id_user', session('id'))->where('id', $request->id_url)->update(['pixel_name' => $pixel->name]);
-            }
 
             session()->flash('alert-success', '<b>Sucesso!</b> Pixel de conversão cadastrado.');
 
@@ -109,9 +105,6 @@ class PixelConversionController extends Controller
 
                 if($update){
 
-                    //Update the pixel name from the linked URL
-                    $this->url->where('id_user', session('id'))->where('id', $update->id_url)->update(['pixel_name' => $request->get('name')]);
-
                     $update->update([
                         'name' => $request->get('name'),
                         'value' => str_replace(',', '.', str_replace('.', '', $valor)),
@@ -144,10 +137,46 @@ class PixelConversionController extends Controller
 
                 DB::beginTransaction();
 
-                $this->pixelConversion->where('id', $request->get('id'))->delete();
+                $pixel = $this->pixelConversion
+                    ->where('id_user', session('id'))
+                    ->where('id', $request->get('id'))
+                    ->first();
 
-                //Removes the pixel name from the linked URL
-                $this->url->where('id_user', session('id'))->where('id', $request->get('id_url'))->update(['pixel_name' => '--']);
+                if($pixel){
+
+                    //Delete User Acces Information
+                    $this->userAccessInformation
+                        ->where('id_pixel_conversion', $pixel->id)
+                        ->where('id_user', session('id'))
+                        ->delete();
+                }
+
+                $url = $this->url
+                    ->where('id_pixel_conversion', $pixel->id)
+                    ->where('id_influencer', $pixel->id_influencer)
+                    ->pluck('id')->toArray();
+
+                if(!empty($url)){
+
+                    //Delete results from linked URLs.
+                    $this->urlResult->whereIn('id_url', $url)->delete();
+
+                    //Delete URL
+                    $this->url
+                        ->whereIn('id', $url)
+                        ->where('id_pixel_conversion', $pixel->id)
+                        ->where('id_influencer', $pixel->id_influencer)
+                        ->delete();
+                }
+
+                //Delete Incluencer
+                $this->influencer->where('id', $pixel->id_influencer)->delete();
+
+                //Delete Conversion Pixel
+                $this->pixelConversion
+                    ->where('id_user', session('id'))
+                    ->where('id', $request->get('id'))
+                    ->delete();
 
                 DB::commit();
 
@@ -160,32 +189,6 @@ class PixelConversionController extends Controller
         }
     }
 
-    //Recover Data
-    public function recoverData(Request $request){
-        if($request->ajax()){
-
-            $url = $this->url->where('id_user', session('id'))->where('id', $request->get('id_url'))->first();
-
-            $influencer = $this->influencer->where('id_user', session('id'))->where('id', $url->id_influencer)->first();
-
-            $campaign = $this->campaign->where('id_user', session('id'))->where('id', $influencer->id_campaign)->first();
-
-            //Sessions set for the page browser
-            session(['id_influencer' => $influencer->id]);
-            session(['id_campaign' => $campaign->id]);
-
-            $data = [
-                'id_campaign' => $campaign->id,
-                'name_campaign' => $campaign->name,
-                'id_influencer' => $influencer->id,
-                'name_influencer' => $influencer->name,
-                'id_link' => $url->id,
-                'description_link' => $url->description,
-            ];
-
-            return $data;
-        }
-    }
 }
 
 

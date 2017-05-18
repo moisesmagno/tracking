@@ -18,7 +18,7 @@ class URLResult extends Model
      * @var array
      */
     protected $fillable = [
-        'id_user', 'id_url', 'referer', 'agent', 'remote_addr'
+        'id_url', 'referer', 'agent', 'remote_addr'
     ];
 
     protected $dates = ['deleted_at'];

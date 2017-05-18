@@ -81,32 +81,6 @@
                     </div>
                 </div>
 
-                @if(!$pixel)
-                    <div class="col-sm-4 btn-add-pixel">
-                        <div class="m-b-30 pull-right">
-                            <a href="#custom-modal" class="btn btn-primary btn-md waves-effect waves-light " data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a"><i class="md md-add"></i> Criar novo pixel de conversão</a>
-                        </div>
-                    </div>
-
-                @else
-
-                    <div class="col-sm-4 btn-add-pixel hide">
-                        <div class="m-b-30 pull-right">
-                            <a href="#custom-modal" class="btn btn-primary btn-md waves-effect waves-light " data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a"><i class="md md-add"></i> Criar novo pixel de conversão</a>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 btn-remove-pixel">
-                        <div style="clear:both" class="p-t-10 pull-right">
-                            <button type="button" data-id-delete="{{ $pixel->id }}" data-id-url="{{ $url->id }}" class="btn btn-danger waves-effect waves-light delete_pixel">
-                                 <span class="btn-label">
-                                     <i class="fa fa-times"></i>
-                                 </span>
-                                Excluir pixel de conversão</button>
-                        </div>
-                    </div>
-                @endif
-
             </div>
 
             <div style="min-height: 1000px;">
@@ -126,6 +100,7 @@
                                     <thead>
                                     <tr>
                                         <th>Nome da conversão</th>
+                                        <th>Influenciador</th>
                                         <th>Conversões</th>
                                         <th>Valor</th>
                                         <th>Criado em</th>
@@ -138,16 +113,17 @@
                                         @if($pixel)
                                             <tr class="gradeU" id="tr_{{ $pixel->id }}">
                                                 <td><a class="text-name-pixel">{{ $pixel->name }}</a></td>
+                                                <td><a class="text-name-pixel">Influenciador</a></td>
                                                 <td>{{ count($pixel->usersAccessInformations) }}</td>
                                                 <td>R$ {{ number_format(count($pixel->usersAccessInformations) * $pixel->value, 2, ',', '.') }}</td>
-                                                <td>{{ $pixel->created_at->format('m/d/Y') }}</td>
+                                                <td>{{ $pixel->created_at->format('d/m/Y') }}</td>
                                                 <td class="text-interval-pixel">{{ $pixel->time_interval . ' ' . $pixel->interval_type }}</td>
                                                 <td class="actions">
                                                     <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                                                     <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
                                                     <a href="#" class="on-default edit-row code_tags_js" data-toggle="modal" data-target="#code_pixel_conversion"  data-id-user="{{ session('id') }}" data-id-code="{{ $pixel->id }}"><i class="typcn typcn-code"></i></a>
                                                     <a href="#modal_edit_pixel" data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-id-edit="{{ $pixel->id }}" data-overlayColor="#36404a" class="edit_pixel_conversion"><i class="fa fa-pencil"></i></a>
-                                                    <a href="#"  data-id-delete="{{ $pixel->id }}" data-id-url="{{ $url->id }}" class="on-default remove-row delete_pixel"><i class="fa fa-trash-o"></i></a>
+                                                    {{--<a href="#"  data-id-delete="{{ $pixel->id }}" class="on-default remove-row delete_pixel"><i class="fa fa-trash-o"></i></a>--}}
                                                 </td>
                                             </tr>
                                         @endif
@@ -169,58 +145,6 @@
 @endsection
 
 @section('modals')
-
-    <!-- Modal -->
-    <div id="custom-modal" class="modal-demo">
-        <button type="button" class="close" onclick="Custombox.close();">
-            <span>&times;</span><span class="sr-only">Fechar</span>
-        </button>
-        <h4 class="custom-modal-title">Criar Pixel de conversão</h4>
-        <div class="custom-modal-text text-left">
-
-            <div class="validate-forms">
-
-                @include('includes.alerts_validations')
-
-                <form role="form" action="{{ route('register_pixel_conversion') }}" method="post">
-
-                    <!-- Security token -->
-                    {{ csrf_field() }}
-
-                    <input type="hidden" name="id_url" value="{{ $url->id }}">
-
-                    <div class="form-group">
-                        <label for="name">Nome do pixel:</label>
-                        <input type="text" class="required form-control" id="name" name="name" placeholder="Ex.: Cadastro no site do cliente">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="value">Valor do pixel:</label>
-                        <span class="real-money-pixel">R$</span>
-                        <input type="text" class="required form-control money-mask" id="value" name="value" placeholder="0,00">
-                    </div>
-
-                    <div class="form-group m-b-30">
-                        <label for="name">Janela de conversão:</label>
-                        <select class="required form-control select2" name="interval">
-                            <option value="">Selecione</option>
-                            <option value="24|horas">24 horas</option>
-                            <option value="7|dias">7 dias</option>
-                            <option value="15|dias">15 dias</option>
-                            <option value="30|dias">30 dias</option>
-                            <option value="40|dias">40 dias</option>
-                            <option value="50|dias">50 dias</option>
-                            <option value="60|dias">60 dias</option>
-                        </select>
-                    </div>
-
-                    <button type="submit" class="btn btn-default waves-effect waves-light validate">Salvar</button>
-                    <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!-- end modal -->
 
     <!-- Modal edit pixel conversion -->
     <div id="modal_edit_pixel" class="modal-demo">
