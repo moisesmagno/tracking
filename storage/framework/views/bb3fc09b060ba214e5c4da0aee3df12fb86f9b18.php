@@ -30,17 +30,8 @@
 
             <div class="panel">
                 <div class="panel-body">
-                    <div class="row">
-                        <div class="col-sm-8">
-                            <form role="form">
-                                <div class="form-group contact-search m-b-30">
-                                    <input type="text" id="search" class="form-control" placeholder="Buscar...">
-                                    <button type="submit" class="btn btn-white"><i class="fa fa-search"></i></button>
-                                </div> <!-- form-group -->
-                            </form>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="m-b-30">
+                        <div class="col-sm-12">
+                            <div class="m-b-30 pull-right">
                                 <a href="#custom-modal" class="btn btn-primary btn-md waves-effect waves-light " data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a"><i class="md md-add"></i> Adicionar URL</a>
                             </div>
                         </div>
@@ -66,7 +57,7 @@
                                             <td><a href="<?php echo e(route('url_results', ['id' => $url->id])); ?>" class="text-description-url"><?php echo e($url->description); ?></a></td>
                                             <td><?php echo e($url->destiny_url); ?></td>
                                             <td><?php echo e($url->short_url); ?></td>
-                                            <td><?php echo e($url->pixel_name); ?></td>
+                                            <td><?php echo e(isset($pixel->name) ? $pixel->name : '--'); ?></td>
                                             <td class="actions">
                                                 <a href="#modal_edit_url" data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-id-edit="<?php echo e($url->id); ?>" data-overlayColor="#36404a" class="edit_url"><i class="fa fa-pencil"></i></a>
                                                 <a href="#" class="on-default remove-row delete_url" data-id-delete="<?php echo e($url->id); ?>"><i class="fa fa-trash-o"></i></a>
@@ -111,6 +102,7 @@
                         <?php echo e(csrf_field()); ?>
 
                         <input type="hidden" name="id_influencer" value="<?php echo e($influencer->id); ?>">
+                        <input type="hidden" name="id_pixel" value="<?php echo e($pixel->id); ?>">
 
                         <div class="form-group">
                             <label for="name">Descrição :</label>
@@ -144,6 +136,7 @@
                 <form role="form">
                     
                     <input type="hidden" id="id_influencer" name="id_influencer" value="<?php echo e($influencer->id); ?>">
+                    <input type="hidden" id="id_pixel" name="id_pixel" value="<?php echo e($pixel->id); ?>">
 
                     <input type="hidden" id="id_url" name="id_url" value="">
 

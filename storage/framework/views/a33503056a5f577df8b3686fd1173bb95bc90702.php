@@ -42,6 +42,11 @@
                                 </button>
                             </span>
                         </div>
+                        <div class="row">
+                            <div>
+                                <a href=""><span><i class="fa fa-chevron-left" aria-hidden="true"></i> Voltar</span></a>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>

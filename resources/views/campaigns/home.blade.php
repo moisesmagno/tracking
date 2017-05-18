@@ -19,16 +19,8 @@
             <div class="panel">
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-sm-8">
-                            <form role="form">
-                                <div class="form-group contact-search m-b-30">
-                                    <input type="text" id="search" class="form-control" placeholder="Buscar...">
-                                    <button type="submit" class="btn btn-white"><i class="fa fa-search"></i></button>
-                                </div> <!-- form-group -->
-                            </form>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="m-b-30">
+                        <div class="col-sm-12">
+                            <div class="m-b-30 pull-right">
                                 <a href="#custom-modal" class="btn btn-primary btn-md waves-effect waves-light " data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a"><i class="md md-add"></i> Criar campanha</a>
                             </div>
                         </div>

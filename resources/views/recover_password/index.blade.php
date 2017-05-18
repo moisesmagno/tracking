@@ -42,6 +42,12 @@
                                 </button>
                             </span>
                         </div>
+                        <br><br>
+                        <div class="row">
+                            <div>
+                                <a href="{{ route('login') }}"><span><i class="fa fa-chevron-left" aria-hidden="true"></i> Voltar</span></a>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>

