@@ -30,6 +30,12 @@ class RecoverPassword extends Mailable
      */
     public function build()
     {
-        return $this->markdown('email.recover_password.index');
+        $address = 'artifice.portal@gmail.com';
+        $name = 'Tracking';
+        $subject = 'Recuperar senha';
+
+        return $this->markdown('email.recover_password.index')
+            ->from($address, $name)
+            ->subject($subject);
     }
 }

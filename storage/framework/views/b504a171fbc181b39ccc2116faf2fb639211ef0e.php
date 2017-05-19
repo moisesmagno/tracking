@@ -8,6 +8,10 @@
                 <h3 class="text-center"> Alterar senha </h3>
             </div>
             <div class="panel-body">
+                <div class="row" style="text-align: center;">
+                    <span> Por favor insira o seu e-mail, enviaremos uma senha temporária no e-mail cadastrado. </span>
+                </div>
+                <br>
 
                 <!-- Alerts -->
                 <?php echo $__env->make('includes.alerts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
@@ -34,6 +38,7 @@
 
 
                     <div class="form-group m-b-0">
+
                         <div class="input-group">
                             <input type="email" required="" class="form-control" name="email" placeholder="Digite seu e-mail">
                             <span class="input-group-btn">
@@ -41,6 +46,12 @@
                                     Gerar nova senha
                                 </button>
                             </span>
+                        </div>
+                        <br><br>
+                        <div class="row">
+                            <div>
+                                <a href="<?php echo e(route('login')); ?>"><span><i class="fa fa-chevron-left" aria-hidden="true"></i> Voltar</span></a>
+                            </div>
                         </div>
                     </div>
                 </form>

@@ -29,8 +29,12 @@ class RecoverPasswordController extends Controller
 
         if(!empty($dataUser)){
 
+            $passwordRandom = chr(rand(65,90)) . rand(1, 99) . rand(65,90) . rand(1, 9) . chr(rand(65,90)) . rand(1, 9) . rand(65,90);
+
+            $dataUser->newPassword = $passwordRandom;
+
             $this->userModel->where('email', $dataUser->email)
-                ->update(['password' => Hash::make('123456')]);
+                ->update(['password' => Hash::make($passwordRandom)]);
 
             Mail::to($dataUser->email)->send(new RecoverPassword($dataUser));
 

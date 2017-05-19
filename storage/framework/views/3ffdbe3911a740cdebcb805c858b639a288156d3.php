@@ -8,7 +8,8 @@ Parabéns você acaba de ser cadastrado na Tracking Celebryts, os seus dados ace
 E-mail: <?php echo e($dataUser->email); ?>
 
 
-Senha: Tracking2017$
+Senha: <?php echo e($dataUser->password); ?>
+
 
 Importante! 
 Você poderá alterar sua senha no perfil do usuário na plataforma.

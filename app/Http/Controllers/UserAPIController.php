@@ -45,14 +45,18 @@ class UserAPIController extends Controller
                 return json_encode($checkEmail = ['status' => 'email-exists-true', 'check-email' => 'O e-mail informado já está cadastrado.']);
             }else{
 
+                $passwordRandom = chr(rand(65,90)) . rand(1, 99) . rand(65,90) . rand(1, 9) . chr(rand(65,90)) . rand(1, 9) . rand(65,90);
+
                 $dataUser = $this->user->create([
                         'email' => $request->get('email'),
-                        'password' => Hash::make('Tracking2017$'),
+                        'password' => Hash::make($passwordRandom),
                         'name' => $request->get('name'),
                         'company_name' => $request->get('company_name'),
                         'telephone' => $request->get('telephone'),
                         'token' => Hash::make($request->get('email'))
                     ]);
+
+                $dataUser->password = $passwordRandom;
 
                 $registeredUser = [
                     'status' => 'register-true',

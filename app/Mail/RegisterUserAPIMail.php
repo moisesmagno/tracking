@@ -30,6 +30,12 @@ class RegisterUserAPIMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('email/register_user/register_user_api');
+        $address = 'artifice.portal@gmail.com';
+        $name = 'Tracking';
+        $subject = 'Novo usuário Tracking';
+
+        return $this->markdown('email/register_user/register_user_api')
+                    ->from($address, $name)
+                    ->subject($subject);;
     }
 }

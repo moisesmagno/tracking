@@ -10,6 +10,10 @@
                 <h3 class="text-center"> Alterar senha </h3>
             </div>
             <div class="panel-body">
+                <div class="row" style="text-align: center;">
+                    <span> Por favor insira o seu e-mail, enviaremos uma senha temporária no e-mail cadastrado. </span>
+                </div>
+                <br>
 
                 <!-- Alerts -->
                 @include('includes.alerts')
@@ -34,6 +38,7 @@
                     {{ method_field('PUT') }}
 
                     <div class="form-group m-b-0">
+
                         <div class="input-group">
                             <input type="email" required="" class="form-control" name="email" placeholder="Digite seu e-mail">
                             <span class="input-group-btn">
