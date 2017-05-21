@@ -164,16 +164,7 @@ class InfluencerController extends Controller
                 if($urls){
 
                     $this->urlresult->whereIn('id_url', $urls)->delete();
-
-                    //                    $pixels = $this->pixel
-//                    ->whereIn('id_url', $urls)
-//                    ->pluck('id')->toArray();
-//
-//                    if($pixels){
-//                        $this->userAccessInformation->where('id_user', session('id'))->whereIn('id_pixel_conversion', $pixels)->delete();
-//                        $this->pixel->where('id_user', session('id'))->whereIn('id', $pixels)->delete();
-//                    }
-
+                    
                     $this->url->whereIn('id', $urls)->delete();
                 }
 

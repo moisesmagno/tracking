@@ -1,6 +1,113 @@
 $( document ).ready(function() {
 
     /* ****************************************
+     MARK
+     **************************************** */
+    //Edit campaign
+    $(".edit_mark").click(function(event){
+
+        event.preventDefault();
+
+        var data = {id: $(this).attr('data-id-edit')};
+        var _this = $(this);
+
+        $.ajax({
+            url: "edit",
+            method: "post",
+            data: data,
+            success: function(result){
+                if(result != 'null'){
+
+                    var result = JSON.parse(result);
+                    $('#modal_edit_mark #id_mark').val(result.id);
+                    $('#modal_edit_mark #name_mark').val(result.name);
+
+                }else{
+                    $("#register .alert-danger").removeClass('hide')
+                    $("#register .alert-danger span").html('<b>Erro!</b> Ocorreu um erro ao tentar trazer as informações da marca, por favor tente novamente ou entre em contato.')
+                }
+            }
+        });
+    });
+
+    //Update campaign
+    $('#form_update_mark').click(function(){
+        var data = {
+            id: $('#id_mark').val(),
+            name: $('#name_mark').val()
+        };
+
+        $.ajax({
+            url: "update",
+            method: "put",
+            data: data,
+            success: function(result){
+
+                $(".alert").addClass('hide');
+
+                if(result == 'register-ok'){
+                    Custombox.close();
+                    $("#register .alert-success").removeClass('hide')
+                    $("#register .alert-success span").html('<b>Success!</b> O nome da marca foi editada.')
+                    $('#tr_' + data.id).find('.text-name-mark').html(data.name);
+                    $('#tr_' + data.id).css({"border-left": "3px solid rgba(95, 190, 170, 0.4)"});
+                }else if(result == 'name-existing'){
+                    $("#modal_edit_mark .alert-warning").removeClass('hide')
+                    $("#modal_edit_mark .alert-warning span").html('<b>Atenção!</b> Não foi possível alterar o nome da marca, pois já existe outra marca com o mesmo nome.')
+                }else{
+                    Custombox.close();
+                    $("#register .alert-danger").removeClass('hide')
+                    $("#register .alert-danger span").html('<b>Erro!</b> Ocorreu um erro crítico ao tentar editar a marca, por favor tente novamente ou entre em contato.')
+                    $('#tr_' + data.id).css({"border-left": "3px solid #ebcccc"});
+                }
+
+                $(".alert-php").addClass('hide');
+
+                setTimeout(function () {
+                    $('#tr_' + data.id).css({"border-left": "0"});
+                }, 4000);
+            }
+        });
+    });
+
+    //Delete campaign
+    // $(".delete_campaign").click(function(event){
+    //
+    //     event.preventDefault();
+    //
+    //     if(!confirm('Realmente deseja excluir esta campanha?')){
+    //         return false;
+    //     }
+    //
+    //     var data = {id: $(this).attr('data-id-delete')};
+    //     var _this = $(this);
+    //
+    //     $.ajax({
+    //         url: "delete",
+    //         method: "delete",
+    //         data: data,
+    //         success: function (result) {
+    //
+    //             $(".alert").addClass('hide');
+    //
+    //             if(result == 'delete-true'){
+    //
+    //                 $("#register .alert-success").removeClass('hide');
+    //                 $("#register .alert-success span").html('<b>Sucesso!</b> A campanha foi removida.');
+    //
+    //                 _this.parents(".gradeU").fadeOut("slow"); //Temporário - Refazer, pois o datatable já exclui a row
+    //
+    //             }else{
+    //                 $("#register .alert-danger").removeClass('hide')
+    //                 $("#register .alert-danger span").html('<b>Erro!</b> Ocorreu um erro ao tentar remover a campanha, por favor tente novamente ou entre em contato.')
+    //             }
+    //
+    //             $(".alert-php").addClass('hide');
+    //         }
+    //     });
+    // });
+
+    /* ****************************************
      CAMPAIGN
     **************************************** */
     //Edit campaign
