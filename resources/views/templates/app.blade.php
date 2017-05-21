@@ -106,7 +106,7 @@
                                 {{--</ul>--}}
                             {{--</li>--}}
                             <li class="has_sub">
-                                <a href="{{ route('home') }}" class="waves-effect"><i class="ti-paint-bucket"></i> <span> Campanhas</span> <span class="menu-arrow"></span> </a>
+                                <a href="{{ route('home') }}" class="waves-effect"><i class="ti-paint-bucket"></i> <span> Marcas</span> <span class="menu-arrow"></span> </a>
                                 {{--javascript:void(0);--}}
                                 {{--<ul class="list-unstyled">--}}
                                     {{--<li><a href="{{ route('home') }}">Home</a></li>--}}

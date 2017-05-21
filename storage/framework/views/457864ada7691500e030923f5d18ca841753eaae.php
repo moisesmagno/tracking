@@ -106,7 +106,7 @@
                                 
                             
                             <li class="has_sub">
-                                <a href="<?php echo e(route('home')); ?>" class="waves-effect"><i class="ti-paint-bucket"></i> <span> Campanhas</span> <span class="menu-arrow"></span> </a>
+                                <a href="<?php echo e(route('home')); ?>" class="waves-effect"><i class="ti-paint-bucket"></i> <span> Marcas</span> <span class="menu-arrow"></span> </a>
                                 
                                 
                                     

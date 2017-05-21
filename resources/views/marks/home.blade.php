@@ -1,4 +1,6 @@
-<?php $__env->startSection('content'); ?>
+@extends('templates.app')
+
+@section('content')
 
     <div class="container">
 
@@ -24,8 +26,8 @@
                         </div>
                         <div class="row col-sm-12" id="register">
                             <!-- Alerts -->
-                            <?php echo $__env->make('includes.alerts_js', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-                            <?php echo $__env->make('includes.alerts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                            @include('includes.alerts_js')
+                            @include('includes.alerts')
                         </div>
                         <div class="">
                             <table class="table table-striped">
@@ -37,17 +39,17 @@
                                 </thead>
                                 <tbody>
 
-                                    <?php $__currentLoopData = $campaigns; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $campaign): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <tr class="gradeU" id="tr_<?php echo e($campaign->id); ?>">
-                                            <td><a href="<?php echo e(route('list_influencers', ['id' => $campaign->id])); ?>" class="text-name-campaign"><?php echo e($campaign->name); ?></a></td>
+                                    @foreach($campaigns as $campaign)
+                                        <tr class="gradeU" id="tr_{{ $campaign->id }}">
+                                            <td><a href="{{ route('list_influencers', ['id' => $campaign->id])}}" class="text-name-campaign">{{$campaign->name}}</a></td>
                                             <td class="actions">
                                                 <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                                                 <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                                                <a href="#modal_edit_campaign" data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-id-edit="<?php echo e($campaign->id); ?>" data-overlayColor="#36404a" class="edit_campaign"><i class="fa fa-pencil"></i></a>
-                                                <a href="" class="on-default remove-row delete_campaign" data-id-delete="<?php echo e($campaign->id); ?>"><i class="fa fa-trash-o"></i></a>
+                                                <a href="#modal_edit_campaign" data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-id-edit="{{ $campaign->id }}" data-overlayColor="#36404a" class="edit_campaign"><i class="fa fa-pencil"></i></a>
+                                                <a href="" class="on-default remove-row delete_campaign" data-id-delete="{{ $campaign->id }}"><i class="fa fa-trash-o"></i></a>
                                             </td>
                                         </tr>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    @endforeach
 
                                 </tbody>
                             </table>
@@ -60,9 +62,9 @@
         </div> <!-- container -->
     </div> <!-- content -->
 
-<?php $__env->stopSection(); ?>
+@endsection
 
-<?php $__env->startSection('modals'); ?>
+@section('modals')
 
     <!-- Modal register new campaign -->
     <div id="custom-modal" class="modal-demo">
@@ -75,12 +77,11 @@
             
             <div class="validate-forms">
                
-                <?php echo $__env->make('includes.alerts_validations', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                @include('includes.alerts_validations')
                
-                <form role="form" method="POST" action="<?php echo e(route('register_campaign')); ?>">
+                <form role="form" method="POST" action="{{ route('register_campaign') }}">
                     
-                        <?php echo e(csrf_field()); ?>
-
+                        {{ csrf_field() }}
 
                         <div class="form-group">
                             <label for="name">Nome da campanha:</label>
@@ -104,7 +105,7 @@
         <h4 class="custom-modal-title">Editar marca</h4>
         <div class="custom-modal-text text-left">
 
-            <?php echo $__env->make('includes.alerts_validations', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            @include('includes.alerts_validations')
 
             <form role="form">
                 <input type="hidden" id="id_campaign" name="id_campaign" value="">
@@ -119,5 +120,4 @@
         </div>
     </div>
     <!-- end modal -->
-<?php $__env->stopSection(); ?>
-<?php echo $__env->make('templates.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+@endsection

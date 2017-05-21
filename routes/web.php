@@ -48,9 +48,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::name('plans')->get('/planos', 'PlanosController@index');
 
     /* ----- Group Capaigns ----- */
-    Route::group(['prefix' => 'campanha'], function(){
+    Route::group(['prefix' => 'marca'], function(){
 
-        //Campaigns
+        //Marks
         Route::name('home')->get('/home', 'CampaignController@index');
         Route::name('register_campaign')->post('/register', 'CampaignController@store');
         Route::name('edit_campaign')->post('/edit', 'CampaignController@edit');
