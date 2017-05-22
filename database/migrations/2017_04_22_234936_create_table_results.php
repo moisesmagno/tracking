@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableUrlResults extends Migration
+class CreateTableResults extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateTableUrlResults extends Migration
      */
     public function up()
     {
-        Schema::create('url_results', function(Blueprint $table){
+        Schema::create('results', function(Blueprint $table){
             $table->increments('id');
-            $table->integer('id_url')->unsigned();
-            $table->foreign('id_url')->references('id')->on('urls');
+            $table->integer('id_influencer')->unsigned();
+            $table->foreign('id_influencer')->references('id')->on('influencers');
             $table->string('referer');
             $table->string('agent', 25);
             $table->string('remote_addr', 15);

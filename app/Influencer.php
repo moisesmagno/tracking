@@ -16,7 +16,7 @@ class Influencer extends Model
      *
      * @var array
      */
-    protected $fillable = ['id_campaign', 'name'];
+    protected $fillable = ['id_campaign', 'name', 'destiny_url', 'short_url'];
 
     protected $dates = ['deleted_at', 'created_at'];
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Campaign;
 use App\URL;
-use App\URLResult;
+use App\Result;
 use App\PixelConversion;
 use App\UserAccessInformation;
 use App\Influencer;
@@ -20,7 +20,7 @@ class InfluencerController extends Controller
     private $urlresult;
     private $pixel;
 
-    public function __construct(Campaign $campaign, Influencer $influencer, URL $url, URLResult $urlresult, PixelConversion $pixel){
+    public function __construct(Campaign $campaign, Influencer $influencer, URL $url, Result $urlresult, PixelConversion $pixel){
         $this->campaign = $campaign;
         $this->influencer = $influencer;
         $this->url = $url;

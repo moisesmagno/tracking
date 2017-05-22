@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\URL;
-use App\URLResult;
+use App\Result;
 use App\PixelConversion;
 use Illuminate\Http\Request;
 
@@ -14,7 +14,7 @@ class URLResultsController extends Controller
     private $urlResult;
     private $pixelConversion;
 
-    public function __construct(URL $url, URLResult $url_result, PixelConversion $pixelConversion)
+    public function __construct(URL $url, Result $url_result, PixelConversion $pixelConversion)
     {
         $this->url = $url;
         $this->urlResult = $url_result;

@@ -119,15 +119,27 @@ $( document ).ready(function() {
         var _this = $(this);
 
         $.ajax({
-            url: "edit",
+            url: "/marca/campaign/edit",
             method: "post",
             data: data,
             success: function(result){
+
                 if(result != 'null'){
 
-                    var result = JSON.parse(result);
+                     var result = JSON.parse(result);
                     $('#modal_edit_campaign #id_campaign').val(result.id);
                     $('#modal_edit_campaign #name_campaign').val(result.name);
+
+                    $('#modal_edit_campaign #pixel').find('.op-pixel').each(function(){
+                        var that_ = $(this);
+                        var value = that_.val();
+
+                        var valuePixel = (result.get_pixels[0] === undefined ? '' : result.get_pixels[0].id);
+
+                        if(value == valuePixel){
+                            that_.attr('selected', true);
+                        }
+                    });
 
                 }else{
                     $("#register .alert-danger").removeClass('hide')
@@ -140,12 +152,15 @@ $( document ).ready(function() {
     //Update campaign
     $('#form_update_campaign').click(function(){
         var data = {
-            id: $('#id_campaign').val(),
-            name: $('#name_campaign').val()
+            id: $('#modal_edit_campaign #id_campaign').val(),
+            name: $('#modal_edit_campaign #name_campaign').val(),
+            id_pixel: $('#modal_edit_campaign #pixel').val(),
+            name_pixel: $('#modal_edit_campaign #pixel :selected').text(),
+            id_mark: $('#modal_edit_campaign #id_mark').val(),
         };
 
         $.ajax({
-            url: "update",
+            url: "/marca/campaign/update",
             method: "put",
             data: data,
             success: function(result){
@@ -157,6 +172,7 @@ $( document ).ready(function() {
                     $("#register .alert-success").removeClass('hide')
                     $("#register .alert-success span").html('<b>Success!</b> O nome da campanha foi editada.')
                     $('#tr_' + data.id).find('.text-name-campaign').html(data.name);
+                    $('#tr_' + data.id).find('.text-name-pixel').html((data.id_pixel != '') ? data.name_pixel : '--');
                     $('#tr_' + data.id).css({"border-left": "3px solid rgba(95, 190, 170, 0.4)"});
                 }else if(result == 'name-existing'){
                     $("#modal_edit_campaign .alert-warning").removeClass('hide')
@@ -178,41 +194,41 @@ $( document ).ready(function() {
     });
 
     //Delete campaign
-    $(".delete_campaign").click(function(event){
-
-        event.preventDefault();
-
-        if(!confirm('Realmente deseja excluir esta campanha?')){
-            return false;
-        }
-
-        var data = {id: $(this).attr('data-id-delete')};
-        var _this = $(this);
-
-        $.ajax({
-            url: "delete",
-            method: "delete",
-            data: data,
-            success: function (result) {
-
-                $(".alert").addClass('hide');
-
-                if(result == 'delete-true'){
-
-                    $("#register .alert-success").removeClass('hide');
-                    $("#register .alert-success span").html('<b>Sucesso!</b> A campanha foi removida.');
-
-                    _this.parents(".gradeU").fadeOut("slow"); //Temporário - Refazer, pois o datatable já exclui a row
-
-                }else{
-                    $("#register .alert-danger").removeClass('hide')
-                    $("#register .alert-danger span").html('<b>Erro!</b> Ocorreu um erro ao tentar remover a campanha, por favor tente novamente ou entre em contato.')
-                }
-
-                $(".alert-php").addClass('hide');
-            }
-        });
-    });
+    // $(".delete_campaign").click(function(event){
+    //
+    //     event.preventDefault();
+    //
+    //     if(!confirm('Realmente deseja excluir esta campanha?')){
+    //         return false;
+    //     }
+    //
+    //     var data = {id: $(this).attr('data-id-delete')};
+    //     var _this = $(this);
+    //
+    //     $.ajax({
+    //         url: "delete",
+    //         method: "delete",
+    //         data: data,
+    //         success: function (result) {
+    //
+    //             $(".alert").addClass('hide');
+    //
+    //             if(result == 'delete-true'){
+    //
+    //                 $("#register .alert-success").removeClass('hide');
+    //                 $("#register .alert-success span").html('<b>Sucesso!</b> A campanha foi removida.');
+    //
+    //                 _this.parents(".gradeU").fadeOut("slow"); //Temporário - Refazer, pois o datatable já exclui a row
+    //
+    //             }else{
+    //                 $("#register .alert-danger").removeClass('hide')
+    //                 $("#register .alert-danger span").html('<b>Erro!</b> Ocorreu um erro ao tentar remover a campanha, por favor tente novamente ou entre em contato.')
+    //             }
+    //
+    //             $(".alert-php").addClass('hide');
+    //         }
+    //     });
+    // });
 
 
      /* ****************************************

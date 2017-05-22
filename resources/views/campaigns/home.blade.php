@@ -15,7 +15,10 @@
         </div>
 
         <div style="min-height: 1000px;">
+
             <!-- corpo -->
+            <h2>{{ $mark->name }}</h2>
+
             <div class="panel">
                 <div class="panel-body">
                     <div class="row">
@@ -34,6 +37,7 @@
                                 <thead>
                                 <tr>
                                     <th>Nome da campanha</th>
+                                    <th>Nome pixel</th>
                                     <th>Ações</th>
                                 </tr>
                                 </thead>
@@ -42,6 +46,7 @@
                                     @foreach($campaigns as $campaign)
                                         <tr class="gradeU" id="tr_{{ $campaign->id }}">
                                             <td><a href="{{ route('list_influencers', ['id' => $campaign->id])}}" class="text-name-campaign">{{$campaign->name}}</a></td>
+                                            <td><a class="text-name-pixel">{{ (isset($campaign->getPixels[0])) ? $campaign->getPixels[0]->name : '--' }}</a></td>
                                             <td class="actions">
                                                 <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                                                 <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
@@ -83,14 +88,24 @@
                     
                         {{ csrf_field() }}
 
+                        <input type="hidden" name="id_mark" value="{{ $mark->id }}">
+
                         <div class="form-group">
                             <label for="name">Nome da campanha:</label>
                             <input type="text" class="required form-control" id="name" name="name" placeholder="Ex.: Produto para cabelo">
                         </div>
 
+                        <div class="form-group">
+                            <label for="sel1">Pixel de conversão:</label>
+                            <select class="form-control" name="pixel" id="pixel">
+                                <option value="" disabled selected>Selecione</option>
+                                @foreach($pixels as $pixel)
+                                    <option value="{{ $pixel['id'] }}">{{ $pixel['name'] }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <button type="submit" class="btn btn-default waves-effect waves-light validate">Salvar</button>
                         <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
-                    
                 </form>
             </div>
         </div>
@@ -105,18 +120,30 @@
         <h4 class="custom-modal-title">Editar Campanha</h4>
         <div class="custom-modal-text text-left">
 
-            @include('includes.alerts_validations')
+            <div class="validate-forms">
 
-            <form role="form">
-                <input type="hidden" id="id_campaign" name="id_campaign" value="">
-                <div class="form-group">
-                    <label for="name">Nome da campanha:</label>
-                    <input type="text" class="form-control" id="name_campaign" name="name" required="" placeholder="Ex.: Produto para cabelo">
-                </div>
+                @include('includes.alerts_validations')
 
-                <button type="button" id="form_update_campaign" class="btn btn-default waves-effect waves-light">Salvar</button>
-                <button class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
-            </form>
+                <form role="form">
+                    <input type="hidden" name="id_mark" id="id_mark" value="{{ $mark->id }}">
+                    <input type="hidden" id="id_campaign" name="id_campaign" value="">
+                    <div class="form-group">
+                        <label for="name">Nome da campanha:</label>
+                        <input type="text" class="required form-control" id="name_campaign" name="name" required="" placeholder="Ex.: Produto para cabelo">
+                    </div>
+                    <div class="form-group">
+                        <label for="sel1">Pixel de conversão:</label>
+                        <select class="form-control" name="pixel" id="pixel">
+                            <option class="op-pixel" value="" readonly="true">Selecione</option>
+                            @foreach($pixels as $pixel)
+                                <option class="op-pixel" value="{{ $pixel['id'] }}">{{ $pixel['name'] }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <button type="button" id="form_update_campaign" class="btn btn-default waves-effect waves-light validate">Salvar</button>
+                    <button class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
+                </form>
+            </div>
         </div>
     </div>
     <!-- end modal -->

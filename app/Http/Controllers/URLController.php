@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\URL;
 use App\Campaign;
 use App\Influencer;
-use App\URLResult;
+use App\Result;
 use App\PixelConversion;
 use App\UserAccessInformation;
 use Illuminate\Http\Request;
@@ -21,7 +21,7 @@ class URLController extends Controller
     private $influencer;
     private $pixel;
 
-    public function __construct(Campaign $campaign, URL $url,  URLResult $urlResult, Influencer $influencer, PixelConversion $pixel)
+    public function __construct(Campaign $campaign, URL $url, Result $urlResult, Influencer $influencer, PixelConversion $pixel)
     {
         $this->campaign = $campaign;
         $this->url = $url;

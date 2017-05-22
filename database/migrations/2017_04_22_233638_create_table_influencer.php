@@ -13,11 +13,13 @@ class CreateTableInfluencer extends Migration
      */
     public function up()
     {
-        Schema::create('influencers', function(Blueprint $table){
+        Schema::create('influencers', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_campaign')->unsigned();
             $table->foreign('id_campaign')->references('id')->on('campaigns');
             $table->string('name', 100);
+            $table->string('destiny_url');
+            $table->string('short_url', 50);
             $table->timestamps();
             $table->softDeletes();
         });

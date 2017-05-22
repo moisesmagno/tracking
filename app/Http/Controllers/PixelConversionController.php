@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Campaign;
 use App\Influencer;
-use App\URL;
-use App\URLResult;
+use App\Result;
 use App\PixelConversion;
 use App\UserAccessInformation;
 use App\Http\Requests\PixelConversionRequest;
@@ -17,15 +16,12 @@ class PixelConversionController extends Controller
 
     private $campaign;
     private $influencer;
-    private $url;
-    private $urlResult;
     private $pixelConversion;
     private $userAccessInformation;
 
-    public function __construct(Campaign $campaign, Influencer $influencer, URL $url, URLResult $urlResult, PixelConversion $pixelConversion, UserAccessInformation $userAccessInformation){
+    public function __construct(Campaign $campaign, Influencer $influencer, Result $urlResult, PixelConversion $pixelConversion, UserAccessInformation $userAccessInformation){
     	$this->campaign = $campaign;
     	$this->influencer = $influencer;
-        $this->url = $url;
         $this->urlResult = $urlResult;
         $this->pixelConversion = $pixelConversion;
         $this->userAccessInformation = $userAccessInformation;

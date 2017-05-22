@@ -39,7 +39,7 @@
 
                                     <?php $__currentLoopData = $marks; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mark): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr class="gradeU" id="tr_<?php echo e($mark->id); ?>">
-                                            <td><a href="<?php echo e(route('list_influencers', ['id' => $mark->id])); ?>" class="text-name-mark"><?php echo e($mark->name); ?></a></td>
+                                            <td><a href="<?php echo e(route('list_campaigns', ['id' => $mark->id])); ?>" class="text-name-mark"><?php echo e($mark->name); ?></a></td>
                                             <td class="actions">
                                                 <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                                                 <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>

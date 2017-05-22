@@ -5,12 +5,12 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class URL extends Model
+class Result extends Model
 {
 
     use SoftDeletes;
 
-    protected $table = 'urls';
+    protected $table = 'results';
 
     /**
      * The attributes that are mass assignable.
@@ -18,11 +18,11 @@ class URL extends Model
      * @var array
      */
     protected $fillable = [
-        'id_influencer', 'id_pixel_conversion','description', 'destiny_url', 'short_url', 'pixel_name'
+        'id_influencer', 'referer', 'agent', 'remote_addr'
     ];
 
     protected $dates = ['deleted_at'];
-
+    
     protected $softDelete = true;
 
 }

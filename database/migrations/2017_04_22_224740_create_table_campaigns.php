@@ -15,8 +15,9 @@ class CreateTableCampaigns extends Migration
     {
         Schema::create('campaigns', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_user')->unsigned();
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->integer('id_mark')->unsigned();
+            $table->foreign('id_mark')->references('id')->on('marks');
+            $table->integer('id_pixel')->nullable();
             $table->string('name', 100);
             $table->timestamps();
             $table->softDeletes();

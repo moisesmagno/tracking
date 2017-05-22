@@ -99,7 +99,7 @@
                         </div>
                         <div class="form-group">
                             <label for="sel1">Pixel de conversão:</label>
-                            <select class="required form-control" name="pixel" id="pixel">
+                            <select class="form-control" name="pixel" id="pixel">
                                 <option value="" disabled selected>Selecione</option>
                                 @foreach($pixels as $pixel)
                                     <option value="{{ $pixel['id'] }}">{{ $pixel['name'] }}</option>
@@ -147,7 +147,7 @@
 
                 <div class="form-group">
                     <label for="sel1">Pixel de conversão:</label>
-                    <select class="required form-control" name="pixel" id="pixel">
+                    <select class="form-control" name="pixel" id="pixel">
                         <option id="op-pixel-edit" value="" selected></option>
                         @foreach($pixels as $pixel)
                             <option value="{{ $pixel['id'] }}">{{ $pixel['name'] }}</option>

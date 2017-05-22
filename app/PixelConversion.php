@@ -9,7 +9,7 @@ class PixelConversion extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'pixel_conversion';
+    protected $table = 'pixel';
 
     /**
      * The attributes that are mass assignable.
@@ -23,6 +23,6 @@ class PixelConversion extends Model
     protected $softDelete = true;
 
     public function usersAccessInformations(){
-        return $this->hasMany(UserAccessInformation::class,'id_pixel_conversion','id');
+        return $this->hasMany(UserAccessInformation::class,'id_pixel','id');
     }
 }

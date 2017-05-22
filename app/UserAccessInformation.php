@@ -17,7 +17,7 @@ class UserAccessInformation extends Model
 	 * @var array
 	 */
 	protected $fillable = [
-		'id_user', 'id_pixel_conversion', 'url', 'agent', 'remote_addr', 'city', 'region_code', 'region_name', 'country_code', 'country_name', 'time_zone', 'latitude', 'longitude'
+		'id_user', 'id_pixel', 'url', 'agent', 'remote_addr', 'city', 'region_code', 'region_name', 'country_code', 'country_name', 'time_zone', 'latitude', 'longitude'
 	];
 
 	protected $dates = ['deleted_at'];
@@ -25,7 +25,7 @@ class UserAccessInformation extends Model
 	protected $softDelete = true;
 
 	public function pixelConversion(){
-		return $this->belongsTo(PixelConversion::class,'id','id_pixel_conversion');
+		return $this->belongsTo(PixelConversion::class,'id','id_pixel');
 	}
 
 	

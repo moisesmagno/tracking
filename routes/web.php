@@ -57,12 +57,12 @@ Route::group(['middleware' => 'auth'], function(){
         Route::name('update_mark')->put('/update', 'MarkController@update');
 //        Route::name('delete_mark')->delete('/delete', 'MarkController@destroy');
 
-        //Campanhas
-//        Route::name('home')->get('/home', 'CampaignController@index');
-//        Route::name('register_campaign')->post('/register', 'CampaignController@store');
-//        Route::name('edit_campaign')->post('/edit', 'CampaignController@edit');
-//        Route::name('update_campaign')->put('/update', 'CampaignController@update');
-//        Route::name('delete_campaign')->delete('/delete', 'CampaignController@destroy');
+        //Campaigns
+        Route::name('list_campaigns')->get('/{id}/campanhas', 'CampaignController@index');
+        Route::name('register_campaign')->post('/campaign/register', 'CampaignController@store');
+        Route::name('edit_campaign')->post('/campaign/edit', 'CampaignController@edit');
+        Route::name('update_campaign')->put('/campaign/update', 'CampaignController@update');
+        Route::name('delete_campaign')->delete('/campaign/delete', 'CampaignController@destroy');
 
         //Ifluencers
         Route::name('list_influencers')->get('/{id}/influenciadores', 'InfluencerController@index');

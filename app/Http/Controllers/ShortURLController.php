@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\URL;
-use App\URLResult;
+use App\Result;
 use Illuminate\Http\Request;
 
 class ShortURLController extends Controller
@@ -11,7 +11,7 @@ class ShortURLController extends Controller
     private $url;
     private $url_result;
 
-    public function __construct(URL $url, URLResult $url_result)
+    public function __construct(URL $url, Result $url_result)
     {
         $this->url = $url;
         $this->url_result = $url_result;

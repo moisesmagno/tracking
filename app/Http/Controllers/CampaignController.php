@@ -2,39 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Mark;
 use App\Campaign;
-use App\Influencer;
-use App\URL;
-use App\URLResult;
 use App\PixelConversion;
-use App\UserAccessInformation;
 use Illuminate\Http\Request;
 use App\Http\Requests\CampaignRegisterRequest;
 
 class CampaignController extends Controller
 {
 
+    private $mark;
     private $campaign;
-    private $url;
-    private $urlResult;
-    private $influencer;
+    private $pixel;
 
-    public function __construct(Campaign $campaign, Influencer $influencer, URL $url, URLResult $urlResult)
+    public function __construct(Mark $mark, Campaign $campaign, PixelConversion $pixel)
     {
+        $this->mark = $mark;
         $this->campaign = $campaign;
-        $this->url = $url;
-        $this->urlResult = $urlResult;
-        $this->influencer = $influencer;
+        $this->pixel = $pixel;
     }
 
     //Displays campaign home screen
-    public function index()
+    public function index($id)
     {
-        $campaigns = $this->campaign->where('id_user', session('id'))
+        $mark = $this->mark->find($id);
+
+        $campaigns = $this->campaign->with('getPixels')
+                                    ->where('id_mark', $id)
                                     ->orderBy('id', 'desc')
                                     ->get();
 
-        return view('campaigns.home')->with(['campaigns' => $campaigns]);
+        $pixels = $this->pixel->where('id_user', session('id'))->get();
+
+        return view('campaigns.home')->with(['mark' => $mark, 'campaigns' => $campaigns, 'pixels' => $pixels]);
     }
 
     //Register Campaign
@@ -43,20 +43,21 @@ class CampaignController extends Controller
 
         try{
 
-            $campaign = $this->campaign->where('id_user', session('id'))->where('name', $request->get('name'))->first();
+            $campaign = $this->campaign->where('id_mark', $request->get('id_mark'))->where('name', $request->get('name'))->first();
 
             if(!$campaign){
 
                 $this->campaign->create([
-                    'id_user' => session('id'),
-                    'name' => $request->get('name')
+                    'id_mark' => $request->get('id_mark'),
+                    'id_pixel' => (!empty($request->get('name'))) ? $request->get('pixel') : NULL,
+                    'name' => $request->get('name'),
                 ]);
 
                 session()->flash('alert-success', '<b>Sucesso!</b> A campanha foi adicionada.');
                 return redirect()->back();
 
             }else{
-                session()->flash('alert-warning', '<b>Atenção!</b> Não foi possível alterar o nome da campanha, pois já existe outra campanha com o mesmo nome.');
+                session()->flash('alert-warning', '<b>Atenção!</b> Não foi possível cadastrar o nome da campanha, pois já existe outra campanha com o mesmo nome.');
                 return redirect()->back();
             }
 
@@ -111,7 +112,11 @@ class CampaignController extends Controller
     public function edit(Request $request)
     {
         if($request->ajax()){
-            $campaign = $this->campaign->find($request->get('id'));
+
+            $campaign = $this->campaign->with('getPixels')
+                ->where('id', $request->get('id'))
+                ->first();
+
             return json_encode($campaign);
         }
     }
@@ -124,14 +129,19 @@ class CampaignController extends Controller
             try{
 
                 $campaign = $this->campaign
-                ->where('id_user', session('id'))
+                ->where('id_mark', $request->get('id_mark'))
                 ->where('name', $request->get('name'))
                 ->first();
 
                 if(!empty($campaign) && $campaign->id != $request->get('id')){
                     return 'name-existing';
                 }else{
-                    $this->campaign->where('id', $request->get('id'))->update(['name' => $request->get('name')]);
+                    $this->campaign->where('id', $request->get('id'))
+                                    ->update([
+                                        'name' => $request->get('name'),
+                                        'id_pixel' => ($request->get('id_pixel')) ? $request->get('id_pixel') : NULL
+                                    ]);
+
                     return 'register-ok';
                 }
 

@@ -18,10 +18,14 @@ class Campaign extends Model
      * @var array
      */
     protected $fillable = [
-        'id_user', 'name'
+        'id_mark', 'id_pixel', 'name'
     ];
 
     protected $dates = ['deleted_at', 'created_at'];
     
     protected $softDelete = true;
+
+    public function getPixels(){
+        return $this->hasMany(PixelConversion::class,'id','id_pixel');
+    }
 }
