@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserRegistertRequest;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -24,6 +25,8 @@ class RegisterController extends Controller
     public function store(UserRegistertRequest $request){
 
         try{
+
+            DB::beginTransaction();
 
             //Check existing email
             $email = $this->userModel->where('email', $request->email)->first();
@@ -48,10 +51,13 @@ class RegisterController extends Controller
 
                 session()->flash('alert-success', '<b>Parabéns!</b> Você foi cadastrado com sucesso, acesse sua conta agora mesmo :)');
 
+                DB::commit();
+
                 return redirect('/');
             }
 
         } catch (PDOException $e) {
+            DB::rollback();
             return redirect()->back();
         }
     }

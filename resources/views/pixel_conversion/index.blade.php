@@ -37,7 +37,6 @@
                                 <thead>
                                     <tr>
                                         <th>Nome da conversão</th>
-                                        <th>Influenciador</th>
                                         <th>Conversões</th>
                                         <th>Valor</th>
                                         <th>Valor total</th>
@@ -51,7 +50,6 @@
                                     @foreach($pixels as $pixel)
                                         <tr class="gradeU" id="tr_{{ $pixel->id }}">
                                             <td><a class="text-name-pixel">{{ $pixel->name }}</a></td>
-                                            <td><a class="text-name-pixel">Influenciador</a></td>
                                             <td>{{ count($pixel->usersAccessInformations) }}</td>
                                             <td>R$ {{ number_format($pixel->value, 2, ',', '.') }}</td>
                                             <td>R$ {{ number_format(count($pixel->usersAccessInformations) * $pixel->value, 2, ',', '.') }}</td>

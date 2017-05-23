@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Campaign;
-use App\URL;
-use App\Result;
-use App\PixelConversion;
-use App\UserAccessInformation;
 use App\Influencer;
+use App\PixelConversion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -16,15 +13,11 @@ class InfluencerController extends Controller
 
     private $campaign;
     private $influencer;
-    private $url;
-    private $urlresult;
     private $pixel;
 
-    public function __construct(Campaign $campaign, Influencer $influencer, URL $url, Result $urlresult, PixelConversion $pixel){
+    public function __construct(Campaign $campaign, Influencer $influencer, PixelConversion $pixel){
         $this->campaign = $campaign;
         $this->influencer = $influencer;
-        $this->url = $url;
-        $this->urlresult = $urlresult;
         $this->pixel = $pixel;
     }
 
@@ -34,17 +27,16 @@ class InfluencerController extends Controller
         //Session to be used in the page navigator
         session(['id_campaign' => $id]);
 
-        $pixels = $this->pixel
-            ->where('id_user', session('id'))
-            ->where('id_influencer', NULL)
-            ->get()
-            ->toArray();
-
+        //Campaign
         $campaign = $this->campaign->find($id);
 
+        //Influencers
         $influencers = $this->influencer->where('id_campaign', $id)->get();
 
-        return view('influencers.index')->with(['campaign' => $campaign, 'influencers' => $influencers, 'pixels' => $pixels]);
+        //Pixel
+        $pixel = $this->pixel->find($campaign->id_pixel);
+
+        return view('influencers.index')->with(['campaign' => $campaign, 'influencers' => $influencers, 'pixel' => $pixel]);
     }
 
     //Register influencer
@@ -60,16 +52,31 @@ class InfluencerController extends Controller
 
             if(!$influencer){
 
+                $validate = true;
+                while($validate == true){
+                    //Generates the URL code
+//                    $code_url = chr(rand(65,90)) . rand(1, 99) . chr(rand(65,90)) . rand(1, 9) . chr(rand(65,90)) . rand(1, 9) . chr(rand(65,90));
+                    $code_url = chr(rand(65,90)) . rand(1, 99);
+                    $code = $this->influencer->where('short_url', PATH_SHORT_URL.$code_url)->first();
+
+                    if($code){
+                        $validate = true;
+                    }else{
+                        $short_url = PATH_SHORT_URL.$code_url;
+                        $validate = false;
+                    }
+                }
+
                 $newInfluencer = $this->influencer->create([
                     'id_campaign' => $request->get('id_campaign'),
-                    'name' => $request->get('name')
+                    'name' => $request->get('name'),
+                    'destiny_url' => $request->get('destiny_url'),
+                    'short_url' => $short_url
                 ]);
-
-                $this->pixel->find($request->get('pixel'))->update(['id_influencer' => $newInfluencer->id]);
 
                 DB::commit();
 
-                session()->flash('alert-success', '<b>Sucesso!</b> O Incluenciador foi adicionado.');
+                session()->flash('alert-success', '<b>Sucesso!</b> O Influenciador foi adicionado.');
                 return redirect()->back();
 
             }else{
@@ -90,17 +97,8 @@ class InfluencerController extends Controller
     public function edit(Request $request)
     {
         if($request->ajax()){
-            $influencer = $this->influencer->find($request->get('id'));
-
-            $pixel = $this->pixel
-                ->where('id_user', session('id'))
-                ->where('id_influencer', $influencer->id)
-                ->first();
-
-            $influencer->id_pixel = $pixel->id;
-            $influencer->name_pixel = $pixel->name;
-
-            return json_encode($influencer);
+            $url = $this->influencer->find($request->get('id'));
+            return json_encode($url);
         }
     }
 
@@ -111,37 +109,27 @@ class InfluencerController extends Controller
 
             try{
 
-                DB::beginTransaction();
-
                 $influencer = $this->influencer
                     ->where('id_campaign', $request->get('id_campaign'))
                     ->where('name', $request->get('name'))
                     ->first();
 
                 if(!empty($influencer) && $influencer->id != $request->get('id')){
+
                     return 'name-existing';
+
                 }else{
-                    $this->influencer->where('id', $request->get('id'))->update(['name' => $request->get('name')]);
 
-                    //Remove id of influencer
-                    $this->pixel
-                        ->where('id_influencer', $request->get('id'))
-                        ->where('id_user', session('id'))
-                        ->update(['id_influencer' => NULL]);
-
-                    //Add id influencer in new pixel
-                    $this->pixel
-                        ->where('id', $request->get('id_pixel'))
-                        ->where('id_user', session('id'))
-                        ->update(['id_influencer' => $request->get('id')]);
-
-                    DB::commit();
-
+                    $this->influencer
+                        ->where('id', $request->get('id'))
+                        ->where('id_campaign', $request->get('id_campaign'))
+                        ->update([
+                            'name' => $request->get('name'),
+                        ]);
                     return 'update-true';
                 }
 
             } catch (PDOException $e) {
-                DB::rollback();
                 return 'error-exception';
             }
         }

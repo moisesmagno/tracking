@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\URL;
+use App\Influencer;
 use App\Result;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ShortURLController extends Controller
 {
-    private $url;
-    private $url_result;
+    private $influencer;
+    private $result;
 
-    public function __construct(URL $url, Result $url_result)
+    public function __construct(Influencer $influencer, Result $result)
     {
-        $this->url = $url;
-        $this->url_result = $url_result;
+        $this->influencer = $influencer;
+        $this->result = $result;
     }
 
     //Shows URL destination
@@ -23,7 +24,7 @@ class ShortURLController extends Controller
         //Mounts the short URL
         $short_url = PATH_SHORT_URL . $code;
 
-        $dataUrl = $this->url->where('short_url', $short_url)->first();
+        $dataUrl = $this->influencer->where('short_url', $short_url)->first();
 
         if($dataUrl){
 
@@ -90,17 +91,20 @@ class ShortURLController extends Controller
 
         try{
 
-            $data = $this->url_result->create([
-                'id_user' => $dataUrl->id_user,
-                'id_url' => $dataUrl->id,
+            DB::beginTransaction();
+
+            $data = $this->result->create([
+                'id_influencer' => $dataUrl->id,
                 'referer' => $referer,
                 'agent' => $browser,
                 'remote_addr' => $remote_addr,
             ]);
 
             if(!empty($data)){
+                DB::commit();
                 return true;
             }else{
+                DB::rollback();
                 return false;
             }
 

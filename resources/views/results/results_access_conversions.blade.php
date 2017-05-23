@@ -1,4 +1,6 @@
-<?php $__env->startSection('content'); ?>
+@extends('templates.app')
+
+@section('content')
 
     <div class="container">
 
@@ -6,17 +8,17 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-header-1">
-                    <h4 class="page-title">Resultado do link</h4>
-                    <p>Veja como está o resultado do link vinculado ao seu influenciador</p>
+                    <h4 class="page-title">Resultados</h4>
+                    <p>Veja como está os resultados do seu influenciador</p>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="<?php echo e(route('home')); ?>">Campanhas</a>
+                            <a href="">Marcas</a>
                         </li>
                         <li class="active">
-                            <a href="<?php echo e(route('list_influencers', ['id' => session('id_campaign')])); ?>">Influenciadores</a>
+                            <a href="">Campanhas</a>
                         </li>
                         <li class="active">
-                            <a href="<?php echo e(route('results', ['id' => session('id_influencer')])); ?>">URLs</a>
+                            <a href="">Influenciadores</a>
                         </li>
                         <li class="active">
                             Relatório
@@ -26,12 +28,22 @@
             </div>
         </div>
 
+        <h2>{{ $influencer->name }}</h2>
+        <br>
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="page-header-1">
+                    <h4 class="page-title">URL + Pixel</h4>
+                    <p>Quantidade de cliques por rede e conversões de acordo ao processo completo.</p>
+
+                </div>
+            </div>
+        </div>
+
         <div style="min-height: 1000px;">
 
             <!-- corpo -->
-            <h2><?php echo e($url->description); ?></h2>
-
-            <br>
             <div class="panel">
                 <div class="panel-body">
                     <div class="">
@@ -44,13 +56,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $__currentLoopData = $url_results; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $urlResult): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                @foreach($url_results as $urlResult)
                                     <tr class="gradeU">
-                                        <td><a><?php echo e(($urlResult->referer == 'Outro') ? $urlResult->referer.'s' : $urlResult->referer); ?></a></td>
-                                        <td><?php echo e($urlResult->total_clicks); ?></td>
-                                        <td><?php echo e(isset($urlResult->unique_clicks) ? $urlResult->unique_clicks : 0); ?></td>
+                                        <td><a>{{ ($urlResult->referer == 'Outro') ? $urlResult->referer.'s' : $urlResult->referer}}</a></td>
+                                        <td>{{ $urlResult->total_clicks }}</td>
+                                        <td>{{ $urlResult->unique_clicks or 0}}</td>
                                     </tr>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -61,10 +73,10 @@
 
             <p>Exportar para:</p>
             <div class="dt-buttons btn-group">
-                <a class="btn btn-default buttons-csv buttons-html5 btn-sm" tabindex="0" aria-controls="datatable-buttons"><span>CSV</span></a>
+                {{--<a class="btn btn-default buttons-csv buttons-html5 btn-sm" tabindex="0" aria-controls="datatable-buttons"><span>CSV</span></a>--}}
                 <a class="btn btn-default buttons-excel buttons-html5 btn-sm" tabindex="0" aria-controls="datatable-buttons"><span>Excel</span></a>
-                <a class="btn btn-default buttons-pdf buttons-html5 btn-sm" tabindex="0" aria-controls="datatable-buttons"><span>PDF</span></a>
-                <a class="btn btn-default buttons-print btn-sm" tabindex="0" aria-controls="datatable-buttons"><span>Print</span></a>
+                {{--<a class="btn btn-default buttons-pdf buttons-html5 btn-sm" tabindex="0" aria-controls="datatable-buttons"><span>PDF</span></a>--}}
+                {{--<a class="btn btn-default buttons-print btn-sm" tabindex="0" aria-controls="datatable-buttons"><span>Print</span></a>--}}
             </div>
 
             <br><br><br><br><br>
@@ -74,7 +86,7 @@
                 <div class="col-sm-8">
                     <div class="page-header-1">
                         <h4 class="page-title">Pixel de conversão</h4>
-                        <p>Para mensurar o resultado da conversão, crie o pixel e adicione em todas as páginas do site de destino.</p>
+                        <p>Quantidade de acessos e conversões referentes apenas ao Pixel de conversão.</p>
 
                     </div>
                 </div>
@@ -90,17 +102,17 @@
 
                             <div class="row col-sm-12" id="crud-pixel-conversion">
                                 <!-- Alerts -->
-                                <?php echo $__env->make('includes.alerts_js', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-                                <?php echo $__env->make('includes.alerts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                                @include('includes.alerts_js')
+                                @include('includes.alerts')
                             </div>
                             <div class="">
                                 <table id="demo-foo-row-toggler" class="table toggle-circle table-hover">
                                     <thead>
                                     <tr>
                                         <th>Nome da conversão</th>
-                                        <th>Influenciador</th>
                                         <th>Conversões</th>
                                         <th>Valor</th>
+                                        <th>Valor total</th>
                                         <th>Criado em</th>
                                         <th>Janela</th>
                                         <th>Ações</th>
@@ -108,23 +120,23 @@
                                     </thead>
                                     <tbody>
 
-                                        <?php if($pixel): ?>
-                                            <tr class="gradeU" id="tr_<?php echo e($pixel->id); ?>">
-                                                <td><a class="text-name-pixel"><?php echo e($pixel->name); ?></a></td>
-                                                <td><a class="text-name-pixel">Influenciador</a></td>
-                                                <td><?php echo e(count($pixel->usersAccessInformations)); ?></td>
-                                                <td>R$ <?php echo e(number_format(count($pixel->usersAccessInformations) * $pixel->value, 2, ',', '.')); ?></td>
-                                                <td><?php echo e($pixel->created_at->format('d/m/Y')); ?></td>
-                                                <td class="text-interval-pixel"><?php echo e($pixel->time_interval . ' ' . $pixel->interval_type); ?></td>
+                                        @if($pixel)
+                                            <tr class="gradeU" id="tr_{{ $pixel->id }}">
+                                                <td><a class="text-name-pixel">{{ $pixel->name }}</a></td>
+                                                <td>{{ count($pixel->usersAccessInformations) }}</td>
+                                                <td>R$ {{ number_format(count($pixel->usersAccessInformations) * $pixel->value, 2, ',', '.') }}</td>
+                                                <td>R$ {{ number_format(count($pixel->usersAccessInformations) * $pixel->value, 2, ',', '.') }}</td>
+                                                <td>{{ $pixel->created_at->format('d/m/Y') }}</td>
+                                                <td class="text-interval-pixel">{{ $pixel->time_interval . ' ' . $pixel->interval_type }}</td>
                                                 <td class="actions">
                                                     <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                                                     <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                                                    <a href="#" class="on-default edit-row code_tags_js" data-toggle="modal" data-target="#code_pixel_conversion"  data-id-user="<?php echo e(session('id')); ?>" data-id-code="<?php echo e($pixel->id); ?>"><i class="typcn typcn-code"></i></a>
-                                                    <a href="#modal_edit_pixel" data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-id-edit="<?php echo e($pixel->id); ?>" data-overlayColor="#36404a" class="edit_pixel_conversion"><i class="fa fa-pencil"></i></a>
-                                                    
+                                                    <a href="#" class="on-default edit-row code_tags_js" data-toggle="modal" data-target="#code_pixel_conversion"  data-id-user="{{ session('id') }}" data-id-code="{{ $pixel->id }}"><i class="typcn typcn-code"></i></a>
+                                                    <a href="#modal_edit_pixel" data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-id-edit="{{ $pixel->id }}" data-overlayColor="#36404a" class="edit_pixel_conversion"><i class="fa fa-pencil"></i></a>
+                                                    {{--<a href="#"  data-id-delete="{{ $pixel->id }}" class="on-default remove-row delete_pixel"><i class="fa fa-trash-o"></i></a>--}}
                                                 </td>
                                             </tr>
-                                        <?php endif; ?>
+                                        @endif
 
                                     </tbody>
 
@@ -140,9 +152,9 @@
             </div> <!-- container -->
         </div>
 
-<?php $__env->stopSection(); ?>
+@endsection
 
-<?php $__env->startSection('modals'); ?>
+@section('modals')
 
     <!-- Modal edit pixel conversion -->
     <div id="modal_edit_pixel" class="modal-demo">
@@ -154,13 +166,12 @@
 
             <div class="validate-forms">
 
-                <?php echo $__env->make('includes.alerts_validations', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                @include('includes.alerts_validations')
 
-                <form role="form" action="<?php echo e(route('register_pixel_conversion')); ?>" method="post">
+                <form role="form" action="{{ route('register_pixel_conversion') }}" method="post">
 
                     <!-- Security token -->
-                    <?php echo e(csrf_field()); ?>
-
+                    {{ csrf_field() }}
 
                     <input type="hidden" id="id_pixel_conversion" name="id_pixel_conversion" value="">
 
@@ -222,7 +233,5 @@
     </div>
     <!-- end modal com js para embed na página do cliente -->
 
-<?php $__env->stopSection(); ?>
+@endsection
 
-
-<?php echo $__env->make('templates.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -8,6 +8,14 @@
                 <div class="page-header-1">
                     <h4 class="page-title">Campanhas</h4>
                     <p>Crie suas campanhas para organizar os influenciadores.</p>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="">Marcas</a>
+                        </li>
+                        <li>
+                            Campanhas
+                        </li>
+                    </ol>
                 </div>
             </div>
         </div>

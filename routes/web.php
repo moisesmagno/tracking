@@ -24,8 +24,8 @@ Route::name('register_new_user')->post('/register-user', 'RegisterController@sto
 Route::name('recover-password')->get('/recuperar-senha', 'RecoverPasswordController@index');
 Route::name('update_password')->put('/update-password', 'RecoverPasswordController@update');
 
-//URL
-Route::name('short_url')->get('/url/{code}', 'ShortURLController@show');
+//URL Short
+Route::name('short_url')->get('/u/{code}', 'ShortURLController@show');
 
 /* -------------------------------------------------------------------------
 ROUTE GROUP - ADMINRoute Group - Admin
@@ -65,21 +65,15 @@ Route::group(['middleware' => 'auth'], function(){
         Route::name('delete_campaign')->delete('/campaign/delete', 'CampaignController@destroy');
 
         //Ifluencers
-        Route::name('list_influencers')->get('/{id}/influenciadores', 'InfluencerController@index');
-        Route::name('register_influencer')->post('/influencer/register', 'InfluencerController@store');
-        Route::name('edit_influencer')->post('/influencer/edit', 'InfluencerController@edit');
-        Route::name('update_influencer')->put('/influencer/update', 'InfluencerController@update');
-        Route::name('delete_influencer')->delete('/influencer/delete', 'InfluencerController@destroy');
+        Route::name('list_influencers')->get('/campanha/{id}/influenciadores', 'InfluencerController@index');
+        Route::name('register_influencer')->post('/campaign/influencer/register', 'InfluencerController@store');
+        Route::name('edit_influencer')->post('/campaign/influencer/edit', 'InfluencerController@edit');
+        Route::name('update_influencer')->put('/campaign/influencer/update', 'InfluencerController@update');
+        Route::name('delete_influencer')->delete('/campaign/influencer/delete', 'InfluencerController@destroy');
 
-        //URLs
-        Route::name('urls')->get('/influenciador/{id}/url', 'URLController@index');
-        Route::name('register_url')->post('/influencer/url/register', 'URLController@store');
-        Route::name('edit_url')->post('/influencer/url/edit', 'URLController@edit');
-        Route::name('update_url')->put('/influencer/url/update', 'URLController@update');
-        Route::name('delete_url')->delete('/influencer/url/delete', 'URLController@destroy');
 
-        //URL Results
-        Route::name('url_results')->get('/url/{id}/relatorio', 'URLResultsController@index');
+        //Results
+        Route::name('results')->get('/campaign/influencer/{id}/relatorio', 'ResultsController@index');
 
     });
 

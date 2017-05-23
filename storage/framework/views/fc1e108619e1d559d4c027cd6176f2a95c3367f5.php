@@ -16,7 +16,7 @@
                             <a href="<?php echo e(route('list_influencers', ['id' => session('id_campaign')])); ?>">Influenciadores</a>
                         </li>
                         <li class="active">
-                            <a href="<?php echo e(route('urls', ['id' => session('id_influencer')])); ?>">URLs</a>
+                            <a href="<?php echo e(route('results', ['id' => session('id_influencer')])); ?>">URLs</a>
                         </li>
                         <li class="active">
                             Relatório

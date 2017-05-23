@@ -4287,7 +4287,7 @@
       var rng = linkInfo.range || this.createRange();
       var isTextChanged = rng.toString() !== linkText;
 
-      // handle spaced urls from input
+      // handle spaced results from input
       if (typeof linkUrl === 'string') {
         linkUrl = linkUrl.trim();
       }
