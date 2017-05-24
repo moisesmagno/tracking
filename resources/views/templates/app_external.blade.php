@@ -60,7 +60,31 @@
 
         <!-- Masks -->
         <script src="{{ asset('js/jquery-mask.js') }}"></script>
+        <script type="text/javascript">
+
+//            console.log(getCookie('XSRF-TOKEN'));
+//
+//            function getCookie(cname) {
+//                var name = cname + "=";
+//                var decodedCookie = decodeURIComponent(document.cookie);
+//                var ca = decodedCookie.split(';');
+//                for(var i = 0; i <ca.length; i++) {
+//                    var c = ca[i];
+//                    while (c.charAt(0) == ' ') {
+//                        c = c.substring(1);
+//                    }
+//                    if (c.indexOf(name) == 0) {
+//                        return c.substring(name.length, c.length);
+//                    }
+//                }
+//                return "";
+//            }
+
+
+
+            {{--var u=1,px=1; var imported = document.createElement('script'); imported.src = 'http://tracking.dev/js/user_access_information.js'; document.head.appendChild(imported); --}}
+
+        </script>
         <script src="{{ asset('js/jquery-mask-custom.js') }}"></script>
-        <script type="text/javascript">var u=1,px=3; var imported = document.createElement('script'); imported.src = 'http://tracking.dev/js/user_access_information.js'; document.head.appendChild(imported); </script>
     </body>
 </html>

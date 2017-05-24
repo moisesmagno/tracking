@@ -53,6 +53,8 @@
                                     <th>Rede</th>
                                     <th>Cliques</th>
                                     <th>Cliques únicos</th>
+                                    <th>Conversões</th>
+                                    <th>Valor Total</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -61,6 +63,8 @@
                                         <td><a>{{ ($urlResult->referer == 'Outro') ? $urlResult->referer.'s' : $urlResult->referer}}</a></td>
                                         <td>{{ $urlResult->total_clicks }}</td>
                                         <td>{{ $urlResult->unique_clicks or 0}}</td>
+                                        <td>{{ '--'}}</td>
+                                        <td>{{ '--'}}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -124,7 +128,7 @@
                                             <tr class="gradeU" id="tr_{{ $pixel->id }}">
                                                 <td><a class="text-name-pixel">{{ $pixel->name }}</a></td>
                                                 <td>{{ count($pixel->usersAccessInformations) }}</td>
-                                                <td>R$ {{ number_format(count($pixel->usersAccessInformations) * $pixel->value, 2, ',', '.') }}</td>
+                                                <td>R$ {{ number_format($pixel->value, 2, ',', '.') }}</td>
                                                 <td>R$ {{ number_format(count($pixel->usersAccessInformations) * $pixel->value, 2, ',', '.') }}</td>
                                                 <td>{{ $pixel->created_at->format('d/m/Y') }}</td>
                                                 <td class="text-interval-pixel">{{ $pixel->time_interval . ' ' . $pixel->interval_type }}</td>

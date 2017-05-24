@@ -18,6 +18,8 @@ class CreateTbUserAccessInformation extends Migration
             $table->integer('id_user');
             $table->integer('id_pixel')->unsigned();
             $table->foreign('id_pixel')->references('id')->on('pixel');
+            $table->integer('id_influencer')->nullable();
+            $table->string('referer_short_url', 80)->nullable();
             $table->string('url');
             $table->string('agent', 25);
             $table->string('remote_addr', 15);

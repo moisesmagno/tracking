@@ -6,6 +6,7 @@ use App\Influencer;
 use App\Result;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\Cookie;
 
 class ShortURLController extends Controller
 {
@@ -100,15 +101,23 @@ class ShortURLController extends Controller
                 'remote_addr' => $remote_addr,
             ]);
 
+            //Set cookies
+//                $cookie = cookie('id_influencer', $dataUrl->id, 1);
+//                $cookie = cookie('referer', $referer, 1);
+
+            setcookie("id_influencer", $dataUrl->id,time()+1000);
+            setcookie("referer", $referer,time()+1000);
+
             if(!empty($data)){
+
                 DB::commit();
                 return true;
             }else{
-                DB::rollback();
                 return false;
             }
 
         } catch (PDOException $e) {
+            DB::rollback();
             echo '<h1>Desculpe, ocorreu um erro, por favor entre em contato com o suporte.</h1>';
             die;
         }
