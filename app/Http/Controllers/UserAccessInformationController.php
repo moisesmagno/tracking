@@ -19,6 +19,8 @@ class UserAccessInformationController extends Controller
 	
 		$id_user = $_POST['id_user'];
 		$id_pixel_conversion = $_POST['id_pixel_conversion'];
+		$id_influencer = (isset($_COOKIE['id_influencer']))? $_COOKIE['id_influencer'] : NULL;
+		$referer = (isset($_COOKIE['referer']))? $_COOKIE['referer'] : NULL;
 		$url = $_POST['url'];
 		$agent = $_POST['agent'];
 		$remote_addr = $_POST['remote_addr'];
@@ -39,7 +41,9 @@ class UserAccessInformationController extends Controller
 			
 			$this->userAccessInformation->create([
 				'id_user' => $id_user,
-				'id_pixel_conversion' => $id_pixel_conversion,
+				'id_pixel' => $id_pixel_conversion,
+                'id_influencer' => $id_influencer,
+                'referer_short_url' => $referer,
 				'url' => $url,
 				'agent' => $agent,
 				'remote_addr' => $remote_addr,

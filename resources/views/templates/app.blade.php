@@ -203,10 +203,5 @@
         <!-- Masks -->
         <script src="{{ asset('js/jquery-mask.js') }}"></script>
         <script src="{{ asset('js/jquery-mask-custom.js') }}"></script>
-
-        <script>
-            localStorage.setItem('path_url', '{{ PATH_URL }}');
-            localStorage.setItem('path_short_url', '{{ PATH_SHORT_URL }}');
-        </script>
     </body>
 </html>

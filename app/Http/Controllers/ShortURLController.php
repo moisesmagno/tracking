@@ -6,7 +6,6 @@ use App\Influencer;
 use App\Result;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Symfony\Component\HttpFoundation\Cookie;
 
 class ShortURLController extends Controller
 {
@@ -31,8 +30,8 @@ class ShortURLController extends Controller
 
             //Save informations the link
             if($this->store($dataUrl)){
-                header('Location: '.$dataUrl->destiny_url);
-                die;
+
+                return view('redirects.link')->with(['dataUrl' => $dataUrl]);
             }
 
         }else{
@@ -101,15 +100,10 @@ class ShortURLController extends Controller
                 'remote_addr' => $remote_addr,
             ]);
 
-            //Set cookies
-//                $cookie = cookie('id_influencer', $dataUrl->id, 1);
-//                $cookie = cookie('referer', $referer, 1);
-
-            setcookie("id_influencer", $dataUrl->id,time()+1000);
-            setcookie("referer", $referer,time()+1000);
+            setcookie('id_influencer', $dataUrl->id, time()+2592000, '/', DOMAIN, false, false);
+            setcookie('referer', $referer, time()+2592000, '/', DOMAIN, false, false);
 
             if(!empty($data)){
-
                 DB::commit();
                 return true;
             }else{
