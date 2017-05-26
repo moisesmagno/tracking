@@ -20,7 +20,7 @@ class UserAccessInformation extends Model
 		'id_user', 'id_pixel', 'id_influencer', 'referer_short_url', 'url', 'agent', 'remote_addr', 'city', 'region_code', 'region_name', 'country_code', 'country_name', 'time_zone', 'latitude', 'longitude'
 	];
 
-	protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at', 'created_at'];
 
 	protected $softDelete = true;
 

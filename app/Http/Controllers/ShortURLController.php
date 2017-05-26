@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Influencer;
 use App\Result;
+use App\Campaign;
+use App\UserAccessInformation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -11,11 +13,14 @@ class ShortURLController extends Controller
 {
     private $influencer;
     private $result;
+    private $userAccessInformation;
 
-    public function __construct(Influencer $influencer, Result $result)
+    public function __construct(Influencer $influencer, Result $result, UserAccessInformation $userAccessInformation, Campaign $campaign)
     {
         $this->influencer = $influencer;
         $this->result = $result;
+        $this->userAccessInformation = $userAccessInformation;
+        $this->campaign = $campaign;
     }
 
     //Shows URL destination
@@ -87,7 +92,7 @@ class ShortURLController extends Controller
         }
 
         //REMOTE_ADDR
-        $remote_addr = $_SERVER['REMOTE_ADDR'];
+        $remote_addr = $_SERVER["HTTP_CLIENT_IP"];
 
         try{
 
@@ -100,11 +105,27 @@ class ShortURLController extends Controller
                 'remote_addr' => $remote_addr,
             ]);
 
-            setcookie('id_influencer', $dataUrl->id, time()+2592000, '/', DOMAIN, false, false);
-            setcookie('referer', $referer, time()+2592000, '/', DOMAIN, false, false);
+            $id_pixel = $this->campaign->find($dataUrl->id_campaign)->id_pixel;
+
+            $dataUser = $this->userAccessInformation
+                        ->where('id_pixel', $id_pixel)
+                        ->where('remote_addr', $remote_addr)
+                        ->where('id_influencer', $dataUrl->id)
+                        ->where('referer_short_url', $referer)
+                        ->first();
+
+            if(!$dataUser){
+                $this->userAccessInformation->create([
+                    'id_pixel' => $id_pixel,
+                    'remote_addr' => $remote_addr,
+                    'id_influencer' => $dataUrl->id,
+                    'referer_short_url' => $referer
+                ]);
+            }
 
             if(!empty($data)){
                 DB::commit();
+
                 return true;
             }else{
                 return false;

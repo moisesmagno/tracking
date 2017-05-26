@@ -15,49 +15,70 @@ class UserAccessInformationController extends Controller
 	}
 
     //Register user Information
-    public function store(){
-	
-		$id_user = $_POST['id_user'];
-		$id_pixel_conversion = $_POST['id_pixel_conversion'];
-		$id_influencer = (isset($_COOKIE['id_influencer']))? $_COOKIE['id_influencer'] : NULL;
-		$referer = (isset($_COOKIE['referer']))? $_COOKIE['referer'] : NULL;
-		$url = $_POST['url'];
-		$agent = $_POST['agent'];
-		$remote_addr = $_POST['remote_addr'];
-		$city = $_POST['city'];
-		$region_code = $_POST['region_code'];
-		$region_name = $_POST['region_name'];
-		$country_code = $_POST['country_code'];
-		$country_name = $_POST['country_name'];
-		$time_zone = $_POST['time_zone'];
-		$latitude = $_POST['latitude'];
-		$longitude = $_POST['longitude'];
+    public function store(Request $request){
 
-		
+        $id_user = $request->get('id_user');
+		$id_pixel_conversion = $request->get('id_pixel_conversion');
+		$url = $request->get('url');
+		$agent = $request->get('agent');
+		$remote_addr = $request->get('remote_addr');
+		$city = $request->get('city');
+		$region_code = $request->get('region_code');
+		$region_name = $request->get('region_name');
+		$country_code = $request->get('country_code');
+		$country_name = $request->get('country_name');
+		$time_zone = $request->get('time_zone');
+		$latitude = $request->get('latitude');
+		$longitude = $request->get('longitude');
+
 		// Verifies that the same ip that accessed the conversion pixel
-		$dataUser = $this->userAccessInformation->where('remote_addr', $remote_addr)->first();
+		$dataUser = $this->userAccessInformation
+            ->where('id_pixel', 4)
+            ->where('remote_addr', '127.0.0.1')
+            ->first();
 
-		if(empty($dataUser)){
-			
-			$this->userAccessInformation->create([
-				'id_user' => $id_user,
-				'id_pixel' => $id_pixel_conversion,
-                'id_influencer' => $id_influencer,
-                'referer_short_url' => $referer,
-				'url' => $url,
-				'agent' => $agent,
-				'remote_addr' => $remote_addr,
-				'city' => $city,
-				'region_code' => $region_code,
-				'region_name' => $region_name,
-				'country_code' => $country_code,
-				'country_name' => $country_name,
-				'time_zone' => $time_zone,
-				'latitude' => $latitude,
-				'longitude' => $longitude
-			]);
-		}
+		return $dataUser;
 
-		
+//        if($dataUser->remote_addr == $remote_addr && $dataUser->id_influencer != NULL && $dataUser->referer_short_url != NULL && $dataUser->id_user == NULL && $dataUser->url == NULL){
+//
+//            $this->userAccessInformation
+//                ->where('id_pixel', $id_pixel_conversion)
+//                ->where('remote_addr', $remote_addr)
+//                ->update([
+//                'id_user' => $id_user,
+//                'id_pixel' => $id_pixel_conversion,
+//                'url' => $url,
+//                'agent' => $agent,
+//                'remote_addr' => $remote_addr,
+//                'city' => $city,
+//                'region_code' => $region_code,
+//                'region_name' => $region_name,
+//                'country_code' => $country_code,
+//                'country_name' => $country_name,
+//                'time_zone' => $time_zone,
+//                'latitude' => $latitude,
+//                'longitude' => $longitude
+//            ]);
+//
+//        }elseif($dataUser->remote_addr == NULL && $dataUser->id_influencer == NULL && $dataUser->referer_short_url == NULL && $dataUser->id_user == NULL){
+//
+//            $this->userAccessInformation->create([
+//                'id_user' => $id_user,
+//                'id_pixel' => $id_pixel_conversion,
+//                'id_influencer' => NULL,
+//                'referer_short_url' => NULL,
+//                'url' => $url,
+//                'agent' => $agent,
+//                'remote_addr' => $remote_addr,
+//                'city' => $city,
+//                'region_code' => $region_code,
+//                'region_name' => $region_name,
+//                'country_code' => $country_code,
+//                'country_name' => $country_name,
+//                'time_zone' => $time_zone,
+//                'latitude' => $latitude,
+//                'longitude' => $longitude
+//            ]);
+//        }
     }
 }
