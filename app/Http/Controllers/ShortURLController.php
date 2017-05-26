@@ -92,7 +92,7 @@ class ShortURLController extends Controller
         }
 
         //REMOTE_ADDR
-        $remote_addr = $_SERVER["HTTP_CLIENT_IP"];
+        $remote_addr = $_SERVER["REMOTE_ADDR"];
 
         try{
 

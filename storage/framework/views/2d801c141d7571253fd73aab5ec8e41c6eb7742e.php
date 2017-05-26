@@ -35,9 +35,9 @@
                                 <thead>
                                     <tr>
                                         <th>Nome da conversão</th>
-                                        <th>Influenciador</th>
                                         <th>Conversões</th>
                                         <th>Valor</th>
+                                        <th>Valor total</th>
                                         <th>Criado em</th>
                                         <th>Janela</th>
                                         <th>Ações</th>
@@ -48,8 +48,8 @@
                                     <?php $__currentLoopData = $pixels; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pixel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr class="gradeU" id="tr_<?php echo e($pixel->id); ?>">
                                             <td><a class="text-name-pixel"><?php echo e($pixel->name); ?></a></td>
-                                            <td><a class="text-name-pixel">Influenciador</a></td>
                                             <td><?php echo e(count($pixel->usersAccessInformations)); ?></td>
+                                            <td>R$ <?php echo e(number_format($pixel->value, 2, ',', '.')); ?></td>
                                             <td>R$ <?php echo e(number_format(count($pixel->usersAccessInformations) * $pixel->value, 2, ',', '.')); ?></td>
                                             <td><?php echo e($pixel->created_at->format('d/m/Y')); ?></td>
                                             <td class="text-interval-pixel"><?php echo e($pixel->time_interval . ' ' . $pixel->interval_type); ?></td>

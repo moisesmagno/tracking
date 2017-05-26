@@ -106,7 +106,7 @@
                                 
                             
                             <li class="has_sub">
-                                <a href="<?php echo e(route('home')); ?>" class="waves-effect"><i class="ti-paint-bucket"></i> <span> Campanhas</span> <span class="menu-arrow"></span> </a>
+                                <a href="<?php echo e(route('home')); ?>" class="waves-effect"><i class="ti-paint-bucket"></i> <span> Marcas</span> <span class="menu-arrow"></span> </a>
                                 
                                 
                                     
@@ -203,10 +203,5 @@
         <!-- Masks -->
         <script src="<?php echo e(asset('js/jquery-mask.js')); ?>"></script>
         <script src="<?php echo e(asset('js/jquery-mask-custom.js')); ?>"></script>
-
-        <script>
-            localStorage.setItem('path_url', '<?php echo e(PATH_URL); ?>');
-            localStorage.setItem('path_short_url', '<?php echo e(PATH_SHORT_URL); ?>');
-        </script>
     </body>
 </html>
