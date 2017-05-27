@@ -61,8 +61,8 @@
                                         <td><a><?php echo e(($urlResult->referer == 'Outro') ? $urlResult->referer.'s' : $urlResult->referer); ?></a></td>
                                         <td><?php echo e($urlResult->total_clicks); ?></td>
                                         <td><?php echo e(isset($urlResult->unique_clicks) ? $urlResult->unique_clicks : 0); ?></td>
-                                        <td><?php echo e('--'); ?></td>
-                                        <td><?php echo e('--'); ?></td>
+                                        <td><?php echo e(isset($urlResult->conversao) ? $urlResult->conversao : '--'); ?></td>
+                                        <td><?php echo e(($urlResult->valor_total)? 'R$' . $urlResult->valor_total : '--'); ?></td>
                                     </tr>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </tbody>

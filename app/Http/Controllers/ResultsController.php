@@ -35,6 +35,16 @@ class ResultsController extends Controller
             ->where('id', $id)
             ->first();
 
+        //ID Pixel
+        $idPixel = $this->campaign->find($influencer->id_campaign)->id_pixel;
+
+        //Pixel data and conversions
+        $pixel = $this->pixel
+            ->with('usersAccessInformations')
+            ->where('id_user', session('id'))
+            ->where('id', $idPixel)
+            ->first();
+
         //URL click counter
         $url_results = $this->result
             ->selectRaw("referer,
@@ -42,16 +52,35 @@ class ResultsController extends Controller
                          count(distinct remote_addr) as unique_clicks")
             ->where('id_influencer', $id)
             ->groupBy('referer')
+            ->orderBy('referer')
             ->get();
 
-        $idPixel = $this->campaign->find($influencer->id_campaign)->id_pixel;
+        $referers = [];
+        if(!$url_results->isEmpty()) {
 
-        //Pixel data and conversions
-        $pixel = $this->pixel
-        ->with('usersAccessInformations')
-        ->where('id_user', session('id'))
-        ->where('id', $idPixel)
-        ->first();
+            foreach ($url_results as $resultURL) {
+                array_push($referers, $resultURL->referer);
+            }
+
+            //Get conversions
+            $conversions = $this->userAccess
+                ->selectRaw("referer_short_url, count(id) as total_conversions")
+                ->whereIn('referer_short_url', $referers)
+                ->where('id_pixel', $idPixel)
+                ->where('id_influencer', $id)
+                ->groupBy('referer_short_url')
+                ->orderBy('referer_short_url')
+                ->get();
+
+            foreach ($url_results as $resultURL) {
+                foreach ($conversions as $conversion) {
+                    if ($resultURL->referer === $conversion->referer_short_url) {
+                        $resultURL->conversao = $conversion->total_conversions;
+                        $resultURL->valor_total = number_format($conversion->total_conversions * $pixel->value, 2, ',', '.');
+                    }
+                }
+            }
+        }
 
         return view('results.results_access_conversions')->with(['influencer' => $influencer, 'url_results' => $url_results, 'pixel' => $pixel]);
     }

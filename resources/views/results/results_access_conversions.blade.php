@@ -63,8 +63,8 @@
                                         <td><a>{{ ($urlResult->referer == 'Outro') ? $urlResult->referer.'s' : $urlResult->referer}}</a></td>
                                         <td>{{ $urlResult->total_clicks }}</td>
                                         <td>{{ $urlResult->unique_clicks or 0}}</td>
-                                        <td>{{ '--'}}</td>
-                                        <td>{{ '--'}}</td>
+                                        <td>{{ $urlResult->conversao or '--' }}</td>
+                                        <td>{{ ($urlResult->valor_total)? 'R$' . $urlResult->valor_total : '--'}}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
