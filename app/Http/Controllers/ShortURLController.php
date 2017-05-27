@@ -94,6 +94,10 @@ class ShortURLController extends Controller
         //REMOTE_ADDR
         $remote_addr = $_SERVER["REMOTE_ADDR"];
 
+
+
+        $ip = $_SERVER["REMOTE_ADDR"];
+
         try{
 
             DB::beginTransaction();
@@ -105,23 +109,8 @@ class ShortURLController extends Controller
                 'remote_addr' => $remote_addr,
             ]);
 
-            $id_pixel = $this->campaign->find($dataUrl->id_campaign)->id_pixel;
-
-            $dataUser = $this->userAccessInformation
-                        ->where('id_pixel', $id_pixel)
-                        ->where('remote_addr', $remote_addr)
-                        ->where('id_influencer', $dataUrl->id)
-                        ->where('referer_short_url', $referer)
-                        ->first();
-
-            if(!$dataUser){
-                $this->userAccessInformation->create([
-                    'id_pixel' => $id_pixel,
-                    'remote_addr' => $remote_addr,
-                    'id_influencer' => $dataUrl->id,
-                    'referer_short_url' => $referer
-                ]);
-            }
+            setcookie('id_influencer', $dataUrl->id, time()+2592000, '/', DOMAIN, false, false);
+            setcookie('referer', $referer, time()+2592000, '/', DOMAIN, false, false);
 
             if(!empty($data)){
                 DB::commit();
