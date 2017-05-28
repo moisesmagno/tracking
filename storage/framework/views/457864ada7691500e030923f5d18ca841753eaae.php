@@ -11,8 +11,6 @@
         <title>Tracking - Celebryts</title>
 
         <!-- Plugin Css-->
-        
-        
         <link href="<?php echo e(asset('plugins/custombox/css/custombox.css')); ?>" rel="stylesheet">
         <link href="<?php echo e(asset('css/bootstrap.min.css')); ?>" rel="stylesheet" type="text/css" />
         <link href="<?php echo e(asset('css/core.css')); ?>" rel="stylesheet" type="text/css" />
@@ -20,6 +18,13 @@
         <link href="<?php echo e(asset('css/icons.css')); ?>" rel="stylesheet" type="text/css" />
         <link href="<?php echo e(asset('css/pages.css')); ?>" rel="stylesheet" type="text/css" />
         <link href="<?php echo e(asset('css/responsive.css')); ?>" rel="stylesheet" type="text/css" />
+
+
+        <!--Data table -->
+        
+        <link href="Https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- CSS Custon -->
         <link href="<?php echo e(asset('css/custom.css')); ?>" rel="stylesheet" type="text/css" />
 
         <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -173,6 +178,10 @@
 
         <!-- jQuery  -->
         <script src="<?php echo e(asset('js/jquery.min.js')); ?>"></script>
+        <script src="Https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+        <script src="Https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+        <script src="<?php echo e(asset('js/data-table-custom.js')); ?>"></script>
         <script src="<?php echo e(asset('js/bootstrap.min.js')); ?>"></script>
         <script src="<?php echo e(asset('js/detect.js')); ?>"></script>
         <script src="<?php echo e(asset('js/fastclick.js')); ?>"></script>

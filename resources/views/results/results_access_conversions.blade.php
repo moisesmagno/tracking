@@ -34,7 +34,7 @@
         <div class="row">
             <div class="col-sm-8">
                 <div class="page-header-1">
-                    <h4 class="page-title">URL + Pixel</h4>
+                    <h4 class="page-title">URL</h4>
                     <p>Quantidade de cliques por rede e conversões de acordo ao processo completo.</p>
 
                 </div>

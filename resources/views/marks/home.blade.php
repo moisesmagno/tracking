@@ -30,12 +30,12 @@
                             @include('includes.alerts')
                         </div>
                         <div class="">
-                            <table class="table table-striped">
+                            <table class="table table-striped table-bordered" id="dt-marks" cellspacing="0" width="100%">
                                 <thead>
-                                <tr>
-                                    <th>Nome da marca</th>
-                                    <th>Ações</th>
-                                </tr>
+                                    <tr>
+                                        <th>Nome da marca</th>
+                                        <th>Ações</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
 

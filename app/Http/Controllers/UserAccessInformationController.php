@@ -62,8 +62,6 @@ class UserAccessInformationController extends Controller
                'latitude' => $latitude,
                'longitude' => $longitude
            ]);
-        }else{
-
         }
     }
 }
