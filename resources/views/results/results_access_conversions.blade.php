@@ -47,7 +47,7 @@
             <div class="panel">
                 <div class="panel-body">
                     <div class="">
-                        <table class="table table-striped">
+                        <table class="table table-striped table-bordered dt-responsive display nowrap" id="dt-results" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                     <th>Rede</th>
@@ -75,15 +75,7 @@
 
             </div> <!-- end Panel -->
 
-            <p>Exportar para:</p>
-            <div class="dt-buttons btn-group">
-                {{--<a class="btn btn-default buttons-csv buttons-html5 btn-sm" tabindex="0" aria-controls="datatable-buttons"><span>CSV</span></a>--}}
-                <a class="btn btn-default buttons-excel buttons-html5 btn-sm" tabindex="0" aria-controls="datatable-buttons"><span>Excel</span></a>
-                {{--<a class="btn btn-default buttons-pdf buttons-html5 btn-sm" tabindex="0" aria-controls="datatable-buttons"><span>PDF</span></a>--}}
-                {{--<a class="btn btn-default buttons-print btn-sm" tabindex="0" aria-controls="datatable-buttons"><span>Print</span></a>--}}
-            </div>
-
-            <br><br><br><br><br>
+            <br><br>
 
             <!-- Page-Title -->
             <div class="row">
@@ -110,7 +102,7 @@
                                 @include('includes.alerts')
                             </div>
                             <div class="">
-                                <table id="demo-foo-row-toggler" class="table toggle-circle table-hover">
+                                <table class="table table-striped table-bordered dt-responsive display nowrap" id="dt-pixel-results" cellspacing="0" width="100%">
                                     <thead>
                                     <tr>
                                         <th>Nome da conversão</th>

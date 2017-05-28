@@ -33,7 +33,7 @@
                         </div>
 
                         <div class="">
-                            <table id="demo-foo-row-toggler" class="table toggle-circle table-hover">
+                            <table class="table table-striped table-bordered dt-responsive display nowrap" id="dt-pixel" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
                                         <th>Nome da conversão</th>

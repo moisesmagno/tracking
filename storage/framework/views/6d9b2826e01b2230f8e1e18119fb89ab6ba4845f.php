@@ -28,9 +28,13 @@
                             <?php echo $__env->make('includes.alerts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                         </div>
                         <div class="">
-                            <table class="table table-striped table-bordered" id="dt-marks" cellspacing="0" width="100%">
+                            <table class="table table-striped table-bordered dt-responsive display nowrap" id="dt-marks" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
+                                        <th>Nome da marca</th>
+                                        <th>Nome da marca</th>
+                                        <th>Nome da marca</th>
+                                        <th>Nome da marca</th>
                                         <th>Nome da marca</th>
                                         <th>Ações</th>
                                     </tr>
@@ -39,6 +43,10 @@
 
                                     <?php $__currentLoopData = $marks; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mark): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr class="gradeU" id="tr_<?php echo e($mark->id); ?>">
+                                            <td><a href="<?php echo e(route('list_campaigns', ['id' => $mark->id])); ?>" class="text-name-mark"><?php echo e($mark->name); ?></a></td>
+                                            <td><a href="<?php echo e(route('list_campaigns', ['id' => $mark->id])); ?>" class="text-name-mark"><?php echo e($mark->name); ?></a></td>
+                                            <td><a href="<?php echo e(route('list_campaigns', ['id' => $mark->id])); ?>" class="text-name-mark"><?php echo e($mark->name); ?></a></td>
+                                            <td><a href="<?php echo e(route('list_campaigns', ['id' => $mark->id])); ?>" class="text-name-mark"><?php echo e($mark->name); ?></a></td>
                                             <td><a href="<?php echo e(route('list_campaigns', ['id' => $mark->id])); ?>" class="text-name-mark"><?php echo e($mark->name); ?></a></td>
                                             <td class="actions">
                                                 <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>

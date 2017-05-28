@@ -21,8 +21,11 @@
 
 
         <!--Data table -->
-        {{--<link href="Https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet">--}}
-        <link href="Https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="Https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet">
+        <link href="Https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="styleshee t" type="text/css" />
+        <link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
+
 
         <!-- CSS Custon -->
         <link href="{{ asset('css/custom.css') }}" rel="stylesheet" type="text/css" />
@@ -178,9 +181,24 @@
 
         <!-- jQuery  -->
         <script src="{{ asset('js/jquery.min.js') }}"></script>
+
         <script src="Https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-        <script src="Https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+
         <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+        <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
+        <script src="https://cdn.datatables.net/responsive/2.1.1/js/responsive.bootstrap.min.js"></script>
+
+        <script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
+        <script src="//cdn.datatables.net/buttons/1.3.1/js/buttons.flash.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>
+        <script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>
+        <script src="//cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
+        <script src="//cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js"></script>
+
+
+
+
         <script src="{{ asset('js/data-table-custom.js') }}"></script>
         <script src="{{ asset('js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('js/detect.js') }}"></script>

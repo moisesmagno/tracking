@@ -24,6 +24,55 @@ $(document).ready(function() {
 
     //Data table - Table Marks
     $('#dt-marks').DataTable({
-        "language": language,
+        dom: 'Bfrtip',
+        buttons: [
+            'excel', 'pdf', 'print'
+        ],
+        "language": language
+    });
+
+    //Data table - Table Campaigns
+    $('#dt-campaigns').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'excel', 'pdf', 'print'
+        ],
+        "language": language
+    });
+
+    //Data table - Table Influencer
+    $('#dt-influencers').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'excel', 'pdf', 'print'
+        ],
+        "language": language
+    });
+
+    //Data table - Table Results
+    $('#dt-results').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'excel', 'pdf', 'print'
+        ],
+        "language": language
+    });
+
+    //Data table - Table Results Pixel
+    $('#dt-pixel-results').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'excel', 'pdf', 'print'
+        ],
+        "language": language
+    });
+
+    //Data table - Table Pixel
+    $('#dt-pixel').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'excel', 'pdf', 'print'
+        ],
+        "language": language
     });
 });

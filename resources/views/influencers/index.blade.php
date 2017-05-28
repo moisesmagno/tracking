@@ -43,7 +43,7 @@
                         @include('includes.alerts_js')
                     </div>
                     <div class="">
-                        <table class="table table-striped">
+                        <table class="table table-striped table-bordered dt-responsive display nowrap" id="dt-influencers" cellspacing="0" width="100%">
                             <thead>
                             <tr>
                                 <th>Influenciador</th>

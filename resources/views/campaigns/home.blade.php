@@ -41,7 +41,7 @@
                             @include('includes.alerts')
                         </div>
                         <div class="">
-                            <table class="table table-striped">
+                            <table class="table table-striped table-bordered dt-responsive display nowrap" id="dt-campaigns" cellspacing="0" width="100%">
                                 <thead>
                                 <tr>
                                     <th>Nome da campanha</th>

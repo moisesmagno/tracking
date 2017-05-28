@@ -14,10 +14,43 @@
     padding-left: 32px;
 }
 
-/*table.dataTable thead th, table.dataTable thead td {*/
-    /*border-bottom: 1px solid #d5d8da;*/
-/*}*/
+/* Table settings */
+table.dataTable thead th, table.dataTable thead td {
+    border-bottom: 1px solid #d5d8da;
+}
 
-/*table.dataTable.no-footer {*/
-    /*border-bottom: 1px solid #d5d8da;*/
-/*}*/
+table.dataTable.no-footer {
+    border-bottom: 1px solid #d5d8da;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding : 0px;
+    margin-left: 0px;
+    display: inline;
+    border: 0px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    border: 0px;
+}
+
+/*Table buttons colors*/
+.buttons-excel {
+    background: #5cb85c !important;
+    color: #fff !important;
+    border-color: #4cae4c !important;
+    border-radius: 4px !important;;
+}
+
+.buttons-pdf {
+    background: #d9534f !important;
+    color: #fff !important;
+    border-color: #d43f3a !important;
+    border-radius: 4px !important;;
+}
+
+.buttons-print {
+    background: #5fbeaa !important;
+    color: #fff !important;
+    border-radius: 4px !important;;
+}

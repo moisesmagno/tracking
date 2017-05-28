@@ -41,7 +41,7 @@
                         <?php echo $__env->make('includes.alerts_js', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                     </div>
                     <div class="">
-                        <table class="table table-striped">
+                        <table class="table table-striped table-bordered dt-responsive display nowrap" id="dt-influencers" cellspacing="0" width="100%">
                             <thead>
                             <tr>
                                 <th>Influenciador</th>

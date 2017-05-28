@@ -30,9 +30,13 @@
                             @include('includes.alerts')
                         </div>
                         <div class="">
-                            <table class="table table-striped table-bordered" id="dt-marks" cellspacing="0" width="100%">
+                            <table class="table table-striped table-bordered dt-responsive display nowrap" id="dt-marks" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
+                                        <th>Nome da marca</th>
+                                        <th>Nome da marca</th>
+                                        <th>Nome da marca</th>
+                                        <th>Nome da marca</th>
                                         <th>Nome da marca</th>
                                         <th>Ações</th>
                                     </tr>
@@ -41,6 +45,10 @@
 
                                     @foreach($marks as $mark)
                                         <tr class="gradeU" id="tr_{{ $mark->id }}">
+                                            <td><a href="{{ route('list_campaigns', ['id' => $mark->id])}}" class="text-name-mark">{{$mark->name}}</a></td>
+                                            <td><a href="{{ route('list_campaigns', ['id' => $mark->id])}}" class="text-name-mark">{{$mark->name}}</a></td>
+                                            <td><a href="{{ route('list_campaigns', ['id' => $mark->id])}}" class="text-name-mark">{{$mark->name}}</a></td>
+                                            <td><a href="{{ route('list_campaigns', ['id' => $mark->id])}}" class="text-name-mark">{{$mark->name}}</a></td>
                                             <td><a href="{{ route('list_campaigns', ['id' => $mark->id])}}" class="text-name-mark">{{$mark->name}}</a></td>
                                             <td class="actions">
                                                 <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
