@@ -30,6 +30,8 @@ class PixelConversionController extends Controller
     //Displays the conversion pixel screen
     public function index(){
 
+
+        //Pixel data and conversions
        $pixels = $this->pixelConversion->with('usersAccessInformations')->where('id_user', session('id'))->get();
 
         return view('pixel_conversion.index')->with(['pixels' => $pixels]);

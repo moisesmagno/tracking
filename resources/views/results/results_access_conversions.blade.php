@@ -105,7 +105,7 @@
                                 <table class="table table-striped table-bordered dt-responsive display nowrap" id="dt-pixel-results" cellspacing="0" width="100%">
                                     <thead>
                                     <tr>
-                                        <th>Nome da conversão</th>
+                                        <th>Nome da pixel</th>
                                         <th>Conversões</th>
                                         <th>Valor</th>
                                         <th>Valor total</th>
@@ -119,10 +119,10 @@
                                         @if($pixel)
                                             <tr class="gradeU" id="tr_{{ $pixel->id }}">
                                                 <td><a class="text-name-pixel">{{ $pixel->name }}</a></td>
-                                                <td>{{ count($pixel->usersAccessInformations) }}</td>
-                                                <td>R$ {{ number_format($pixel->value, 2, ',', '.') }}</td>
-                                                <td>R$ {{ number_format(count($pixel->usersAccessInformations) * $pixel->value, 2, ',', '.') }}</td>
-                                                <td>{{ $pixel->created_at->format('d/m/Y') }}</td>
+                                                <td>{{ $pixel->conversions }}</td>
+                                                <td>R$ {{ $pixel->value }}</td>
+                                                <td>R$ {{ $pixel->totalConversion }}</td>
+                                                <td>{{ $pixel->date }}</td>
                                                 <td class="text-interval-pixel">{{ $pixel->time_interval . ' ' . $pixel->interval_type }}</td>
                                                 <td class="actions">
                                                     <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>

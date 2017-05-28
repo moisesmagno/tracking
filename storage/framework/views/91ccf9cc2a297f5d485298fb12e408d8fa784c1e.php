@@ -103,7 +103,7 @@
                                 <table class="table table-striped table-bordered dt-responsive display nowrap" id="dt-pixel-results" cellspacing="0" width="100%">
                                     <thead>
                                     <tr>
-                                        <th>Nome da conversão</th>
+                                        <th>Nome da pixel</th>
                                         <th>Conversões</th>
                                         <th>Valor</th>
                                         <th>Valor total</th>
@@ -117,10 +117,10 @@
                                         <?php if($pixel): ?>
                                             <tr class="gradeU" id="tr_<?php echo e($pixel->id); ?>">
                                                 <td><a class="text-name-pixel"><?php echo e($pixel->name); ?></a></td>
-                                                <td><?php echo e(count($pixel->usersAccessInformations)); ?></td>
-                                                <td>R$ <?php echo e(number_format($pixel->value, 2, ',', '.')); ?></td>
-                                                <td>R$ <?php echo e(number_format(count($pixel->usersAccessInformations) * $pixel->value, 2, ',', '.')); ?></td>
-                                                <td><?php echo e($pixel->created_at->format('d/m/Y')); ?></td>
+                                                <td><?php echo e($pixel->conversions); ?></td>
+                                                <td>R$ <?php echo e($pixel->value); ?></td>
+                                                <td>R$ <?php echo e($pixel->totalConversion); ?></td>
+                                                <td><?php echo e($pixel->date); ?></td>
                                                 <td class="text-interval-pixel"><?php echo e($pixel->time_interval . ' ' . $pixel->interval_type); ?></td>
                                                 <td class="actions">
                                                     <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>

@@ -8,6 +8,7 @@ use App\Influencer;
 use App\PixelConversion;
 use App\UserAccessInformation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ResultsController extends Controller
 {
@@ -33,7 +34,7 @@ class ResultsController extends Controller
         //Session to be used in the page navigator
         session(['id_influencer' => $id]);
 
-        //Incluencer
+        //Influencer
         $influencer = $this->influencer
             ->where('id', $id)
             ->first();
@@ -43,10 +44,25 @@ class ResultsController extends Controller
 
         //Pixel data and conversions
         $pixel = $this->pixel
-            ->with('usersAccessInformations')
-            ->where('id_user', session('id'))
-            ->where('id', $idPixel)
+            ->join('user_access_information as ua', 'pixel.id', '=','ua.id_pixel')
+            ->selectRaw("
+                pixel.id, 
+                pixel.name, 
+                count(ua.id_influencer) as conversions, 
+                pixel.value, 
+                pixel.time_interval, 
+                pixel.interval_type, 
+                DATE_FORMAT(pixel.created_at, '%d-%m-%Y') as date
+            ")
+            ->where('pixel.id_user', session('id'))
+            ->where('pixel.id', $idPixel)
+            ->where('ua.id_influencer', $influencer->id)
+            ->groupBy('pixel.id', 'pixel.name', 'pixel.value', 'pixel.time_interval', 'pixel.interval_type', 'pixel.created_at')
             ->first();
+
+        if(!empty($pixel)){
+            $pixel->totalConversion = number_format(($pixel->conversoes * $pixel->value), 2, ',', '.');
+        }
 
         //URL click counter
         $url_results = $this->result
