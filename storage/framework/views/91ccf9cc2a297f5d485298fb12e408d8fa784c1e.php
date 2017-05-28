@@ -10,13 +10,13 @@
                     <p>Veja como está os resultados do seu influenciador</p>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="">Marcas</a>
+                            <a href="<?php echo e(route('home')); ?>">Marcas</a>
                         </li>
                         <li class="active">
-                            <a href="">Campanhas</a>
+                            <a href="<?php echo e(route('list_campaigns', ['' => session('id_mask')])); ?>">Campanhas</a>
                         </li>
                         <li class="active">
-                            <a href="">Influenciadores</a>
+                            <a href="<?php echo e(route('list_influencers', ['id' => session('id_campaign')])); ?>">Influenciadores</a>
                         </li>
                         <li class="active">
                             Relatório

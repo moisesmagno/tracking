@@ -11,10 +11,10 @@
                     <p>Administre os seus influenciadores vinculados a campanha.</p>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="">Marcas</a>
+                            <a href="{{ route('home') }}">Marcas</a>
                         </li>
                         <li>
-                            <a href="">Campanhas</a>
+                            <a href="{{ route('list_campaigns', ['id' => session('id_mask')]) }}">Campanhas</a>
                         </li>
                         <li>
                             Influenciadores

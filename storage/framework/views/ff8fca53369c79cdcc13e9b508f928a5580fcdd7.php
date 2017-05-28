@@ -10,7 +10,7 @@
                     <p>Crie suas campanhas para organizar os influenciadores.</p>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="">Marcas</a>
+                            <a href="<?php echo e(route('home')); ?>">Marcas</a>
                         </li>
                         <li>
                             Campanhas

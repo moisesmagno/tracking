@@ -25,6 +25,9 @@ class CampaignController extends Controller
     //Displays campaign home screen
     public function index($id)
     {
+        //Session to be used in the page navigator
+        session(['id_mask' => $id]);
+
         $mark = $this->mark->find($id);
 
         $campaigns = $this->campaign->with('getPixels')

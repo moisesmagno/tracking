@@ -30,6 +30,9 @@ class ResultsController extends Controller
     //Display results result screen
     public function index($id){
 
+        //Session to be used in the page navigator
+        session(['id_influencer' => $id]);
+
         //Incluencer
         $influencer = $this->influencer
             ->where('id', $id)
