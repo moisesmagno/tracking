@@ -28,7 +28,7 @@ $(document).ready(function() {
         buttons: [
             'excel', 'pdf', 'print'
         ],
-        "language": language
+        "language": language,
     });
 
     //Data table - Table Campaigns
