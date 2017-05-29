@@ -21,4 +21,8 @@ class Mark extends Model
     protected $dates = ['deleted_at', 'created_at'];
 
     protected $softDelete = true;
+
+    public function getCampaigns(){
+        return $this->hasMany(Campaign::class, 'id_mark', 'id');
+    }
 }

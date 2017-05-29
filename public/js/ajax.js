@@ -71,41 +71,41 @@ $( document ).ready(function() {
     });
 
     //Delete campaign
-    // $(".delete_campaign").click(function(event){
-    //
-    //     event.preventDefault();
-    //
-    //     if(!confirm('Realmente deseja excluir esta campanha?')){
-    //         return false;
-    //     }
-    //
-    //     var data = {id: $(this).attr('data-id-delete')};
-    //     var _this = $(this);
-    //
-    //     $.ajax({
-    //         url: "delete",
-    //         method: "delete",
-    //         data: data,
-    //         success: function (result) {
-    //
-    //             $(".alert").addClass('hide');
-    //
-    //             if(result == 'delete-true'){
-    //
-    //                 $("#register .alert-success").removeClass('hide');
-    //                 $("#register .alert-success span").html('<b>Sucesso!</b> A campanha foi removida.');
-    //
-    //                 _this.parents(".gradeU").fadeOut("slow"); //Temporário - Refazer, pois o datatable já exclui a row
-    //
-    //             }else{
-    //                 $("#register .alert-danger").removeClass('hide')
-    //                 $("#register .alert-danger span").html('<b>Erro!</b> Ocorreu um erro ao tentar remover a campanha, por favor tente novamente ou entre em contato.')
-    //             }
-    //
-    //             $(".alert-php").addClass('hide');
-    //         }
-    //     });
-    // });
+    $(".delete_mark").click(function(event){
+
+        event.preventDefault();
+
+        if(!confirm('Realmente deseja excluir esta marca?')){
+            return false;
+        }
+
+        var data = {id: $(this).attr('data-id-delete')};
+        var _this = $(this);
+
+        $.ajax({
+            url: "delete",
+            method: "delete",
+            data: data,
+            success: function (result) {
+
+                $(".alert").addClass('hide');
+
+                if(result == 'delete-true'){
+
+                    $("#register .alert-success").removeClass('hide');
+                    $("#register .alert-success span").html('<b>Sucesso!</b> A marca foi removida.');
+
+                    _this.parents(".gradeU").fadeOut("slow"); //Temporário - Refazer, pois o datatable já exclui a row
+
+                }else{
+                    $("#register .alert-danger").removeClass('hide')
+                    $("#register .alert-danger span").html('<b>Erro!</b> Ocorreu um erro ao tentar remover a marca, por favor tente novamente ou entre em contato.')
+                }
+
+                $(".alert-php").addClass('hide');
+            }
+        });
+    });
 
     /* ****************************************
      CAMPAIGN

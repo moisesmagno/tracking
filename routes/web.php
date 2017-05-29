@@ -55,7 +55,7 @@ Route::group(['middleware' => 'auth'], function(){
         Route::name('register_mark')->post('/register', 'MarkController@store');
         Route::name('edit_mark')->post('/edit', 'MarkController@edit');
         Route::name('update_mark')->put('/update', 'MarkController@update');
-//        Route::name('delete_mark')->delete('/delete', 'MarkController@destroy');
+        Route::name('delete_mark')->delete('/delete', 'MarkController@destroy');
 
         //Campaigns
         Route::name('list_campaigns')->get('/{id}/campanhas', 'CampaignController@index');

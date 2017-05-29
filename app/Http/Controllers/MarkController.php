@@ -3,22 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Mark;
+use App\Campaign;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class MarkController extends Controller
 {
     private $mark;
+    private $campaign;
 
-    public function __construct(Mark $mark)
+    public function __construct(Mark $mark, Campaign $campaign)
     {
         $this->mark = $mark;
+        $this->campaign = $campaign;
     }
 
     //Displays mark home screen
     public function index(){
 
-        $marks = $this->mark->where('id_user', session('id'))
+        $marks = $this->mark->with('getCampaigns')
+            ->where('id_user', session('id'))
             ->orderBy('id', 'desc')
             ->get();
 
@@ -102,7 +106,23 @@ class MarkController extends Controller
     }
 
     //Delete Mark
-    public function destroy(){
+    public function destroy(Request $request){
+        if($request->ajax()){
 
+            try{
+
+                DB::beginTransaction();
+
+                $deleteMark = $this->mark->find($request->get('id'))->delete();
+                if($deleteMark){
+                    DB::commit();
+                    return 'delete-true';
+                }
+
+            }catch (PDOException $e) {
+                DB::rollback();
+                return 'delete-error';
+            }
+        }
     }
 }

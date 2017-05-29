@@ -34,10 +34,6 @@
                                 <thead>
                                     <tr>
                                         <th>Nome da marca</th>
-                                        <th>Nome da marca</th>
-                                        <th>Nome da marca</th>
-                                        <th>Nome da marca</th>
-                                        <th>Nome da marca</th>
                                         <th>Ações</th>
                                     </tr>
                                 </thead>
@@ -46,15 +42,13 @@
                                     @foreach($marks as $mark)
                                         <tr class="gradeU" id="tr_{{ $mark->id }}">
                                             <td><a href="{{ route('list_campaigns', ['id' => $mark->id])}}" class="text-name-mark">{{$mark->name}}</a></td>
-                                            <td><a href="{{ route('list_campaigns', ['id' => $mark->id])}}" class="text-name-mark">{{$mark->name}}</a></td>
-                                            <td><a href="{{ route('list_campaigns', ['id' => $mark->id])}}" class="text-name-mark">{{$mark->name}}</a></td>
-                                            <td><a href="{{ route('list_campaigns', ['id' => $mark->id])}}" class="text-name-mark">{{$mark->name}}</a></td>
-                                            <td><a href="{{ route('list_campaigns', ['id' => $mark->id])}}" class="text-name-mark">{{$mark->name}}</a></td>
                                             <td class="actions">
                                                 <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                                                 <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
                                                 <a href="#modal_edit_mark" data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-id-edit="{{ $mark->id }}" data-overlayColor="#36404a" class="edit_mark"><i class="fa fa-pencil"></i></a>
-                                                <a href="" class="on-default remove-row delete_mark" data-id-delete="{{ $mark->id }}"><i class="fa fa-trash-o"></i></a>
+                                                @if(count($mark->getCampaigns) <= 0)
+                                                    <a href="" class="on-default remove-row delete_mark" data-id-delete="{{ $mark->id }}"><i class="fa fa-trash-o"></i></a>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach
