@@ -114,6 +114,7 @@ class MarkController extends Controller
                 DB::beginTransaction();
 
                 $deleteMark = $this->mark->find($request->get('id'))->delete();
+
                 if($deleteMark){
                     DB::commit();
                     return 'delete-true';

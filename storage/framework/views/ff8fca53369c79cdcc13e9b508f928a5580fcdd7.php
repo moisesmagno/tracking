@@ -57,7 +57,9 @@
                                                 <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                                                 <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
                                                 <a href="#modal_edit_campaign" data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-id-edit="<?php echo e($campaign->id); ?>" data-overlayColor="#36404a" class="edit_campaign"><i class="fa fa-pencil"></i></a>
-                                                <a href="" class="on-default remove-row delete_campaign" data-id-delete="<?php echo e($campaign->id); ?>"><i class="fa fa-trash-o"></i></a>
+                                                <?php if(count($campaign->getInfluencers) <= 0): ?>
+                                                    <a href="" class="on-default remove-row delete_campaign" data-id-delete="<?php echo e($campaign->id); ?>"><i class="fa fa-trash-o"></i></a>
+                                                <?php endif; ?>
                                             </td>
                                         </tr>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

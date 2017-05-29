@@ -28,4 +28,8 @@ class Campaign extends Model
     public function getPixels(){
         return $this->hasMany(PixelConversion::class,'id','id_pixel');
     }
+
+    public function getInfluencers(){
+        return $this->hasMany(Influencer::class, 'id_campaign', 'id');
+    }
 }

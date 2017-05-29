@@ -31,6 +31,7 @@ class CampaignController extends Controller
         $mark = $this->mark->find($id);
 
         $campaigns = $this->campaign->with('getPixels')
+                                    ->with('getInfluencers')
                                     ->where('id_mark', $id)
                                     ->orderBy('id', 'desc')
                                     ->get();
@@ -77,29 +78,7 @@ class CampaignController extends Controller
 
             try{
 
-                $influencer = $this->influencer
-                ->where('id_campaign', $request->get('id'))
-                ->pluck('id')
-                ->toArray();
-
-                if($influencer){
-
-                    $urls = $this->url
-                    ->whereIn('id_influencer', $influencer)
-                    ->pluck('id')->toArray();
-
-                    if($urls){
-                        $this->urlResult->whereIn('id_url', $urls)->delete();
-                        $this->url->whereIn('id', $urls)->delete();
-                    }
-
-                    $this->influencer->whereIn('id', $influencer)->delete();
-                }
-
-                $deleteCampaign = $this->campaign
-                ->where('id_user', session('id'))
-                ->where('id', $request->get('id'))
-                ->delete();
+                $deleteCampaign = $this->campaign->find($request->get('id'))->delete();
 
                 if($deleteCampaign){
                     return 'delete-true';
