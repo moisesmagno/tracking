@@ -18,7 +18,7 @@ class Result extends Model
      * @var array
      */
     protected $fillable = [
-        'id_influencer', 'referer', 'agent', 'remote_addr'
+        'id_influencer', 'referer', 'agent', 'remote_addr', 'id_agent'
     ];
 
     protected $dates = ['deleted_at'];

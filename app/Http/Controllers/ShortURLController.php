@@ -7,6 +7,7 @@ use App\Result;
 use App\Campaign;
 use App\UserAccessInformation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
 class ShortURLController extends Controller
@@ -102,15 +103,24 @@ class ShortURLController extends Controller
 
             DB::beginTransaction();
 
+            if(isset($_COOKIE['id_agent'])){
+                $date = $_COOKIE['id_agent'];
+            }else{
+                $date = Hash::make(date('Y-m-d H:i:s'));   
+                setcookie('id_agent', $date, time()+2592000, '/', DOMAIN, false, false); 
+            }
+
             $data = $this->result->create([
                 'id_influencer' => $dataUrl->id,
                 'referer' => $referer,
                 'agent' => $browser,
                 'remote_addr' => $remote_addr,
+                'id_agent' => $date
             ]);
 
             setcookie('id_influencer', $dataUrl->id, time()+2592000, '/', DOMAIN, false, false);
             setcookie('referer', $referer, time()+2592000, '/', DOMAIN, false, false);
+            
 
             if(!empty($data)){
                 DB::commit();

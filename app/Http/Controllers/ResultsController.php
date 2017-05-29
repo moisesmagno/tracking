@@ -68,7 +68,7 @@ class ResultsController extends Controller
         $url_results = $this->result
             ->selectRaw("referer,
                          count(id) as total_clicks, 
-                         count(distinct remote_addr) as unique_clicks")
+                         count(distinct id_agent) as unique_clicks")
             ->where('id_influencer', $id)
             ->groupBy('referer')
             ->orderBy('referer')

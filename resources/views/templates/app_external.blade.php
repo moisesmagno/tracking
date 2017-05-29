@@ -65,6 +65,5 @@
             localStorage.setItem('path_url', '{{ PATH_URL }}');
             localStorage.setItem('path_short_url', '{{ PATH_SHORT_URL }}');
         </script>
-
     </body>
 </html>

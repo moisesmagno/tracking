@@ -15,12 +15,12 @@ class AddColumnsNasTabelasResultsEUserAccessInformation extends Migration
     {
         Schema::table('results', function(Blueprint $table)
         {
-            $table->string('id_agent')->after('remote_addr');
+            $table->string('id_agent')->nullable()->after('remote_addr');
         });
 
         Schema::table('user_access_information', function(Blueprint $table)
         {
-            $table->string('id_agent')->after('longitude');
+            $table->string('id_agent')->nullable()->after('longitude');
         });
     }
 
