@@ -28,12 +28,12 @@
                             <?php echo $__env->make('includes.alerts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                         </div>
                         <div class="">
-                            <table class="table table-striped">
+                            <table class="table table-striped table-bordered dt-responsive display nowrap" id="dt-marks" cellspacing="0" width="100%">
                                 <thead>
-                                <tr>
-                                    <th>Nome da marca</th>
-                                    <th>Ações</th>
-                                </tr>
+                                    <tr>
+                                        <th>Nome da marca</th>
+                                        <th>Ações</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
 
@@ -44,7 +44,9 @@
                                                 <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                                                 <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
                                                 <a href="#modal_edit_mark" data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-id-edit="<?php echo e($mark->id); ?>" data-overlayColor="#36404a" class="edit_mark"><i class="fa fa-pencil"></i></a>
-                                                <a href="" class="on-default remove-row delete_mark" data-id-delete="<?php echo e($mark->id); ?>"><i class="fa fa-trash-o"></i></a>
+                                                <?php if(count($mark->getCampaigns) <= 0): ?>
+                                                    <a href="" class="on-default remove-row delete_mark" data-id-delete="<?php echo e($mark->id); ?>"><i class="fa fa-trash-o"></i></a>
+                                                <?php endif; ?>
                                             </td>
                                         </tr>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

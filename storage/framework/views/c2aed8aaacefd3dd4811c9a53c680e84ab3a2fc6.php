@@ -11,8 +11,6 @@
         <title>Tracking - Celebryts</title>
 
         <!-- Plugin Css-->
-        
-        
         <link href="<?php echo e(asset('plugins/custombox/css/custombox.css')); ?>" rel="stylesheet">
         <link href="<?php echo e(asset('css/bootstrap.min.css')); ?>" rel="stylesheet" type="text/css" />
         <link href="<?php echo e(asset('css/core.css')); ?>" rel="stylesheet" type="text/css" />
@@ -20,6 +18,16 @@
         <link href="<?php echo e(asset('css/icons.css')); ?>" rel="stylesheet" type="text/css" />
         <link href="<?php echo e(asset('css/pages.css')); ?>" rel="stylesheet" type="text/css" />
         <link href="<?php echo e(asset('css/responsive.css')); ?>" rel="stylesheet" type="text/css" />
+
+
+        <!--Data table -->
+        <link href="Https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet">
+        <link href="Https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="styleshee t" type="text/css" />
+        <link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
+
+
+        <!-- CSS Custon -->
         <link href="<?php echo e(asset('css/custom.css')); ?>" rel="stylesheet" type="text/css" />
 
         <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -173,6 +181,25 @@
 
         <!-- jQuery  -->
         <script src="<?php echo e(asset('js/jquery.min.js')); ?>"></script>
+
+        <script src="Https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+
+        <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+        <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
+        <script src="https://cdn.datatables.net/responsive/2.1.1/js/responsive.bootstrap.min.js"></script>
+
+        <script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
+        <script src="//cdn.datatables.net/buttons/1.3.1/js/buttons.flash.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>
+        <script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>
+        <script src="//cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
+        <script src="//cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js"></script>
+
+
+
+
+        <script src="<?php echo e(asset('js/data-table-custom.js')); ?>"></script>
         <script src="<?php echo e(asset('js/bootstrap.min.js')); ?>"></script>
         <script src="<?php echo e(asset('js/detect.js')); ?>"></script>
         <script src="<?php echo e(asset('js/fastclick.js')); ?>"></script>
@@ -184,6 +211,7 @@
         <script src="<?php echo e(asset('js/jquery.scrollTo.min.js')); ?>"></script>
         <script src="<?php echo e(asset('js/jquery.core.js')); ?>"></script>
         <script src="<?php echo e(asset('js/jquery.app.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/numberFormat154.js')); ?>"></script>
 
         <!-- Modal-Effect -->
         <script src="<?php echo e(asset('plugins/custombox/js/custombox.min.js')); ?>"></script>

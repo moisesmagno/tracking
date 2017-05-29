@@ -409,8 +409,23 @@ $( document ).ready(function() {
 
         var textInterval = $('#modal_edit_pixel #interval :selected').text();
 
-        var valorTotal = parseFloat(data.value) * parseInt(data.total_conversion);
- 
+        // var valorTotal = parseFloat(data.value) * parseInt(data.total_conversion);
+        var value1 = data.value.replace(".", "");
+        var valueDecimal = value1.replace(",", ".");
+
+        var num = new NumberFormat();
+        num.setInputDecimal('.');
+        num.setNumber(valueDecimal); // obj.value é '-1000.24'
+        num.setPlaces('2', false);
+        num.setCurrencyValue('');
+        num.setCurrency(true);
+        num.setCurrencyPosition(num.LEFT_OUTSIDE);
+        num.setNegativeFormat(num.LEFT_DASH);
+        num.setNegativeRed(false);
+        num.setSeparators(true, '.', ',');
+        var valorTotal = num.toFormatted(); //obj.value é '-1.000,24'
+
+
         $.ajax({
             url: "/pixel-conversao/update",
             method: "put",
@@ -425,7 +440,7 @@ $( document ).ready(function() {
                     $("#crud-pixel-conversion .alert-success span").html('<b>Success!</b> O pixel conversão foi editado.')
                     $('#tr_' + data.id).find('.text-name-pixel').html(data.name);
 
-                    $('#tr_' + data.id).find('.text-name-value').html(data.value);
+                    $('#tr_' + data.id).find('.text-name-value').html('R$ ' + data.value);
                     $('#tr_' + data.id).find('.text-name-total-value').html('R$ ' + valorTotal);
 
                     $('#tr_' + data.id).find('.text-interval-pixel').html(textInterval);

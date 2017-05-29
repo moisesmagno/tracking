@@ -65,8 +65,6 @@
             localStorage.setItem('path_url', '<?php echo e(PATH_URL); ?>');
             localStorage.setItem('path_short_url', '<?php echo e(PATH_SHORT_URL); ?>');
         </script>
-        <script type="text/javascript">
-            var u=1,px=4; var imported = document.createElement('script'); imported.src = 'http://tracking.dev/js/user_access_information.js'; document.head.appendChild(imported); </script>
 
     </body>
 </html>

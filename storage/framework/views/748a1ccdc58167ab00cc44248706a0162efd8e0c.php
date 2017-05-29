@@ -10,7 +10,7 @@
                     <p>Crie suas campanhas para organizar os influenciadores.</p>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="">Marcas</a>
+                            <a href="<?php echo e(route('home')); ?>">Marcas</a>
                         </li>
                         <li>
                             Campanhas
@@ -39,7 +39,7 @@
                             <?php echo $__env->make('includes.alerts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                         </div>
                         <div class="">
-                            <table class="table table-striped">
+                            <table class="table table-striped table-bordered dt-responsive display nowrap" id="dt-campaigns" cellspacing="0" width="100%">
                                 <thead>
                                 <tr>
                                     <th>Nome da campanha</th>
@@ -57,7 +57,9 @@
                                                 <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                                                 <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
                                                 <a href="#modal_edit_campaign" data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-id-edit="<?php echo e($campaign->id); ?>" data-overlayColor="#36404a" class="edit_campaign"><i class="fa fa-pencil"></i></a>
-                                                <a href="" class="on-default remove-row delete_campaign" data-id-delete="<?php echo e($campaign->id); ?>"><i class="fa fa-trash-o"></i></a>
+                                                <?php if(count($campaign->getInfluencers) <= 0): ?>
+                                                    <a href="" class="on-default remove-row delete_campaign" data-id-delete="<?php echo e($campaign->id); ?>"><i class="fa fa-trash-o"></i></a>
+                                                <?php endif; ?>
                                             </td>
                                         </tr>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

@@ -211,6 +211,7 @@
         <script src="{{ asset('js/jquery.scrollTo.min.js') }}"></script>
         <script src="{{ asset('js/jquery.core.js') }}"></script>
         <script src="{{ asset('js/jquery.app.js') }}"></script>
+        <script src="{{ asset('js/numberFormat154.js') }}"></script>
 
         <!-- Modal-Effect -->
         <script src="{{ asset('plugins/custombox/js/custombox.min.js') }}"></script>

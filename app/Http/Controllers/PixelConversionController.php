@@ -38,9 +38,6 @@ class PixelConversionController extends Controller
            ->where('id_user', session('id'))
            ->get();
 
-//       print_r($pixels);
-//       die;
-
         return view('pixel_conversion.index')->with(['pixels' => $pixels]);
     }
 

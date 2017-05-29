@@ -61,7 +61,7 @@ class ResultsController extends Controller
             ->first();
 
         if(!empty($pixel)){
-            $pixel->totalConversion = number_format(($pixel->conversoes * $pixel->value), 2, ',', '.');
+            $pixel->totalConversion = number_format(($pixel->conversions * $pixel->value), 2, ',', '.');
         }
 
         //URL click counter

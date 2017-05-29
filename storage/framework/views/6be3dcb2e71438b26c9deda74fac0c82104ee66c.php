@@ -9,10 +9,10 @@
                     <p>Administre os seus influenciadores vinculados a campanha.</p>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="">Marcas</a>
+                            <a href="<?php echo e(route('home')); ?>">Marcas</a>
                         </li>
                         <li>
-                            <a href="">Campanhas</a>
+                            <a href="<?php echo e(route('list_campaigns', ['id' => session('id_mask')])); ?>">Campanhas</a>
                         </li>
                         <li>
                             Influenciadores
@@ -41,7 +41,7 @@
                         <?php echo $__env->make('includes.alerts_js', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                     </div>
                     <div class="">
-                        <table class="table table-striped">
+                        <table class="table table-striped table-bordered dt-responsive display nowrap" id="dt-influencers" cellspacing="0" width="100%">
                             <thead>
                             <tr>
                                 <th>Influenciador</th>
@@ -60,7 +60,9 @@
                                     <td><?php echo e(isset($pixel->name) ? $pixel->name : '--'); ?></td>
                                     <td class="actions">
                                         <a href="#modal_edit_influencer" data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-id-edit="<?php echo e($influencer->id); ?>" data-overlayColor="#36404a" class="edit_influencer"><i class="fa fa-pencil"></i></a>
-                                        <a href="#" class="on-default remove-row delete_influencer" data-id-delete="<?php echo e($influencer->id); ?>"><i class="fa fa-trash-o"></i></a>
+                                        <?php if(count($influencer->getInfluencers) <= 0): ?>
+                                            <a href="#" class="on-default remove-row delete_influencer" data-id-delete="<?php echo e($influencer->id); ?>"><i class="fa fa-trash-o"></i></a>
+                                        <?php endif; ?>
                                     </td>
                                 </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -112,7 +114,7 @@
                         <input type="text" class="required form-control" id="destiny_url" name="destiny_url" placeholder="http://sitedestino.com.br">
                     </div>
                     <br>
-                    <button type="submit" class="btn btn-default waves-effect waves-light validate">Salvar</button>
+                    <button type="submit" class="btn btn-default waves-effect waves-light validate validate-URL">Salvar</button>
                     <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
                 </form>
             </div>
@@ -161,7 +163,7 @@
 
                     </div>
                     <br>
-                    <button type="button" class="btn btn-default waves-effect waves-light validate" id="form_update_influencer">Salvar</button>
+                    <button type="button" class="btn btn-default waves-effect waves-light validate-UR validate" id="form_update_influencer">Salvar</button>
                     <button class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
 
                 </form>

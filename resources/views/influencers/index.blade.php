@@ -115,7 +115,7 @@
                         <input type="text" class="required form-control" id="destiny_url" name="destiny_url" placeholder="http://sitedestino.com.br">
                     </div>
                     <br>
-                    <button type="submit" class="btn btn-default waves-effect waves-light validate">Salvar</button>
+                    <button type="submit" class="btn btn-default waves-effect waves-light validate validate-URL">Salvar</button>
                     <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
                 </form>
             </div>
@@ -164,7 +164,7 @@
 
                     </div>
                     <br>
-                    <button type="button" class="btn btn-default waves-effect waves-light validate" id="form_update_influencer">Salvar</button>
+                    <button type="button" class="btn btn-default waves-effect waves-light validate-UR validate" id="form_update_influencer">Salvar</button>
                     <button class="btn btn-danger waves-effect waves-light m-l-10" onclick="Custombox.close();">Cancelar</button>
 
                 </form>

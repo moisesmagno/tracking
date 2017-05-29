@@ -10,13 +10,13 @@
                     <p>Veja como está os resultados do seu influenciador</p>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="">Marcas</a>
+                            <a href="<?php echo e(route('home')); ?>">Marcas</a>
                         </li>
                         <li class="active">
-                            <a href="">Campanhas</a>
+                            <a href="<?php echo e(route('list_campaigns', ['' => session('id_mask')])); ?>">Campanhas</a>
                         </li>
                         <li class="active">
-                            <a href="">Influenciadores</a>
+                            <a href="<?php echo e(route('list_influencers', ['id' => session('id_campaign')])); ?>">Influenciadores</a>
                         </li>
                         <li class="active">
                             Relatório
@@ -32,7 +32,7 @@
         <div class="row">
             <div class="col-sm-8">
                 <div class="page-header-1">
-                    <h4 class="page-title">URL + Pixel</h4>
+                    <h4 class="page-title">URL</h4>
                     <p>Quantidade de cliques por rede e conversões de acordo ao processo completo.</p>
 
                 </div>
@@ -45,7 +45,7 @@
             <div class="panel">
                 <div class="panel-body">
                     <div class="">
-                        <table class="table table-striped">
+                        <table class="table table-striped table-bordered dt-responsive display nowrap" id="dt-results" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                     <th>Rede</th>
@@ -61,8 +61,8 @@
                                         <td><a><?php echo e(($urlResult->referer == 'Outro') ? $urlResult->referer.'s' : $urlResult->referer); ?></a></td>
                                         <td><?php echo e($urlResult->total_clicks); ?></td>
                                         <td><?php echo e(isset($urlResult->unique_clicks) ? $urlResult->unique_clicks : 0); ?></td>
-                                        <td><?php echo e('--'); ?></td>
-                                        <td><?php echo e('--'); ?></td>
+                                        <td><?php echo e(isset($urlResult->conversao) ? $urlResult->conversao : '--'); ?></td>
+                                        <td><?php echo e(($urlResult->valor_total)? 'R$' . $urlResult->valor_total : '--'); ?></td>
                                     </tr>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </tbody>
@@ -73,15 +73,7 @@
 
             </div> <!-- end Panel -->
 
-            <p>Exportar para:</p>
-            <div class="dt-buttons btn-group">
-                
-                <a class="btn btn-default buttons-excel buttons-html5 btn-sm" tabindex="0" aria-controls="datatable-buttons"><span>Excel</span></a>
-                
-                
-            </div>
-
-            <br><br><br><br><br>
+            <br><br>
 
             <!-- Page-Title -->
             <div class="row">
@@ -108,10 +100,10 @@
                                 <?php echo $__env->make('includes.alerts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                             </div>
                             <div class="">
-                                <table id="demo-foo-row-toggler" class="table toggle-circle table-hover">
+                                <table class="table table-striped table-bordered dt-responsive display nowrap" id="dt-pixel-results" cellspacing="0" width="100%">
                                     <thead>
                                     <tr>
-                                        <th>Nome da conversão</th>
+                                        <th>Nome da pixel</th>
                                         <th>Conversões</th>
                                         <th>Valor</th>
                                         <th>Valor total</th>
@@ -125,16 +117,16 @@
                                         <?php if($pixel): ?>
                                             <tr class="gradeU" id="tr_<?php echo e($pixel->id); ?>">
                                                 <td><a class="text-name-pixel"><?php echo e($pixel->name); ?></a></td>
-                                                <td><?php echo e(count($pixel->usersAccessInformations)); ?></td>
-                                                <td>R$ <?php echo e(number_format($pixel->value, 2, ',', '.')); ?></td>
-                                                <td>R$ <?php echo e(number_format(count($pixel->usersAccessInformations) * $pixel->value, 2, ',', '.')); ?></td>
-                                                <td><?php echo e($pixel->created_at->format('d/m/Y')); ?></td>
+                                                <td><?php echo e($pixel->conversions); ?></td>
+                                                <td class="text-name-value">R$ <?php echo e($pixel->value); ?></td>
+                                                <td class="text-name-total-value">R$ <?php echo e($pixel->totalConversion); ?></td>
+                                                <td><?php echo e($pixel->date); ?></td>
                                                 <td class="text-interval-pixel"><?php echo e($pixel->time_interval . ' ' . $pixel->interval_type); ?></td>
                                                 <td class="actions">
                                                     <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                                                     <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
                                                     <a href="#" class="on-default edit-row code_tags_js" data-toggle="modal" data-target="#code_pixel_conversion"  data-id-user="<?php echo e(session('id')); ?>" data-id-code="<?php echo e($pixel->id); ?>"><i class="typcn typcn-code"></i></a>
-                                                    <a href="#modal_edit_pixel" data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-id-edit="<?php echo e($pixel->id); ?>" data-overlayColor="#36404a" class="edit_pixel_conversion"><i class="fa fa-pencil"></i></a>
+                                                    <a href="#modal_edit_pixel" data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-total-conversions="<?php echo e($pixel->conversions); ?>" data-id-edit="<?php echo e($pixel->id); ?>" data-overlayColor="#36404a" class="edit_pixel_conversion"><i class="fa fa-pencil"></i></a>
                                                     
                                                 </td>
                                             </tr>
@@ -177,6 +169,7 @@
 
 
                     <input type="hidden" id="id_pixel_conversion" name="id_pixel_conversion" value="">
+                    <input type="hidden" id="total_conversions" name="total_conversions" value="">
 
                     <div class="form-group">
                         <label for="name">Nome do pixel:</label>
