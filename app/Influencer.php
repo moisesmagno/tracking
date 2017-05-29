@@ -22,4 +22,8 @@ class Influencer extends Model
 
     protected $softDelete = true;
 
+    public function getInfluencers(){
+        return $this->hasMany(Result::class, 'id_influencer', 'id');
+    }
+
 }

@@ -62,7 +62,9 @@
                                     <td>{{ $pixel->name or '--'}}</td>
                                     <td class="actions">
                                         <a href="#modal_edit_influencer" data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-id-edit="{{ $influencer->id }}" data-overlayColor="#36404a" class="edit_influencer"><i class="fa fa-pencil"></i></a>
-                                        <a href="#" class="on-default remove-row delete_influencer" data-id-delete="{{ $influencer->id }}"><i class="fa fa-trash-o"></i></a>
+                                        @if(count($influencer->getInfluencers) <= 0)
+                                            <a href="#" class="on-default remove-row delete_influencer" data-id-delete="{{ $influencer->id }}"><i class="fa fa-trash-o"></i></a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

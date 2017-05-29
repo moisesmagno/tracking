@@ -25,4 +25,8 @@ class PixelConversion extends Model
     public function usersAccessInformations(){
         return $this->hasMany(UserAccessInformation::class,'id_pixel','id');
     }
+
+    public function getCampaigns(){
+        return $this->hasMany(Campaign::class, 'id_pixel', 'id');
+    }
 }

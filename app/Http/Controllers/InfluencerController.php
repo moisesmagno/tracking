@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Campaign;
 use App\Influencer;
+use App\Result;
+use App\UserAccessInformation;
 use App\PixelConversion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,11 +16,15 @@ class InfluencerController extends Controller
     private $campaign;
     private $influencer;
     private $pixel;
+    private $result;
+    private $userAccess;
 
-    public function __construct(Campaign $campaign, Influencer $influencer, PixelConversion $pixel){
+    public function __construct(Campaign $campaign, Influencer $influencer, PixelConversion $pixel, Result $result, UserAccessInformation $userAccess){
         $this->campaign = $campaign;
         $this->influencer = $influencer;
         $this->pixel = $pixel;
+        $this->result = $result;
+        $this->userAccess = $userAccess;
     }
 
     //Display the influencers screen
@@ -31,7 +37,10 @@ class InfluencerController extends Controller
         $campaign = $this->campaign->find($id);
 
         //Influencers
-        $influencers = $this->influencer->where('id_campaign', $id)->get();
+        $influencers = $this->influencer
+            ->with('getInfluencers')
+            ->where('id_campaign', $id)
+            ->get();
 
         //Pixel
         $pixel = $this->pixel->find($campaign->id_pixel);
@@ -144,25 +153,13 @@ class InfluencerController extends Controller
 
                 DB::beginTransaction();
 
-                $urls = $this->url
-                ->where('id_influencer', $request->get('id'))
-                ->pluck('id')
-                ->toArray();
+                $id = $request->get('id');
 
-                if($urls){
+//                $results = $this->result->where('id_influencer', $id)->delete();
+//
+//                $usserAccess = $this->userAccess->where('id_influencer', $id)->delete();
 
-                    $this->urlresult->whereIn('id_url', $urls)->delete();
-                    
-                    $this->url->whereIn('id', $urls)->delete();
-                }
-
-                $pixel = $this->pixel
-                    ->where('id_influencer', $request->get('id'))
-                    ->update(['id_influencer' => NULL]);
-
-                $deleteInfluencer = $this->influencer
-                ->where('id', $request->get('id'))
-                ->delete();
+                $deleteInfluencer = $this->influencer->find($id)->delete();
 
                 if($deleteInfluencer){
 

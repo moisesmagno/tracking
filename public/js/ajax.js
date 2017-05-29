@@ -312,41 +312,41 @@ $( document ).ready(function() {
     });
 
     //Delete influencer
-    // $(".delete_url").click(function(event){
-    //
-    //     event.preventDefault();
-    //
-    //     if(!confirm('Realmente deseja excluir esta URL?')){
-    //         return false;
-    //     }
-    //
-    //     var data = {id: $(this).attr('data-id-delete')};
-    //     var _this = $(this);
-    //
-    //     $.ajax({
-    //         url: "/campanha//url/delete",
-    //         method: "delete",
-    //         data: data,
-    //         success: function (result) {
-    //
-    //             $(".alert").addClass('hide');
-    //
-    //             if(result == 'delete-true'){
-    //
-    //                 $("#register-url .alert-success").removeClass('hide');
-    //                 $("#register-url .alert-success span").html('<b>Sucesso!</b> A URL foi removida.');
-    //
-    //                 _this.parents(".gradeU").fadeOut("slow");
-    //
-    //             }else{
-    //                 $("#register-url .alert-danger").removeClass('hide')
-    //                 $("#register-url .alert-danger span").html('<b>Erro!</b> Ocorreu um erro crítico ao tentar remover a campanha, por favor tente novamente ou entre em contato.')
-    //             }
-    //
-    //             $(".alert-php").addClass('hide');
-    //         }
-    //     });
-    // });
+    $(".delete_influencer").click(function(event){
+
+        event.preventDefault();
+
+        if(!confirm('Realmente deseja excluir este Influenciador?')){
+            return false;
+        }
+
+        var data = {id: $(this).attr('data-id-delete')};
+        var _this = $(this);
+
+        $.ajax({
+            url: "/marca/campaign/influencer/delete",
+            method: "delete",
+            data: data,
+            success: function (result) {
+
+                $(".alert").addClass('hide');
+
+                if(result == 'delete-true'){
+
+                    $("#register-influencer .alert-success").removeClass('hide');
+                    $("#register-influencer .alert-success span").html('<b>Sucesso!</b> O Influeciador foi removida.');
+
+                    _this.parents(".gradeU").fadeOut("slow");
+
+                }else{
+                    $("#register-influencer .alert-danger").removeClass('hide')
+                    $("#register-influencer .alert-danger span").html('<b>Erro!</b> Ocorreu um erro crítico ao tentar remover o influeciador, por favor tente novamente ou entre em contato.')
+                }
+
+                $(".alert-php").addClass('hide');
+            }
+        });
+    });
 
 
      /* ****************************************
@@ -358,6 +358,7 @@ $( document ).ready(function() {
         event.preventDefault();
 
         var data = {id: $(this).attr('data-id-edit')};
+        var total_conversion = $(this).attr('data-total-conversions');
         var _this = $(this);
 
         $.ajax({
@@ -375,6 +376,7 @@ $( document ).ready(function() {
                     $('#modal_edit_pixel #id_pixel_conversion').val(result.id);
                     $('#modal_edit_pixel #name').val(result.name);
                     $('#modal_edit_pixel #value').val(formatReal(result.value));
+                    $('#modal_edit_pixel #total_conversions').val(total_conversion);
                     $('#modal_edit_pixel #interval').find('.op_interval').each(function(){
                         var that_ = $(this);
                         var value = that_.val();
@@ -401,10 +403,13 @@ $( document ).ready(function() {
             id: $('#modal_edit_pixel #id_pixel_conversion').val(),
             name: $('#modal_edit_pixel #name').val(),
             value: $('#modal_edit_pixel #value').val(),
-            interval: $('#modal_edit_pixel #interval').val()
+            interval: $('#modal_edit_pixel #interval').val(),
+            total_conversion: $('#modal_edit_pixel #total_conversions').val()
         };
 
         var textInterval = $('#modal_edit_pixel #interval :selected').text();
+
+        var valorTotal = parseFloat(data.value) * parseInt(data.total_conversion);
  
         $.ajax({
             url: "/pixel-conversao/update",
@@ -419,6 +424,10 @@ $( document ).ready(function() {
                     $("#crud-pixel-conversion .alert-success").removeClass('hide')
                     $("#crud-pixel-conversion .alert-success span").html('<b>Success!</b> O pixel conversão foi editado.')
                     $('#tr_' + data.id).find('.text-name-pixel').html(data.name);
+
+                    $('#tr_' + data.id).find('.text-name-value').html(data.value);
+                    $('#tr_' + data.id).find('.text-name-total-value').html('R$ ' + valorTotal);
+
                     $('#tr_' + data.id).find('.text-interval-pixel').html(textInterval);
                     $('#tr_' + data.id).css({"border-left": "3px solid rgba(95, 190, 170, 0.4)"});
                 }else if(result == 'false'){
@@ -454,43 +463,43 @@ $( document ).ready(function() {
 
 
      //Delete pixel conversion
-     // $('.delete_pixel').click(function(event){
-     //
-     //    event.preventDefault();
-     //
-     //    if(!confirm('Realmente deseja excluir este pixel?')){
-     //        return false;
-     //    }
-     //
-     //    var data = {
-     //        id: $(this).attr('data-id-delete'),
-     //    }
-     //
-     //    var _this = $(this);
-     //
-     //    $.ajax({
-     //        url: "/pixel-conversao/delete",
-     //        method: "delete",
-     //        data: data,
-     //        success: function (result) {
-     //
-     //            $(".alert").addClass('hide');
-     //
-     //            if(result == 'true'){
-     //
-     //                $("#crud-pixel-conversion .alert-success").removeClass('hide');
-     //                $("#crud-pixel-conversion .alert-success span").html('<b>Sucesso!</b> O pixel foi removido.');
-     //
-     //                _this.parents(".gradeU").fadeOut("slow");
-     //
-     //            }else{
-     //                $("#crud-pixel-conversion .alert-danger").removeClass('hide')
-     //                $("#crud-pixel-conversion .alert-danger span").html('<b>Erro!</b> Ocorreu um erro crítico ao tentar remover o pixel, por favor tente novamente ou entre em contato.')
-     //            }
-     //
-     //            $(".alert-php").addClass('hide');
-     //         }
-     //    });
-     // });
+     $('.delete_pixel').click(function(event){
+
+        event.preventDefault();
+
+        if(!confirm('Realmente deseja excluir este pixel?')){
+            return false;
+        }
+
+        var data = {
+            id: $(this).attr('data-id-delete'),
+        }
+
+        var _this = $(this);
+
+        $.ajax({
+            url: "/pixel-conversao/delete",
+            method: "delete",
+            data: data,
+            success: function (result) {
+
+                $(".alert").addClass('hide');
+
+                if(result == 'true'){
+
+                    $("#crud-pixel-conversion .alert-success").removeClass('hide');
+                    $("#crud-pixel-conversion .alert-success span").html('<b>Sucesso!</b> O pixel foi removido.');
+
+                    _this.parents(".gradeU").fadeOut("slow");
+
+                }else{
+                    $("#crud-pixel-conversion .alert-danger").removeClass('hide')
+                    $("#crud-pixel-conversion .alert-danger span").html('<b>Erro!</b> Ocorreu um erro crítico ao tentar remover o pixel, por favor tente novamente ou entre em contato.')
+                }
+
+                $(".alert-php").addClass('hide');
+             }
+        });
+     });
 
 });

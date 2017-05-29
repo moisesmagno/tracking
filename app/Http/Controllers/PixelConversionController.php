@@ -32,7 +32,14 @@ class PixelConversionController extends Controller
 
 
         //Pixel data and conversions
-       $pixels = $this->pixelConversion->with('usersAccessInformations')->where('id_user', session('id'))->get();
+       $pixels = $this->pixelConversion
+           ->with('getCampaigns')
+           ->with('usersAccessInformations')
+           ->where('id_user', session('id'))
+           ->get();
+
+//       print_r($pixels);
+//       die;
 
         return view('pixel_conversion.index')->with(['pixels' => $pixels]);
     }
@@ -135,50 +142,16 @@ class PixelConversionController extends Controller
 
                 DB::beginTransaction();
 
-                $pixel = $this->pixelConversion
-                    ->where('id_user', session('id'))
-                    ->where('id', $request->get('id'))
-                    ->first();
-
-                if($pixel){
-
-                    //Delete User Acces Information
-                    $this->userAccessInformation
-                        ->where('id_pixel_conversion', $pixel->id)
-                        ->where('id_user', session('id'))
-                        ->delete();
-                }
-
-                $url = $this->url
-                    ->where('id_pixel_conversion', $pixel->id)
-                    ->where('id_influencer', $pixel->id_influencer)
-                    ->pluck('id')->toArray();
-
-                if(!empty($url)){
-
-                    //Delete results from linked URLs.
-                    $this->urlResult->whereIn('id_url', $url)->delete();
-
-                    //Delete URL
-                    $this->url
-                        ->whereIn('id', $url)
-                        ->where('id_pixel_conversion', $pixel->id)
-                        ->where('id_influencer', $pixel->id_influencer)
-                        ->delete();
-                }
-
-                //Delete Incluencer
-                $this->influencer->where('id', $pixel->id_influencer)->delete();
-
                 //Delete Conversion Pixel
-                $this->pixelConversion
+                $pixel = $this->pixelConversion
                     ->where('id_user', session('id'))
                     ->where('id', $request->get('id'))
                     ->delete();
 
-                DB::commit();
-
-                return 'true';
+                if($pixel){
+                    DB::commit();
+                    return 'true';
+                }
 
             } catch (PDOException $e) {
                 DB::rollback();
