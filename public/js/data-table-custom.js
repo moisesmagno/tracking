@@ -26,7 +26,24 @@ $(document).ready(function() {
     $('#dt-marks').DataTable({
         dom: 'Bfrtip',
         buttons: [
-            'excel', 'pdf', 'print'
+            {
+                extend: 'excel',
+                exportOptions: {
+                    columns: [ 0 ]
+                }
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                    columns: [ 0 ]
+                }
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                    columns: [ 0 ]
+                }
+            }
         ],
         "language": language,
     });
@@ -35,7 +52,24 @@ $(document).ready(function() {
     $('#dt-campaigns').DataTable({
         dom: 'Bfrtip',
         buttons: [
-            'excel', 'pdf', 'print'
+            {
+                extend: 'excel',
+                exportOptions: {
+                    columns: [ 0, 1 ]
+                }
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                    columns: [ 0, 1 ]
+                }
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                    columns: [ 0, 1 ]
+                }
+            }
         ],
         "language": language
     });
@@ -44,7 +78,24 @@ $(document).ready(function() {
     $('#dt-influencers').DataTable({
         dom: 'Bfrtip',
         buttons: [
-            'excel', 'pdf', 'print'
+            {
+                extend: 'excel',
+                exportOptions: {
+                    columns: [ 0, 1, 2, 3 ]
+                }
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                    columns: [ 0, 1, 2, 3 ]
+                }
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                    columns: [ 0, 1, 2, 3 ]
+                }
+            }
         ],
         "language": language
     });
@@ -62,7 +113,24 @@ $(document).ready(function() {
     $('#dt-pixel-results').DataTable({
         dom: 'Bfrtip',
         buttons: [
-            'excel', 'pdf', 'print'
+            {
+                extend: 'excel',
+                exportOptions: {
+                    columns: [ 0, 1, 2, 3, 4, 5 ]
+                }
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                    columns: [ 0, 1, 2, 3, 4, 5 ]
+                }
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                    columns: [ 0, 1, 2, 3, 4, 5 ]
+                }
+            }
         ],
         "language": language
     });
@@ -71,7 +139,24 @@ $(document).ready(function() {
     $('#dt-pixel').DataTable({
         dom: 'Bfrtip',
         buttons: [
-            'excel', 'pdf', 'print'
+            {
+                extend: 'excel',
+                exportOptions: {
+                    columns: [ 0, 1, 2, 3, 4, 5 ]
+                }
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                    columns: [ 0, 1, 2, 3, 4, 5 ]
+                }
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                    columns: [ 0, 1, 2, 3, 4, 5 ]
+                }
+            }
         ],
         "language": language
     });

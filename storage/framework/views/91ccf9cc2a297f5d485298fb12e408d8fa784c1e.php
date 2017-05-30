@@ -118,15 +118,15 @@
                                             <tr class="gradeU" id="tr_<?php echo e($pixel->id); ?>">
                                                 <td><a class="text-name-pixel"><?php echo e($pixel->name); ?></a></td>
                                                 <td><?php echo e($pixel->conversions); ?></td>
-                                                <td>R$ <?php echo e($pixel->value); ?></td>
-                                                <td>R$ <?php echo e($pixel->totalConversion); ?></td>
+                                                <td class="text-name-value">R$ <?php echo e($pixel->value); ?></td>
+                                                <td class="text-name-total-value">R$ <?php echo e($pixel->totalConversion); ?></td>
                                                 <td><?php echo e($pixel->date); ?></td>
                                                 <td class="text-interval-pixel"><?php echo e($pixel->time_interval . ' ' . $pixel->interval_type); ?></td>
                                                 <td class="actions">
                                                     <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                                                     <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
                                                     <a href="#" class="on-default edit-row code_tags_js" data-toggle="modal" data-target="#code_pixel_conversion"  data-id-user="<?php echo e(session('id')); ?>" data-id-code="<?php echo e($pixel->id); ?>"><i class="typcn typcn-code"></i></a>
-                                                    <a href="#modal_edit_pixel" data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-id-edit="<?php echo e($pixel->id); ?>" data-overlayColor="#36404a" class="edit_pixel_conversion"><i class="fa fa-pencil"></i></a>
+                                                    <a href="#modal_edit_pixel" data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-total-conversions="<?php echo e($pixel->conversions); ?>" data-id-edit="<?php echo e($pixel->id); ?>" data-overlayColor="#36404a" class="edit_pixel_conversion"><i class="fa fa-pencil"></i></a>
                                                     
                                                 </td>
                                             </tr>
@@ -169,6 +169,7 @@
 
 
                     <input type="hidden" id="id_pixel_conversion" name="id_pixel_conversion" value="">
+                    <input type="hidden" id="total_conversions" name="total_conversions" value="">
 
                     <div class="form-group">
                         <label for="name">Nome do pixel:</label>

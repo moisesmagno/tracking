@@ -65,6 +65,5 @@
             localStorage.setItem('path_url', '<?php echo e(PATH_URL); ?>');
             localStorage.setItem('path_short_url', '<?php echo e(PATH_SHORT_URL); ?>');
         </script>
-
     </body>
 </html>

@@ -211,6 +211,7 @@
         <script src="<?php echo e(asset('js/jquery.scrollTo.min.js')); ?>"></script>
         <script src="<?php echo e(asset('js/jquery.core.js')); ?>"></script>
         <script src="<?php echo e(asset('js/jquery.app.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/numberFormat154.js')); ?>"></script>
 
         <!-- Modal-Effect -->
         <script src="<?php echo e(asset('plugins/custombox/js/custombox.min.js')); ?>"></script>

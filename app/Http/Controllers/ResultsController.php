@@ -44,7 +44,7 @@ class ResultsController extends Controller
 
         //Pixel data and conversions
         $pixel = $this->pixel
-            ->join('user_access_information as ua', 'pixel.id', '=','ua.id_pixel')
+            ->leftJoin('user_access_information as ua', 'pixel.id', '=','ua.id_pixel')
             ->selectRaw("
                 pixel.id, 
                 pixel.name, 

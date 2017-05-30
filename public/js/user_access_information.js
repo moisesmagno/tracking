@@ -72,8 +72,8 @@ function generalUserData(locationData){
 
 	var xhr = new XMLHttpRequest();
     crossDomain: true
-	// xhr.open("POST", "http://tracking.dev/api/user/access-information", true);
-	xhr.open("POST", "http://127.0.0.1/api/user/access-information", true);
+	xhr.open("POST", "http://tracking.dev/api/user/access-information", true);
+	// xhr.open("POST", "http://127.0.0.1/api/user/access-information", true);
     xhr.withCredentials = true;
 	xhr.onload = function () {
 		console.log(this.responseText);
