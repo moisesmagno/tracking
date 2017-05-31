@@ -48,7 +48,7 @@
                                 <tbody>
                                     
                                     @foreach($pixels as $pixel)
-                                        <tr class="gradeU" id="tr_{{ $pixel->id }}">
+                                        <tr class="gradeU {{ ($pixel->valid) ? '' : 'valid_pixel'}}" id="tr_{{ $pixel->id }}">
                                             <td><a class="text-name-pixel">{{ $pixel->name }}</a></td>
                                             <td>{{ count($pixel->usersAccessInformations) }}</td>
                                             <td class="text-name-value">R$ {{ number_format($pixel->value, 2, ',', '.') }}</td>

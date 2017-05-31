@@ -14,6 +14,14 @@
     padding-left: 32px;
 }
 
+.valid_pixel{
+    color: #a94442 !important;
+}
+
+.valid_pixel a{
+    color: #a94442 !important;
+}
+
 /* Table settings */
 table.dataTable thead th, table.dataTable thead td {
     border-bottom: 1px solid #d5d8da;
