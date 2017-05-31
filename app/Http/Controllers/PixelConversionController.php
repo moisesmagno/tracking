@@ -10,6 +10,7 @@ use App\UserAccessInformation;
 use App\Http\Requests\PixelConversionRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class PixelConversionController extends Controller
 {
@@ -30,13 +31,40 @@ class PixelConversionController extends Controller
     //Displays the conversion pixel screen
     public function index(){
 
-
         //Pixel data and conversions
        $pixels = $this->pixelConversion
            ->with('getCampaigns')
            ->with('usersAccessInformations')
            ->where('id_user', session('id'))
            ->get();
+
+
+
+
+
+        foreach($pixels as $pixel){
+            $registerData = Carbon::createFromFormat('Y-m-d H:i:s', $pixel->created_at);
+            $currentData  = Carbon::createFromFormat('Y-m-d H:i:s', Carbon::now());
+
+            if($pixel->time_interval == 24){
+                
+                $hours = $registerData->diffInHours($currentData); // Horas 
+
+                if($hours >= 24){
+                    $pixel->valid = false;
+                }else{
+                    $pixel->valid = true;
+                }
+            }else{    
+                $days = $currentData ->diffInDays($registerData); // Dias
+
+                if($days >= $pixel->time_interval){
+                    $pixel->valid = false;
+                }else{
+                    $pixel->valid = true;
+                } 
+            }
+        }
 
         return view('pixel_conversion.index')->with(['pixels' => $pixels]);
     }
