@@ -46,7 +46,7 @@
                                 <tbody>
                                     
                                     <?php $__currentLoopData = $pixels; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pixel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <tr class="gradeU <?php echo e(($pixel->valid == false) ? 'valid_pixel' : ''); ?>" id="tr_<?php echo e($pixel->id); ?>">
+                                        <tr class="gradeU <?php echo e(($pixel->valid) ? '' : 'valid_pixel'); ?>" id="tr_<?php echo e($pixel->id); ?>">
                                             <td><a class="text-name-pixel"><?php echo e($pixel->name); ?></a></td>
                                             <td><?php echo e(count($pixel->usersAccessInformations)); ?></td>
                                             <td class="text-name-value">R$ <?php echo e(number_format($pixel->value, 2, ',', '.')); ?></td>
